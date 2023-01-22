@@ -58,7 +58,7 @@ export default function PostPage() {
             headers: {'Content-Type': 'application/json'},
             body: json_body
         }
-        fetch("http://34.170.66.126:4000/submitReply", scoreJSON)
+        fetch("https://fuggo.lol:4000/submitReply", scoreJSON)
             .then(response => response.json());
         setIsLoading(true);
         handleSubmit();
@@ -68,7 +68,7 @@ export default function PostPage() {
     // Fetching the data JSON variable from the server.
     useEffect(() => {
             if (isLoading) {
-                fetch("http://34.170.66.126:4000/pageInfo", scoreJSON)
+                fetch("https://fuggo.lol:4000/pageInfo", scoreJSON)
                     .then(response => response.json())
                     .then((
                         result) => {
@@ -278,7 +278,7 @@ export default function PostPage() {
     const handleSubmit = async () => {
         let formData = new FormData()
         formData.append('file', image.data)
-        const response = await fetch('http://34.170.66.126:4000/api/images', {
+        const response = await fetch('https://fuggo.lol:4000/api/images', {
             method: 'POST',
             body: formData,
         })
@@ -314,7 +314,7 @@ export default function PostPage() {
                 <h2 className="postTopic">{data.postTopic}<img alt="" onClick={showFullRes}
                                                                className="originalPostImage"
                                                                id={"originalPostImage" + pageLoc}
-                                                               src={"http://34.170.66.126:4000/fuggosimageworld/" + data.postNumber + ".png"}/>
+                                                               src={"https://fuggo.lol:4000/fuggosimageworld/" + data.postNumber + ".png"}/>
                 </h2>
 
                 <div className="originalPosterHeader" id="originalPosterHeader"><a className="originalPosterNumber"

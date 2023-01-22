@@ -33,7 +33,7 @@ export default function Post({
         }
 
         console.log(scoreJSON)
-        fetch("http://34.170.66.126:4000/delete", scoreJSON)
+        fetch("https://fuggo.lol:4000/delete", scoreJSON)
             .then(response => response.json());
         document.getElementById("reply" + postNumber).style.display = "none";
     }
@@ -80,7 +80,7 @@ export default function Post({
             <h0 className="postTopic" id={"reply" + postNumber} href={"/post/" + postNumber}><a
                 href={"/post/" + postNumber}>{postTopic} </a> <img alt="" onClick={showFullRes}
                                                                    id={"postImage" + postNumber} className="postImage"
-                                                                   src={"http://34.170.66.126:4000/fuggosimageworld/" + postNumber + ".png"}/>
+                                                                   src={"https://fuggo.lol:4000/fuggosimageworld/" + postNumber + ".png"}/>
             </h0>
             {/*<div href={"/post/" + postNumber}>*/}
             <div>
