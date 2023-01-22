@@ -17,9 +17,9 @@ function App() {
                 <BrowserRouter>
                     <NavBar/>
                     <Routes>
-                        <Route path="/" element={<Home/>}/>
+                        {/*<Route path="/" element={<Home/>}/>*/}
                         <Route path="/home" element={<Home/>}/>
-                        <Route path="/b" element={<HighScores contentPage={0}/>}/>
+                        <Route path="/" element={<HighScores contentPage={0}/>}/>
                         <Route path="/post/:id" element={<PostPage/>}/>
                         <Route path="/post/0" element={<Information/>}/>
                         <Route path="/login" element={<Login/>}/>
