@@ -85,7 +85,7 @@ export default function Post({
             {/*<div href={"/post/" + postNumber}>*/}
             <div>
 
-                <p className="postText">{postBody}</p>
+                <a href={"/post/" + postNumber} className="postText">{postBody}</a>
             </div>
 
 
