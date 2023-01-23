@@ -111,6 +111,7 @@ a:link {
     transition: 0.2s;
     height: fit-content;
     max-height: 500px;
+    overflow: hidden;
 
     /*overflow-x: auto;*/
 

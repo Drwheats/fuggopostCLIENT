@@ -1,4 +1,6 @@
 import {Link, useMatch, useResolvedPath} from "react-router-dom";
+import {ImHome, ImQuestion, ImUser} from "react-icons/im"
+
 
 export default function NavBar() {
 
@@ -7,9 +9,9 @@ export default function NavBar() {
         <nav className="nav">
             <Link to="/home" className="site-title">Ben.place</Link>
             <ul>
-                <CustomLink to="/home">Home</CustomLink>
-                <CustomLink to="/about">About</CustomLink>
-                <CustomLink to="/Login">Login</CustomLink>
+                <CustomLink to="/home"><ImHome/></CustomLink>
+                <CustomLink to="/about"><ImQuestion/></CustomLink>
+                <CustomLink to="/Login"><ImUser/></CustomLink>
                 {/*<CustomLink to="/scores">HighScores</CustomLink>*/}
             </ul>
         </nav>)

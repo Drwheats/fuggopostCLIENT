@@ -342,7 +342,7 @@ export default function PostPage() {
                     <br/>
                     <button onClick={submitReply}>REPLY</button>
                     <span className="fileUploadHolder">
-                {image.preview && <img src={image.preview} width='100' height='100'/>}
+                {image.preview && <img src={image.preview} alt="image INVALID." width='100' height='100'/>}
                         <hr></hr>
       <form onSubmit={handleSubmit}>
         <input type='file' name='file' onChange={handleFileChange}></input>
