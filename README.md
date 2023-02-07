@@ -5,7 +5,7 @@ This app is supposed to mimic the behaviour of 4chan, but in React.
 
 COMMANDS:
 Click a post number to reply to it, or type @POSTNUMBER to reply.
-> makes text green until next newline.
+The > makes text green until next newline.
 Hyperlinking not supported yet (waiting to see if this technology catches on before I implement it)
 
 RULES:
