@@ -110,26 +110,26 @@ a:link {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.2s;
     height: fit-content;
-    max-height: 500px;
+    max-height: 400px;
     overflow: auto;
-
-    /*overflow-x: auto;*/
-
 }
 
 .postHeader {
+    cursor: move;
     display: flex;
     background-color: darkgrey;
     margin: auto;
 }
 
 .postFooter {
+    float: bottom;
     width: 100%;
     display: flex;
     margin: auto;
 }
 
 .replies {
+
     margin-left: auto;
 }
 
@@ -144,15 +144,14 @@ a:link {
 }
 
 .postHolder:hover {
-    background-color: darkslategray;
+    background-color: lightslategrey;
     color: white;
-    /*box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);*/
     box-shadow: 10px 5px 5px darkslategrey;
-
 }
 
 /* Add some padding inside the card container */
 .postTopic {
+
     display: flex;
     flex-direction: column;
     float: left;
@@ -162,8 +161,10 @@ a:link {
 }
 
 .postText {
+    overflow: hidden;
     padding: 5px;
     text-align: left;
+    float: left;
 }
 
 .cards {
@@ -461,6 +462,7 @@ pre {
 }
 
 .floatingReplies {
+    float: right;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

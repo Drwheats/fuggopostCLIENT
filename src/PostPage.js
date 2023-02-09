@@ -2,8 +2,6 @@ import {useEffect} from "react";
 import {useState} from "react";
 import EnemyPost from "./EnemyPost";
 import {ImArrowLeft} from "react-icons/im"
-import {render} from "@testing-library/react";
-import theScream from "./public/theScream.png";
 
 export default function PostPage() {
     const [fullRes, setFullRes] = useState(false);
@@ -58,7 +56,7 @@ export default function PostPage() {
             headers: {'Content-Type': 'application/json'},
             body: json_body
         }
-        fetch("https://fuggo.lol:4000/submitReply", scoreJSON)
+        fetch("http://localhost:4000/submitReply", scoreJSON)
             .then(response => response.json());
         setIsLoading(true);
         handleSubmit();
@@ -258,7 +256,7 @@ export default function PostPage() {
 
     formatDate();
 
-    useEffect(() => {
+    useEffect(([]) => {
             setIsLoading(false);
         }
     )
@@ -278,7 +276,7 @@ export default function PostPage() {
     const handleSubmit = async () => {
         let formData = new FormData()
         formData.append('file', image.data)
-        const response = await fetch('https://fuggo.lol:4000/api/images', {
+        const response = await fetch('http://localhost:4000/api/images', {
             method: 'POST',
             body: formData,
         })
@@ -314,7 +312,7 @@ export default function PostPage() {
                 <h2 className="postTopic">{data.postTopic}<img alt="" onClick={showFullRes}
                                                                className="originalPostImage"
                                                                id={"originalPostImage" + pageLoc}
-                                                               src={"https://fuggo.lol:4000/fuggosimageworld/" + data.postNumber + ".png"}/>
+                                                               src={"http://localhost:4000/fuggosimageworld/" + data.postNumber + ".png"}/>
                 </h2>
 
                 <div className="originalPosterHeader" id="originalPosterHeader"><a className="originalPosterNumber"

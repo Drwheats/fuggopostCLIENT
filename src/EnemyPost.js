@@ -1,15 +1,7 @@
-import {CgTrash} from "react-icons/cg";
 import {FiPlusSquare, FiMinusSquare, FiXSquare} from "react-icons/fi";
 import {useState} from "react";
 
-export default function EnemyPost({
-                                      enemyPostName,
-                                      enemyPostBody,
-                                      enemyPostNumber,
-                                      motherPost,
-                                      nestedReplies,
-                                      timePosted
-                                  }) {
+export default function EnemyPost({enemyPostName, enemyPostBody, enemyPostNumber, motherPost, nestedReplies, timePosted}) {
     const [fullRes, setFullRes] = useState()
 
     function deletePost() {
@@ -26,7 +18,7 @@ export default function EnemyPost({
             headers: {'Content-Type': 'application/json'},
             body: json_body
         }
-        fetch("https://fuggo.lol:4000/delete", scoreJSON)
+        fetch("http://localhost:4000/delete", scoreJSON)
             .then(response => response.json());
         document.getElementById("reply" + enemyPostNumber).style.display = "none";
     }
@@ -83,7 +75,7 @@ export default function EnemyPost({
             })} </span>
             </div>
             <img alt="" onClick={showFullRes} className="enemyPostImage" id={"enemyPostImage" + enemyPostNumber}
-                 src={"https://fuggo.lol:4000/fuggosimageworld/" + enemyPostNumber + ".png"}/>
+                 src={"http://localhost:4000/fuggosimageworld/" + enemyPostNumber + ".png"}/>
 
             <div className="enemyPostHeader">
                 <h5 className="enemyPostName"><a href="#mainTextSubmit" onClick={clickReply}

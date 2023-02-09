@@ -2,7 +2,7 @@ import {CgTrash} from "react-icons/cg";
 import {FiMinusSquare, FiPlusSquare, FiXSquare} from "react-icons/fi";
 import theScream from './public/theScream.png'
 import {useState} from "react";
-
+import {useEffect} from "react";
 
 export default function Post({
                                  postName,
@@ -12,9 +12,38 @@ export default function Post({
                                  postVisibility,
                                  postNumberReplies,
                                  timePosted,
-                                 replies
+                                 replies,
+                                 children,
+                                 zIndexProps,
+                                 createModalIsOpen,
+                                 setCreateModalIsOpen
+
                              }) {
     const [fullRes, setFullRes] = useState();
+
+    const [diffX, setDiffX] = useState(0);
+    const [diffY, setDiffY] = useState(0);
+    const [isDragging, setIsDragging] = useState(false);
+    const [styles, setStyles] = useState({});
+
+    const dragStart = (e) => {
+        setDiffX(e.screenX - e.currentTarget.getBoundingClientRect().left);
+        setDiffY(e.screenY - e.currentTarget.getBoundingClientRect().top);
+        setIsDragging(true);
+    };
+    const dragging = (e) => {
+        if (isDragging) {
+            var left = e.screenX - diffX;
+            var top = e.screenY - diffY;
+            setStyles({
+                left: left,
+                top: top
+            });
+        }
+    };
+    const dragEnd = (e) => {
+        setIsDragging(false);
+    };
 
     function formatDate() {
         let currentTime = new Date(timePosted)
@@ -33,7 +62,7 @@ export default function Post({
         }
 
         console.log(scoreJSON)
-        fetch("https://fuggo.lol:4000/delete", scoreJSON)
+        fetch("http://localhost:4000/delete", scoreJSON)
             .then(response => response.json());
         document.getElementById("reply" + postNumber).style.display = "none";
     }
@@ -77,11 +106,11 @@ export default function Post({
                     className="plusIconHolder"><FiPlusSquare onClick={showFullRes} size={16}/> </span> <span
                     className="xIconHolder"><FiXSquare size={16} onClick={deletePost}/>  </span></h5>
 
-            <h0 className="postTopic" id={"reply" + postNumber} href={"/post/" + postNumber}><a
+            <span className="postTopic" id={"reply" + postNumber} href={"/post/" + postNumber}><a
                 href={"/post/" + postNumber}>{postTopic} </a> <img alt="" onClick={showFullRes}
                                                                    id={"postImage" + postNumber} className="postImage"
-                                                                   src={"https://fuggo.lol:4000/fuggosimageworld/" + postNumber + ".png"}/>
-            </h0>
+                                                                   src={"http://localhost:4000/fuggosimageworld/" + postNumber + ".png"}/>
+            </span>
             {/*<div href={"/post/" + postNumber}>*/}
             <div>
 
