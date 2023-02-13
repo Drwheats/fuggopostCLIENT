@@ -113,7 +113,6 @@ export default function Post({
             </span>
             {/*<div href={"/post/" + postNumber}>*/}
             <div>
-
                 <a href={"/post/" + postNumber} className="postText">{postBody}</a>
             </div>
 
