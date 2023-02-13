@@ -276,7 +276,6 @@ export default function PostPage() {
     const handleSubmit = async () => {
         let formData = new FormData()
         formData.append('file', image.data)
-        // const response = await fetch('http://localhost:4000/api/images', {
             const response = await fetch('https://fuggo.lol:4000/api/images', {
 
                 method: 'POST',
