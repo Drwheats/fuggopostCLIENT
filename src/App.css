@@ -169,6 +169,8 @@ a:link {
 
 .cards {
     display: block;
+    flex-wrap: wrap;
+    /*display: block;*/
     /*flex-wrap: wrap;*/
 }
 
@@ -428,7 +430,12 @@ pre {
 
 #reply0 {
     color: lightblue;
-    background-color: black;
+    text-decoration: white;
+    background-color: lightgreen;
+}
+
+#reply0.postText {
+    color: white;
 }
 
 .hideSearch {
@@ -460,6 +467,15 @@ pre {
 .searchIcon {
     margin: 20px
 }
+
+.stackIcon {
+    margin: 20px
+}
+.paragraphRight {
+    display: none;
+}
+
+
 
 .floatingReplies {
     float: right;
@@ -531,4 +547,73 @@ pre {
     -webkit-animation: bounce 2.5s infinite;
     -moz-animation: bounce 2.5s infinite;
     -o-animation: bounce 2.5s infinite;
+}
+
+@keyframes slide-right-left {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-down-up {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes minimize {
+    from {
+        transform: scale(1);
+        opacity: 0;
+    }
+    to {
+        transform: scale(0);
+        opacity: 1;
+    }
+}
+
+.minimizeElement {
+    animation: minimize .3s linear;
+}
+
+.slideUp {
+    animation: slide-down-up .4s linear;
+}
+
+.slideLeft {
+    animation: slide-right-left .4s linear;
+}
+
+.posts {
+    animation: slide-right-left .4s linear;
+}
+
+.enemyPosters {
+    animation: slide-right-left .6s linear;
+}
+.originalPoster {
+    animation: slide-right-left .3s linear;
+}
+
+.nameTextSubmit {
+    animation: slide-right-left .3s linear;
+
+}
+
+.mainTextSubmit {
+    animation: slide-right-left .6s linear;
+}
+
+.topicTextSubmit {
+    animation: slide-right-left .3s linear;
 }

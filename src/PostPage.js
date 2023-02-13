@@ -56,7 +56,7 @@ export default function PostPage() {
             headers: {'Content-Type': 'application/json'},
             body: json_body
         }
-        fetch("http://localhost:4000/submitReply", scoreJSON)
+        fetch("https://fuggo.lol:4000/submitReply", scoreJSON)
             .then(response => response.json());
         setIsLoading(true);
         handleSubmit();
@@ -256,7 +256,7 @@ export default function PostPage() {
 
     formatDate();
 
-    useEffect(([]) => {
+    useEffect(() => {
             setIsLoading(false);
         }
     )
@@ -276,8 +276,10 @@ export default function PostPage() {
     const handleSubmit = async () => {
         let formData = new FormData()
         formData.append('file', image.data)
-        const response = await fetch('http://localhost:4000/api/images', {
-            method: 'POST',
+        // const response = await fetch('http://localhost:4000/api/images', {
+            const response = await fetch('https://fuggo.lol:4000/api/images', {
+
+                method: 'POST',
             body: formData,
         })
         if (response) setStatus(response.statusText)
@@ -302,9 +304,7 @@ export default function PostPage() {
                     let lol = "hey"
                     try {
                         lol = document.getElementById("reply" + r).innerText
-                    } catch (e) {
-                    }
-                    ;
+                    } catch (e) {};
                     return <a className="inlineReply3" href={"/post/" + data.postNumber + "#reply" + r} textfloat={lol}
                               key={r}>>>{r}  </a>
                 })} </ul>
@@ -312,7 +312,7 @@ export default function PostPage() {
                 <h2 className="postTopic">{data.postTopic}<img alt="" onClick={showFullRes}
                                                                className="originalPostImage"
                                                                id={"originalPostImage" + pageLoc}
-                                                               src={"http://localhost:4000/fuggosimageworld/" + data.postNumber + ".png"}/>
+                                                               src={"https://fuggo.lol:4000/fuggosimageworld/" + data.postNumber + ".png"}/>
                 </h2>
 
                 <div className="originalPosterHeader" id="originalPosterHeader"><a className="originalPosterNumber"

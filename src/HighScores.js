@@ -1,9 +1,23 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState, useRef} from "react";
 import PostMap from "./PostMap";
-import {ImSearch, ImZoomOut, ImArrowLeft, ImArrowRight} from "react-icons/im"
+import { CSSTransition } from "react-transition-group";
+import {
+    ImSearch,
+    ImZoomOut,
+    ImArrowLeft,
+    ImParagraphLeft,
+    ImParagraphJustify,
+    ImArrowRight,
+    ImParagraphRight
+} from "react-icons/im";
 
 export default function HighScores({contentPage}) {
+    const [inData, setInData] = useState(true);
+    const nodeRef = useRef(null);
+
     const [data, setData] = useState(true);
+    const [permanentData, setPermanentData] = useState([]);
+
     const [allPosts, setAllPosts] = useState([]);
     const [nameToSubmit, setNameToSubmit] = useState('anonymous');
     const [topic, setTopic] = useState('No Topic');
@@ -15,7 +29,10 @@ export default function HighScores({contentPage}) {
     const [renderedPosts, setRenderedPosts] = useState([]);
     const [image, setImage] = useState({preview: '', data: ''});
     const [status, setStatus] = useState('')
+    const [displayCards, setDisplayCards] = useState(true);
     // Here, we get the list of posts from the server based on what page the user is on.
+
+
     useEffect(() => {
         if (data) {
 
@@ -29,7 +46,7 @@ export default function HighScores({contentPage}) {
                 },
                 body: json_body
             }
-            fetch("http://localhost:4000/postNumber", scoreJSON)
+            fetch("https://fuggo.lol:4000/postNumber", scoreJSON)
                 .then(res => res.json())
                 .then(
                     (result) => {
@@ -46,6 +63,7 @@ export default function HighScores({contentPage}) {
                         result.unshift(headerPost);
                         setAllPosts(result);
                         setData(false);
+                        setPermanentData(allPosts)
                         let tempPosts = allPosts.slice(postPage * 10, postPage * 10 + 9)
                         setRenderedPosts(tempPosts);
                     }
@@ -119,7 +137,7 @@ export default function HighScores({contentPage}) {
             headers: {'Content-Type': 'application/json'},
             body: json_body
         }
-        fetch("http://localhost:4000/submit", scoreJSON)
+        fetch("https://fuggo.lol:4000/submit", scoreJSON)
             .then(response => response.json());
         setData(true);
         handleSubmit()
@@ -128,8 +146,7 @@ export default function HighScores({contentPage}) {
     }
 
     function clearFilters() {
-        let tempPosts = allPosts;
-        setAllPosts(tempPosts);
+        setAllPosts(allPosts);
         for (let i = 0; i < allPosts.length; i++) {
             allPosts[i].postVisibility = true;
         }
@@ -172,6 +189,29 @@ export default function HighScores({contentPage}) {
     function showSearch() {
         document.getElementById("searchBar").style.display = "inline-block"
         document.getElementById("searchButtonHolder").style.display = "none"
+    }
+    function changeCardView() {
+        if (displayCards === true) {
+            document.getElementById("cards").style.display = "flex";
+            document.getElementById("cards").classList.add("slideUp");
+
+
+            // document.getElementById("cards").style.flexWrap = "wrap";
+            setDisplayCards(false);
+            document.getElementById("paragraphCentre").style.display = "none";
+            document.getElementById("paragraphRight").style.display = "block";
+
+        }
+        else {
+            document.getElementById("cards").style.display = "block";
+            setDisplayCards(true);
+            document.getElementById("cards").classList.add("slideLeft");
+
+            document.getElementById("paragraphCentre").style.display = "block";
+            document.getElementById("paragraphRight").style.display = "none";
+
+
+        }
 
     }
 
@@ -201,7 +241,7 @@ export default function HighScores({contentPage}) {
     const handleSubmit = async () => {
         let formData = new FormData()
         formData.append('file', image.data)
-        const response = await fetch('http://localhost:4000/api/images', {
+        const response = await fetch('https://fuggo.lol:4000/api/images', {
             method: 'POST',
             body: formData,
         })
@@ -220,6 +260,15 @@ export default function HighScores({contentPage}) {
             <div className="toolContainer">
                 <div className="searchButtonHolder" id="searchButtonHolder"
                 ><ImSearch className="searchIcon" size={20} onClick={showSearch}></ImSearch></div>
+                <span className="stackIcon" size={20} onClick={changeCardView}>
+                    <span className="paragraphRight" id="paragraphRight">
+                      <ImParagraphLeft size={20}/>
+                    </span>
+                    <span className="paragraphCentre" id="paragraphCentre">
+                        <ImParagraphJustify size={20}/>
+                    </span>
+
+                </span>
                 <div className="searchBar" id="searchBar">
                     <h3>Find Posts</h3>
                     <div>
@@ -264,11 +313,15 @@ export default function HighScores({contentPage}) {
                     <button className="postButton" onClick={submitScore}>Post</button>
                 </div>
             </div>
-            <div className="leaderboard" id="leaderboard">
-                <div className='posts' id='posts'><PostMap posters={allPosts.slice(postPage * 10, postPage * 10 + 9)}
-                                                           className="postMap"/>
-                </div>
+            <CSSTransition nodeRef={nodeRef} in={inData} timeout={1500} classNames="animatePosts">
+
+            <div ref={nodeRef} className="leaderboard" id="leaderboard">
+                {<div className='posts' id='posts'><PostMap posters={allPosts.slice(postPage * 10, postPage * 10 + 9)}
+                                                            className="postMap"/>
+                    </div>}
             </div>
+            </CSSTransition>
+
             <div className="footer" id="footer"><span className="backwardButton"> <ImArrowLeft size={30}
                                                                                                onClick={pageBack}
                                                                                                className="backwardButton"/> </span>Now

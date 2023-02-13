@@ -13,7 +13,7 @@ export default function PostMap({posters}, clicks) {
 
 
     return (
-        <div className="cards">
+        <div className="cards" id="cards">
 
             {posters.map(s => {
                 if (s.timePosted === "2004") {
