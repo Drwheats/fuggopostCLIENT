@@ -109,10 +109,10 @@ a:link {
 }
 
 .postHolder {
+    max-width: 500px;
     float: left;
     border-style: groove;
     background-color: lightblue;
-    margin-left: 20px;
     margin-bottom: 10px;
     width: fit-content;
     /*max-width: 80%;*/
@@ -185,6 +185,7 @@ a:link {
 }
 
 .cards {
+    max-width: 400px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -219,7 +220,6 @@ a:link {
     margin-bottom: 5px;
     max-width: 600px;
     min-height: 150px;
-
     /*width: fit-content;*/
     border-style: ridge;
     border-width: 2px;
@@ -230,7 +230,7 @@ a:link {
 }
 
 .enemyPostBody {
-    max-width: 500px;
+    max-width: 400px;
     display: flex;
 }
 
@@ -247,7 +247,6 @@ a:link {
 }
 
 .enemyPostNumber {
-    height: fit-content;
     font-size: 16px;
 }
 
@@ -275,7 +274,9 @@ a:link {
     min-height: 185px;
     min-width: 100px;
     white-space: -o-pre-wrap;
-    max-width: 600px;
+    max-width: 400px;
+    max-height: 2000px;
+
 }
 
 .originalPosterTopic {
@@ -284,11 +285,18 @@ a:link {
     margin: auto;
 }
 
+.originalPosterBody {
+    max-height: 2000px;
+    max-width: inherit;
+    width: inherit;
+}
+
 .originalPosterText {
+    width: inherit;
     text-align: left;
     /*min-width: fit-content;*/
-    min-width: 100px;
-    max-width: 600px;
+
+    overflow-wrap: break-word;
     word-wrap: break-word;
 }
 
@@ -536,7 +544,7 @@ pre {
     margin: 5px;
     width: fit-content;
     background-color: lightgreen;
-    max-height: 100px;
+    max-height: 110px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -672,6 +680,8 @@ pre {
 
 @media only screen and (min-width: 768px) {
     .postHolder{
+        margin-left: 20px;
+        max-width: 2000px;
         max-width: 80%;
     }
     .enemyPostHolder {
