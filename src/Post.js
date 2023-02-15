@@ -112,19 +112,21 @@ export default function Post({
                     className="plusIconHolder"><FiPlusSquare onClick={showFullRes} size={16}/> </span> <span
                     className="xIconHolder"><FiXSquare size={16} onClick={deletePost}/>  </span></h5>
 
-            <span className="postTopic" id={"reply" + postNumber} href={"/post/" + postNumber}><a
-                href={"/post/" + postNumber}>{postTopic} </a>
-            </span>
+
             {/*<div href={"/post/" + postNumber}>*/}
-            <br/>
-            <br/>
-            <br/>
+
 
             <div className="postBody">
+                            <span className="postTopic" id={"reply" + postNumber} href={"/post/" + postNumber}><a
+                                href={"/post/" + postNumber}>{postTopic} </a>
+            </span>
+                <span className="postContent">
                     <img alt="" onClick={showFullRes}
                          id={"postImage" + postNumber} className="postImage"
                          src={"https://fuggo.lol:4000/fuggosimageworld/" + postNumber + ".png"}/>
                     <a href={"/post/" + postNumber} className="postText">{postBody}</a>
+
+                </span>
 
                 </div>
 

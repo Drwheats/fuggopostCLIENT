@@ -104,6 +104,7 @@ a:link {
     max-width: 400px;
     float: left;
     display: flex;
+    overflow: hidden;
     flex-direction: column;
         transition: 0.2s;
 }
@@ -128,8 +129,14 @@ a:link {
     margin-right: 20px;
 }
 
+.postContent {
+    display: flex;
+    flex-direction: row;
+}
 .postBody {
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 
@@ -174,6 +181,7 @@ a:link {
     display: flex;
     flex-direction: column;
     float: left;
+    text-align: left;
     font-size: 20px;
     font-weight: bold;
     padding: 10px 16px;
@@ -689,7 +697,9 @@ pre {
         max-width: 80%;
     }
     .theEntirePost {
-    max-width: 80%
+        margin-bottom: 10px;
+    max-width: 80%;
+
     }
     .postHolder{
         margin-left: 20px;
