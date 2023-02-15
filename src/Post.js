@@ -99,7 +99,7 @@ export default function Post({
 
     formatDate();
     return (
-
+    <div className="theEntirePost">
         <div className="postHolder" id={"reply" + postNumber}>
             <h5 className="postHeader"> #{postNumber} {postName} <span className="trashHolder">{timePosted} </span>
                 <span className="minusIconHolder"><FiMinusSquare size={16} onClick={hidePost}/></span> <span
@@ -107,25 +107,37 @@ export default function Post({
                     className="xIconHolder"><FiXSquare size={16} onClick={deletePost}/>  </span></h5>
 
             <span className="postTopic" id={"reply" + postNumber} href={"/post/" + postNumber}><a
-                href={"/post/" + postNumber}>{postTopic} </a> <img alt="" onClick={showFullRes}
-                                                                   id={"postImage" + postNumber} className="postImage"
-                                                                   src={"https://fuggo.lol:4000/fuggosimageworld/" + postNumber + ".png"}/>
+                href={"/post/" + postNumber}>{postTopic} </a>
             </span>
             {/*<div href={"/post/" + postNumber}>*/}
-            <div>
-                <a href={"/post/" + postNumber} className="postText">{postBody}</a>
-            </div>
+            <br/>
+            <br/>
+            <br/>
+
+            <div className="postBody">
+                    <img alt="" onClick={showFullRes}
+                         id={"postImage" + postNumber} className="postImage"
+                         src={"https://fuggo.lol:4000/fuggosimageworld/" + postNumber + ".png"}/>
+                    <a href={"/post/" + postNumber} className="postText">{postBody}</a>
+
+                </div>
 
 
-            <div className="floatingReplies">{
 
-                trimReplies().map((r) => {
-                    return <a className="floatingReply"
-                              href={"/post/" + postNumber + "#reply" + r.postNumber}>{r.replyName + ": " + r.replyBody + " "}</a>
-                })
-            }
-            </div>
             <a href={"/post/" + postNumber} className="postFooter"
             ><h5 className="replies">{postNumberReplies} replies <span className="replyNow">View Thread</span></h5></a>
-        </div>)
+        </div>
+    <div className="floatingReplies">{
+
+        trimReplies().map((r) => {
+            return <a className="floatingReply"
+                      href={"/post/" + postNumber + "#reply" + r.postNumber}>{
+                <img alt="" onClick={showFullRes} className="enemyPostImage" id={"enemyPostImage" + r.postNumber}
+                src={"https://fuggo.lol:4000/fuggosimageworld/" + r.postNumber + ".png"}/>
+            }{r.replyName + ": " + r.replyBody + " "}</a>
+        })
+    }
+    </div>
+        </div>
+    )
 }

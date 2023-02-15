@@ -7,7 +7,7 @@ export default function NavBar() {
 
     return (
         <nav className="nav">
-            <Link to="/home" className="site-title">Ben.place</Link>
+            <Link to="/home" className="site-title"><img className="logoBen" src={"/bendotplace.png"} /> </Link>
             <ul>
                 <CustomLink to="/home"><ImHome/></CustomLink>
                 <CustomLink to="/about"><ImQuestion/></CustomLink>

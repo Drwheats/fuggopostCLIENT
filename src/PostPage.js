@@ -298,6 +298,8 @@ export default function PostPage() {
 
     return (
         <div className="postPage">
+            <h3 className="originalPosterTopic">"{data.postTopic}"
+            </h3>
             <div className="originalPoster" id={"reply" + data.postNumber}>
                 <ul className="inlineReply">{data.numberInlineReplies.map((r) => {
                     let lol = "hey"
@@ -308,19 +310,29 @@ export default function PostPage() {
                               key={r}>>>{r}  </a>
                 })} </ul>
 
-                <h2 className="postTopic">{data.postTopic}<img alt="" onClick={showFullRes}
-                                                               className="originalPostImage"
-                                                               id={"originalPostImage" + pageLoc}
-                                                               src={"https://fuggo.lol:4000/fuggosimageworld/" + data.postNumber + ".png"}/>
-                </h2>
 
-                <div className="originalPosterHeader" id="originalPosterHeader"><a className="originalPosterNumber"
+
+                <div className="originalPosterHeader" id="originalPosterHeader">
+                    <h3><a className="originalPosterNumber"
                                                                                    onClick={clickReply}
-                                                                                   href="#mainTextSubmit">#{data.postNumber}</a>
-                    <h3 className="originalPosterName">{data.postName}</h3>
-                    <h3 className="timeStampOP">{formatDate()}</h3>
+                                                                                   href="#mainTextSubmit">#{data.postNumber}</a></h3>
+                    <h3 className="originalPosterName">name: {data.postName}</h3>
+
+                    <h3 className="timeStampOP">
+                        {formatDate()}</h3>
                 </div>
-                <p className="postText">{data.postBody}</p>
+                <br/>
+                <br/>
+                <br/>
+                <div className="originalPosterBody">
+                    <img alt="" onClick={showFullRes}
+                         className="originalPostImage"
+                         id={"originalPostImage" + pageLoc}
+                         src={"https://fuggo.lol:4000/fuggosimageworld/" + data.postNumber + ".png"}/>
+                    <p className="originalPosterText">
+                        {data.postBody}</p>
+                </div>
+
             </div>
             <div className="enemyPosters">
                 {data.postReplies.map(s => {

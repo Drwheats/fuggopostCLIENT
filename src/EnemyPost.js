@@ -74,8 +74,6 @@ export default function EnemyPost({enemyPostName, enemyPostBody, enemyPostNumber
 
             })} </span>
             </div>
-            <img alt="" onClick={showFullRes} className="enemyPostImage" id={"enemyPostImage" + enemyPostNumber}
-                 src={"https://fuggo.lol:4000/fuggosimageworld/" + enemyPostNumber + ".png"}/>
 
             <div className="enemyPostHeader">
                 <h5 className="enemyPostName"><a href="#mainTextSubmit" onClick={clickReply}
@@ -86,9 +84,14 @@ export default function EnemyPost({enemyPostName, enemyPostBody, enemyPostNumber
             </h5>
 
             </div>
+            <div className="enemyPostBody">
+                <img alt="" onClick={showFullRes} className="enemyPostImage" id={"enemyPostImage" + enemyPostNumber}
+                     src={"https://fuggo.lol:4000/fuggosimageworld/" + enemyPostNumber + ".png"}/>
 
 
-            <span className="enemyPostText" id={"enemyPostText" + enemyPostNumber}></span>
+                <span className="enemyPostText" id={"enemyPostText" + enemyPostNumber}></span>
+            </div>
+
         </div>
     )
 }

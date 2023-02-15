@@ -99,20 +99,37 @@ a:link {
     text-decoration: none
 }
 
+.theEntirePost {
+    height: fit-content;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    transition: 0.2s;
+
+}
+
 .postHolder {
+    float: left;
     border-style: groove;
     background-color: lightblue;
     margin-left: 20px;
     margin-bottom: 10px;
     width: fit-content;
-    max-width: 80%;
+    /*max-width: 80%;*/
     min-width: 30%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.2s;
     height: fit-content;
     max-height: 400px;
-    overflow: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 20px;
 }
+
+.postBody {
+    display: flex;
+}
+
 
 .postHeader {
     cursor: move;
@@ -168,8 +185,9 @@ a:link {
 }
 
 .cards {
-    display: block;
+    display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     /*display: block;*/
     /*flex-wrap: wrap;*/
 }
@@ -199,16 +217,21 @@ a:link {
     box-shadow: 10px 5px 5px darkslategrey;
     margin-top: 5px;
     margin-bottom: 5px;
-    max-width: 95%;
+    max-width: 600px;
     min-height: 150px;
 
-    width: fit-content;
+    /*width: fit-content;*/
     border-style: ridge;
     border-width: 2px;
     margin-left: 20px;
     padding: 10px;
     /*max-height: fit-content;*/
     background-color: lightblue;
+}
+
+.enemyPostBody {
+    max-width: 500px;
+    display: flex;
 }
 
 .enemyPostHeader {
@@ -229,24 +252,44 @@ a:link {
 }
 
 .enemyPostText {
+    max-width: 400px;
     text-align: left;
     font-size: 14px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: inherit;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    /*flex-direction: inherit;*/
 }
 
 .originalPoster {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
     box-shadow: 10px 5px 5px darkslategrey;
-
     border-style: solid;
     margin-left: 10px;
-    text-align: left;
     margin-top: 20px;
-    width: fit-content;
     background-color: grey;
     min-height: 185px;
-    height: fit-content;
+    min-width: 100px;
+    white-space: -o-pre-wrap;
+    max-width: 600px;
+}
+
+.originalPosterTopic {
+    color: lightgreen;
+    background-color: #333;
+    margin: auto;
+}
+
+.originalPosterText {
+    text-align: left;
+    /*min-width: fit-content;*/
+    min-width: 100px;
+    max-width: 600px;
+    word-wrap: break-word;
 }
 
 .originalPosterHeader {
@@ -260,11 +303,13 @@ a:link {
 
 .originalPosterNumber {
     font-size: 20px;
+}
 
+.postText {
+    white-space: pre-line;
 }
 
 .submissionFormReply {
-
     padding: 20px;
     float: left;
     display: flex;
@@ -302,9 +347,7 @@ button:active {
 
 
 .replyHeaderHolder {
-    display: flex;
-    flex-wrap: wrap;
-    padding-right: 50px;
+    float: left;
 }
 
 .plusGuy {
@@ -331,12 +374,11 @@ button:active {
 
 
 .inlineReply {
-
-    margin: auto;
-    height: fit-content;
+    float: left;
+    max-height: 18px;
+    margin-top: auto;
+    margin-bottom: auto;
     color: darkgreen;
-
-
 }
 
 .inlineReply:after {
@@ -396,7 +438,7 @@ button:active {
 }
 
 .timeStampOP {
-    margin-left: 200px;
+    margin-left: 30px;
 }
 
 .enemyTimeStamp {
@@ -478,21 +520,25 @@ pre {
 
 
 .floatingReplies {
-    float: right;
+    margin-top: -13px;
+    float: left;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    text-overflow: ellipsis;
+    text-align: left;
+
 }
 
 .floatingReply {
+    float: left;
     padding: 5px;
     margin: 5px;
     width: fit-content;
     background-color: lightgreen;
-    max-height: 65px;
+    max-height: 100px;
     overflow: hidden;
-
-    float: left;
+    text-overflow: ellipsis;
 }
 
 pre {
@@ -510,6 +556,7 @@ pre {
 }
 
 .originalPostImage {
+    float: left;
     max-height: 100px;
     max-width: 100px;
 
@@ -616,4 +663,35 @@ pre {
 
 .topicTextSubmit {
     animation: slide-right-left .3s linear;
+}
+
+.logoBen {
+    height: 100px;
+    margin: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+    .postHolder{
+        max-width: 80%;
+    }
+    .enemyPostHolder {
+        max-width: 80%;
+    }
+
+    .originalPoster {
+        max-width: 85%;
+    }
+
+    .originalPosterText {
+        max-width: 85%;
+    }
+
+    .enemyPostText {
+        max-width: 80%;
+    }
+
+    .floatingReplies {
+        max-width: 70%;
+
+    }
 }
