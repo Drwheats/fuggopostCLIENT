@@ -70,14 +70,13 @@ export default function Post({
     function hidePost() {
         let plusSign = document.createElement('span')
         plusSign.innerHTML = "+";
-        plusSign.id = "plusSign" + document.getElementById("reply" + postNumber);
-        plusSign.postNumber = document.getElementById("reply" + postNumber);
+        plusSign.id = "plusSign" + document.getElementById("entirePost" + postNumber);
+        plusSign.postNumber = document.getElementById("entirePost" + postNumber);
         plusSign.setAttribute("onClick", "this.postNumber.style.display = 'block'; this.style.display = 'none'");
         plusSign.className = "plusGuy"
-        console.log(plusSign.id)
-        document.getElementById("reply" + postNumber).style.display = "none";
+        document.getElementById("entirePost" + postNumber).style.display = "none";
         // document.getElementById("reply"+postNumber).parentElement.append(plusSign)
-        document.getElementById("reply" + postNumber).parentNode.insertBefore(plusSign, document.getElementById("reply" + postNumber).nextSibling);
+        document.getElementById("entirePost" + postNumber).parentNode.insertBefore(plusSign, document.getElementById("entirePost" + postNumber).nextSibling);
     }
 
     function trimReplies() {
@@ -87,20 +86,27 @@ export default function Post({
 
     function showFullRes() {
         if (!fullRes) {
+
+            document.getElementById("reply" + postNumber).style.maxWidth = "100%"
+            document.getElementById("reply" + postNumber).style.maxHeight = "100%"
             document.getElementById("postImage" + postNumber).style.maxHeight = "100%"
             document.getElementById("postImage" + postNumber).style.maxWidth = "100%"
+
             setFullRes(true);
         } else {
+            document.getElementById("reply" + postNumber).style.maxWidth = "500px"
+            document.getElementById("reply" + postNumber).style.maxHeight = "400px"
             document.getElementById("postImage" + postNumber).style.maxHeight = "100px"
             document.getElementById("postImage" + postNumber).style.maxWidth = "100px"
+
+
             setFullRes(false)
         }
     }
 
     formatDate();
     return (
-    <div className="theEntirePost">
-        <div className="postHolder" id={"reply" + postNumber}>
+    <div className="theEntirePost" id={"entirePost"+postNumber}><div className="postHolder" id={"reply" + postNumber}>
             <h5 className="postHeader"> #{postNumber} {postName} <span className="trashHolder">{timePosted} </span>
                 <span className="minusIconHolder"><FiMinusSquare size={16} onClick={hidePost}/></span> <span
                     className="plusIconHolder"><FiPlusSquare onClick={showFullRes} size={16}/> </span> <span
@@ -137,7 +143,6 @@ export default function Post({
             }{r.replyName + ": " + r.replyBody + " "}</a>
         })
     }
-    </div>
-        </div>
+    </div>     </div>
     )
 }
