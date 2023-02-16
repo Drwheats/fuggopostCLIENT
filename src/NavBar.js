@@ -8,10 +8,10 @@ export default function NavBar() {
     return (
         <nav className="nav">
             <Link to="/home" className="site-title"><img className="logoBen" src={"/bendotplace.png"} /> </Link>
-            <ul>
-                <CustomLink to="/home"><ImHome/></CustomLink>
-                <CustomLink to="/about"><ImQuestion/></CustomLink>
-                <CustomLink to="/Login"><ImUser/></CustomLink>
+            <ul className="navIconHolder">
+                <CustomLink to="/Home"><img className="navIcon" src="/homeicon.png" /> </CustomLink>
+                <CustomLink to="/about"><img className="navIcon" src="/questionmark.png" /> </CustomLink>
+                <CustomLink to="/Login"><img className="navIcon" src="/manicon.png" /> </CustomLink>
                 {/*<CustomLink to="/scores">HighScores</CustomLink>*/}
             </ul>
         </nav>)

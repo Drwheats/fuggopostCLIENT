@@ -1,6 +1,7 @@
 export default function Information() {
     return (
         <div>
+            <img src="/bendotplace.png"/>
             <h1>ABOUT</h1>
             <p>ben dot place is a place to have fun and post with your friends</p>
             <p>Any posts are allowed, so long as they meet local, federal and international laws</p>

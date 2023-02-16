@@ -1,7 +1,7 @@
 import Post from "./Post";
 
 
-export default function PostMap({posters}, clicks) {
+export default function PostMap({posters}) {
     if (posters.postName === '') {
         posters.postName = "anonymous";
     }
@@ -29,7 +29,7 @@ export default function PostMap({posters}, clicks) {
                                  replies={s.postReplies}/>
                 }
 
-            })}
+            return []})}
         </div>
 
     )

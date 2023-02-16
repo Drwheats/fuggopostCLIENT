@@ -52,13 +52,13 @@ export default function HighScores({contentPage}) {
                     (result) => {
                         // console.log('successfully fetched data.')
                         let headerPost = {
-                            postBody: "Welcome to /b/! This forum has no topic. Post away! ",
+                            postBody: "Welcome to ben dot place slash bee! This forum has no topic. Post away! ",
                             postName: "Fuggo",
-                            postTopic: "/b/",
+                            postTopic: "Welcome to the Posts!",
                             postNumber: 0,
                             postVisibility: true,
                             postReplies: [],
-                            timePosted: "2004"
+                            timePosted: "2015"
                         }
                         result.unshift(headerPost);
                         setAllPosts(result);

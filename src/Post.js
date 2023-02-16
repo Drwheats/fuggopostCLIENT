@@ -1,4 +1,3 @@
-import {CgTrash} from "react-icons/cg";
 import {FiMinusSquare, FiPlusSquare, FiXSquare} from "react-icons/fi";
 import {useState} from "react";
 
@@ -7,17 +6,12 @@ export default function Post({
                                  postTopic,
                                  postBody,
                                  postNumber,
-                                 postVisibility,
                                  postNumberReplies,
                                  timePosted,
                                  replies,
-                                 children,
-                                 zIndexProps,
-                                 createModalIsOpen,
-                                 setCreateModalIsOpen
 
                              }) {
-    const [fullRes, setFullRes] = useState();
+    const [fullRes, setFullRes] = useState(false);
 
     function delay(time) {
         return new Promise(resolve => setTimeout(resolve, time));
@@ -63,8 +57,7 @@ export default function Post({
     }
 
     function trimReplies() {
-        let random = replies.sort(() => .5 - Math.random()).slice(0, 3)
-        return random;
+        return replies.sort(() => .5 - Math.random()).slice(0, 3);
     }
 
     function showFullRes() {
@@ -89,7 +82,7 @@ export default function Post({
 
     formatDate();
     return (
-    <div className="theEntirePost" id={"entirePost"+postNumber}><div className="postHolder" id={"reply" + postNumber}>
+    <div key={postNumber} className="theEntirePost" id={"entirePost"+postNumber}><div className="postHolder" id={"reply" + postNumber}>
             <h5 className="postHeader"> #{postNumber} {postName} <span className="trashHolder">{timePosted} </span>
                 <span className="minusIconHolder"><FiMinusSquare size={16} onClick={hidePost}/></span> <span
                     className="plusIconHolder"><FiPlusSquare onClick={showFullRes} size={16}/> </span> <span
@@ -100,7 +93,7 @@ export default function Post({
 
 
             <div className="postBody">
-                            <span className="postTopic" id={"reply" + postNumber} href={"/post/" + postNumber}><a
+                            <span className="postTopic" id={"reply" + postNumber} ><a
                                 href={"/post/" + postNumber}>{postTopic} </a>
             </span>
                 <span className="postContent">
@@ -121,7 +114,7 @@ export default function Post({
     <div className="floatingReplies">{
 
         trimReplies().map((r) => {
-            return <a className="floatingReply"
+            return <a key={Math.floor(Math.random() * postNumber)} className="floatingReply"
                       href={"/post/" + postNumber + "#reply" + r.postNumber}>{
                 <img alt="" onClick={showFullRes} className="enemyPostImage" id={"enemyPostImage" + r.postNumber}
                 src={"https://fuggo.lol:4000/fuggosimageworld/" + r.postNumber + ".png"}/>

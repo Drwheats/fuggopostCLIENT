@@ -17,7 +17,6 @@ function App() {
                 <BrowserRouter>
                     <NavBar/>
                     <Routes>
-                        {/*<Route path="/" element={<Home/>}/>*/}
                         <Route path="/home" element={<Home/>}/>
                         <Route path="/" element={<HighScores contentPage={0}/>}/>
                         <Route path="/b" element={<HighScores contentPage={0}/>}/>

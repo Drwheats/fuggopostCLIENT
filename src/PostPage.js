@@ -23,6 +23,7 @@ export default function PostPage() {
     let json_body = JSON.stringify({pageLoc})
     const [image, setImage] = useState({preview: '', data: ''});
     const [status, setStatus] = useState('')
+    let timePosted = data.timePosted;
 
     function wait(ms) {
         let start = new Date().getTime();
@@ -31,6 +32,7 @@ export default function PostPage() {
             end = new Date().getTime();
         }
     }
+
 
     const scoreJSON = {
         method: 'POST',
@@ -120,7 +122,6 @@ export default function PostPage() {
                 }
                 for (let i = 0; i < holder.length; i++) {
                     if (Number(holder[i]) === Number(data.postNumber)) {
-                        // console.log(s.postNumber)
                         data.numberInlineReplies.push(s.postNumber)
                     }
 
@@ -158,11 +159,8 @@ export default function PostPage() {
                     let greenStr = "";
                     for (let j = i; j < enemyPostBody.length; j++) {
                         if (enemyPostBody[j] !== '\n') {
-                            console.log(enemyPostBody.length)
                             greenStr += enemyPostBody[j];
-                            console.log(greenStr)
                         } else {
-                            console.log(greenStr + " logged!")
                             greenText.setAttribute("className", "greenText");
                             greenText.className = "greenText";
                             greenText.textValue = greenStr;
@@ -173,10 +171,7 @@ export default function PostPage() {
                             i = j;
                             break;
                         }
-
-
                     }
-
                 }
 
                 if (enemyPostBody[i] === '@') {
@@ -238,28 +233,22 @@ export default function PostPage() {
             // console.log(classes[i])
             try {
                 classes[i].setAttribute("textfloat", document.getElementById("reply" + classes[i].innerText.slice(2)).innerText)
-            } catch (e) {
-
-            }
+            } catch (e) {}
         }
-
-
     }
 
     insertInlineReplies();
 
     function formatDate() {
-        let timePosted = Date(data.timePosted);
-        timePosted = timePosted.split(' ').slice(0, 5).join(' ');
-        return timePosted;
-    }
+        let currentTime = new Date(timePosted)
+        timePosted = String(currentTime)
+        timePosted = timePosted.split(' ').slice(0, 5).join(' ')    }
 
     formatDate();
 
     useEffect(() => {
             setIsLoading(false);
-        }
-    )
+        })
 
     function clickReply() {
         document.getElementById("mainTextSubmit").value += "@" + data.postNumber + ">"
@@ -319,7 +308,7 @@ export default function PostPage() {
                     <h3 className="originalPosterName">name: {data.postName}</h3>
 
                     <h3 className="timeStampOP">
-                        {formatDate()}</h3>
+                        {timePosted}</h3>
                 </div>
                 <br/>
                 <br/>
@@ -351,7 +340,7 @@ export default function PostPage() {
                     <br/>
                     <button onClick={submitReply}>REPLY</button>
                     <span className="fileUploadHolder">
-                {image.preview && <img src={image.preview} alt="image INVALID." width='100' height='100'/>}
+                {image.preview && <img src={image.preview} alt="" width='100' height='100'/>}
                         <hr></hr>
       <form onSubmit={handleSubmit}>
         <input type='file' name='file' onChange={handleFileChange}></input>
