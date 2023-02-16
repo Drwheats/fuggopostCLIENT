@@ -1,8 +1,6 @@
 import {CgTrash} from "react-icons/cg";
 import {FiMinusSquare, FiPlusSquare, FiXSquare} from "react-icons/fi";
-import theScream from './public/theScream.png'
 import {useState} from "react";
-import {useEffect} from "react";
 
 export default function Post({
                                  postName,
@@ -21,30 +19,9 @@ export default function Post({
                              }) {
     const [fullRes, setFullRes] = useState();
 
-    const [diffX, setDiffX] = useState(0);
-    const [diffY, setDiffY] = useState(0);
-    const [isDragging, setIsDragging] = useState(false);
-    const [styles, setStyles] = useState({});
-
-    const dragStart = (e) => {
-        setDiffX(e.screenX - e.currentTarget.getBoundingClientRect().left);
-        setDiffY(e.screenY - e.currentTarget.getBoundingClientRect().top);
-        setIsDragging(true);
-    };
-    const dragging = (e) => {
-        if (isDragging) {
-            var left = e.screenX - diffX;
-            var top = e.screenY - diffY;
-            setStyles({
-                left: left,
-                top: top
-            });
-        }
-    };
-    const dragEnd = (e) => {
-        setIsDragging(false);
-    };
-
+    function delay(time) {
+        return new Promise(resolve => setTimeout(resolve, time));
+    }
     function formatDate() {
         let currentTime = new Date(timePosted)
         timePosted = String(currentTime)
@@ -74,9 +51,15 @@ export default function Post({
         plusSign.postNumber = document.getElementById("entirePost" + postNumber);
         plusSign.setAttribute("onClick", "this.postNumber.style.display = 'block'; this.style.display = 'none'");
         plusSign.className = "plusGuy"
-        document.getElementById("entirePost" + postNumber).style.display = "none";
-        // document.getElementById("reply"+postNumber).parentElement.append(plusSign)
-        document.getElementById("entirePost" + postNumber).parentNode.insertBefore(plusSign, document.getElementById("entirePost" + postNumber).nextSibling);
+        document.getElementById("entirePost" + postNumber).style.opacity = "0";
+        delay(600).then(() => {
+            document.getElementById("entirePost" + postNumber).style.display = "none";
+            // document.getElementById("reply"+postNumber).parentElement.append(plusSign)
+            document.getElementById("entirePost" + postNumber).parentNode.insertBefore(plusSign, document.getElementById("entirePost" + postNumber).nextSibling);
+            document.getElementById("entirePost" + postNumber).style.opacity = "100";
+
+        })
+
     }
 
     function trimReplies() {

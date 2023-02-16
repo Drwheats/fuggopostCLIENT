@@ -62,7 +62,6 @@ export default function EnemyPost({enemyPostName, enemyPostBody, enemyPostNumber
 
     return (
         <div className="enemyPostHolder" datatype={enemyPostBody} id={"reply" + enemyPostNumber}>
-
             <div className="replyHeaderHolder">
           <span className="replyMinusSign">
                     </span> <span>{nestedReplies.map((reply) => {
