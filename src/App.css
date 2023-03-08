@@ -256,8 +256,11 @@ a:link {
 }
 
 .enemyPostBody {
-    max-width: 400px;
-    display: flex;
+    max-width: 80%;
+    overflow: hidden;
+    padding: 5px;
+    text-align: left;
+    float: left;
 }
 
 .enemyPostHeader {
@@ -318,12 +321,11 @@ a:link {
 }
 
 .originalPosterText {
-    width: inherit;
+    max-width: 80%;
+    overflow: hidden;
+    padding: 5px;
     text-align: left;
-    /*min-width: fit-content;*/
-
-    overflow-wrap: break-word;
-    word-wrap: break-word;
+    float: left;
 }
 
 .originalPosterHeader {

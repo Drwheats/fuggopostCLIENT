@@ -101,13 +101,8 @@ export default function Post({
                          id={"postImage" + postNumber} className="postImage"
                          src={"https://fuggo.lol:4000/fuggosimageworld/" + postNumber + ".png"}/>
                     <a href={"/post/" + postNumber} className="postText">{postBody}</a>
-
                 </span>
-
                 </div>
-
-
-
             <a href={"/post/" + postNumber} className="postFooter"
             ><h5 className="replies">{postNumberReplies} replies <span className="replyNow">View Thread</span></h5></a>
         </div>

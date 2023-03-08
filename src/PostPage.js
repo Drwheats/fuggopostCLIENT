@@ -147,14 +147,17 @@ export default function PostPage() {
             let greenText = document.createElement('p');
 
             let createdElement = document.createElement('span');
-            let holderElement = document.createElement('pre');
-            let whiteText = document.createElement('pre');
+            let whiteText = document.createElement('a', "epic");
             let links = document.createElement('a');
             let enemyPostBody = data.postReplies[k].replyBody + " \n";
             let postStr = "";
+            let lineBreak = document.createElement('br')
             for (let i = 0; i < enemyPostBody.length; i++) {
                 let greenText = document.createElement('p')
-
+                if (enemyPostBody[i] === '\n') {
+                    whiteText.append(document.createElement('br'))
+                    console.log(whiteText.text)
+                }
                 if (enemyPostBody[i] === '>') {
                     let greenStr = "";
                     for (let j = i; j < enemyPostBody.length; j++) {
@@ -318,8 +321,10 @@ export default function PostPage() {
                          className="originalPostImage"
                          id={"originalPostImage" + pageLoc}
                          src={"https://fuggo.lol:4000/fuggosimageworld/" + data.postNumber + ".png"}/>
-                    <p className="originalPosterText">
-                        {data.postBody}</p>
+                    <pre className="originalPosterText">
+                        {data.postBody.split("\n").map((t,key) => {
+                            return <p key={key}>{t}</p>;
+                        })}</pre>
                 </div>
 
             </div>
