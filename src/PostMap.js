@@ -6,7 +6,6 @@ export default function PostMap({posters}) {
         posters.postName = "anonymous";
     }
 
-    console.log(posters)
     if (posters.length === 0) {
 
     }

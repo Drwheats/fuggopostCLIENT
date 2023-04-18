@@ -33,7 +33,7 @@ export default function Post({
         }
 
         console.log(scoreJSON)
-        fetch("https://fuggo.lol:4000/delete", scoreJSON)
+        fetch("http://localhost:4000/delete", scoreJSON)
             .then(response => response.json());
         document.getElementById("reply" + postNumber).style.display = "none";
     }
@@ -99,7 +99,7 @@ export default function Post({
                 <span className="postContent">
                     <img alt="" onClick={showFullRes}
                          id={"postImage" + postNumber} className="postImage"
-                         src={"https://fuggo.lol:4000/fuggosimageworld/" + postNumber + ".png"}/>
+                         src={"http://localhost:4000/fuggosimageworld/" + postNumber + ".png"}/>
                     <a href={"/post/" + postNumber} className="postText">{postBody}</a>
                 </span>
                 </div>
@@ -112,7 +112,7 @@ export default function Post({
             return <a key={Math.floor(Math.random() * postNumber)} className="floatingReply"
                       href={"/post/" + postNumber + "#reply" + r.postNumber}>{
                 <img alt="" onClick={showFullRes} className="enemyPostImage" id={"enemyPostImage" + r.postNumber}
-                src={"https://fuggo.lol:4000/fuggosimageworld/" + r.postNumber + ".png"}/>
+                src={"http://localhost:4000/fuggosimageworld/" + r.postNumber + ".png"}/>
             }{r.replyName + ": " + r.replyBody + " "}</a>
         })
     }

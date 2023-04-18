@@ -760,4 +760,21 @@ pre {
     .postContent {
         max-width: 100%;
     }
+
+    .coachHolder {
+        padding: 10px;
+        float: left;
+    }
+    .coachHolderList {
+
+    }
+
+    .coachCard {
+
+    }
+
+    .coachCardMonList {
+        float: left;
+        text-align: left;
+    }
 }

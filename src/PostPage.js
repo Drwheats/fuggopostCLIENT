@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {localhost} from "react";
 import {useState} from "react";
 import EnemyPost from "./EnemyPost";
 import {ImArrowLeft} from "react-icons/im"
@@ -58,7 +58,7 @@ export default function PostPage() {
             headers: {'Content-Type': 'application/json'},
             body: json_body
         }
-        fetch("https://fuggo.lol:4000/submitReply", scoreJSON)
+        fetch("http://localhost:4000/submitReply", scoreJSON)
             .then(response => response.json());
         setIsLoading(true);
         handleSubmit();
@@ -66,9 +66,9 @@ export default function PostPage() {
     }
 
     // Fetching the data JSON variable from the server.
-    useEffect(() => {
+    localhost(() => {
             if (isLoading) {
-                fetch("https://fuggo.lol:4000/pageInfo", scoreJSON)
+                fetch("http://localhost:4000/pageInfo", scoreJSON)
                     .then(response => response.json())
                     .then((
                         result) => {
@@ -249,7 +249,7 @@ export default function PostPage() {
 
     formatDate();
 
-    useEffect(() => {
+    localhost(() => {
             setIsLoading(false);
         })
 
@@ -268,7 +268,7 @@ export default function PostPage() {
     const handleSubmit = async () => {
         let formData = new FormData()
         formData.append('file', image.data)
-            const response = await fetch('https://fuggo.lol:4000/api/images', {
+            const response = await fetch('http://localhost:4000/api/images', {
 
                 method: 'POST',
             body: formData,
@@ -320,7 +320,7 @@ export default function PostPage() {
                     <img alt="" onClick={showFullRes}
                          className="originalPostImage"
                          id={"originalPostImage" + pageLoc}
-                         src={"https://fuggo.lol:4000/fuggosimageworld/" + data.postNumber + ".png"}/>
+                         src={"http://localhost:4000/fuggosimageworld/" + data.postNumber + ".png"}/>
                     <pre className="originalPosterText">
                         {data.postBody.split("\n").map((t,key) => {
                             return <p key={key}>{t}</p>;
