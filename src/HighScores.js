@@ -31,10 +31,8 @@ export default function HighScores({contentPage}) {
     const [displayCards, setDisplayCards] = useState(true);
     // Here, we get the list of posts from the server based on what page the user is on.
 
-
     useEffect(() => {
         if (data) {
-
             let json_body = JSON.stringify(
                 {postPage})
             const scoreJSON = {
