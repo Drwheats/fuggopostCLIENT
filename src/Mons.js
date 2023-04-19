@@ -16,7 +16,7 @@ export default function Mons() {
                     'Content-Type': 'application/json'
                 },
             }
-            fetch("http://localhost:4000/coaches", scoreJSON)
+            fetch("https://fuggo.lol:4000/coaches", scoreJSON)
                 .then(res => res.json())
                 .then(
                     (result) => {

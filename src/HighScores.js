@@ -8,7 +8,6 @@ import {
     ImParagraphLeft,
     ImParagraphJustify,
     ImArrowRight,
-    ImParagraphRight
 } from "react-icons/im";
 
 export default function HighScores({contentPage}) {
@@ -46,7 +45,7 @@ export default function HighScores({contentPage}) {
                 },
                 body: json_body
             }
-            fetch("http://localhost:4000/postNumber", scoreJSON)
+            fetch("https://fuggo.lol:4000/postNumber", scoreJSON)
                 .then(res => res.json())
                 .then(
                     (result) => {
@@ -137,7 +136,7 @@ export default function HighScores({contentPage}) {
             headers: {'Content-Type': 'application/json'},
             body: json_body
         }
-        fetch("http://localhost:4000/submit", scoreJSON)
+        fetch("https://fuggo.lol:4000/submit", scoreJSON)
             .then(response => response.json());
         setData(true);
         handleSubmit()
@@ -241,7 +240,7 @@ export default function HighScores({contentPage}) {
     const handleSubmit = async () => {
         let formData = new FormData()
         formData.append('file', image.data)
-        const response = await fetch('http://localhost:4000/api/images', {
+        const response = await fetch('https://fuggo.lol:4000/api/images', {
             method: 'POST',
             body: formData,
         })

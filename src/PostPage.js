@@ -1,4 +1,4 @@
-import {localhost} from "react";
+import {useEffect} from "react";
 import {useState} from "react";
 import EnemyPost from "./EnemyPost";
 import {ImArrowLeft} from "react-icons/im"
@@ -25,14 +25,13 @@ export default function PostPage() {
     const [status, setStatus] = useState('')
     let timePosted = data.timePosted;
 
-    function wait(ms) {
-        let start = new Date().getTime();
-        let end = start;
-        while (end < start + ms) {
-            end = new Date().getTime();
-        }
-    }
-
+    // function wait(ms) {
+    //     let start = new Date().getTime();
+    //     let end = start;
+    //     while (end < start + ms) {
+    //         end = new Date().getTime();
+    //     }
+    // }
 
     const scoreJSON = {
         method: 'POST',
@@ -58,7 +57,7 @@ export default function PostPage() {
             headers: {'Content-Type': 'application/json'},
             body: json_body
         }
-        fetch("http://localhost:4000/submitReply", scoreJSON)
+        fetch("https://fuggo.lol:4000/submitReply", scoreJSON)
             .then(response => response.json());
         setIsLoading(true);
         handleSubmit();
@@ -66,9 +65,9 @@ export default function PostPage() {
     }
 
     // Fetching the data JSON variable from the server.
-    localhost(() => {
+    useEffect(() => {
             if (isLoading) {
-                fetch("http://localhost:4000/pageInfo", scoreJSON)
+                fetch("https://fuggo.lol:4000/pageInfo", scoreJSON)
                     .then(response => response.json())
                     .then((
                         result) => {
@@ -151,7 +150,7 @@ export default function PostPage() {
             let links = document.createElement('a');
             let enemyPostBody = data.postReplies[k].replyBody + " \n";
             let postStr = "";
-            let lineBreak = document.createElement('br')
+            // let lineBreak = document.createElement('br')
             for (let i = 0; i < enemyPostBody.length; i++) {
                 let greenText = document.createElement('p')
                 if (enemyPostBody[i] === '\n') {
@@ -249,7 +248,7 @@ export default function PostPage() {
 
     formatDate();
 
-    localhost(() => {
+    useEffect(() => {
             setIsLoading(false);
         })
 
@@ -268,7 +267,7 @@ export default function PostPage() {
     const handleSubmit = async () => {
         let formData = new FormData()
         formData.append('file', image.data)
-            const response = await fetch('http://localhost:4000/api/images', {
+            const response = await fetch('https://fuggo.lol:4000/api/images', {
 
                 method: 'POST',
             body: formData,
@@ -297,7 +296,7 @@ export default function PostPage() {
                     let lol = "hey"
                     try {
                         lol = document.getElementById("reply" + r).innerText
-                    } catch (e) {};
+                    } catch (e) {}
                     return <a className="inlineReply3" href={"/post/" + data.postNumber + "#reply" + r} textfloat={lol}
                               key={r}>>>{r}  </a>
                 })} </ul>
@@ -320,7 +319,7 @@ export default function PostPage() {
                     <img alt="" onClick={showFullRes}
                          className="originalPostImage"
                          id={"originalPostImage" + pageLoc}
-                         src={"http://localhost:4000/fuggosimageworld/" + data.postNumber + ".png"}/>
+                         src={"https://fuggo.lol:4000/fuggosimageworld/" + data.postNumber + ".png"}/>
                     <pre className="originalPosterText">
                         {data.postBody.split("\n").map((t,key) => {
                             return <p key={key}>{t}</p>;

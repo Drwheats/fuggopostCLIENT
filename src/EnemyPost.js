@@ -18,7 +18,7 @@ export default function EnemyPost({enemyPostName, enemyPostBody, enemyPostNumber
             headers: {'Content-Type': 'application/json'},
             body: json_body
         }
-        fetch("http://localhost:4000/delete", scoreJSON)
+        fetch("https://fuggo.lol:4000/delete", scoreJSON)
             .then(response => response.json());
         document.getElementById("reply" + enemyPostNumber).style.display = "none";
     }
@@ -85,7 +85,7 @@ export default function EnemyPost({enemyPostName, enemyPostBody, enemyPostNumber
             </div>
             <div className="enemyPostBody">
                 <img alt="" onClick={showFullRes} className="enemyPostImage" id={"enemyPostImage" + enemyPostNumber}
-                     src={"http://localhost:4000/fuggosimageworld/" + enemyPostNumber + ".png"}/>
+                     src={"https://fuggo.lol:4000/fuggosimageworld/" + enemyPostNumber + ".png"}/>
 
 
                 <span className="enemyPostText" id={"enemyPostText" + enemyPostNumber}></span>

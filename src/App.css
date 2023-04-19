@@ -1,6 +1,6 @@
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     /*box-sizing: border-box;*/
 }
 
@@ -41,7 +41,6 @@ body {
 }
 
 .loginButton {
-    float: top;
     padding: 5px;
     align-items: flex-end;
     display: flex;
@@ -57,7 +56,7 @@ nav li.active {
     background-color: white;
     width: 200%;
     border-radius: 60%;
-    box-shadow: 0px 0px 9px 4px white;
+    box-shadow: 0 0 9px 4px white;
     animation: glow 2s linear infinite;
     /*width: 100%;*/
 }
@@ -164,7 +163,6 @@ a:link {
 }
 
 .postFooter {
-    float: bottom;
     width: 100%;
     display: flex;
     margin: auto;
@@ -492,7 +490,6 @@ text-align: left;
 }
 
 .backwardButton:hover {
-    size: 50px;
     color: lightgreen;
 }
 
@@ -620,7 +617,6 @@ pre {
 .xIconHolder:hover {
 
     color: red;
-    size: 30px;
     transform: scale(1.4);
 }
 
@@ -632,7 +628,6 @@ pre {
 
 .minusIconHolder:hover {
     color: cornflowerblue;
-    size: 30px;
     transform: scale(1.4);
     animation: bounce 2.5s infinite;
     -webkit-animation: bounce 2.5s infinite;
