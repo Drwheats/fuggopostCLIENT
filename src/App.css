@@ -718,15 +718,18 @@ pre {
     .cards {
         max-width: 100%;
     }
+
     .theEntirePost {
         margin-bottom: 10px;
-    max-width: 80%;
+        max-width: 80%;
 
     }
-    .postHolder{
+
+    .postHolder {
         margin-left: 20px;
         max-width: 80%;
     }
+
     .enemyPostHolder {
         display: flex;
         flex-direction: column;
@@ -737,6 +740,7 @@ pre {
     .enemyPostBody {
         max-width: 80%;
     }
+
     .enemyPostText {
         max-width: 80%;
     }
@@ -765,16 +769,36 @@ pre {
         padding: 10px;
         float: left;
     }
+
     .coachHolderList {
 
     }
 
     .coachCard {
-
+        color: #ffde00;
+        background-color: #3B4CCA;
+        border-style: solid;
     }
 
     .coachCardMonList {
         float: left;
         text-align: left;
+        color: black;
     }
+
+    .pokemon {
+        color: black;
+        background-color: #ffde00;
+        width: 140px;
+        height: 340px;
+        padding: 15px;
+        float: left;
+        border-style: solid;
+    }
+
+    .poketable {
+        text-align: left
+    }
+    .pokeTypeHeader {
+display: flex;    }
 }

@@ -1,5 +1,4 @@
-import {useEffect, useState, useRef} from "react";
-import PostMap from "./PostMap";
+import {useEffect, useState} from "react";
 import CoachMap from "./CoachMap";
 
 export default function Mons() {
@@ -35,7 +34,7 @@ export default function Mons() {
 
     return (
             <div className="coachHolder">
-                <h1>COACHCES:</h1>
+                <h1>i wanna be thevery best,:</h1>
                 <CoachMap coaches={allCoaches}/>
             </div>
         )
