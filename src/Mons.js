@@ -33,6 +33,7 @@ export default function Mons() {
             <div className="coachHolder">
                 <h1>Week {week}</h1>
                 <CoachMap coaches={allCoaches}/>
+                <img src="/squamogus.png" /> <h5>Copyright ©2023 ben dot place </h5>
             </div>
         )
 }

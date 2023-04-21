@@ -765,9 +765,7 @@ pre {
         float: left;
     }
 
-    .coachHolderList {
 
-    }
 
     .coachCard {
         color: #ffde00;
@@ -792,6 +790,11 @@ pre {
         border-style: solid;
     }
 
+    .coachPageCard {
+        display: flex;
+        flex-direction: column;
+    }
+
     .poketable {
         text-align: left
     }
@@ -800,8 +803,28 @@ pre {
     .pageMonHolder {
         display: flex;
     }
+    .pageMatchupHolder {
+        float: right;
+        border-style: groove;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .matchupText {
+        cursor: pointer;
+
+    }
+
+    .matchupTextHolder {
+        color: blue;
+    }
     .monIconHolders {
         float: left;
     }
+
+    .copyright {
+        position: absolute;
+        bottom: 0; /* set the bottom to 0*/    }
 
 }

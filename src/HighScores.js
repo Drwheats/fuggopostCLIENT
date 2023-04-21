@@ -327,6 +327,9 @@ export default function HighScores({contentPage}) {
                 Browsing Page : {postPage + 1} <span className="backwardButton"> <ImArrowRight size={30}
                                                                                                onClick={pageForward}
                                                                                                className="forwardButton"/> </span>
+                <h5 className="copyright">Copyright ©2023 ben dot place </h5>
+
             </div>
+
         </div>)
 }
