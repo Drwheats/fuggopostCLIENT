@@ -23,7 +23,7 @@ export default function Coach({coachName, coachNum, teamName, winLoss, mons}) {
     // }
 
     // wrap this in a function to sort by SPEED or by POINTS or ETC.
-    mons = mons.sort((a, b) => b.spe - a.spe);
+    mons = mons.sort((a, b) => b.points - a.points);
 
     return (
         <div className="coachCard" key={coachNum}>

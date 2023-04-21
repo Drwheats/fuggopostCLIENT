@@ -250,7 +250,7 @@ export default function PostPage() {
 
     useEffect(() => {
             setIsLoading(false);
-        })
+        }, [])
 
     function clickReply() {
         document.getElementById("mainTextSubmit").value += "@" + data.postNumber + ">"

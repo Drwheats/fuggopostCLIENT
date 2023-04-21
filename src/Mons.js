@@ -21,7 +21,6 @@ export default function Mons() {
                     (result) => {
                         setAllCoaches(result);
                         setLeData(false);
-
                     }
                 )
         }
