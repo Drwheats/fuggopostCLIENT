@@ -4,8 +4,7 @@ import CoachMap from "./CoachMap";
 export default function Mons() {
     const [allCoaches, setAllCoaches] = useState([]);
     const [leData, setLeData] = useState(true);
-    const [permanentCoaches, setPermanentCoaches] = useState([]);
-
+    const [week, setWeek] = useState(0);
 
     useEffect(() => {
         if (leData) {
@@ -22,7 +21,6 @@ export default function Mons() {
                     (result) => {
                         setAllCoaches(result);
                         setLeData(false);
-                        setPermanentCoaches(result);
 
                     }
                 )
@@ -34,7 +32,7 @@ export default function Mons() {
 
     return (
             <div className="coachHolder">
-                <h1>i wanna be thevery best,:</h1>
+                <h1>Week {week}</h1>
                 <CoachMap coaches={allCoaches}/>
             </div>
         )

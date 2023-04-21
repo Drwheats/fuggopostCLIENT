@@ -5,7 +5,8 @@ import Pokemon from "./Pokemon";
 
 
 export default function Coach({coachName, coachNum, teamName, winLoss, mons}) {
-    const [data, setData] = useState(true)
+           // this state variable and helper function below are used to make pokemon API calls. I reuse this and mostly use it to put shit into arrays.
+    // const [data, setData] = useState(true)
     // if (data) {
     //     axios.get('https://pokeapi.co/api/v2/move/sticky-web', {headers: "mo"})
     //         .then(response => {
@@ -21,10 +22,12 @@ export default function Coach({coachName, coachNum, teamName, winLoss, mons}) {
     //         })
     // }
 
+    // wrap this in a function to sort by SPEED or by POINTS or ETC.
+    mons = mons.sort((a, b) => b.spe - a.spe);
 
     return (
-        <div className="coachCard">
-            <h1>#{coachNum} - {coachName} ({teamName})</h1>
+        <div className="coachCard" key={coachNum}>
+            <h1> <a href={"/mons/coach/" + coachNum}>#{coachNum} - {coachName} ({teamName})</a></h1>
             <h5>{winLoss}</h5>
             {mons.map((mon) => {
                return <Pokemon mon={mon}/>

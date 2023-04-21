@@ -784,8 +784,8 @@ pre {
     .pokemon {
         color: black;
         background-color: #ffde00;
-        width: 140px;
-        height: 340px;
+        width: 160px;
+        height: fit-content;
         padding: 15px;
         float: left;
         border-style: solid;
@@ -795,5 +795,13 @@ pre {
         text-align: left
     }
     .pokeTypeHeader {
-display: flex;    }
+        display: flex;    }
+    .pageMonHolder {
+        display: flex;
+        flex-direction: column;
+    }
+    .monIconHolders {
+        float: left;
+    }
+
 }

@@ -1,4 +1,6 @@
 import {useEffect, useState} from "react";
+import {FiMinusSquare, FiPlusSquare, FiXSquare} from "react-icons/fi";
+
 
 export default function Pokemon({ mon }) {
 //name, pts, type1, type2, atk, def, spdf, spa, spe, hp, ability1, ability2, ability3
@@ -1485,7 +1487,7 @@ export default function Pokemon({ mon }) {
         'cramorant-gulping',
         'cramorant-gorging',
         'lilligant-hisui',
-        'braviary-hisui',]
+        'braviary-hisui',];
     const name = mon.name;
     const type1 = mon.type1;
     const type2 = mon.type2;
@@ -1504,6 +1506,10 @@ export default function Pokemon({ mon }) {
     tempname = tempname.replace('rapid-strike', '')
     tempname = tempname.replace('(all forms)', '')
     tempname = tempname.replace('therian', '')
+    tempname = tempname.replace('10%', '')
+    tempname = tempname.replace('rotomheat', 'rotom-heat')
+    tempname = tempname.replace('rotomwash', 'rotom-wash')
+
     const src = "https://play.pokemonshowdown.com/sprites/gen5/" + tempname + ".png"
     // this is where we add the little status effects / rocks / etc to the mon card.
     useEffect(() => {
@@ -1556,11 +1562,17 @@ export default function Pokemon({ mon }) {
         }
     })
 
+    function truncate () {
+        console.log("trunc'd")
+    }
+
 
 
     return (
-    <div className="pokemon">
-        <div><h5>{name}</h5></div>
+    <div className="pokemon"> <span className="monIconHolders"><FiMinusSquare size={16} onClick={truncate}/></span>
+        <div><h5>
+        <a href={"https://www.smogon.com/dex/sv/pokemon/" + tempname}>{name} ({mon.pts})</a>
+        </h5></div>
 
         <img alt="pokemon" src={src}/>
             <table className="pokeTable">
@@ -1571,7 +1583,7 @@ export default function Pokemon({ mon }) {
 
             </table>
         <div>
-            <h5 className="showMonDoesRocks">{hasRocks}</h5>
+            <p className="showMonDoesRocks">{hasRocks}</p>
             <h5 className="showMonDoesWebs">{hasWebs}</h5>
             <h5 className="showMonDoesSpins">{hasSpin}</h5>
             <h5 className="showMonDoesFog">{hasFog}</h5>
