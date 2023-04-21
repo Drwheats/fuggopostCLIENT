@@ -101,6 +101,9 @@ export default function CoachPage() {
                 console.log(value);
                 setOppPokemons(allCoaches[i].mons);
                 setThatCoach(allCoaches[i])
+                document.getElementById("oppMonHolder").style.display = "block";
+                document.getElementById("coachPageVillainHeader").style.display = "block";
+
                 break;
             }
         }
@@ -108,8 +111,11 @@ export default function CoachPage() {
     return (
 
         <div className="coachPageCard">
+            <span  className="coachPageHeroHeader">
             <h1>#{thisCoach.coachNum} - {thisCoach.coachName} ({thisCoach.teamName})</h1>
             <h5>{thisCoach.winLoss}</h5>
+
+            </span>
             <div className="pageMonHolder">
                 <div className="heroMonHolder">
 
@@ -131,11 +137,14 @@ export default function CoachPage() {
             </div>
             <div className="oppZone">           <span className="oppTitle"></span>
             </div>
-            <div className="oppMonHolder">
-                <h1>#{thatCoach.coachNum} - {thatCoach.coachName} ({thatCoach.teamName})</h1>
-                <h5>{thatCoach.winLoss}</h5>
 
-                {oppPokemons.map((mon) => {
+                            <span  className="coachPageVillainHeader" id="coachPageVillainHeader">
+                <h1>VS: {thatCoach.coachName} ({thatCoach.teamName})</h1>
+                <h5>{thatCoach.winLoss}</h5>
+                            </span>
+            <div className="oppMonHolder" id="oppMonHolder">
+
+            {oppPokemons.map((mon) => {
                     return <Pokemon key={mon.name} mon={mon}/>
                 })}
             </div>

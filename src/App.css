@@ -801,9 +801,15 @@ pre {
     .pokeTypeHeader {
         display: flex;    }
     .pageMonHolder {
+
         display: flex;
     }
+
+    .oppMonHolder {
+        display: none;
+    }
     .pageMatchupHolder {
+        padding: 20px;
         float: right;
         border-style: groove;
         padding: 20px;
@@ -813,6 +819,16 @@ pre {
 
     .matchupText {
         cursor: pointer;
+    }
+
+    .coachPageHeroHeader {
+        background-color: blue;
+        color: yellow;
+    }
+
+    .coachPageVillainHeader {
+        display: none;
+        background-color: red;
 
     }
 
@@ -822,6 +838,8 @@ pre {
     .monIconHolders {
         float: left;
     }
+
+
 
     .copyright {
         position: absolute;
