@@ -135,6 +135,10 @@ export default function CoachPage() {
         forceUpdate(); // i dont care that it sbad
     }
 
+    function showAbilities() {
+        console.log(pokemons)
+    }
+
     const getOpp = (value) => {
         for (let i = 0; i < allCoaches.length; i++) {
             if (allCoaches[i].teamName === value) {
@@ -152,8 +156,19 @@ export default function CoachPage() {
 
         <div className="coachPageCard">
             <span  className="coachPageHeroHeader">
-            <h1>#{thisCoach.coachNum} - {thisCoach.coachName} ({thisCoach.teamName})</h1>
-            <h5>{thisCoach.winLoss}</h5>
+
+            <h1 className="coachPageHeroName">#{thisCoach.coachNum} - {thisCoach.coachName} ({thisCoach.teamName})</h1>
+                                <div className="dropdown">
+                <button className="dropbtn">nnatchups</button>
+                <div className="dropdown-content">NATCHUPS:
+                    {matchups.map((matchup, index) => {
+                        return <button onClick={(e) => getOpp(e.currentTarget.id)} className="sortButton" id={matchup.Opponent}>Week {index + 1} : {matchup.Opponent}</button>
+
+                    })}
+
+                </div>
+                                    </div>
+            <h3>Score: {thisCoach.winLoss}</h3>
 
             </span>
             <div className="pageMonHolder">
@@ -164,15 +179,7 @@ export default function CoachPage() {
             })}
                 </div>
 
-                <div className="pageMatchupHolder">
-                    <h2 className="matchupTextHolder" >Matchups:</h2>
-                    <br />
-                    {matchups.map((matchup, index) => {
-                        return <h4 onClick={(e) => getOpp(e.currentTarget.id)} className="matchupText" id={matchup.Opponent}>Week {index + 1} : {matchup.Opponent}</h4>
 
-                    })}
-
-                </div>
 
             </div>
             <div className="oppZone">           <span className="oppTitle"></span>
@@ -188,19 +195,21 @@ export default function CoachPage() {
                     return <Pokemon key={mon.name} mon={mon}/>
                 })}
             </div>
-            <span className="coachPageButtons">  <div className="dropdown">
+            <span className="coachPageButtons">
+                <div className="dropdown">
   <button className="dropbtn">SORT</button>
   <div className="dropdown-content">
         <button onClick={sortSpeed} className="sortButton">Speed</button>
-              <button onClick={sortAttack} className="sortButton">Attack</button>
-              <button onClick={sortSpecialAttack} className="sortButton">Special Attack</button>
+        <button onClick={sortAttack} className="sortButton">Attack</button>
+        <button onClick={sortSpecialAttack} className="sortButton">Special Attack</button>
         <button onClick={sortDefense} className="sortButton">Defense</button>
         <button onClick={sortSpecialDefense} className="sortButton">Special Defense</button>
         <button onClick={sortHP} className="sortButton">Hit Points</button>
-
-      <button className="sortButton" onClick={sortPoints}>Points</button>
+        <button className="sortButton" onClick={sortPoints}>Points</button>
   </div>
 </div>
+                  <button className="dropbtn" onClick={showAbilities}>SHOW ABILITIES</button>
+
                 </span>
 
 

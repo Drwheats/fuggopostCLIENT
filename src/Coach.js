@@ -1,12 +1,13 @@
 import {useState} from "react";
 import Pokemon from "./Pokemon";
+import axios from "axios";
 // import axios from "axios";
 
 
 
 export default function Coach({coachName, coachNum, teamName, winLoss, mons}) {
            // this state variable and helper function below are used to make pokemon API calls. I reuse this and mostly use it to put shit into arrays.
-    // const [data, setData] = useState(true)
+    const [data, setData] = useState(true)
     // if (data) {
     //     axios.get('https://pokeapi.co/api/v2/move/sticky-web', {headers: "mo"})
     //         .then(response => {

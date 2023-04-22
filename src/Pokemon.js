@@ -1630,6 +1630,7 @@ export default function Pokemon({ mon }) {
 
     }
 
+
     return (
     <div className="pokemon"> <span className="monIconHolders"><FiMinusSquare size={16} onClick={truncate}/></span>
         <div><h5>
@@ -1638,6 +1639,9 @@ export default function Pokemon({ mon }) {
 
         <img alt="pokemon" src={src}/>
             <table className="pokeTable">
+                <a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability1}>{mon.ability1}</a>
+                <a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability2}>{mon.ability2}</a>
+                <a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability3}>{mon.ability3}</a>
                 <TypeShow type={type1} />
                 <TypeShow type={type2} />
                 <tr>HP: {hp}</tr><tr>Atk: {atk}</tr><tr>Def: {def}</tr><tr>SpA: {spa}</tr><tr>SpD: {spdf}</tr><tr>Spe: {spe}</tr>
