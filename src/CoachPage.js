@@ -94,6 +94,46 @@ export default function CoachPage() {
 
         forceUpdate(); // i dont care that it sbad
     }
+    function sortAttack() {
+        let tempMons = pokemons.sort((a, b) => b.atk - a.atk);
+        setPokemons(tempMons);
+        setPokemons(pokemons.sort((a, b) => b.atk - a.atk));
+        setOppPokemons(oppPokemons.sort((a, b) => b.atk - a.atk));
+
+        forceUpdate(); // i dont care that it sbad
+    }
+    function sortDefense() {
+        let tempMons = pokemons.sort((a, b) => b.def - a.def);
+        setPokemons(tempMons);
+        setPokemons(pokemons.sort((a, b) => b.def - a.def));
+        setOppPokemons(oppPokemons.sort((a, b) => b.def - a.def));
+
+        forceUpdate(); // i dont care that it sbad
+    }
+    function sortSpecialAttack() {
+        let tempMons = pokemons.sort((a, b) => b.spa - a.spa);
+        setPokemons(tempMons);
+        setPokemons(pokemons.sort((a, b) => b.spa - a.spa));
+        setOppPokemons(oppPokemons.sort((a, b) => b.spa - a.spa));
+
+        forceUpdate(); // i dont care that it sbad
+    }
+    function sortSpecialDefense() {
+        let tempMons = pokemons.sort((a, b) => b.spd - a.spd);
+        setPokemons(tempMons);
+        setPokemons(pokemons.sort((a, b) => b.spd - a.spd));
+        setOppPokemons(oppPokemons.sort((a, b) => b.spd - a.spd));
+
+        forceUpdate(); // i dont care that it sbad
+    }
+    function sortHP() {
+        let tempMons = pokemons.sort((a, b) => b.hp - a.hp);
+        setPokemons(tempMons);
+        setPokemons(pokemons.sort((a, b) => b.hp - a.hp));
+        setOppPokemons(oppPokemons.sort((a, b) => b.hp - a.hp));
+
+        forceUpdate(); // i dont care that it sbad
+    }
 
     const getOpp = (value) => {
         for (let i = 0; i < allCoaches.length; i++) {
@@ -148,7 +188,20 @@ export default function CoachPage() {
                     return <Pokemon key={mon.name} mon={mon}/>
                 })}
             </div>
-            <span className="coachPageButtons"> <h2>SORT: </h2> <button onClick={sortSpeed} className="sortButton">Speed</button><button className="sortButton" onClick={sortPoints}>Points</button></span>
+            <span className="coachPageButtons">  <div className="dropdown">
+  <button className="dropbtn">SORT</button>
+  <div className="dropdown-content">
+        <button onClick={sortSpeed} className="sortButton">Speed</button>
+              <button onClick={sortAttack} className="sortButton">Attack</button>
+              <button onClick={sortSpecialAttack} className="sortButton">Special Attack</button>
+        <button onClick={sortDefense} className="sortButton">Defense</button>
+        <button onClick={sortSpecialDefense} className="sortButton">Special Defense</button>
+        <button onClick={sortHP} className="sortButton">Hit Points</button>
+
+      <button className="sortButton" onClick={sortPoints}>Points</button>
+  </div>
+</div>
+                </span>
 
 
         </div>
