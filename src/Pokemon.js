@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import {FiMinusSquare, FiPlusSquare, FiXSquare} from "react-icons/fi";
 
 
 export default function Pokemon({ mon }) {
@@ -11,7 +10,6 @@ export default function Pokemon({ mon }) {
     const [hasCureStatus, setHasCureStatus] = useState("");
     const [hasScreens, setHasScreens] = useState("");
     const [hasWebs, setHasWebs] = useState("");
-    const [isGlowing, setIsGlowing] = useState(false);
 
     const webmons = ['spinarak',
         'ariados',
@@ -1498,7 +1496,6 @@ export default function Pokemon({ mon }) {
     const spdf = mon.spd;
     const hp = mon.hp;
     const spe = mon.spe;
-    const isActive = false;
     let tempname = name.toLowerCase();
     tempname = tempname.replace('-', '')
     tempname = tempname.replace(' ', '')

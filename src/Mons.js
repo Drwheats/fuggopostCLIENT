@@ -34,13 +34,13 @@ export default function Mons() {
             <h1>Week {week}</h1>
 
             <div className="coachHolder">
-                <img src={"coaches.png"}></img>
+                <img alt="coaches" src={"coaches.png"}></img>
 
                 <CoachMap coaches={allCoaches}/>
-                <img src="/squamogus.png" /> <h5>Copyright ©2023 ben dot place </h5>
+                <img alt="amogus imageboard mascott" src="/squamogus.png" /> <h5>Copyright ©2023 ben dot place </h5>
             </div>
             <div className="tierHolder">
-                <img src={"tierlist.png"}/>
+                <img alt="tier list" src={"tierlist.png"}/>
                 <h1>Coming soon to a smogon near you ...</h1>
             </div>
             {/*<div className="dexHolder">*/}

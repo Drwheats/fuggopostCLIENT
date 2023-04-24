@@ -1,26 +1,24 @@
 import {useEffect, useReducer, useState} from "react";
 import Pokemon from "./Pokemon";
-import {FiPlusSquare} from "react-icons/fi";
 import axios from "axios";
 
 
 export default function CoachPage() {
+    // we will delete below eventually.
     const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
-    const [data, setData] = useState(true)
-
+    // this will be deleted below
+    // const [data, setData] = useState(true)
     const [allCoaches, setAllCoaches] = useState([]);
     const [leData, setLeData] = useState(true);
-    const [week, setWeek] = useState(0);
+    // use this later probably
+    // const [week, setWeek] = useState(0);
     const [pokemons, setPokemons] = useState([]);
     const [oppPokemons, setOppPokemons] = useState([]);
-    // const [activeMon, setActiveMon] = useState({name: "lol", type: "", type2: "", atk: 0, def: 0, spe: 0, hp: 0, spa: 0, spd: 0});
+    //delete line below eventually
     const [activeMons, setActiveMons] = useState([]);
-
     const [oppMoves, setOppMoves] = useState([]);
     const [heroMoves, setHeroMoves] = useState([]);
-
     const [matchups, setMatchups] = useState([]);
-    let pageLoc = window.location.pathname.split('/')[3];
     const [thisCoach, setThisCoach] = useState({
         coachName: "",
         coachNum: 0,
@@ -37,7 +35,40 @@ export default function CoachPage() {
         mons: [],
 
     })
+    const [moveAPIdata, setMoveAPIdata] = useState([]);
+    // Function to add our give multiple cache data
+
+
+    const callAPI = async () => {
+            try {
+                const response = await fetch(
+                    'https://pokeapi.co/api/v2/move/?offset=0&limit=1000'
+                );
+                const data = await response.json();
+                localStorage.setItem('all pokemom moves :)', JSON.stringify(data));
+                setMoveAPIdata(data);
+                console.log(data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        // the below function makes API calls if local storage doesn't have all the moves saved to it.
+        if (window.localStorage.length === 0 ) {
+        callAPI();
+        console.log("calling API")
+    }
+
+    let pageLoc = window.location.pathname.split('/')[3];
+
     useEffect(() => {
+
+        if (window.localStorage !== undefined) {
+            const data = window.localStorage.getItem('all pokemom moves :)');
+            if (data !== null) {
+
+            } setMoveAPIdata(JSON.parse(data));
+        }
+
         if (leData) {
             const scoreJSON = {
                 method: 'post',
@@ -60,7 +91,7 @@ export default function CoachPage() {
                 )
         }
 
-    }, [leData, allCoaches])
+    }, [leData, allCoaches, pageLoc])
 
     function setHeroActive(mon) {
         document.getElementById("actives").style.display = "block";
@@ -143,9 +174,6 @@ export default function CoachPage() {
         forceUpdate(); // i dont care that it sbad
     }
 
-    function showAbilities() {
-    }
-
     const getOpp = (value) => {
         for (let i = 0; i < allCoaches.length; i++) {
             if (allCoaches[i].teamName === value) {
@@ -170,7 +198,7 @@ export default function CoachPage() {
         tempname = tempname.replace('rotomwash', 'rotom-wash')
 
         console.log("getting move:")
-            axios.get('https://pokeapi.co/api/v2/pokemon/' + tempname, {headers: "mo"})
+            axios.get('https://pokeapi.co/api/v2/pokemon/' + tempname, {})
                 .then(response => {
                     let tempList = [];
                     const resp1 = response.data.moves;
@@ -179,7 +207,6 @@ export default function CoachPage() {
                     }
                     
                     for (let i = 0; i < pokemons.length; i++) {
-                        console.log(pokemon.name + " VS " + pokemons[i].name)
                         if (pokemons[i].name === pokemon.name) {
                             setHeroMoves(tempList);
                             forceUpdate();
@@ -187,7 +214,6 @@ export default function CoachPage() {
                         }
                     }
                     for (let i = 0; i < oppPokemons.length; i++) {
-                        console.log(pokemon.name + " VS " + oppPokemons[i].name)
                         if (oppPokemons[i].name === pokemon.name) {
                             setOppMoves(tempList);
                             forceUpdate();
@@ -206,6 +232,8 @@ export default function CoachPage() {
     return (
 
         <div className="coachPage">
+
+
             <span  className="coachPageHeroHeader">
 
             <h1 className="coachPageHeroName">{thisCoach.coachName} ({thisCoach.teamName})</h1>
@@ -224,7 +252,7 @@ export default function CoachPage() {
 
                                 <div className="dropdown">
                 <button className="dropbtn">nnatchups</button>
-                <div className="dropdown-content">NATCHUPS:
+                <div className="dropdown-content">MATCHUPS:
                     {matchups.map((matchup, index) => {
                         return <button onClick={(e) => getOpp(e.currentTarget.id)} className="sortButton" id={matchup.Opponent}>Week {index + 1} : {matchup.Opponent}</button>
 
@@ -242,13 +270,13 @@ export default function CoachPage() {
                     return <span className="monColumnHolderGlowing">
 
                <Pokemon key={mon.name} mon={mon}/>
-                   <span><button className="monButton" >more info</button><button className="monButton" onClick={(event) => setHeroActive(mon)}>Active</button></span>
+                   <span><button className="monButton" >more info</button><button className="monButton" onClick={() => setHeroActive(mon)}>Active</button></span>
 </span>
                 }
                else return <span className="monColumnHolder">
 
                <Pokemon key={mon.name} mon={mon}/>
-                   <span><button className="monButton" >more info</button><button className="monButton" onClick={(event) => setHeroActive(mon)}>Active</button></span>
+                   <span><button className="monButton" >more info</button><button className="monButton" onClick={() => setHeroActive(mon)}>Active</button></span>
 </span>
             })}
                 </div>
@@ -263,12 +291,12 @@ export default function CoachPage() {
                     if (mon.active === true) {
                         return <span className="monColumnHolderGlowingV">
                <Pokemon key={mon.name} mon={mon}/>
-                   <span><button className="monButton" ></button><button className="monButton" onClick={(event) => setVillainActive(mon)}>Active</button></span>
+                   <span><button className="monButton" ></button><button className="monButton" onClick={() => setVillainActive(mon)}>Active</button></span>
 </span>
                     }
                     else return <span className="monColumnHolder">
                <Pokemon key={mon.name} mon={mon}/>
-                   <span><button className="monButton" ></button><button className="monButton" onClick={(event) => setVillainActive(mon)}>Active</button></span>
+                   <span><button className="monButton" ></button><button className="monButton" onClick={() => setVillainActive(mon)}>Active</button></span>
 </span>
                 })}
             </div>
@@ -278,36 +306,36 @@ export default function CoachPage() {
             <div className="heroActiveZone">{pokemons.map((mon) => {
                 if (mon.active === true) {
                     return <span className="monColumnHolderGlowing"><Pokemon key={mon.name} mon={mon} />
-                                            <button className="monButton" onClick={(event) => getMove(mon)}>Get Moves</button>
-                <div className="heroMoves">
+                                            <button className="monButton" onClick={() => getMove(mon)}>Get Moves</button>
+                <table className="heroMoves">
                     {heroMoves.map((move) => {
-                        return <a className="moveList" href={move.url}>{move.name}, </a>
+                        return <tr className="moveList" ><a href={move.url}>#{move.url.split('/')[6]} - {move.name} </a></tr>
                     })}
-                </div>
+                </table>
 </span>
 
                 }
+                else return null;
             })}</div>
             <div className="villainActiveZone">{oppPokemons.map((mon) => {
                 if (mon.active === true) {
                     return <span className="monColumnHolderGlowingV"><Pokemon key={mon.name} mon={mon} />
-                        <button className="monButton" onClick={(event) => getMove(mon)}>Get Moves</button>
-                <div className="oppMoves">
+                        <button className="monButton" onClick={() => getMove(mon)}>Get Moves</button>
+                <table className="oppMoves">
                     {oppMoves.map((move) => {
-                        return <a className="moveList" href={move.url}>{move.name}, </a>
+                        return <tr className="moveList"> <a href={"https://www.smogon.com/dex/sv/moves/" + move.name}>#{move.url.split('/')[6]} - {move.name} </a>
+                        </tr>
                     })}
-                </div>
+                </table>
                     </span>
                 }
+                else return null;
 
             })}</div>
 
 
             </div>
-            <span className="coachPageButtons">
-                  <button className="dropbtn" onClick={showAbilities}>SHOW ABILITIES</button>
 
-                </span>
 
 
         </div>
