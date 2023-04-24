@@ -84,6 +84,8 @@ input[type=text]:focus {
 }
 
 .mainTextSubmit {
+    margin: auto;
+    padding: 5px;
     width: 300px;
     height: 200px;
 
@@ -115,6 +117,7 @@ a:link {
     flex-direction: column;
     transition: 1s ease-in-out;
 }
+
 
 .postHolder {
     max-width: inherit;
@@ -242,6 +245,8 @@ a:link {
     box-shadow: 10px 5px 5px darkslategrey;
     margin-top: 5px;
     margin-bottom: 5px;
+    width: fit-content;
+    min-width: 400px;
     max-width: 600px;
     min-height: 150px;
     /*width: fit-content;*/
@@ -278,15 +283,13 @@ a:link {
 }
 
 .enemyPostText {
-    max-width: 400px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     text-align: left;
     font-size: 14px;
     white-space: -o-pre-wrap;
     word-wrap: break-word;
-
-    /*display: flex;*/
-    /*flex-wrap: wrap;*/
-    /*flex-direction: inherit;*/
 }
 
 .originalPoster {
@@ -767,35 +770,51 @@ pre {
         float: left;
     }
 
-
+    .seeMoreMons {
+        background-color: yellow;
+        border: none;
+        color: blue;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        border-radius: 50%;
+    }
 
     .coachCard {
+        width: fit-content;
         color: #ffde00;
         background-color: #3B4CCA;
         border-style: solid;
     }
 
     .coachCardMonList {
+        display: flex;
+        flex-direction: row;
         float: left;
         text-align: left;
         color: black;
+    }
+
+    .coachCardHeader {
+        color: white;
     }
 
     .pokemon {
         color: black;
         margin: 1px;
         background-color: #ffde00;
-        width: 160px;
+        width: 180px;
         height: fit-content;
         padding: 15px;
         float: left;
         border-style: solid;
     }
 
-    .coachPageCard {
-        display: flex;
-        flex-direction: column;
-    }
+
+
 
     .poketable {
         text-align: left;
@@ -829,12 +848,11 @@ pre {
     .coachPageVillainHeader {
         margin: 0;
         text-align: center;
-        display: flex;
+        display: block;
         justify-content: space-between;
         padding-left: 10px;
-        display: none;
         background-color: red;
-
+        display: none;
     }
 
     .coachPageHeroName {
@@ -848,11 +866,44 @@ pre {
         float: left;
     }
 
+    .monColumnHolder {
+        display: flex;
+        flex-direction: column;
+    }
 
+    .monColumnHolderGlowing {
+        max-height: fit-content;
+        box-shadow: 10px 0px 40px 20px blue;
+        display: flex;
+        flex-direction: column;
+    }
+    .monColumnHolderGlowingV {
+        box-shadow: 10px 0px 40px 20px red;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .villainMonHolder {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .monButtonHolder {
+        display: flex;
+    }
+
+    .monButton {
+        padding: 0px;
+        margin: 2px;
+        height: 60px;
+        width: 100px;
+    }
 
     .copyright {
+        float: right;
+        width: 200px;
         position: absolute;
-        bottom: 0; /* set the bottom to 0*/    }
+        bottom: 0px; /* set the bottom to 0*/    }
 
     /* Dropdown Button */
     .dropbtn {
@@ -912,7 +963,10 @@ pre {
 
     .heroMonHolder {
         display: flex;
-        flex-wrap: wrap;
+    }
+    .heroMonHolder {
+        display: flex;
+flex-wrap: wrap;
     }
 
     .monAbility {
@@ -923,5 +977,38 @@ pre {
         text-align: center;
 
     }
+    .actives {
+        align-content: flex-start;
+        float: left;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .heroActiveZone {
+        padding: 20px;
+        float: left;
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+    }
+    .villainActiveZone {
+        padding: 20px;
+        float: left;
+        display: flex;
+        flex-direction: column;
+
+        width: fit-content;
+    }
+    .vsTextHero {
+        position: relative;
+        top: 150px;
+        float: left;
+    }
+    .vsTextVillain {
+        position: relative;
+        top: 150px;
+        float: left;
+    }
+
 
 }

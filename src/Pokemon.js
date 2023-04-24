@@ -11,6 +11,7 @@ export default function Pokemon({ mon }) {
     const [hasCureStatus, setHasCureStatus] = useState("");
     const [hasScreens, setHasScreens] = useState("");
     const [hasWebs, setHasWebs] = useState("");
+    const [isGlowing, setIsGlowing] = useState(false);
 
     const webmons = ['spinarak',
         'ariados',
@@ -1497,6 +1498,7 @@ export default function Pokemon({ mon }) {
     const spdf = mon.spd;
     const hp = mon.hp;
     const spe = mon.spe;
+    const isActive = false;
     let tempname = name.toLowerCase();
     tempname = tempname.replace('-', '')
     tempname = tempname.replace(' ', '')
@@ -1560,16 +1562,11 @@ export default function Pokemon({ mon }) {
                 break;
             }
         }
-    })
-
-    function truncate () {
-        console.log("trunc'd")
-    }
+    }, )
 
     const TypeShow = (type) => {
 
         let tempType = type.type;
-        console.log(tempType)
         if (tempType === null) {
             return;
         }
@@ -1632,7 +1629,7 @@ export default function Pokemon({ mon }) {
 
 
     return (
-    <div className="pokemon"> <span className="monIconHolders"><FiMinusSquare size={16} onClick={truncate}/></span>
+    <div className="pokemon"> <span className="monIconHolders"></span>
         <div><h5>
         <a href={"https://www.smogon.com/dex/sv/pokemon/" + tempname}>{name} ({mon.pts})</a>
         </h5></div>
@@ -1657,6 +1654,8 @@ export default function Pokemon({ mon }) {
             <h5 className="showMonDoesScreens">{hasScreens}</h5>
 
         </div>
+
         </div>
+
     )
 }

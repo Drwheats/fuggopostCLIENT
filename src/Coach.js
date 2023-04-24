@@ -1,13 +1,16 @@
-import {useState} from "react";
 import Pokemon from "./Pokemon";
-import axios from "axios";
+import {FiPlusCircle, FiPlusSquare} from "react-icons/fi";
+import {forceReflow} from "react-transition-group/cjs/utils/reflow";
+import {useReducer, useState} from "react";
 // import axios from "axios";
 
-
-
 export default function Coach({coachName, coachNum, teamName, winLoss, mons}) {
-           // this state variable and helper function below are used to make pokemon API calls. I reuse this and mostly use it to put shit into arrays.
-    const [data, setData] = useState(true)
+    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+
+    const [bigMons, setBigMons] = useState(false);
+
+    // this state variable and helper function below are used to make pokemon API calls. I reuse this and mostly use it to put shit into arrays.
+    //const [data, setData] = useState(true)
     // if (data) {
     //     axios.get('https://pokeapi.co/api/v2/move/sticky-web', {headers: "mo"})
     //         .then(response => {
@@ -22,17 +25,31 @@ export default function Coach({coachName, coachNum, teamName, winLoss, mons}) {
     //
     //         })
     // }
+    let tempMons = mons.sort((a, b) => b.pts - a.pts);
+    let otherMons = mons.slice(3, 8);
+    tempMons = tempMons.slice(0, 3);
 
-    // wrap this in a function to sort by SPEED or by POINTS or ETC.
-    mons = mons.sort((a, b) => b.points - a.points);
+    function makeBigger() {
+        if (bigMons === false) {
+            setBigMons(true);
+        }
+        else setBigMons(false);
+    }
 
     return (
         <div className="coachCard" key={coachNum}>
-            <h1> <a href={"/mons/coach/" + coachNum}>#{coachNum} - {coachName} ({teamName})</a></h1>
+            <h1 > <a className="coachCardHeader" href={"/mons/coach/" + coachNum}>#{coachNum +1} - {coachName} ({teamName})</a></h1>
             <h5>{winLoss}</h5>
-            {mons.map((mon) => {
+            <div className="coachCardMonList">
+            {tempMons.map((mon) => {
                return <Pokemon mon={mon}/>
             })}
+                {otherMons.map((mon) => {
+                    if (bigMons)
+                    return <Pokemon className="hiddenMons" mon={mon}/>
+                })}
+            </div>
+            <button className="seeMoreMons" onClick={(event) => makeBigger()}>></button>
         </div>
     )
 }

@@ -30,10 +30,23 @@ export default function Mons() {
 
 
     return (
+        <div className="monPage">
+            <h1>Week {week}</h1>
+
             <div className="coachHolder">
-                <h1>Week {week}</h1>
+                <img src={"coaches.png"}></img>
+
                 <CoachMap coaches={allCoaches}/>
                 <img src="/squamogus.png" /> <h5>Copyright ©2023 ben dot place </h5>
             </div>
-        )
+            <div className="tierHolder">
+                <img src={"tierlist.png"}/>
+                <h1>Coming soon to a smogon near you ...</h1>
+            </div>
+            {/*<div className="dexHolder">*/}
+            {/*    <img src={"bendex.png"}/>*/}
+            {/*</div>*/}
+        </div>
+
+    )
 }
