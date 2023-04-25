@@ -871,6 +871,7 @@ pre {
     }
 
     .monColumnHolderGlowing {
+        width: fit-content;
         max-height: fit-content;
         box-shadow: 10px 0px 40px 20px blue;
         display: flex;
@@ -891,6 +892,9 @@ pre {
         display: flex;
     }
 
+    .moveList {
+        white-space: nowrap;
+    }
     .monButton {
         padding: 0px;
         margin: 2px;

@@ -339,9 +339,11 @@ export default function CoachPage() {
                         let tempNum = move.url.split('/')[6];
                         if (!badMoves.includes(tempNum)) {
                             let temp = callAPImove(tempNum);
-                            temp = window.localStorage.getItem(tempNum)
-                            console.log(temp[100])
-                            return <tr className="moveList" ><a href={"https://www.smogon.com/dex/sv/moves/" + move.name}>#{move.url.split('/')[6]} - {move.name} </a> <tr>{}</tr></tr>
+                            let tempData = JSON.parse(window.localStorage.getItem(tempNum));
+                            console.log(tempData.accuracy)
+                            console.log()
+
+                            return <tr className="moveList" ><a href={"https://www.smogon.com/dex/sv/moves/" + move.name}>#{move.url.split('/')[6]} - {move.name} <tr>Type : {tempData.type.name} | </tr>Accuracy: {tempData.accuracy} BP : {tempData.power} </a> </tr>
                         }
                         else return;
                     })}
