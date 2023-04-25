@@ -42,6 +42,7 @@ export default function Mons() {
             <div className="tierHolder">
                 <img alt="tier list" src={"tierlist.png"}/>
                 <h1>Coming soon to a smogon near you ...</h1>
+                <h3>Notes on pokemon abilities in the app: I removed any ability that I deemed useless because of low power (peck, swift, ember) or that takes 2 turns to execute or recharge (fly, dig, hyper beam) or that lowers an enemies stat with no further advantage (fake tears, growl) or that is just too situational and outclassed (retaliate, submission). Also removed moves like mirror type and like soak, even though they have some niche use. So if you want to do truly creative sets you should not be using this as any sort of reference, as these are only Smogon™ approved Pokemon Moves. Also, if you spam click the "get moves" button you will be banned from using the pokedex API, so try not to click it for no reason. </h3>
             </div>
             {/*<div className="dexHolder">*/}
             {/*    <img src={"bendex.png"}/>*/}

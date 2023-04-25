@@ -36,7 +36,30 @@ export default function CoachPage() {
 
     })
     const [moveAPIdata, setMoveAPIdata] = useState([]);
+    const [allMoves, setAllMoves] = useState([]);
+    let badMoves = ['71', '351', '338', '345', '670', '6', '458', '154', '426', '222', '48', '90', '487', '30', '12', '63', '319', '16', '416', '272', '507', '23', '82', '380', '93', '110', '321', '31', '285', '514', '432', '373', '66', '101', '109', '118', '130', '138', '139','212', '513', '466','502', '673', '185', '313', '52', '64', '28', '297', '340', '811','289', '203', '122', '226', '555', '608', '343', '341', '39', '113', '115', '72', '204', '81', '20', '526', '5', '10', '15', '19', '22', '24', '25', '29', '33', '36', '37', '43', '44', '45', '55', '70', '75', '84', '91', '99', '102', '103', '104', '106', '111', '117', '129', '148', '156', '164', '168', '173', '175', '180', '182', '184', '189', '197', '205', '206', '207', '209', '210', '213', '214', '216', '218', '225', '230', '232', '237', '239', '249', '253', '259', '260', '263', '270', '275', '279', '332', '446', '286', '290', '291', '310', '314', '335', '342', '356', '363', '365', '372', '374', '388', '429', '431', '445', '496', '497', '498', '574', '590', '693'];
     // Function to add our give multiple cache data
+
+    const callAPImove = async (num) => {
+        console.log("checking on move:" + num)
+        if (window.localStorage.getItem(num) === null || window.localStorage.getItem(num) === undefined ) {
+            console.log('we dont have this in storage')
+            console.log("calling API")
+            try {
+                const response = await fetch(
+                    'https://pokeapi.co/api/v2/move/' + num
+                );
+                const data = await response.json();
+                localStorage.setItem(num, JSON.stringify(data));
+
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        else {
+            return localStorage.getItem(num);
+        }
+    };
 
 
     const callAPI = async () => {
@@ -44,6 +67,7 @@ export default function CoachPage() {
                 const response = await fetch(
                     'https://pokeapi.co/api/v2/move/?offset=0&limit=1000'
                 );
+
                 const data = await response.json();
                 localStorage.setItem('all pokemom moves :)', JSON.stringify(data));
                 setMoveAPIdata(data);
@@ -190,6 +214,8 @@ export default function CoachPage() {
     const getMove = (pokemon) => {
         let tempname = pokemon.name.toLowerCase();
         tempname = tempname.replace(' ', '-')
+        tempname = tempname.replace('-(no arena trap)', '')
+
         tempname = tempname.replace('rapid-strike', '')
         tempname = tempname.replace('(all forms)', '')
         tempname = tempname.replace('therian', '')
@@ -232,6 +258,7 @@ export default function CoachPage() {
     return (
 
         <div className="coachPage">
+            <button onClick={callAPImove}>Test</button>
 
 
             <span  className="coachPageHeroHeader">
@@ -309,7 +336,14 @@ export default function CoachPage() {
                                             <button className="monButton" onClick={() => getMove(mon)}>Get Moves</button>
                 <table className="heroMoves">
                     {heroMoves.map((move) => {
-                        return <tr className="moveList" ><a href={move.url}>#{move.url.split('/')[6]} - {move.name} </a></tr>
+                        let tempNum = move.url.split('/')[6];
+                        if (!badMoves.includes(tempNum)) {
+                            let temp = callAPImove(tempNum);
+                            temp = window.localStorage.getItem(tempNum)
+                            console.log(temp[100])
+                            return <tr className="moveList" ><a href={"https://www.smogon.com/dex/sv/moves/" + move.name}>#{move.url.split('/')[6]} - {move.name} </a> <tr>{}</tr></tr>
+                        }
+                        else return;
                     })}
                 </table>
 </span>
@@ -323,8 +357,11 @@ export default function CoachPage() {
                         <button className="monButton" onClick={() => getMove(mon)}>Get Moves</button>
                 <table className="oppMoves">
                     {oppMoves.map((move) => {
-                        return <tr className="moveList"> <a href={"https://www.smogon.com/dex/sv/moves/" + move.name}>#{move.url.split('/')[6]} - {move.name} </a>
-                        </tr>
+                        if (!badMoves.includes(move.url.split('/')[6])) {
+                            return <tr className="moveList"> <a href={"https://www.smogon.com/dex/sv/moves/" + move.name}>#{move.url.split('/')[6]} - {move.name} </a>
+                            </tr>
+                        }
+
                     })}
                 </table>
                     </span>
