@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-
+import TypeShow2 from "./TypeShow";
 
 export default function Pokemon({ mon }) {
 //name, pts, type1, type2, atk, def, spdf, spa, spe, hp, ability1, ability2, ability3
@@ -1564,68 +1564,68 @@ export default function Pokemon({ mon }) {
         }
     }, )
 
-    const TypeShow = (type) => {
-
-        let tempType = type.type;
-        if (tempType === null) {
-            return;
-        }
-        else if (tempType === "Steel") {
-            return <th className="typeColours" style={{background: "lightgray"}}> {tempType} </th>
-        }
-        else if (tempType === "Water") {
-            return <th className="typeColours" style={{background: "deepskyblue"}}> {tempType} </th>
-        }
-        else if (tempType === "Electric") {
-            return <th className="typeColours" style={{background: "yellow"}}> {tempType} </th>
-        }
-        else if (tempType === "Poison") {
-            return <th className="typeColours" style={{background: "mediumpurple"}}> {tempType} </th>
-        }
-        else if (tempType === "Fighting") {
-            return <th className="typeColours" style={{background: "maroon"}}> {tempType} </th>
-        }
-        else if (tempType === "Ghost") {
-            return <th className="typeColours" style={{background: "rebeccapurple"}}> {tempType} </th>
-        }
-        else if (tempType === "Psychic") {
-            return <th className="typeColours" style={{background: "lightpink"}}> {tempType} </th>
-        }
-        else if (tempType === "Flying") {
-            return <th className="typeColours" style={{background: "lightblue"}}> {tempType} </th>
-        }
-        else if (tempType === "Normal") {
-            return <th className="typeColours" style={{background: "#FFF"}}> {tempType} </th>
-        }
-        else if (tempType === "Fire") {
-            return <th className="typeColours" style={{background: "red"}}> {tempType} </th>
-        }
-        else if (tempType === "Grass") {
-            return <th className="typeColours" style={{background: "green"}}> {tempType} </th>
-        }
-        else if (tempType === "Dragon") {
-            return <th className="typeColours" style={{background: "cadetblue"}}> {tempType} </th>
-        }
-        else if (tempType === "Fairy") {
-            return <th className="typeColours" style={{background: "hotpink"}}> {tempType} </th>
-        }
-        else if (tempType === "Dark") {
-            return <th className="typeColours" style={{background: "darkgray"}}> {tempType} </th>
-        }
-        else if (tempType === "Ground") {
-            return <th className="typeColours" style={{background: "sandybrown"}}> {tempType} </th>
-        }
-        else if (tempType === "Bug") {
-            return <th className="typeColours" style={{background: "limegreen"}}> {tempType} </th>
-        }
-        else if (tempType === "Ice") {
-            return <th className="typeColours" style={{background: "whitesmoke"}}> {tempType} </th>
-        }
-
-
-
-
-    }
+    // const TypeShow = (type) => {
+    //
+    //     let tempType = type.type;
+    //     if (tempType === null) {
+    //         return;
+    //     }
+    //     else if (tempType === "Steel") {
+    //         return <th className="typeColours" style={{background: "lightgray"}}> {tempType} </th>
+    //     }
+    //     else if (tempType === "Water") {
+    //         return <th className="typeColours" style={{background: "deepskyblue"}}> {tempType} </th>
+    //     }
+    //     else if (tempType === "Electric") {
+    //         return <th className="typeColours" style={{background: "yellow"}}> {tempType} </th>
+    //     }
+    //     else if (tempType === "Poison") {
+    //         return <th className="typeColours" style={{background: "mediumpurple"}}> {tempType} </th>
+    //     }
+    //     else if (tempType === "Fighting") {
+    //         return <th className="typeColours" style={{background: "maroon"}}> {tempType} </th>
+    //     }
+    //     else if (tempType === "Ghost") {
+    //         return <th className="typeColours" style={{background: "rebeccapurple"}}> {tempType} </th>
+    //     }
+    //     else if (tempType === "Psychic") {
+    //         return <th className="typeColours" style={{background: "lightpink"}}> {tempType} </th>
+    //     }
+    //     else if (tempType === "Flying") {
+    //         return <th className="typeColours" style={{background: "lightblue"}}> {tempType} </th>
+    //     }
+    //     else if (tempType === "Normal") {
+    //         return <th className="typeColours" style={{background: "#FFF"}}> {tempType} </th>
+    //     }
+    //     else if (tempType === "Fire") {
+    //         return <th className="typeColours" style={{background: "red"}}> {tempType} </th>
+    //     }
+    //     else if (tempType === "Grass") {
+    //         return <th className="typeColours" style={{background: "green"}}> {tempType} </th>
+    //     }
+    //     else if (tempType === "Dragon") {
+    //         return <th className="typeColours" style={{background: "cadetblue"}}> {tempType} </th>
+    //     }
+    //     else if (tempType === "Fairy") {
+    //         return <th className="typeColours" style={{background: "hotpink"}}> {tempType} </th>
+    //     }
+    //     else if (tempType === "Dark") {
+    //         return <th className="typeColours" style={{background: "darkgray"}}> {tempType} </th>
+    //     }
+    //     else if (tempType === "Ground") {
+    //         return <th className="typeColours" style={{background: "sandybrown"}}> {tempType} </th>
+    //     }
+    //     else if (tempType === "Bug") {
+    //         return <th className="typeColours" style={{background: "limegreen"}}> {tempType} </th>
+    //     }
+    //     else if (tempType === "Ice") {
+    //         return <th className="typeColours" style={{background: "whitesmoke"}}> {tempType} </th>
+    //     }
+    //
+    //
+    //
+    //
+    // }
 
 
     return (
@@ -1639,8 +1639,8 @@ export default function Pokemon({ mon }) {
                 <a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability1}>{mon.ability1}</a>
                 <a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability2}>{mon.ability2}</a>
                 <a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability3}>{mon.ability3}</a>
-                <TypeShow type={type1} />
-                <TypeShow type={type2} />
+                <TypeShow2 type={type1} />
+                <TypeShow2 type={type2} />
                 <tr>HP: {hp}</tr><tr>Atk: {atk}</tr><tr>Def: {def}</tr><tr>SpA: {spa}</tr><tr>SpD: {spdf}</tr><tr>Spe: {spe}</tr>
 
             </table>

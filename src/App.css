@@ -878,6 +878,9 @@ pre {
         flex-direction: column;
     }
     .monColumnHolderGlowingV {
+        width: fit-content;
+        max-height: fit-content;
+
         box-shadow: 10px 0px 40px 20px red;
         display: flex;
         flex-direction: column;
@@ -892,8 +895,52 @@ pre {
         display: flex;
     }
 
+    .oppMoves {
+
+        word-wrap: normal;
+        border-style: solid;
+        justify-content: space-between;
+        align-content: space-between;
+        min-width: 800px;
+    }
+
+    .typeCol{
+        padding-left: 30px;
+        float: left;
+
+        min-width: 70px;
+    }
+
+    .nameCol {
+        float: left;
+        border-style: groove;
+
+        min-width: 150px;
+
+    }
+
+    .accCol {
+        float: left;
+        min-width: 100px;
+
+    }
+
+    .bpCol {
+        float: left;
+        min-width: 160px;
+    }
+
+    .descriptionCol {
+        float: left;
+    }
+
     .moveList {
-        white-space: nowrap;
+        height: 35px;
+        width: fit-content;
+        display: flex;
+        flex-direction: column-reverse;
+        align-content: flex-start;
+
     }
     .monButton {
         padding: 0px;

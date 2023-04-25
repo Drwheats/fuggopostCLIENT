@@ -1,20 +1,19 @@
 import {useEffect, useReducer, useState} from "react";
 import Pokemon from "./Pokemon";
 import axios from "axios";
+import TypeShow2 from "./TypeShow";
+import {wait} from "@testing-library/user-event/dist/utils";
 
 
 export default function CoachPage() {
+    let pageLoc = window.location.pathname.split('/')[3];
+
     // we will delete below eventually.
     const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
-    // this will be deleted below
-    // const [data, setData] = useState(true)
     const [allCoaches, setAllCoaches] = useState([]);
     const [leData, setLeData] = useState(true);
-    // use this later probably
-    // const [week, setWeek] = useState(0);
     const [pokemons, setPokemons] = useState([]);
     const [oppPokemons, setOppPokemons] = useState([]);
-    //delete line below eventually
     const [activeMons, setActiveMons] = useState([]);
     const [oppMoves, setOppMoves] = useState([]);
     const [heroMoves, setHeroMoves] = useState([]);
@@ -37,20 +36,53 @@ export default function CoachPage() {
     })
     const [moveAPIdata, setMoveAPIdata] = useState([]);
     const [allMoves, setAllMoves] = useState([]);
-    let badMoves = ['71', '351', '338', '345', '670', '6', '458', '154', '426', '222', '48', '90', '487', '30', '12', '63', '319', '16', '416', '272', '507', '23', '82', '380', '93', '110', '321', '31', '285', '514', '432', '373', '66', '101', '109', '118', '130', '138', '139','212', '513', '466','502', '673', '185', '313', '52', '64', '28', '297', '340', '811','289', '203', '122', '226', '555', '608', '343', '341', '39', '113', '115', '72', '204', '81', '20', '526', '5', '10', '15', '19', '22', '24', '25', '29', '33', '36', '37', '43', '44', '45', '55', '70', '75', '84', '91', '99', '102', '103', '104', '106', '111', '117', '129', '148', '156', '164', '168', '173', '175', '180', '182', '184', '189', '197', '205', '206', '207', '209', '210', '213', '214', '216', '218', '225', '230', '232', '237', '239', '249', '253', '259', '260', '263', '270', '275', '279', '332', '446', '286', '290', '291', '310', '314', '335', '342', '356', '363', '365', '372', '374', '388', '429', '431', '445', '496', '497', '498', '574', '590', '693'];
+
+    let badMoves = ['325', '472', '477', '810', '469', '501', '108', '172', '511', '88', '378', '21', '186', '584', '35', '40', '51', '61', '132', '599', '791', '17', '364', '385', '77', '171', '71', '351', '338', '345', '670', '6', '458', '154', '426', '222', '48', '90', '487', '30', '12', '63', '319', '16', '416', '272', '507', '23', '82', '380', '93', '110', '321', '31', '285', '514', '432', '373', '66', '101', '109', '118', '130', '138', '139','212', '513', '466','502', '673', '185', '313', '52', '64', '28', '297', '340', '811','289', '203', '122', '226', '555', '608', '343', '341', '39', '113', '115', '72', '204', '81', '20', '526', '5', '10', '15', '19', '22', '24', '25', '29', '33', '36', '37', '43', '44', '45', '55', '70', '75', '84', '91', '99', '102', '103', '104', '106', '111', '117', '129', '148', '156', '164', '168', '173', '175', '180', '182', '184', '189', '197', '205', '206', '207', '209', '210', '213', '214', '216', '218', '225', '230', '232', '237', '239', '249', '253', '259', '260', '263', '270', '275', '279', '332', '446', '286', '290', '291', '310', '314', '335', '342', '356', '363', '365', '372', '374', '388', '429', '431', '445', '496', '497', '498', '574', '590', '693'];
     // Function to add our give multiple cache data
 
     const callAPImove = async (num) => {
-        console.log("checking on move:" + num)
         if (window.localStorage.getItem(num) === null || window.localStorage.getItem(num) === undefined ) {
-            console.log('we dont have this in storage')
-            console.log("calling API")
+            // console.log('we dont have this in storage')
+            console.log("calling move API")
+
             try {
                 const response = await fetch(
                     'https://pokeapi.co/api/v2/move/' + num
                 );
                 const data = await response.json();
-                localStorage.setItem(num, JSON.stringify(data));
+                let tempType = "normal";
+                let tempAcc = 0;
+                let tempPower = 0;
+                let tempDesc = "";
+                let tempDamageType = "";
+                let tempEffect = 0;
+
+                console.log("DATA IS " + JSON.stringify(data));
+
+
+                try {
+                    tempDamageType = data.damage_class.name;
+                    tempType = data.type.name;
+                    tempAcc = data.accuracy + "%";
+                    tempPower = data.power + "";
+                    tempDesc = data.effect_entries[0].short_effect;
+                    tempEffect = data.effect_chance;
+                }
+                catch (e) {
+                    console.log(e)
+                }
+                if (tempAcc === "null%"){
+                    tempAcc = "N/A"
+                }
+                if (tempPower === "null") {
+                    tempPower = ""
+                }
+
+                tempDesc = tempDesc.replace('$effect_chance%', tempEffect + "%")
+                var pushedData = {"type": tempType, "acc": tempAcc, "power": tempPower, "desc": tempDesc, "damageType": tempDamageType, "effectChance": tempEffect}
+                pushedData = JSON.stringify(pushedData)
+                localStorage.setItem(num, pushedData );
+                console.log("got data!" + localStorage.getItem(num))
 
             } catch (err) {
                 console.log(err);
@@ -82,7 +114,6 @@ export default function CoachPage() {
         console.log("calling API")
     }
 
-    let pageLoc = window.location.pathname.split('/')[3];
 
     useEffect(() => {
 
@@ -125,7 +156,6 @@ export default function CoachPage() {
         }
         mon.active = true;
         setActiveMons(mon)
-        console.log(" now setting " + mon.name + " as active.")
     }
     function setVillainActive(mon) {
         document.getElementById("actives").style.display = "block";
@@ -337,15 +367,31 @@ export default function CoachPage() {
                 <table className="heroMoves">
                     {heroMoves.map((move) => {
                         let tempNum = move.url.split('/')[6];
+
                         if (!badMoves.includes(tempNum)) {
                             let temp = callAPImove(tempNum);
                             let tempData = JSON.parse(window.localStorage.getItem(tempNum));
-                            console.log(tempData.accuracy)
-                            console.log()
-
-                            return <tr className="moveList" ><a href={"https://www.smogon.com/dex/sv/moves/" + move.name}>#{move.url.split('/')[6]} - {move.name} <tr>Type : {tempData.type.name} | </tr>Accuracy: {tempData.accuracy} BP : {tempData.power} </a> </tr>
+                            //type: tempType, acc: tempAcc, power: tempPower, desc: tempDesc, damageType: tempDamageType, effectChance: tempEffect
+                            let tempDesc = "";
+                            let tempType = "Your Program is fucked ben.";
+                            let tempAcc = 0;
+                            let tempPower = 0;
+                            let tempEffect = 0;
+                            let tempDamageType = "none";
+                            try {
+                                tempType = tempData.type;
+                                tempAcc = tempData.accuracy;
+                                tempPower = tempData.power;
+                                tempDamageType = tempData.damageType;
+                                tempDesc = tempData.desc;
+                                tempEffect = tempData.effectChance
+                            }
+                            catch (e) {
+                                console.log(e)
+                            }
+                            return <span> <li className="moveList" > <a href={"https://www.smogon.com/dex/sv/moves/" +move.name}> <span className="nameCol">{move.name} {tempNum} </span>  <span className="typeCol"><TypeShow2 type={tempType}/></span>  <span className="accCol">{tempAcc} </span> <span className="bpCol">{tempPower} {tempDamageType}</span> <span className="descriptionCol">{tempDesc}</span></a> </li> </span>
                         }
-                        else return;
+                        else return null;
                     })}
                 </table>
 </span>
@@ -359,11 +405,32 @@ export default function CoachPage() {
                         <button className="monButton" onClick={() => getMove(mon)}>Get Moves</button>
                 <table className="oppMoves">
                     {oppMoves.map((move) => {
-                        if (!badMoves.includes(move.url.split('/')[6])) {
-                            return <tr className="moveList"> <a href={"https://www.smogon.com/dex/sv/moves/" + move.name}>#{move.url.split('/')[6]} - {move.name} </a>
-                            </tr>
-                        }
+                        let tempNum = move.url.split('/')[6];
 
+                        if (!badMoves.includes(tempNum)) {
+                            let temp = callAPImove(tempNum);
+                            let tempData = JSON.parse(window.localStorage.getItem(tempNum));
+                            //type: tempType, acc: tempAcc, power: tempPower, desc: tempDesc, damageType: tempDamageType, effectChance: tempEffect
+                            let tempDesc = "";
+                            let tempType = "Your Program is fucked ben.";
+                            let tempAcc = 0;
+                            let tempPower = 0;
+                            let tempEffect = 0;
+                            let tempDamageType = "none";
+                            try {
+                                tempType = tempData.type;
+                                tempAcc = tempData.accuracy;
+                                tempPower = tempData.power;
+                                tempDamageType = tempData.damageType;
+                                tempDesc = tempData.desc;
+                                tempEffect = tempData.effectChance
+                            }
+                            catch (e) {
+                                console.log(e)
+                            }
+                            return <span> <li className="moveList" > <a href={"https://www.smogon.com/dex/sv/moves/" +move.name}> <span className="nameCol">{move.name} {tempNum} </span>  <span className="typeCol"><TypeShow2 type={tempType}/></span>  <span className="accCol">{tempAcc} </span> <span className="bpCol">{tempPower} {tempDamageType}</span> <span className="descriptionCol">{tempDesc}</span></a> </li> </span>
+                        }
+                        else return null;
                     })}
                 </table>
                     </span>
