@@ -2,13 +2,9 @@ import {useEffect, useReducer, useState} from "react";
 import Pokemon from "./Pokemon";
 import axios from "axios";
 import TypeShow2 from "./TypeShow";
-import {wait} from "@testing-library/user-event/dist/utils";
-
 
 export default function CoachPage() {
     let pageLoc = window.location.pathname.split('/')[3];
-
-    // we will delete below eventually.
     const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
     const [allCoaches, setAllCoaches] = useState([]);
     const [leData, setLeData] = useState(true);
