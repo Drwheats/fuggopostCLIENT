@@ -1,12 +1,16 @@
 export default function TypeShow2(type) {
 
         let tempType = type.type;
-    console.log(tempType);
+        console.log(tempType);
         if (tempType === null || tempType === undefined) {
             return;
         }
-
-        tempType = tempType.toLowerCase();
+        try {
+            tempType = tempType.toLowerCase();
+        }
+        catch (e) {
+            console.log(e)
+        }
 
         if (tempType === "steel") {
             return <th className="typeColours" style={{background: "#B7B7CE"}}> {tempType} </th>
