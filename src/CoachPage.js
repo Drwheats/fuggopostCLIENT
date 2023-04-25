@@ -52,9 +52,6 @@ export default function CoachPage() {
                 let tempDamageType = "";
                 let tempEffect = 0;
 
-                console.log("DATA IS " + JSON.stringify(data));
-
-
                 try {
                     tempDamageType = data.damage_class.name;
                     tempType = data.type.name;
@@ -240,7 +237,6 @@ export default function CoachPage() {
         let tempname = pokemon.name.toLowerCase();
         tempname = tempname.replace(' ', '-')
         tempname = tempname.replace('-(no arena trap)', '')
-
         tempname = tempname.replace('rapid-strike', '')
         tempname = tempname.replace('(all forms)', '')
         tempname = tempname.replace('therian', '')
