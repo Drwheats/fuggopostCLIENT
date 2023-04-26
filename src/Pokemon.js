@@ -10,8 +10,7 @@ export default function Pokemon({ mon }) {
     const [hasCureStatus, setHasCureStatus] = useState("");
     const [hasScreens, setHasScreens] = useState("");
     const [hasWebs, setHasWebs] = useState("");
-    const [typingFails, setTypingFails] = useState([]);
-
+    const [monWeak, setMonWeak] = useState([]);
     const name = mon.name;
     const type1 = mon.type1;
     const type2 = mon.type2;
@@ -21,8 +20,71 @@ export default function Pokemon({ mon }) {
     const spdf = mon.spd;
     const hp = mon.hp;
     const spe = mon.spe;
-    const weaknesses = mon.weaknesses;
-    // const weaknesses = {normal: 1, fighting: 1, dark: 1, psychic: 1, ghost: 1, fire: 1, water: 1, grass: 1, electric: 1, bug: 1, flying: 1, dragon: 1, steel: 1, fairy: 1, rock: 1, ground: 1, ice: 1, poison: 1}
+
+    const [checkedWeak, setCheckedWeak] = useState(false);
+
+    const checkWeakness1 = () => {
+        if (checkedWeak) {return;}
+        setCheckedWeak(true);
+        let tempWeak = mon.weaknesses;
+        let type1toCheck = JSON.parse(localStorage.getItem(type1.toLowerCase()));
+        type1toCheck = type1toCheck.damage_relations;
+        let dmgDouble = type1toCheck.double_damage_from;
+        let dmgHalf = type1toCheck.half_damage_from;
+        let dmgNone = type1toCheck.no_damage_from;
+        for (let i = 0; i < dmgDouble.length; i++) {
+            let tempName = dmgDouble[i].name;
+            let tempValue = tempWeak[tempName];
+            tempValue = tempValue * 1.41421356237;
+            tempWeak[tempName] = tempValue;
+        }
+        for (let i = 0; i < dmgHalf.length; i++) {
+            let tempName = dmgHalf[i].name;
+            let tempValue = tempWeak[tempName];
+            tempValue = tempValue * 0.70710678118;
+            tempWeak[tempName] = tempValue;
+        }
+        for (let i = 0; i < dmgNone.length; i++) {
+            let tempName = dmgNone[i].name;
+            let tempValue = tempWeak[tempName];
+            tempValue = tempValue * 0;
+            tempWeak[tempName] = tempValue;
+        }
+        if (type2 === null) {
+            setMonWeak(tempWeak);
+            // weaknesses = {normal: 1, fighting: 1, dark: 1, psychic: 1, ghost: 1, fire: 1, water: 1, grass: 1, electric: 1, bug: 1, flying: 1, dragon: 1, steel: 1, fairy: 1, rock: 1, ground: 1, ice: 1, poison: 1}
+            return;
+        }
+        type1toCheck = JSON.parse(localStorage.getItem(type2.toLowerCase()));
+        type1toCheck = type1toCheck.damage_relations;
+        dmgDouble = type1toCheck.double_damage_from;
+        dmgHalf = type1toCheck.half_damage_from;
+        dmgNone = type1toCheck.no_damage_from;
+        for (let i = 0; i < dmgDouble.length; i++) {
+            let tempName = dmgDouble[i].name;
+            let tempValue = tempWeak[tempName];
+            tempValue = tempValue * 1.41421356237;
+            tempWeak[tempName] = tempValue;
+        }
+        for (let i = 0; i < dmgHalf.length; i++) {
+            let tempName = dmgHalf[i].name;
+            let tempValue = tempWeak[tempName];
+            tempValue = tempValue * 0.70710678118;
+
+            tempWeak[tempName] = tempValue;
+        }
+        for (let i = 0; i < dmgNone.length; i++) {
+            let tempName = dmgNone[i].name;
+            let tempValue = tempWeak[tempName];
+            tempValue = tempValue * 0;
+            tempWeak[tempName] = tempValue;
+        }
+        setMonWeak(tempWeak);
+        return;        }
+
+    // let weaknesses = mon.weaknesses;
+    // const [weaknesses1, setWeaknesses1] = {normal: 1, fighting: 1, dark: 1, psychic: 1, ghost: 1, fire: 1, water: 1, grass: 1, electric: 1, bug: 1, flying: 1, dragon: 1, steel: 1, fairy: 1, rock: 1, ground: 1, ice: 1, poison: 1}
+    const weaknesses = checkWeakness1();
 
     let tempname = name.toLowerCase();
     tempname = tempname.replace('-', '')
@@ -32,7 +94,7 @@ export default function Pokemon({ mon }) {
     tempname = tempname.replace('incarnate', '')
     tempname = tempname.replace('hisuian', '')
     tempname = tempname.replace('alolan', '')
-    tempname = tempname.replace('rapid-strike', '')
+    tempname = tempname.replace('rapid-strike','')
     tempname = tempname.replace('(all forms)', '')
     tempname = tempname.replace('therian', '')
     tempname = tempname.replace('10%', '')
@@ -42,6 +104,7 @@ export default function Pokemon({ mon }) {
     const src = "https://play.pokemonshowdown.com/sprites/gen5/" + tempname + ".png"
     // this is where we add the little status effects / rocks / etc to the mon card.
     useEffect(() => {
+
         const webmons = ['spinarak',
             'ariados',
             'shuckle',
@@ -1522,7 +1585,6 @@ export default function Pokemon({ mon }) {
         test = test.replace(' ', '-');
         test = test.replace('alolan-', '')
         test = test.replace('hisuian-', '')
-
         for (let i = 0; i < rockmons.length; i++) {
             if (rockmons[i] === test) {
                 setHasRocks("Stealth Rocks")
@@ -1567,109 +1629,6 @@ export default function Pokemon({ mon }) {
         }
     }, [hasRocks, name])
 
-    // const TypeShow = (type) => {
-    //
-    //     let tempType = type.type;
-    //     if (tempType === null) {
-    //         return;
-    //     }
-    //     else if (tempType === "Steel") {
-    //         return <th className="typeColours" style={{background: "lightgray"}}> {tempType} </th>
-    //     }
-    //     else if (tempType === "Water") {
-    //         return <th className="typeColours" style={{background: "deepskyblue"}}> {tempType} </th>
-    //     }
-    //     else if (tempType === "Electric") {
-    //         return <th className="typeColours" style={{background: "yellow"}}> {tempType} </th>
-    //     }
-    //     else if (tempType === "Poison") {
-    //         return <th className="typeColours" style={{background: "mediumpurple"}}> {tempType} </th>
-    //     }
-    //     else if (tempType === "Fighting") {
-    //         return <th className="typeColours" style={{background: "maroon"}}> {tempType} </th>
-    //     }
-    //     else if (tempType === "Ghost") {
-    //         return <th className="typeColours" style={{background: "rebeccapurple"}}> {tempType} </th>
-    //     }
-    //     else if (tempType === "Psychic") {
-    //         return <th className="typeColours" style={{background: "lightpink"}}> {tempType} </th>
-    //     }
-    //     else if (tempType === "Flying") {
-    //         return <th className="typeColours" style={{background: "lightblue"}}> {tempType} </th>
-    //     }
-    //     else if (tempType === "Normal") {
-    //         return <th className="typeColours" style={{background: "#FFF"}}> {tempType} </th>
-    //     }
-    //     else if (tempType === "Fire") {
-    //         return <th className="typeColours" style={{background: "red"}}> {tempType} </th>
-    //     }
-    //     else if (tempType === "Grass") {
-    //         return <th className="typeColours" style={{background: "green"}}> {tempType} </th>
-    //     }
-    //     else if (tempType === "Dragon") {
-    //         return <th className="typeColours" style={{background: "cadetblue"}}> {tempType} </th>
-    //     }
-    //     else if (tempType === "Fairy") {
-    //         return <th className="typeColours" style={{background: "hotpink"}}> {tempType} </th>
-    //     }
-    //     else if (tempType === "Dark") {
-    //         return <th className="typeColours" style={{background: "darkgray"}}> {tempType} </th>
-    //     }
-    //     else if (tempType === "Ground") {
-    //         return <th className="typeColours" style={{background: "sandybrown"}}> {tempType} </th>
-    //     }
-    //     else if (tempType === "Bug") {
-    //         return <th className="typeColours" style={{background: "limegreen"}}> {tempType} </th>
-    //     }
-    //     else if (tempType === "Ice") {
-    //         return <th className="typeColours" style={{background: "whitesmoke"}}> {tempType} </th>
-    //     }
-    //
-    //
-    //
-    //
-    // }
-    const getTypingAPI = async (type) => {
-
-        if (type === null) {
-            return
-        }
-        let tempType = type.toLowerCase();
-        if (window.localStorage.getItem(tempType) === null || window.localStorage.getItem(tempType) === undefined ) {
-            console.log("we dont have " + tempType + ". Getting it ...")
-            try {
-            const response = await fetch(
-                'https://pokeapi.co/api/v2/type/' + tempType
-            );
-
-            const data = await response.json();
-            localStorage.setItem(tempType, JSON.stringify(data));
-            console.log("now fetching" + data);
-        } catch (err) {
-            console.log(err);
-        }
-    }
-        else {
-            setTypingFails(window.localStorage.getItem(tempType));
-            console.log(typingFails)
-            return window.localStorage.getItem(tempType);
-        }
-
-    }
-
-    const checkWeaknesses = () => {
-        if (typingFails.length === 0) {
-            let type1toCheck = getTypingAPI(type1);
-            let type2toCheck = getTypingAPI(type2);
-
-            console.log(name)
-            setTypingFails(type2toCheck);
-            console.log(typingFails)
-        }
-    }
-
-    checkWeaknesses();
-
     return (
     <div className="pokemon"> <span className="monIconHolders"></span>
         <div><h5>
@@ -1678,11 +1637,18 @@ export default function Pokemon({ mon }) {
 
         <img alt="pokemon" src={src}/>
             <table className="pokeTable">
-                <a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability1}>{mon.ability1}</a>
+                <tr>
+
+                <a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability1}>{mon.ability1}</a>                </tr>
+                <tr>
+
                 <a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability2}>{mon.ability2}</a>
-                <a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability3}>{mon.ability3}</a>
-                <TypeShow2 type={type1} />
-                <TypeShow2 type={type2} />
+                </tr><tr>
+                <a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability3}>{mon.ability3}</a> </tr>
+                <tr>
+                <TypeShow2 type={type1} /></tr> <tr>
+                <TypeShow2 type={type2} />            </tr>
+
                 <tr>HP: {hp}</tr><tr>Atk: {atk}</tr><tr>Def: {def}</tr><tr>SpA: {spa}</tr><tr>SpD: {spdf}</tr><tr>Spe: {spe}</tr>
 
             </table>
@@ -1694,10 +1660,11 @@ export default function Pokemon({ mon }) {
             <h5 className="showMonDoesWish">{hasWish}</h5>
             <h5 className="showMonDoesCures">{hasCureStatus}</h5>
             <h5 className="showMonDoesScreens">{hasScreens}</h5>
-
         </div>
-
+        <div><h3>Weaknesses:</h3>
+            <div>{weaknesses}</div>
         </div>
+    </div>
 
     )
 }

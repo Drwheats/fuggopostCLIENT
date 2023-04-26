@@ -1071,6 +1071,33 @@ flex-wrap: wrap;
         flex-direction: column;
     }
 
+    .weaknessSpan {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .typeChartMonHolder {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+
+        }
+
+
+    .typeChartColName {
+        display: block;
+        flex-direction: column;
+        float: left;
+        width: 200px;
+    }
+    .typeChartCol {
+        padding-right: 10px;
+        display: block;
+        flex-direction: column;
+        float: left;
+
+
+    }
 
 
 }
