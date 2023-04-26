@@ -1065,5 +1065,12 @@ flex-wrap: wrap;
         float: left;
     }
 
+    columnNormal {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
+
+
 
 }

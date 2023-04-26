@@ -10,6 +10,7 @@ export default function Pokemon({ mon }) {
     const [hasCureStatus, setHasCureStatus] = useState("");
     const [hasScreens, setHasScreens] = useState("");
     const [hasWebs, setHasWebs] = useState("");
+    const [typingFails, setTypingFails] = useState([]);
 
     const name = mon.name;
     const type1 = mon.type1;
@@ -20,6 +21,9 @@ export default function Pokemon({ mon }) {
     const spdf = mon.spd;
     const hp = mon.hp;
     const spe = mon.spe;
+    const weaknesses = mon.weaknesses;
+    // const weaknesses = {normal: 1, fighting: 1, dark: 1, psychic: 1, ghost: 1, fire: 1, water: 1, grass: 1, electric: 1, bug: 1, flying: 1, dragon: 1, steel: 1, fairy: 1, rock: 1, ground: 1, ice: 1, poison: 1}
+
     let tempname = name.toLowerCase();
     tempname = tempname.replace('-', '')
     tempname = tempname.replace('(no arena trap)', '')
@@ -38,7 +42,6 @@ export default function Pokemon({ mon }) {
     const src = "https://play.pokemonshowdown.com/sprites/gen5/" + tempname + ".png"
     // this is where we add the little status effects / rocks / etc to the mon card.
     useEffect(() => {
-
         const webmons = ['spinarak',
             'ariados',
             'shuckle',
@@ -1562,7 +1565,7 @@ export default function Pokemon({ mon }) {
                 break;
             }
         }
-    }, )
+    }, [hasRocks, name])
 
     // const TypeShow = (type) => {
     //
@@ -1626,7 +1629,46 @@ export default function Pokemon({ mon }) {
     //
     //
     // }
+    const getTypingAPI = async (type) => {
 
+        if (type === null) {
+            return
+        }
+        let tempType = type.toLowerCase();
+        if (window.localStorage.getItem(tempType) === null || window.localStorage.getItem(tempType) === undefined ) {
+            console.log("we dont have " + tempType + ". Getting it ...")
+            try {
+            const response = await fetch(
+                'https://pokeapi.co/api/v2/type/' + tempType
+            );
+
+            const data = await response.json();
+            localStorage.setItem(tempType, JSON.stringify(data));
+            console.log("now fetching" + data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+        else {
+            setTypingFails(window.localStorage.getItem(tempType));
+            console.log(typingFails)
+            return window.localStorage.getItem(tempType);
+        }
+
+    }
+
+    const checkWeaknesses = () => {
+        if (typingFails.length === 0) {
+            let type1toCheck = getTypingAPI(type1);
+            let type2toCheck = getTypingAPI(type2);
+
+            console.log(name)
+            setTypingFails(type2toCheck);
+            console.log(typingFails)
+        }
+    }
+
+    checkWeaknesses();
 
     return (
     <div className="pokemon"> <span className="monIconHolders"></span>

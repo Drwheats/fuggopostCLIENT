@@ -1,7 +1,6 @@
 export default function TypeShow2(type) {
 
         let tempType = type.type;
-        console.log(tempType);
         if (tempType === null || tempType === undefined) {
             return;
         }

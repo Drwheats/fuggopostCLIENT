@@ -84,8 +84,6 @@ export default function CoachPage() {
             return localStorage.getItem(num);
         }
     };
-
-
     const callAPI = async () => {
             try {
                 const response = await fetch(
@@ -105,7 +103,6 @@ export default function CoachPage() {
         callAPI();
         console.log("calling API")
     }
-
 
     useEffect(() => {
 
@@ -276,6 +273,10 @@ export default function CoachPage() {
 
     }
 
+    const showTyping = (thisCoach) => {
+
+    }
+
     return (
 
         <div className="coachPage">
@@ -296,7 +297,7 @@ export default function CoachPage() {
 </div>
 
                                 <div className="dropdown">
-                <button className="dropbtn">nnatchups</button>
+                <button className="dropbtn">matchups</button>
                 <div className="dropdown-content">MATCHUPS:
                     {matchups.map((matchup, index) => {
                         return <button onClick={(e) => getOpp(e.currentTarget.id)} className="sortButton" id={matchup.Opponent}>Week {index + 1} : {matchup.Opponent}</button>
@@ -361,7 +362,6 @@ export default function CoachPage() {
                         if (!badMoves.includes(tempNum)) {
                             let temp = callAPImove(tempNum);
                             let tempData = JSON.parse(window.localStorage.getItem(tempNum));
-                            //type: tempType, acc: tempAcc, power: tempPower, desc: tempDesc, damageType: tempDamageType, effectChance: tempEffect
                             let tempDesc = "";
                             let tempType = null;
                             let tempAcc = 0;
@@ -432,7 +432,12 @@ export default function CoachPage() {
 
             })}</div>
 
+{/*<div className="Table STart">*/}
+{/*    <ul className="columnNormal"><TypeShow2 type="normal"/>*/}
 
+{/*    </ul>*/}
+
+{/*</div>*/}
             </div>
 
 
