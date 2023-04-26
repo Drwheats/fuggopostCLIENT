@@ -25,6 +25,7 @@ export default function Pokemon({ mon }) {
 
     const checkWeakness1 = () => {
         if (checkedWeak) {return;}
+        if (window.localStorage.getItem(type1) === null || window.localStorage.getItem(type1) === undefined) {return;}
         setCheckedWeak(true);
         let tempWeak = mon.weaknesses;
         let type1toCheck = JSON.parse(localStorage.getItem(type1.toLowerCase()));
