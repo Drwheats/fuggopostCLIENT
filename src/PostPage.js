@@ -155,7 +155,6 @@ export default function PostPage() {
                 let greenText = document.createElement('p')
                 if (enemyPostBody[i] === '\n') {
                     whiteText.append(document.createElement('br'))
-                    console.log(whiteText.text)
                 }
                 if (enemyPostBody[i] === '>') {
                     let greenStr = "";
@@ -250,7 +249,7 @@ export default function PostPage() {
 
     useEffect(() => {
             setIsLoading(false);
-        })
+        }, [])
 
     function clickReply() {
         document.getElementById("mainTextSubmit").value += "@" + data.postNumber + ">"
@@ -348,10 +347,15 @@ export default function PostPage() {
                         <hr></hr>
       <form onSubmit={handleSubmit}>
         <input type='file' name='file' onChange={handleFileChange}></input>
+
       </form>
                     </span>
+
                 </div>
+
             </div>
+
             <div className="footerPostPage"><a href="/b"> <ImArrowLeft/> </a></div>
+
         </div>)
 }

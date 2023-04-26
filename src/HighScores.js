@@ -11,7 +11,7 @@ import {
 } from "react-icons/im";
 
 export default function HighScores({contentPage}) {
-    const [inData, setInData] = useState(true);
+    // const [inData, setInData] = useState(true);
     const nodeRef = useRef(null);
 
     const [data, setData] = useState(true);
@@ -167,8 +167,6 @@ export default function HighScores({contentPage}) {
             let postChange = postPage - 1;
             setPostPage(postChange);
             setRenderedPosts(allPosts.slice(postPage * 10, postPage * 10 + 9))
-            console.log(postPage)
-            console.log(renderedPosts)
 
         }
     }
@@ -178,8 +176,6 @@ export default function HighScores({contentPage}) {
 
         setPostPage(postChange);
         setRenderedPosts(allPosts.slice(postPage * 10, postPage * 10 + 9))
-        console.log(postPage)
-        console.log(renderedPosts)
 
     }
 
@@ -310,7 +306,7 @@ export default function HighScores({contentPage}) {
                     <button className="postButton" onClick={submitScore}>Post</button>
                 </div>
             </div>
-            <CSSTransition nodeRef={nodeRef} in={inData} timeout={1500} classNames="animatePosts">
+            <CSSTransition nodeRef={nodeRef} timeout={1500} classNames="animatePosts">
 
             <div ref={nodeRef} className="leaderboard" id="leaderboard">
                 {<div className='posts' id='posts'><PostMap posters={allPosts.slice(postPage * 10, postPage * 10 + 9)}
@@ -319,12 +315,14 @@ export default function HighScores({contentPage}) {
             </div>
             </CSSTransition>
 
-            <div className="footer" id="footer"><span className="backwardButton"> <ImArrowLeft size={30}
+            <div className="footer" id="footer"><h5 className="copyright">Copyright ©2023 ben dot place </h5><span className="backwardButton"> <ImArrowLeft size={30}
                                                                                                onClick={pageBack}
                                                                                                className="backwardButton"/> </span>Now
                 Browsing Page : {postPage + 1} <span className="backwardButton"> <ImArrowRight size={30}
                                                                                                onClick={pageForward}
                                                                                                className="forwardButton"/> </span>
+
             </div>
+
         </div>)
 }

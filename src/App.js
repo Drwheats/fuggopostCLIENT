@@ -10,6 +10,7 @@ import Login from "./Login";
 import PostPage from "./PostPage";
 import HighScores from "./HighScores";
 import Mons from "./Mons";
+import CoachPage from "./CoachPage";
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                         <Route path="/" element={<Home contentPage={0}/>}/>
                         <Route path="/b" element={<HighScores contentPage={0}/>}/>
                         <Route path="/mons" element={<Mons />}/>
+                        <Route path="/mons/coach/:coachnum" element={<CoachPage/>}/>
 
                         <Route path="/post/:id" element={<PostPage/>}/>
                         <Route path="/post/0" element={<Information/>}/>
