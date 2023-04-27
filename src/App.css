@@ -930,18 +930,18 @@ pre {
         min-width: 160px;
     }
 
-    .descriptionCol {
-        float: left;
-    }
-
     .moveList {
+
+        text-align: center;
         height: 35px;
+        max-height: fit-content;
         width: fit-content;
         display: flex;
+        flex-wrap: wrap;
         flex-direction: column-reverse;
         align-content: flex-start;
-
     }
+
     .monButton {
         padding: 0px;
         margin: 2px;
@@ -1000,9 +1000,21 @@ pre {
         display: flex;
 
     }
-    .typeColours {
+
+    .smallColours {
         float: left;
-        min-width: 70px;
+        width: 30px;
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        -khtml-border-radius: 20px;
+        -icab-border-radius: 20px;
+        -o-border-radius: 20px;
+        border-style: solid;
+    }
+    .typeColours {
+
+        float: left;
+        min-width: 65px;
         border-radius: 20px;
         -moz-border-radius: 20px;
         -webkit-border-radius: 20px;
@@ -1012,6 +1024,7 @@ pre {
         border-style: solid;
 
     }
+
     .typeColours2 {
         border-style: solid;
     }
@@ -1073,37 +1086,36 @@ flex-wrap: wrap;
         flex-wrap: nowrap;
         flex-direction: column;
     }
+    .typeChartName {
+        float: left;
+        width: 175px;
+    }
 
-    .weaknessSpan {
-        display: flex;
-        flex-direction: column;
+    .typeChartCell {
+        width: 50px;
+    }
+
+    .bigGuy {
+        width: 500px;
+        font-size: 500rem;
     }
 
     .typeChartMonHolder {
-        margin: auto;
         display: flex;
-        flex-direction: column;
 
         }
 
-
-    .typeChartColName {
-        display: block;
-        flex-direction: column;
-        float: left;
-        width: 200px;
-    }
-    .typeChartCol {
-        padding-right: 10px;
-        display: block;
-        flex-direction: column;
-        float: left;
-
-
-    }
-
     .typeChart {
-        padding: 50px;
+        padding-top: 50px;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .decorationHolders {
+        padding-left: 190px;
+        display: flex;
+        width: 20px;
     }
 
 

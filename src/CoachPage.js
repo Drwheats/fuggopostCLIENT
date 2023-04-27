@@ -2,6 +2,8 @@ import {useEffect, useReducer, useState} from "react";
 import Pokemon from "./Pokemon";
 import axios from "axios";
 import TypeShow2 from "./TypeShow";
+import WeaknessChart from "./WeaknessChart";
+import TypeShow from "./TypeShow2";
 
 export default function CoachPage() {
     let pageLoc = window.location.pathname.split('/')[3];
@@ -31,7 +33,6 @@ export default function CoachPage() {
 
     })
     const [moveAPIdata, setMoveAPIdata] = useState([]);
-
     let badMoves = ['308', '505', '1', '3', '325', '472', '477', '810', '469', '501', '108', '172', '511', '88', '378', '21', '186', '584', '35', '40', '51', '61', '132', '599', '791', '17', '364', '385', '77', '171', '71', '351', '338', '345', '670', '6', '458', '154', '426', '222', '48', '90', '487', '30', '12', '63', '319', '16', '416', '272', '507', '23', '82', '380', '93', '110', '321', '31', '285', '514', '432', '373', '66', '101', '109', '118', '130', '138', '139','212', '513', '466','502', '673', '185', '313', '52', '64', '28', '297', '340', '811','289', '203', '122', '226', '555', '608', '343', '341', '39', '113', '115', '72', '204', '81', '20', '526', '5', '10', '15', '19', '22', '24', '25', '29', '33', '36', '37', '43', '44', '45', '55', '70', '75', '84', '91', '99', '102', '103', '104', '106', '111', '117', '129', '148', '156', '164', '168', '173', '175', '180', '182', '184', '189', '197', '205', '206', '207', '209', '210', '213', '214', '216', '218', '225', '230', '232', '237', '239', '249', '253', '259', '260', '263', '270', '275', '279', '332', '446', '286', '290', '291', '310', '314', '335', '342', '356', '363', '365', '372', '374', '388', '429', '431', '445', '496', '497', '498', '574', '590', '693'];
     // Function to add our give multiple cache data
     const getTypingAPI = async (type) => {
@@ -436,7 +437,7 @@ export default function CoachPage() {
                             catch (e) {
                                 console.log(e)
                             }
-                            return <span> <li className="moveList" > <a href={"https://www.smogon.com/dex/sv/moves/" +move.name}> <span className="nameCol">{move.name} </span>  <span className="typeCol"><TypeShow2 type={tempType}/></span>  <span className="accCol">{tempAcc} </span> <span className="bpCol">{tempPower} {tempDamageType}</span> <span className="descriptionCol">{tempDesc}</span></a> </li> </span>
+                            return <span> <li className="moveList" > <a href={"https://www.smogon.com/dex/sv/moves/" +move.name}> <span className="nameCol">{move.name} </span> </a> <span className="typeCol"><TypeShow2 type={tempType}/></span>  <span className="accCol">{tempAcc} </span> <span className="bpCol">{tempPower} {tempDamageType}</span> <span className="descriptionCol">{tempDesc}</span> </li> </span>
                         }
                         else return null;
                     })}
@@ -446,11 +447,9 @@ export default function CoachPage() {
                 else return null;
             })}</div>
                 <div className="typeChart"><h1>Le Type Chart</h1>
+                    <span className="decorationHolders"><TypeShow type="normal"/> <TypeShow type="fighting" /><TypeShow type="water" /><TypeShow type="fire" /><TypeShow type="grass" /><TypeShow type="electric" /><TypeShow type="dragon" /><TypeShow type="fairy" /><TypeShow type="steel" /><TypeShow type="rock" /><TypeShow type="ice" /><TypeShow type="ground" /><TypeShow type="bug" /><TypeShow type="poison" /><TypeShow type="psychic" /><TypeShow type="dark" /><TypeShow type="ghost" /><TypeShow type="flying" /></span>
                     {pokemons.map((mon) =>{
-                        return <div className="typeChartMonHolder">
-                            <li className="typeChartCol"><span className="typeChartColName">{mon.name} : </span><span className="typeChartCol"> {mon.weaknesses.normal} </span><span className="typeChartCol"> {mon.weaknesses.fighting} </span><span className="typeChartCol"> {mon.weaknesses.dark} </span><span className="typeChartCol"> {mon.weaknesses.psychic} </span><span className="typeChartCol"> {mon.weaknesses.fire} </span><span className="typeChartCol"> {mon.weaknesses.water} </span><span className="typeChartCol"> {mon.weaknesses.grass} </span><span className="typeChartCol"> {mon.weaknesses.electric} </span><span className="typeChartCol"> {mon.weaknesses.flying} </span><span className="typeChartCol"> {mon.weaknesses.ice} </span><span className="typeChartCol"> {mon.weaknesses.dragon} </span><span className="typeChartCol"> {mon.weaknesses.fairy} </span><span className="typeChartCol"> {mon.weaknesses.steel} </span><span className="typeChartCol"> {mon.weaknesses.bug} </span><span className="typeChartCol"> {mon.weaknesses.ground} </span><span className="typeChartCol"> {mon.weaknesses.rock} </span><span className="typeChartCol"> {mon.weaknesses.ghost} </span><span className="typeChartCol"> {mon.weaknesses.poison} </span></li>
-
-                        </div>
+                        return <WeaknessChart type1={mon.type1} type2={mon.type2} name={mon.name} />
                     })}</div>
             </div>
 
