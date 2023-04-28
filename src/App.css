@@ -896,8 +896,6 @@ pre {
     }
 
     .oppMoves {
-
-        word-wrap: normal;
         border-style: solid;
         justify-content: space-between;
         align-content: space-between;
@@ -1002,8 +1000,10 @@ pre {
     }
 
     .smallColours {
+        padding-left: 10px;
+        padding-right: 2.5px;
         float: left;
-        width: 30px;
+        width: 36px;
         -moz-border-radius: 20px;
         -webkit-border-radius: 20px;
         -khtml-border-radius: 20px;
@@ -1087,6 +1087,7 @@ flex-wrap: wrap;
         flex-direction: column;
     }
     .typeChartName {
+        font-weight: bold;
         float: left;
         width: 175px;
     }
@@ -1113,9 +1114,31 @@ flex-wrap: wrap;
     }
 
     .decorationHolders {
-        padding-left: 190px;
+        padding-left: 180px;
         display: flex;
         width: 20px;
+
+    }
+    .typeChartHeaderOpp {
+        padding-top: 10px;
+        background-color: red;
+    }
+    .typeChartHeader {
+        text-align: left;
+        color: yellow;
+        background-color: blue;
+    }
+    .divider {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+    .typeChartOpp {
+        display: none;
+    }
+    .typeChartHolder {
+        display: flex;
+        flex-direction: column;
     }
 
 

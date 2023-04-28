@@ -8,10 +8,13 @@ export default function TypeShow(type) {
         try {
             tempType = tempType.toLowerCase();
         }
+
         catch (e) {
             console.log(e)
         }
-        // if (isDecoration) {returnedType = returnedType[0].toUpperCase()}
+    returnedType = returnedType.toUpperCase();
+    returnedType = returnedType.slice(0, 3)
+    // if (isDecoration) {returnedType = returnedType[0].toUpperCase()}
 
         if (tempType === "steel") {
             return <th className={nameClass} style={{background: "#B7B7CE"}}> {returnedType} </th>

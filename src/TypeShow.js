@@ -1,6 +1,5 @@
 export default function TypeShow2(type, shrinkMe) {
         let nameClass = "typeColours"
-    console.log(shrinkMe)
         let tempType = type.type;
         let returnedType = type.type;
         if (tempType === null || tempType === undefined) {

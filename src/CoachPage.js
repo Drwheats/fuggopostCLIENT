@@ -54,7 +54,6 @@ export default function CoachPage() {
             }
         }
     }
-
     const callAPImove = async (num) => {
         if (window.localStorage.getItem(num) === null || window.localStorage.getItem(num) === undefined ) {
             // console.log('we dont have this in storage')
@@ -118,7 +117,6 @@ export default function CoachPage() {
                 console.log(err);
             }
         };
-
         // the below function makes API calls if local storage doesn't have all the moves and types saved to it.
         if (window.localStorage.length === 0 ) {
         callAPI();
@@ -128,7 +126,6 @@ export default function CoachPage() {
             }
         console.log("calling API")
     }
-
     useEffect(() => {
 
         if (window.localStorage !== undefined) {
@@ -162,7 +159,18 @@ export default function CoachPage() {
 
     }, [leData, allCoaches, pageLoc])
 
+    function hideHeroMon() {
+        setHeroActive({});
+        document.getElementById("typeChartHolder").style.display = "flex";
+    }
+    function hideVillainMon() {
+        setVillainActive({});
+        document.getElementById("typeChartHolder").style.display = "flex";
+    }
     function setHeroActive(mon) {
+            if (mon === {}) {
+                console.log('got em')
+                document.getElementById("typeChartHolder").style.display = "flex"; }
         document.getElementById("actives").style.display = "block";
 
         for (let i = 0; i < pokemons.length; i++) {
@@ -185,10 +193,7 @@ export default function CoachPage() {
         setPokemons(tempMons);
         setPokemons(pokemons.sort((a, b) => b.pts - a.pts));
         setOppPokemons(oppPokemons.sort((a, b) => b.pts - a.pts));
-
         forceUpdate(); // i dont care that it sbad
-
-
     }
 
     function sortSpeed() {
@@ -247,11 +252,14 @@ export default function CoachPage() {
                 setThatCoach(allCoaches[i])
                 document.getElementById("coachPageVillainHeader").style.display = "block";
                 console.log("showing")
+                document.getElementById("typeChartOpp").style.display = "block";
+
                 break;
             }
         }
     };
     const getMove = (pokemon) => {
+        document.getElementById("typeChartHolder").style.display = "none";
         let tempname = pokemon.name.toLowerCase();
         tempname = tempname.replace(' ', '-')
         tempname = tempname.replace('-(no arena trap)', '')
@@ -371,7 +379,7 @@ export default function CoachPage() {
                     return <span className="monColumnHolderGlowing"><Pokemon key={mon.name} mon={mon} />
                                             <span className="buttonHolder100">
 
-                                            <button className="monButton" onClick={() => getMove(mon)}>Get Moves</button><button className="hideMon" onClick={() => setHeroActive({})}>Hide</button></span>
+                                            <button className="monButton" onClick={() => getMove(mon)}>Get Moves</button><button className="hideMon" onClick={hideHeroMon}>Hide</button></span>
                 <table className="heroMoves">
                     {heroMoves.map((move) => {
                         let tempNum = move.url.split('/')[6];
@@ -413,7 +421,7 @@ export default function CoachPage() {
                 if (mon.active === true) {
                     return <span className="monColumnHolderGlowingV"><Pokemon key={mon.name} mon={mon} />
                         <span className="buttonHolder100">
-                        <button className="monButton" onClick={() => getMove(mon)}>Get Moves</button> <button className="hideMon" onClick={() => setVillainActive({})}>Hide</button>
+                        <button className="monButton" onClick={() => getMove(mon)}>Get Moves</button> <button className="hideMon" onClick={hideVillainMon}>Hide</button>
                             </span>
                 <table className="oppMoves">
                     {oppMoves.map((move) => {
@@ -446,13 +454,19 @@ export default function CoachPage() {
                 }
                 else return null;
             })}</div>
-                <div className="typeChart"><h1>Le Type Chart</h1>
+                <div className="typeChartHolder" id="typeChartHolder">
+                <div className="typeChart"><h1 className="typeChartHeader">{thisCoach.coachName}'s Weaknesses</h1>
                     <span className="decorationHolders"><TypeShow type="normal"/> <TypeShow type="fighting" /><TypeShow type="water" /><TypeShow type="fire" /><TypeShow type="grass" /><TypeShow type="electric" /><TypeShow type="dragon" /><TypeShow type="fairy" /><TypeShow type="steel" /><TypeShow type="rock" /><TypeShow type="ice" /><TypeShow type="ground" /><TypeShow type="bug" /><TypeShow type="poison" /><TypeShow type="psychic" /><TypeShow type="dark" /><TypeShow type="ghost" /><TypeShow type="flying" /></span>
                     {pokemons.map((mon) =>{
                         return <WeaknessChart type1={mon.type1} type2={mon.type2} name={mon.name} />
                     })}</div>
-            </div>
 
+                <div className="typeChartOpp" id="typeChartOpp"><h1 className="typeChartHeaderOpp">{thatCoach.coachName}'s Weaknesses</h1>
+                    <span className="decorationHolders"><TypeShow type="normal"/> <TypeShow type="fighting" /><TypeShow type="water" /><TypeShow type="fire" /><TypeShow type="grass" /><TypeShow type="electric" /><TypeShow type="dragon" /><TypeShow type="fairy" /><TypeShow type="steel" /><TypeShow type="rock" /><TypeShow type="ice" /><TypeShow type="ground" /><TypeShow type="bug" /><TypeShow type="poison" /><TypeShow type="psychic" /><TypeShow type="dark" /><TypeShow type="ghost" /><TypeShow type="flying" /></span>
+                    {oppPokemons.map((mon) =>{
+                        return <WeaknessChart type1={mon.type1} type2={mon.type2} name={mon.name} />
+                    })}</div></div>
+            </div>
         </div>
     )
 }
