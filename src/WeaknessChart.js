@@ -50,7 +50,15 @@ export default function WeaknessChart(type1, type2, name) {
 
             )
         }
-        type1toCheck = JSON.parse(localStorage.getItem(tempType2.toLowerCase()));
+        try {
+            type1toCheck = JSON.parse(localStorage.getItem(tempType2.toLowerCase()));
+        }
+        catch (e) {
+            console.log("firstl oad always fials")
+        }
+    type1toCheck = JSON.parse(localStorage.getItem(tempType2.toLowerCase()));
+
+    type1toCheck = JSON.parse(localStorage.getItem(tempType2.toLowerCase()));
         type1toCheck = type1toCheck.damage_relations;
         dmgDouble = type1toCheck.double_damage_from;
         dmgHalf = type1toCheck.half_damage_from;

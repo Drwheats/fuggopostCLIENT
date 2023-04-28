@@ -6,6 +6,48 @@ export default function Mons() {
     const [leData, setLeData] = useState(true);
     const [week, setWeek] = useState(0);
 
+    // These 2 functions and helper IF are copied over from my coachpage. Im going to keep them in case someone tries to access the site through a coach page, but thsi is very bad.
+    const getTypingAPI = async (type) => {
+        if (type === null) return;
+
+        let tempType = type.toLowerCase();
+        if (window.localStorage.getItem(tempType) === null || window.localStorage.getItem(tempType) === undefined ) {
+            console.log("we dont have " + tempType + ". Getting it ...")
+            try {
+                const response = await fetch(
+                    'https://pokeapi.co/api/v2/type/' + tempType
+                );
+
+                const data = await response.json();
+                localStorage.setItem(tempType, JSON.stringify(data));
+                console.log("now fetching" + data);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    }
+    const callAPI = async () => {
+        try {
+            const response = await fetch(
+                'https://pokeapi.co/api/v2/move/?offset=0&limit=1000'
+            );
+
+            const data = await response.json();
+            localStorage.setItem('all pokemom moves :)', JSON.stringify(data));
+            console.log(data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    if (window.localStorage.length === 0 ) {
+        callAPI();
+        let allTypes = ['normal', 'fighting', 'dark', 'psychic', 'ghost', 'fire', 'water', 'grass', 'electric', 'bug', 'flying', 'dragon', 'steel', 'fairy', 'rock', 'ground', 'ice', 'poison']
+        for (let i = 0; i < allTypes.length; i++) {
+            getTypingAPI(allTypes[i]);
+        }
+        console.log("calling API")
+    }
     useEffect(() => {
         if (leData) {
             const scoreJSON = {

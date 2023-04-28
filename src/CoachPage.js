@@ -195,7 +195,6 @@ export default function CoachPage() {
         setOppPokemons(oppPokemons.sort((a, b) => b.pts - a.pts));
         forceUpdate(); // i dont care that it sbad
     }
-
     function sortSpeed() {
         let tempMons = pokemons.sort((a, b) => b.spe - a.spe);
         setPokemons(tempMons);
