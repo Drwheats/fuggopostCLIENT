@@ -81,6 +81,7 @@ export default function Pokemon({ mon }) {
             tempWeak[tempName] = tempValue;
         }
         setMonWeak(tempWeak);
+        console.log(tempWeak)
         return;        }
 
     // let weaknesses = mon.weaknesses;

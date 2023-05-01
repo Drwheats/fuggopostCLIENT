@@ -446,6 +446,10 @@ export default function CoachPage() {
                 else return null;
             })}</div>
                 <div className="typeChart"><h1>Le Type Chart</h1>
+                    <TypeShow2 type={"normal"}/>                    <TypeShow2 type={"fighting"}/>                    <TypeShow2 type={"dark"}/>                    <TypeShow2 type={"psychic"}/><TypeShow2 type={"fire"}/><TypeShow2 type={"water"}/><TypeShow2 type={"grass"}/><TypeShow2 type={"electric"}/><TypeShow2 type={"flying"}/><TypeShow2 type={"ice"}/><TypeShow2 type={"dragon"}/><TypeShow2 type={"fairy"}/><TypeShow2 type={"steel"}/><TypeShow2 type={"bug"}/><TypeShow2 type={"ground"}/><TypeShow2 type={"rock"}/><TypeShow2 type={"ghost"}/><TypeShow2 type={"poison"}/>
+
+
+
                     {pokemons.map((mon) =>{
                         return <div className="typeChartMonHolder">
                             <li className="typeChartCol"><span className="typeChartColName">{mon.name} : </span><span className="typeChartCol"> {mon.weaknesses.normal} </span><span className="typeChartCol"> {mon.weaknesses.fighting} </span><span className="typeChartCol"> {mon.weaknesses.dark} </span><span className="typeChartCol"> {mon.weaknesses.psychic} </span><span className="typeChartCol"> {mon.weaknesses.fire} </span><span className="typeChartCol"> {mon.weaknesses.water} </span><span className="typeChartCol"> {mon.weaknesses.grass} </span><span className="typeChartCol"> {mon.weaknesses.electric} </span><span className="typeChartCol"> {mon.weaknesses.flying} </span><span className="typeChartCol"> {mon.weaknesses.ice} </span><span className="typeChartCol"> {mon.weaknesses.dragon} </span><span className="typeChartCol"> {mon.weaknesses.fairy} </span><span className="typeChartCol"> {mon.weaknesses.steel} </span><span className="typeChartCol"> {mon.weaknesses.bug} </span><span className="typeChartCol"> {mon.weaknesses.ground} </span><span className="typeChartCol"> {mon.weaknesses.rock} </span><span className="typeChartCol"> {mon.weaknesses.ghost} </span><span className="typeChartCol"> {mon.weaknesses.poison} </span></li>
