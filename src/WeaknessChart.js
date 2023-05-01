@@ -15,7 +15,7 @@ export default function WeaknessChart(type1, type2, name) {
         }
         if (window.localStorage.getItem(tempType) === null || window.localStorage.getItem(tempType) === undefined) {
             console.log("cant find the data, exiting. This is a critical error and your code is broken.")
-            return;}
+            }
         let tempWeak = {normal: 1, fighting: 1, dark: 1, psychic: 1, ghost: 1, fire: 1, water: 1, grass: 1, electric: 1, bug: 1, flying: 1, dragon: 1, steel: 1, fairy: 1, rock: 1, ground: 1, ice: 1, poison: 1}
         let type1toCheck = JSON.parse(localStorage.getItem(tempType));
         type1toCheck = type1toCheck.damage_relations;
