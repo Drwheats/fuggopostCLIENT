@@ -10,7 +10,6 @@ export default function Pokemon({ mon }) {
     const [hasCureStatus, setHasCureStatus] = useState("");
     const [hasScreens, setHasScreens] = useState("");
     const [hasWebs, setHasWebs] = useState("");
-    const [monWeak, setMonWeak] = useState([]);
     const name = mon.name;
     const type1 = mon.type1;
     const type2 = mon.type2;
@@ -21,73 +20,10 @@ export default function Pokemon({ mon }) {
     const hp = mon.hp;
     const spe = mon.spe;
 
-    const [checkedWeak, setCheckedWeak] = useState(false);
 
-    const checkWeakness1 = () => {
-        if (checkedWeak) {return;}
-        if (window.localStorage.getItem(type1) === null || window.localStorage.getItem(type1) === undefined) {return;}
-        setCheckedWeak(true);
-        let tempWeak = mon.weaknesses;
-        let type1toCheck = JSON.parse(localStorage.getItem(type1.toLowerCase()));
-        type1toCheck = type1toCheck.damage_relations;
-        let dmgDouble = type1toCheck.double_damage_from;
-        let dmgHalf = type1toCheck.half_damage_from;
-        let dmgNone = type1toCheck.no_damage_from;
-        for (let i = 0; i < dmgDouble.length; i++) {
-            let tempName = dmgDouble[i].name;
-            let tempValue = tempWeak[tempName];
-            tempValue = tempValue * 1.41421356237;
-            tempWeak[tempName] = tempValue;
-        }
-        for (let i = 0; i < dmgHalf.length; i++) {
-            let tempName = dmgHalf[i].name;
-            let tempValue = tempWeak[tempName];
-            tempValue = tempValue * 0.70710678118;
-            tempWeak[tempName] = tempValue;
-        }
-        for (let i = 0; i < dmgNone.length; i++) {
-            let tempName = dmgNone[i].name;
-            let tempValue = tempWeak[tempName];
-            tempValue = tempValue * 0;
-            tempWeak[tempName] = tempValue;
-        }
-        if (type2 === null) {
-            setMonWeak(tempWeak);
-            // weaknesses = {normal: 1, fighting: 1, dark: 1, psychic: 1, ghost: 1, fire: 1, water: 1, grass: 1, electric: 1, bug: 1, flying: 1, dragon: 1, steel: 1, fairy: 1, rock: 1, ground: 1, ice: 1, poison: 1}
-            return;
-        }
-        type1toCheck = JSON.parse(localStorage.getItem(type2.toLowerCase()));
-        type1toCheck = type1toCheck.damage_relations;
-        dmgDouble = type1toCheck.double_damage_from;
-        dmgHalf = type1toCheck.half_damage_from;
-        dmgNone = type1toCheck.no_damage_from;
-        for (let i = 0; i < dmgDouble.length; i++) {
-            let tempName = dmgDouble[i].name;
-            let tempValue = tempWeak[tempName];
-            tempValue = tempValue * 1.41421356237;
-            tempWeak[tempName] = tempValue;
-        }
-        for (let i = 0; i < dmgHalf.length; i++) {
-            let tempName = dmgHalf[i].name;
-            let tempValue = tempWeak[tempName];
-            tempValue = tempValue * 0.70710678118;
-
-            tempWeak[tempName] = tempValue;
-        }
-        for (let i = 0; i < dmgNone.length; i++) {
-            let tempName = dmgNone[i].name;
-            let tempValue = tempWeak[tempName];
-            tempValue = tempValue * 0;
-            tempWeak[tempName] = tempValue;
-        }
-        setMonWeak(tempWeak);
-        console.log(tempWeak)
-        return;        }
 
     // let weaknesses = mon.weaknesses;
     // const [weaknesses1, setWeaknesses1] = {normal: 1, fighting: 1, dark: 1, psychic: 1, ghost: 1, fire: 1, water: 1, grass: 1, electric: 1, bug: 1, flying: 1, dragon: 1, steel: 1, fairy: 1, rock: 1, ground: 1, ice: 1, poison: 1}
-    const weaknesses = checkWeakness1();
-
     let tempname = name.toLowerCase();
     tempname = tempname.replace('-', '')
     tempname = tempname.replace('(no arena trap)', '')
@@ -1648,8 +1584,9 @@ export default function Pokemon({ mon }) {
                 </tr><tr>
                 <a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability3}>{mon.ability3}</a> </tr>
                 <tr>
-                <TypeShow2 type={type1} /></tr> <tr>
-                <TypeShow2 type={type2} />            </tr>
+
+                        </tr> <tr>
+                <TypeShow2 type={type1} /><TypeShow2 type={type2} />            </tr>
 
                 <tr>HP: {hp}</tr><tr>Atk: {atk}</tr><tr>Def: {def}</tr><tr>SpA: {spa}</tr><tr>SpD: {spdf}</tr><tr>Spe: {spe}</tr>
 
@@ -1663,9 +1600,7 @@ export default function Pokemon({ mon }) {
             <h5 className="showMonDoesCures">{hasCureStatus}</h5>
             <h5 className="showMonDoesScreens">{hasScreens}</h5>
         </div>
-        <div><h3>Weaknesses:</h3>
-            <div>{weaknesses}</div>
-        </div>
+
     </div>
 
     )

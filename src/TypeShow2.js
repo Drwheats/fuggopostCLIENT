@@ -1,5 +1,5 @@
-export default function TypeShow2(type, shrinkMe) {
-        let nameClass = "typeColours"
+export default function TypeShow(type) {
+        let nameClass = "smallColours"
         let tempType = type.type;
         let returnedType = type.type;
         if (tempType === null || tempType === undefined) {
@@ -8,10 +8,13 @@ export default function TypeShow2(type, shrinkMe) {
         try {
             tempType = tempType.toLowerCase();
         }
+
         catch (e) {
             console.log(e)
         }
-        // if (isDecoration) {returnedType = returnedType[0].toUpperCase()}
+    returnedType = returnedType.toUpperCase();
+    returnedType = returnedType.slice(0, 3)
+    // if (isDecoration) {returnedType = returnedType[0].toUpperCase()}
 
         if (tempType === "steel") {
             return <th className={nameClass} style={{background: "#B7B7CE"}}> {returnedType} </th>
