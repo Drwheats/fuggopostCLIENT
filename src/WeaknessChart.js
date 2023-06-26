@@ -1,6 +1,5 @@
-import {useState} from "react";
 
-export default function WeaknessChart(type1, type2, name) {
+export default function WeaknessChart(type1) {
     let tempType2 = "";
     let tempType = type1.type1.toLowerCase();
     try {
@@ -37,7 +36,7 @@ export default function WeaknessChart(type1, type2, name) {
         for (let i = 0; i < dmgNone.length; i++) {
             let tempName = dmgNone[i].name;
             let tempValue = tempWeak[tempName];
-            tempValue = tempValue * 0;
+            tempValue = 0;
             tempWeak[tempName] = tempValue;
         }
         if (tempType2 === null || tempType2 === "") {
@@ -79,7 +78,7 @@ export default function WeaknessChart(type1, type2, name) {
         for (let i = 0; i < dmgNone.length; i++) {
             let tempName = dmgNone[i].name;
             let tempValue = tempWeak[tempName];
-            tempValue = tempValue * 0;
+            tempValue = 0;
             tempWeak[tempName] = tempValue;
         }
 
