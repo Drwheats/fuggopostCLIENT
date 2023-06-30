@@ -6,7 +6,7 @@ export default function Mons() {
     const [leData, setLeData] = useState(true);
     const [week, setWeek] = useState(0);
 
-    // These 2 functions and helper IF are copied over from my coachpage. Im going to keep them in case someone tries to access the site through a coach page, but thsi is very bad.
+    // These 2 functions and helper IF are copied over from my coach page. I'm going to keep them in case someone tries to access the site through a coach page, but thsi is very bad.
     const getTypingAPI = async (type) => {
         if (type === null) return;
 
