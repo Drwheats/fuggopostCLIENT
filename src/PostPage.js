@@ -247,11 +247,11 @@ export default function PostPage() {
 
     formatDate();
 
-    useEffect(() => {
-            setIsLoading(true);
-            setIsLoading(false);
-
-        }, [isLoading])
+    // useEffect(() => {
+    //         setIsLoading(true);
+    //         setIsLoading(false);
+    //
+    //     }, [isLoading])
 
     function clickReply() {
         document.getElementById("mainTextSubmit").value += "@" + data.postNumber + ">"
