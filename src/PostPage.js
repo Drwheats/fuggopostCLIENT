@@ -29,6 +29,7 @@ export default function PostPage() {
 
     function loadAfterTime() {
         forceUpdate();
+        document.getElementById('mainTextSubmit').text.value += '';
     }
 
     // const [inlineReplies, setInlineReplies] = useState();
