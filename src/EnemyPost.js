@@ -1,6 +1,7 @@
 import {FiPlusSquare, FiMinusSquare, FiXSquare} from "react-icons/fi";
 import {useState} from "react";
-
+// let server = "https://fuggo.lol:4000/";
+let server = "http://localhost:4000/"
 export default function EnemyPost({enemyPostName, enemyPostBody, enemyPostNumber, motherPost, nestedReplies, timePosted}) {
     const [fullRes, setFullRes] = useState()
 
@@ -18,7 +19,7 @@ export default function EnemyPost({enemyPostName, enemyPostBody, enemyPostNumber
             headers: {'Content-Type': 'application/json'},
             body: json_body
         }
-        fetch("https://fuggo.lol:4000/delete", scoreJSON)
+        fetch(server + "delete", scoreJSON)
             .then(response => response.json());
         document.getElementById("reply" + enemyPostNumber).style.display = "none";
     }
@@ -85,7 +86,7 @@ export default function EnemyPost({enemyPostName, enemyPostBody, enemyPostNumber
             </div>
             <div className="enemyPostBody">
                 <img alt="" onClick={showFullRes} className="enemyPostImage" id={"enemyPostImage" + enemyPostNumber}
-                     src={"https://fuggo.lol:4000/fuggosimageworld/" + enemyPostNumber + ".png"}/>
+                     src={server + "fuggosimageworld/" + enemyPostNumber + ".png"}/>
 
 
                 <span className="enemyPostText" id={"enemyPostText" + enemyPostNumber}></span>

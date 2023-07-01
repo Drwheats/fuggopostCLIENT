@@ -10,6 +10,9 @@ import {
     ImArrowRight,
 } from "react-icons/im";
 
+// let server = "https://fuggo.lol:4000/";
+let server = "http://localhost:4000/";
+
 export default function HighScores({contentPage}) {
     // const [inData, setInData] = useState(true);
     const nodeRef = useRef(null);
@@ -43,7 +46,7 @@ export default function HighScores({contentPage}) {
                 },
                 body: json_body
             }
-            fetch("https://fuggo.lol:4000/postNumber", scoreJSON)
+            fetch(server + "postNumber", scoreJSON)
                 .then(res => res.json())
                 .then(
                     (result) => {
@@ -134,7 +137,7 @@ export default function HighScores({contentPage}) {
             headers: {'Content-Type': 'application/json'},
             body: json_body
         }
-        fetch("https://fuggo.lol:4000/submit", scoreJSON)
+        fetch(server + "submit", scoreJSON)
             .then(response => response.json());
         setData(true);
         handleSubmit()
@@ -234,7 +237,7 @@ export default function HighScores({contentPage}) {
     const handleSubmit = async () => {
         let formData = new FormData()
         formData.append('file', image.data)
-        const response = await fetch('https://fuggo.lol:4000/api/images', {
+        const response = await fetch(server + 'api/images', {
             method: 'POST',
             body: formData,
         })

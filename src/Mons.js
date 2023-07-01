@@ -1,5 +1,10 @@
 import {useEffect, useState} from "react";
 import CoachMap from "./CoachMap";
+//NOTE: I changed the POST to a GET, for the /coaches part of my API. So this may be where the fuck happens iif it do.
+
+
+// let server = "https://fuggo.lol/";
+let server = "http://localhost:4000/";
 
 export default function Mons() {
     const [allCoaches, setAllCoaches] = useState([]);
@@ -51,13 +56,13 @@ export default function Mons() {
     useEffect(() => {
         if (leData) {
             const scoreJSON = {
-                method: 'post',
+                method: 'GET',
                 headers: {
                     "access-control-allow-origin": "*",
                     'Content-Type': 'application/json'
                 },
             }
-            fetch("https://fuggo.lol:4000/coaches", scoreJSON)
+            fetch(server + "coaches", scoreJSON)
                 .then(res => res.json())
                 .then(
                     (result) => {

@@ -1,8 +1,11 @@
-import {useEffect} from "react";
+import {useEffect, useReducer} from "react";
 import {useState} from "react";
 import EnemyPost from "./EnemyPost";
 import {ImArrowLeft} from "react-icons/im"
 
+// let server = "https://fuggo.lol:4000/"
+
+let server = "http://localhost:4000/";
 export default function PostPage() {
     const [fullRes, setFullRes] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -16,6 +19,18 @@ export default function PostPage() {
         numberInlineReplies: [],
         timePosted: ""
     });
+
+    const [isRendered, setIsRendered] = useState(false);
+    // terrible hacks to make text in posts render.
+    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+    window.onload = function(){
+        setTimeout(loadAfterTime, 5000)
+    };
+
+    function loadAfterTime() {
+        forceUpdate();
+    }
+
     // const [inlineReplies, setInlineReplies] = useState();
     const [clientReplyBody, setClientReplyBody] = useState("no text");
     const [clientReplyName, setClientReplyName] = useState("anonymous");
@@ -24,7 +39,6 @@ export default function PostPage() {
     const [image, setImage] = useState({preview: '', data: ''});
     const [status, setStatus] = useState('')
     let timePosted = data.timePosted;
-
     // function wait(ms) {
     //     let start = new Date().getTime();
     //     let end = start;
@@ -57,32 +71,32 @@ export default function PostPage() {
             headers: {'Content-Type': 'application/json'},
             body: json_body
         }
-        fetch("https://fuggo.lol:4000/submitReply", scoreJSON)
+        fetch(server + "submitReply", scoreJSON)
             .then(response => response.json());
         setIsLoading(true);
         handleSubmit();
         setIsLoading(true);
+
     }
 
     // Fetching the data JSON variable from the server.
     useEffect(() => {
             if (isLoading) {
-                fetch("https://fuggo.lol:4000/pageInfo", scoreJSON)
+                fetch(server + "pageInfo", scoreJSON)
                     .then(response => response.json())
                     .then((
                         result) => {
                         setData(result);
                         setIsLoading(false);
-
                     })
             }
             mapReplies();
+
         }
     )
     window.onload = mapReplies();
     window.onload = insertInlineReplies();
     window.onload = insertTopReplies();
-
     function mapReplies() {
         data.numberInlineReplies = []
 
@@ -135,7 +149,9 @@ export default function PostPage() {
 
                         }
                 }
+
                 return 0;
+
             }
         )
     }
@@ -238,7 +254,7 @@ export default function PostPage() {
         }
     }
 
-    insertInlineReplies();
+
 
     function formatDate() {
         let currentTime = new Date(timePosted)
@@ -268,7 +284,7 @@ export default function PostPage() {
     const handleSubmit = async () => {
         let formData = new FormData()
         formData.append('file', image.data)
-            const response = await fetch('https://fuggo.lol:4000/api/images', {
+            const response = await fetch(server + 'api/images', {
 
                 method: 'POST',
             body: formData,
@@ -320,7 +336,7 @@ export default function PostPage() {
                     <img alt="" onClick={showFullRes}
                          className="originalPostImage"
                          id={"originalPostImage" + pageLoc}
-                         src={"https://fuggo.lol:4000/fuggosimageworld/" + data.postNumber + ".png"}/>
+                         src={server + "fuggosimageworld/" + data.postNumber + ".png"}/>
                     <pre className="originalPosterText">
                         {data.postBody.split("\n").map((t,key) => {
                             return <p key={key}>{t}</p>;

@@ -5,6 +5,8 @@ import TypeShow2 from "./TypeShow";
 import WeaknessChart from "./WeaknessChart";
 import TypeShow from "./TypeShow2";
 
+// let server = "https://fuggo.lol:4000/";
+let server = "http://localhost:4000/";
 export default function CoachPage() {
     let pageLoc = window.location.pathname.split('/')[3];
     const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
@@ -137,13 +139,13 @@ export default function CoachPage() {
 
         if (leData) {
             const scoreJSON = {
-                method: 'post',
+                method: 'GET',
                 headers: {
                     "access-control-allow-origin": "*",
                     'Content-Type': 'application/json'
                 },
             }
-            fetch("https://fuggo.lol:4000/coaches", scoreJSON)
+            fetch(server + "coaches", scoreJSON)
                 .then(res => res.json())
                 .then(
                     (result) => {
