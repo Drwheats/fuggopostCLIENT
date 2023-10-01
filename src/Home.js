@@ -4,7 +4,7 @@ export default function Home() {
         <div>
 
             <div className="homePageBody">
-                <h1 className="homePageName">Ben Gallagher</h1>
+                <h1 className="homePageName">UNDER GONSTRUCTION</h1>
                 <h2 className="homePageTitle">Fullstack Developer</h2>
                 <a href="/b"><img alt="imageboard" className="board" src={"board.png"}/></a>
                 <br/>
