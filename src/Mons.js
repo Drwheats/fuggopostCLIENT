@@ -3,7 +3,7 @@ import CoachMap from "./CoachMap";
 //NOTE: I changed the POST to a GET, for the /coaches part of my API. So this may be where the fuck happens iif it do.
 
 
-let server = "https://fuggo.lol/";
+let server = "https://fuggo.lol:4000/"
 // let server = "http://localhost:4000/";
 
 export default function Mons() {

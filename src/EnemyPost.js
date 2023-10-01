@@ -1,5 +1,6 @@
 import {FiPlusSquare, FiMinusSquare, FiXSquare} from "react-icons/fi";
 import {useState} from "react";
+import NavBar from "./NavBar";
 let server = "https://fuggo.lol:4000/";
 // let server = "http://localhost:4000/"
 export default function EnemyPost({enemyPostName, enemyPostBody, enemyPostNumber, motherPost, nestedReplies, timePosted}) {
@@ -62,7 +63,9 @@ export default function EnemyPost({enemyPostName, enemyPostBody, enemyPostNumber
 
 
     return (
+
         <div className="enemyPostHolder" datatype={enemyPostBody} id={"reply" + enemyPostNumber}>
+
             <div className="replyHeaderHolder">
           <span className="replyMinusSign">
                     </span> <span>{nestedReplies.map((reply) => {

@@ -9,7 +9,7 @@ export default function NavBar() {
         <nav className="nav">
             <Link to="/home" className="site-title"><img className="logoBen" src={"/bendotplace.png"} /> </Link>
             <ul className="navIconHolder">
-                <CustomLink to="/Home"><img className="navIcon" src="/homeicon.png" /> </CustomLink>
+                <CustomLink to="/b"><img className="navIcon" src="/homeicon.png" /> </CustomLink>
                 <CustomLink to="/Mons"><img className="navIcon" src="/squamogus.png" /></CustomLink>
 
                 <CustomLink to="/about"><img className="navIcon" src="/questionmark.png" /> </CustomLink>

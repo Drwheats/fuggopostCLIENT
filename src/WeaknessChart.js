@@ -1,4 +1,3 @@
-
 export default function WeaknessChart(type1) {
     let tempType2 = "";
     let tempType = type1.type1.toLowerCase();

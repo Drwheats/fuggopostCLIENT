@@ -2,6 +2,7 @@ import {useEffect, useReducer} from "react";
 import {useState} from "react";
 import EnemyPost from "./EnemyPost";
 import {ImArrowLeft} from "react-icons/im"
+import NavBar from "./NavBar";
 
 let server = "https://fuggo.lol:4000/"
 
@@ -92,7 +93,8 @@ export default function PostPage() {
                     })
             }
             mapReplies();
-
+        insertInlineReplies();
+        insertTopReplies();
         }
     )
     window.onload = mapReplies();
@@ -307,6 +309,8 @@ export default function PostPage() {
 
     return (
         <div className="postPage">
+            <NavBar/>
+
             <h3 className="originalPosterTopic">"{data.postTopic}"
             </h3>
             <div className="originalPoster" id={"reply" + data.postNumber}>
@@ -376,5 +380,6 @@ export default function PostPage() {
 
             <div className="footerPostPage"><a href="/b"> <ImArrowLeft/> </a></div>
 
-        </div>)
+        </div>
+        )
 }

@@ -4,10 +4,36 @@
     /*box-sizing: border-box;*/
 }
 
-body {
+.marginParagraphAbout {
+    float: left;
+    padding: 20px;
+}
+
+.homePageName {
+    float: left;
+    padding: 45px;
+}
+
+.homePageBody {
+        height:100vh;
+        width:100vw;
+        background:linear-gradient(33deg, red, red 60%, white 60%, white);
+
+}
+
+
+
+.mainPostPage {
     background-color: lightgray;
     text-align: center;
     margin: 0;
+}
+
+.content {
+    height: 100vh;
+    width: 100vw;
+    background-color: lightgray;
+
 }
 
 .nav {
@@ -534,6 +560,14 @@ pre {
 
 }
 
+.postPage {
+    height: 100vh;
+    width: 100vw;
+    background-color: lightgray;
+    text-align: center;
+    margin: 0;
+}
+
 .footerPostPage {
     position: fixed;
     bottom: 0;
@@ -766,6 +800,16 @@ pre {
     .coachHolder {
         padding: 10px;
         float: left;
+    }
+
+    .monPage {
+        height: 100vh;
+        width: 100vw;
+
+        background: url("../public/pokebal.png");
+        background-repeat: repeat;
+        background-color: #555555;
+
     }
 
     .seeMoreMons {
