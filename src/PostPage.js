@@ -3,9 +3,9 @@ import {useState} from "react";
 import EnemyPost from "./EnemyPost";
 import {ImArrowLeft} from "react-icons/im"
 
-// let server = "https://fuggo.lol:4000/"
+let server = "https://fuggo.lol:4000/"
 
-let server = "http://localhost:4000/";
+// let server = "http://localhost:4000/";
 export default function PostPage() {
     const [fullRes, setFullRes] = useState(false);
     const [isLoading, setIsLoading] = useState(true);

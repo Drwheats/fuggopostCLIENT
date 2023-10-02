@@ -5,8 +5,8 @@ import TypeShow2 from "./TypeShow";
 import WeaknessChart from "./WeaknessChart";
 import TypeShow from "./TypeShow2";
 
-// let server = "https://fuggo.lol:4000/"
-let server = "http://localhost:4000/";
+let server = "https://fuggo.lol:4000/"
+// let server = "http://localhost:4000/";
 export default function CoachPage() {
     let pageLoc = window.location.pathname.split('/')[3];
 
