@@ -9,7 +9,6 @@ import {
     ImParagraphJustify,
     ImArrowRight,
 } from "react-icons/im";
-import NavBar from "./NavBar";
 
 let server = "https://fuggo.lol:4000/";
 // let server = "http://localhost:4000/";
@@ -271,8 +270,8 @@ export default function HighScores({contentPage}) {
 
             <div className="toolContainer">
                 <div className="searchButtonHolder" id="searchButtonHolder"
-                ><ImSearch className="searchIcon" size={20} onClick={showSearch}></ImSearch></div>
-                <span className="stackIcon" size={20} onClick={changeCardView}>
+                ><ImSearch className="searchIcon" onClick={showSearch}></ImSearch></div>
+                <span className="stackIcon" onClick={changeCardView}>
                     <span className="paragraphRight" id="paragraphRight">
                       <ImParagraphLeft size={20}/>
                     </span>

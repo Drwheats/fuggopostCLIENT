@@ -9,7 +9,7 @@ let server = "https://fuggo.lol:4000/"
 export default function Mons() {
     const [allCoaches, setAllCoaches] = useState([]);
     const [leData, setLeData] = useState(true);
-    const [week, setWeek] = useState(0);
+    const [week, setWeek] = useState(7);
 
     // These 2 functions and helper IF are copied over from my coach page. I'm going to keep them in case someone tries to access the site through a coach page, but thsi is very bad.
     const getTypingAPI = async (type) => {

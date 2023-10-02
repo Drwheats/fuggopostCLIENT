@@ -16,7 +16,6 @@ export default function Post({
                              }) {
     const [fullRes, setFullRes] = useState(false);
 
-    const [imageState, setImageState] = useState(hasImage)
     function delay(time) {
         return new Promise(resolve => setTimeout(resolve, time));
     }
@@ -105,7 +104,6 @@ export default function Post({
                 <span className="postContent">
                     <img alt="" onClick={showFullRes}
                          id={"postImage" + postNumber} className="postImage"
-                         // src={imageState ? server + "fuggosimageworld/" + postNumber + ".png" : "epic style"}/>
                         src={server + "fuggosimageworld/" + postNumber + ".png"}/>
 
                     <a href={"/post/" + postNumber} className="postText">{postBody}</a>
