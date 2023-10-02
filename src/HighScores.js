@@ -11,16 +11,14 @@ import {
 } from "react-icons/im";
 import NavBar from "./NavBar";
 
-let server = "https://fuggo.lol:4000/";
-// let server = "http://localhost:4000/";
+// let server = "https://fuggo.lol:4000/";
+let server = "http://localhost:4000/";
 
 export default function HighScores({contentPage}) {
     // const [inData, setInData] = useState(true);
     const nodeRef = useRef(null);
-
     const [data, setData] = useState(true);
     const [permanentData, setPermanentData] = useState([]);
-
     const [allPosts, setAllPosts] = useState([]);
     const [nameToSubmit, setNameToSubmit] = useState('anonymous');
     const [topic, setTopic] = useState('No Topic');
@@ -59,7 +57,8 @@ export default function HighScores({contentPage}) {
                             postNumber: 0,
                             postVisibility: true,
                             postReplies: [],
-                            timePosted: "2015"
+                            timePosted: "2015",
+                            hasImage: false
                         }
                         result.unshift(headerPost);
                         setAllPosts(result);
@@ -131,19 +130,31 @@ export default function HighScores({contentPage}) {
 
     function submitScore() {
         setData(false);
+        let hasImage = false;
+        if (image) {
+            hasImage = true
+        }
         let json_body = JSON.stringify(
-            {postName: nameToSubmit, postTopic: topic, postBody: postBody, postVisibility: true})
+            {postName: nameToSubmit, postTopic: topic, postBody: postBody, postVisibility: true, hasImage})
         const scoreJSON = {
             method: 'POST',
+            redirect: 'follow',
             headers: {'Content-Type': 'application/json'},
             body: json_body
         }
         fetch(server + "submit", scoreJSON)
-            .then(response => response.json());
+            .then(response => response.json()
+                .then(response => {
+                    console.log(response)
+                    window.location.href = '/post/' + response;
+                }));
         setData(true);
         handleSubmit()
         setData(true);
         hidePost();
+
+        // let navigate = useNavigate();
+        // navigate("/post/{postNumber}")
     }
 
     function clearFilters() {
@@ -238,6 +249,9 @@ export default function HighScores({contentPage}) {
     const handleSubmit = async () => {
         let formData = new FormData()
         formData.append('file', image.data)
+        if (image) {
+
+        }
         const response = await fetch(server + 'api/images', {
             method: 'POST',
             body: formData,
@@ -254,7 +268,6 @@ export default function HighScores({contentPage}) {
 
     return (
         <div className="mainPostPage">
-            <NavBar/>
 
             <div className="toolContainer">
                 <div className="searchButtonHolder" id="searchButtonHolder"

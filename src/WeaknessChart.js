@@ -4,9 +4,7 @@ export default function WeaknessChart(type1) {
     try {
         tempType2 = type1.type2.toLowerCase();
     }
-    catch (e) {
-        console.log(e)
-    }
+    catch (e) {}
 
     if (tempType === null || tempType === undefined) {
             return;

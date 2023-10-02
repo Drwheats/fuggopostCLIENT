@@ -1,8 +1,8 @@
 import {FiMinusSquare, FiPlusSquare, FiXSquare} from "react-icons/fi";
 import {useState} from "react";
 
-let server = "https://fuggo.lol:4000/";
-// let server = "http://localhost:4000/";
+// let server = "https://fuggo.lol:4000/";
+let server = "http://localhost:4000/";
 export default function Post({
                                  postName,
                                  postTopic,
@@ -11,10 +11,12 @@ export default function Post({
                                  postNumberReplies,
                                  timePosted,
                                  replies,
+                                 hasImage
 
                              }) {
     const [fullRes, setFullRes] = useState(false);
 
+    const [imageState, setImageState] = useState(hasImage)
     function delay(time) {
         return new Promise(resolve => setTimeout(resolve, time));
     }
@@ -60,7 +62,9 @@ export default function Post({
 
     function trimReplies() {
         return replies.sort(() => .5 - Math.random()).slice(0, 3);
+
     }
+
 
     function showFullRes() {
         if (!fullRes) {
@@ -101,7 +105,9 @@ export default function Post({
                 <span className="postContent">
                     <img alt="" onClick={showFullRes}
                          id={"postImage" + postNumber} className="postImage"
-                         src={server + "fuggosimageworld/" + postNumber + ".png"}/>
+                         // src={imageState ? server + "fuggosimageworld/" + postNumber + ".png" : "epic style"}/>
+                        src={server + "fuggosimageworld/" + postNumber + ".png"}/>
+
                     <a href={"/post/" + postNumber} className="postText">{postBody}</a>
                 </span>
                 </div>

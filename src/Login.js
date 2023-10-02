@@ -1,5 +1,4 @@
 import {useState} from "react";
-import NavBar from "./NavBar";
 
 export default function Login() {
     const [username, setUsername] = useState("")
@@ -18,7 +17,6 @@ export default function Login() {
         <div>
 
             <div className="content">
-                <NavBar/>
 
                 <h1>Coming Soon to Fuggo's Post World Premium®</h1>
                 <p>Logging in is not currently implemented.</p>

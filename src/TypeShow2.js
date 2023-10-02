@@ -17,60 +17,60 @@ export default function TypeShow(type) {
     // if (isDecoration) {returnedType = returnedType[0].toUpperCase()}
 
         if (tempType === "steel") {
-            return <th className={nameClass} style={{background: "#B7B7CE"}}> {returnedType} </th>
+            return <span className={nameClass} style={{background: "#B7B7CE"}}> {returnedType} </span>
         }
 
     if (tempType === "rock") {
-        return <th className={nameClass} style={{background: "#B6A136"}}> {returnedType} </th>
+        return <span className={nameClass} style={{background: "#B6A136"}}> {returnedType} </span>
     }
 
     else if (tempType === "water") {
-            return <th className={nameClass} style={{background: "#6390F0"}}> {returnedType} </th>
+            return <span className={nameClass} style={{background: "#6390F0"}}> {returnedType} </span>
         }
         else if (tempType === "electric") {
-            return <th className={nameClass} style={{background: "#F7D02C"}}> {returnedType} </th>
+            return <span className={nameClass} style={{background: "#F7D02C"}}> {returnedType} </span>
         }
         else if (tempType === "poison") {
-            return <th className={nameClass} style={{background: "#A33EA1"}}> {returnedType} </th>
+            return <span className={nameClass} style={{background: "#A33EA1"}}> {returnedType} </span>
         }
         else if (tempType === "fighting") {
-            return <th className={nameClass} style={{background: "#C22E28"}}> {returnedType} </th>
+            return <span className={nameClass} style={{background: "#C22E28"}}> {returnedType} </span>
         }
         else if (tempType === "ghost") {
-            return <th className={nameClass} style={{background: "#735797"}}> {returnedType} </th>
+            return <span className={nameClass} style={{background: "#735797"}}> {returnedType} </span>
         }
         else if (tempType === "psychic") {
-            return <th className={nameClass} style={{background: "#F95587"}}> {returnedType} </th>
+            return <span className={nameClass} style={{background: "#F95587"}}> {returnedType} </span>
         }
         else if (tempType === "flying") {
-            return <th className={nameClass} style={{background: "#A98FF3"}}> {returnedType} </th>
+            return <span className={nameClass} style={{background: "#A98FF3"}}> {returnedType} </span>
         }
         else if (tempType === "normal") {
-            return <th className={nameClass} style={{background: "#A8A77A"}}> {returnedType} </th>
+            return <span className={nameClass} style={{background: "#A8A77A"}}> {returnedType} </span>
         }
         else if (tempType === "fire") {
-            return <th className={nameClass} style={{background: "#EE8130"}}> {returnedType} </th>
+            return <span className={nameClass} style={{background: "#EE8130"}}> {returnedType} </span>
         }
         else if (tempType === "grass") {
-            return <th className={nameClass} style={{background: "#7AC74C"}}> {returnedType} </th>
+            return <span className={nameClass} style={{background: "#7AC74C"}}> {returnedType} </span>
         }
         else if (tempType === "dragon") {
-            return <th className={nameClass} style={{background: "#6F35FC"}}> {returnedType} </th>
+            return <span className={nameClass} style={{background: "#6F35FC"}}> {returnedType} </span>
         }
         else if (tempType === "fairy") {
-            return <th className={nameClass} style={{background: "#D685AD"}}> {returnedType} </th>
+            return <span className={nameClass} style={{background: "#D685AD"}}> {returnedType} </span>
         }
         else if (tempType === "dark") {
-            return <th className={nameClass} style={{background: "#705746"}}> {returnedType} </th>
+            return <span className={nameClass} style={{background: "#705746"}}> {returnedType} </span>
         }
         else if (tempType === "ground") {
-            return <th className={nameClass} style={{background: "#E2BF65"}}> {returnedType} </th>
+            return <span className={nameClass} style={{background: "#E2BF65"}}> {returnedType} </span>
         }
         else if (tempType === "bug") {
-            return <th className={nameClass} style={{background: "#A6B91A"}}> {returnedType} </th>
+            return <span className={nameClass} style={{background: "#A6B91A"}}> {returnedType} </span>
         }
         else if (tempType === "ice") {
-            return <th className={nameClass} style={{background: "#96D9D6"}}> {returnedType} </th>
+            return <span className={nameClass} style={{background: "#96D9D6"}}> {returnedType} </span>
         }
 
 

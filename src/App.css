@@ -2,11 +2,28 @@
     margin: 0;
     padding: 0;
     /*box-sizing: border-box;*/
+
+}
+
+body {
+    background-color: lightgray;
+}
+
+.homePageBody {
+    height: 100vh;
+    background:linear-gradient(33deg, lightblue, lightgreen 60%, white 60%, white);
+
 }
 
 .marginParagraphAbout {
     float: left;
     padding: 20px;
+
+    background: url("../public/bendotplace.png");
+    background-repeat:no-repeat;
+    background-position: center center;
+    width: 100%;
+    height: 100%;
 }
 
 .homePageName {
@@ -14,10 +31,9 @@
     padding: 45px;
 }
 
-.homePageBody {
-        height:100vh;
-        width:100vw;
-        background:linear-gradient(33deg, red, red 60%, white 60%, white);
+.homePageHeader {
+        /*height:100vh;*/
+        width:50vw;
 
 }
 
@@ -38,7 +54,7 @@
 
 .nav {
     height: 70px;
-    background-color: #333;
+    background-color: #333333;
     color: white;
     display: flex;
     justify-content: space-between;
@@ -117,10 +133,6 @@ input[type=text]:focus {
 
 }
 
-.navIconHolder {
-
-}
-
 .navIcon {
     margin: -15px;
     height: 70px;
@@ -141,7 +153,6 @@ a:link {
     display: flex;
     overflow: hidden;
     flex-direction: column;
-    transition: 1s ease-in-out;
 }
 
 
@@ -153,11 +164,8 @@ a:link {
     background-color: lightblue;
     margin-bottom: 10px;
     width: fit-content;
-    /*max-width: 80%;*/
     min-width: 30%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.2s;
-    /*height: fit-content;*/
     max-height: 400px;
     min-height: 100px;
     overflow: hidden;
@@ -800,20 +808,21 @@ pre {
     .coachHolder {
         padding: 10px;
         float: left;
-    }
-
-    .monPage {
-        height: 100vh;
-        width: 100vw;
+        height: 100%;
+        width: 100%;
+        margin: 0;
 
         background: url("../public/pokebal.png");
         background-repeat: repeat;
-        background-color: #555555;
+        background-color: #999999;
+    }
 
+    .coachLabel {
+        color: white;
     }
 
     .seeMoreMons {
-        background-color: yellow;
+        background-color: #333;
         border: none;
         color: blue;
         padding: 10px;
@@ -827,7 +836,8 @@ pre {
 
     .coachCard {
         width: fit-content;
-        color: #ffde00;
+        /*color: #ffde00;*/
+        color: #333;
         background-color: #3B4CCA;
         border-style: solid;
     }
@@ -847,7 +857,8 @@ pre {
     .pokemon {
         color: black;
         margin: 1px;
-        background-color: #ffde00;
+        /*background-color: #ffde00;*/
+        background-color: white;
         width: 180px;
         height: fit-content;
         padding: 15px;
@@ -883,8 +894,8 @@ pre {
         display: flex;
         justify-content: space-between;
         padding-left: 10px;
-        background-color: blue;
-        color: yellow;
+        background-color: lightblue;
+        color: #333333;
     }
 
     .coachPageVillainHeader {
@@ -893,7 +904,8 @@ pre {
         display: block;
         justify-content: space-between;
         padding-left: 10px;
-        background-color: red;
+        background-color: lightblue;
+        color: #333333;
         display: none;
     }
 
@@ -998,8 +1010,8 @@ pre {
 
     /* Dropdown Button */
     .dropbtn {
-        background-color: yellow;
-        color: blue;
+        background-color: #333333;
+        color: white;
         border-style: solid;
     }
 
@@ -1055,7 +1067,7 @@ pre {
         border-style: solid;
     }
     .typeColours {
-
+padding: 2px;
         float: left;
         min-width: 65px;
         border-radius: 20px;
@@ -1163,13 +1175,18 @@ flex-wrap: wrap;
 
     }
     .typeChartHeaderOpp {
-        padding-top: 10px;
-        background-color: red;
+        border-color: #333333;
+        border-style: solid;
+        color: #333333;
+        background-color: lightblue;
     }
     .typeChartHeader {
+        border-color: #333333;
+        border-style: solid;
+
         text-align: left;
-        color: yellow;
-        background-color: blue;
+        color: #333333;
+        background-color: lightblue;
     }
     .divider {
         display: flex;
@@ -1184,5 +1201,53 @@ flex-wrap: wrap;
         flex-direction: column;
     }
 
+    .stat {
+        display: flex;
+    }
 
+
+
+}
+
+.projectHolder {
+    display: flex;
+    padding: 15px;
+}
+
+.project {
+    margin: 1%;
+    height: 250px;
+    background-image: linear-gradient(white, lightblue);    width: 350px;
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.project:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.projectHolder {
+    width: 80%;
+    float:left;
+    justify-content: space-between;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+
+.projectImg {
+    width: 120px;
+}
+
+.homePageProjects {
+    text-align: center;
+    font-size: 70px;
+    font-weight: 600;
+    background-image: linear-gradient(to left, #553c9a, #b393d3);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
 }

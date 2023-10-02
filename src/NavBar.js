@@ -1,8 +1,7 @@
 import {Link, useMatch, useResolvedPath} from "react-router-dom";
-import {ImHome, ImQuestion, ImUser} from "react-icons/im"
 
 
-export default function NavBar() {
+export default function NavigationBar() {
 
 
     return (
@@ -14,6 +13,8 @@ export default function NavBar() {
 
                 <CustomLink to="/about"><img className="navIcon" src="/questionmark.png" /> </CustomLink>
                 <CustomLink to="/Login"><img className="navIcon" src="/manicon.png" /> </CustomLink>
+                <a href={"https://github.com/drwheats/" }><img className="navIcon" src="/gitcat.png" /> </a>
+
                 {/*<CustomLink to="/scores">HighScores</CustomLink>*/}
             </ul>
         </nav>)

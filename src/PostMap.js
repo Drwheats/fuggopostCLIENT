@@ -18,6 +18,7 @@ export default function PostMap({posters}) {
                 if (s.timePosted === "2004") {
                     return <Post key={s.postNumber} postName={s.postName} postTopic={s.postTopic} postBody={s.postBody}
                                  postNumber={s.postNumber} postVisibility={s.postVisibility}
+                                 hasImage={s.hasImage}
                                  postNumberReplies={s.postReplies.length} timePosted={s.timePosted}
                                  replies={s.postReplies}/>
                 }

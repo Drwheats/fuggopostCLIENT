@@ -2,11 +2,10 @@ import {useEffect, useReducer} from "react";
 import {useState} from "react";
 import EnemyPost from "./EnemyPost";
 import {ImArrowLeft} from "react-icons/im"
-import NavBar from "./NavBar";
 
-let server = "https://fuggo.lol:4000/"
+// let server = "https://fuggo.lol:4000/"
 
-// let server = "http://localhost:4000/";
+let server = "http://localhost:4000/";
 export default function PostPage() {
     const [fullRes, setFullRes] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -18,14 +17,15 @@ export default function PostPage() {
         postVisibility: true,
         postReplies: [],
         numberInlineReplies: [],
-        timePosted: ""
+        timePosted: "",
+        hasImage: false
     });
 
     const [isRendered, setIsRendered] = useState(false);
     // terrible hacks to make text in posts render.
     const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
     window.onload = function(){
-        setTimeout(loadAfterTime, 5000)
+        setTimeout(loadAfterTime, 5000);
     };
 
     function loadAfterTime() {
@@ -309,7 +309,6 @@ export default function PostPage() {
 
     return (
         <div className="postPage">
-            <NavBar/>
 
             <h3 className="originalPosterTopic">"{data.postTopic}"
             </h3>

@@ -19,12 +19,15 @@ export default function Pokemon({ mon }) {
     const spdf = mon.spd;
     const hp = mon.hp;
     const spe = mon.spe;
-
+    let tempname = "";
 
 
     // let weaknesses = mon.weaknesses;
     // const [weaknesses1, setWeaknesses1] = {normal: 1, fighting: 1, dark: 1, psychic: 1, ghost: 1, fire: 1, water: 1, grass: 1, electric: 1, bug: 1, flying: 1, dragon: 1, steel: 1, fairy: 1, rock: 1, ground: 1, ice: 1, poison: 1}
-    let tempname = name.toLowerCase();
+    if (name){
+        tempname = name.toLowerCase();
+
+    }
     tempname = tempname.replace('-', '')
     tempname = tempname.replace('(no arena trap)', '')
 
@@ -1519,7 +1522,10 @@ export default function Pokemon({ mon }) {
             'cramorant-gorging',
             'lilligant-hisui',
             'braviary-hisui',];
-        let test = name.toLowerCase();
+        let test = "";
+        if (name) {
+            test = name.toLowerCase();
+        }
         test = test.replace(' ', '-');
         test = test.replace('alolan-', '')
         test = test.replace('hisuian-', '')
@@ -1574,23 +1580,17 @@ export default function Pokemon({ mon }) {
         </h5></div>
 
         <img alt="pokemon" src={src}/>
-            <table className="pokeTable">
-                <tr>
+            <ul className="pokeTable">
+                <span><a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability1}>{mon.ability1}</a></span>
+                <span><a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability2}>{mon.ability2}</a></span>
+                <span><a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability3}>{mon.ability3}</a></span>
+                <span><TypeShow2 type={type1} /><TypeShow2 type={type2} /></span>
+                </ul>
+        <div><br /></div>
+        <li className="goDownStats">
 
-                <a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability1}>{mon.ability1}</a>                </tr>
-                <tr>
-
-                <a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability2}>{mon.ability2}</a>
-                </tr><tr>
-                <a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability3}>{mon.ability3}</a> </tr>
-                <tr>
-
-                        </tr> <tr>
-                <TypeShow2 type={type1} /><TypeShow2 type={type2} />            </tr>
-
-                <tr>HP: {hp}</tr><tr>Atk: {atk}</tr><tr>Def: {def}</tr><tr>SpA: {spa}</tr><tr>SpD: {spdf}</tr><tr>Spe: {spe}</tr>
-
-            </table>
+                <ul className="stat">HP: {hp}</ul><ul className="stat">Atk: {atk}</ul><ul className="stat">Def: {def}</ul><ul className="stat">SpA: {spa}</ul><ul className="stat">SpD: {spdf}</ul><ul className="stat">Spe: {spe}</ul>
+            </li>
         <div>
             <h5 className="showMonDoesRocks">{hasRocks}</h5>
             <h5 className="showMonDoesWebs">{hasWebs}</h5>

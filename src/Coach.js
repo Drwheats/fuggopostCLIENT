@@ -1,6 +1,6 @@
 import Pokemon from "./Pokemon";
 import {useState} from "react";
-
+import {ImArrowRight2} from "react-icons/im";
 export default function Coach({coachName, coachNum, teamName, winLoss, mons}) {
     const [bigMons, setBigMons] = useState(false);
     let tempMons = mons.sort((a, b) => b.pts - a.pts);
@@ -8,7 +8,7 @@ export default function Coach({coachName, coachNum, teamName, winLoss, mons}) {
     tempMons = tempMons.slice(0, 3);
 
     function makeBigger() {
-        if (bigMons === false) {
+        if (!bigMons) {
             setBigMons(true);
         }
         else setBigMons(false);
@@ -29,7 +29,7 @@ export default function Coach({coachName, coachNum, teamName, winLoss, mons}) {
                 })}
 
             </div>
-            <button className="seeMoreMons" onClick={(event) => makeBigger()}>></button>
+            <button className="seeMoreMons" onClick={(event) => makeBigger()}>{ImArrowRight2()}</button>
         </div>
     )
 }

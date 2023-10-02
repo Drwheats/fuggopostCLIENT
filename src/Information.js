@@ -1,12 +1,9 @@
-import NavBar from "./NavBar";
 
 export default function Information() {
     return (
         <div className="content">
-            <NavBar/>
             <div className="marginParagraphAbout">
 
-            <img src="/bendotplace.png"/>
             <h1>ABOUT</h1>
             <p>ben dot place slash b is an imageboard written in react. It is meant to mimic 4chan.</p>
             <p>All posts are the legal property of their respective poster, and I, Ben, take no ownership of them</p>
