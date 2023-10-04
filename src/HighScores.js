@@ -278,7 +278,6 @@ export default function HighScores({contentPage}) {
                     <span className="paragraphCentre" id="paragraphCentre">
                         <ImParagraphJustify size={20}/>
                     </span>
-
                 </span>
                 <div className="searchBar" id="searchBar">
                     <h3>Find Posts</h3>

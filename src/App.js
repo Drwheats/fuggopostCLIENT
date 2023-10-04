@@ -11,6 +11,7 @@ import HighScores from "./HighScores";
 import Mons from "./Mons";
 import CoachPage from "./CoachPage";
 import NavigationBar from "./NavBar";
+import Calendar from "./Calendar";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                     <Routes>
 
                         <Route path="/home" element={<Home/>}/>
+
                         <Route path="/" element={<Home contentPage={0}/>}/>
                         <Route path="/b" element={<HighScores contentPage={0}/>}/>
                         <Route path="/mons" element={<Mons />}/>
@@ -32,6 +34,8 @@ function App() {
                         <Route path="/post/0" element={<Information/>}/>
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/about" element={<Information/>}/>
+
+                        <Route path="/calendar" element={<Calendar />} />
                     </Routes>
                 </BrowserRouter>
             </div>
