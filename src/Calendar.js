@@ -4,7 +4,7 @@ export default function Calendar() {
 
     useEffect(() => {
         const fetchMovies = () => {
-            fetch('https://fuggo.lol:4000/hellofuggomayihaveyourtheatrespliasixd')
+            fetch('https://api.fuggo.lol/hellofuggomayihaveyourtheatrespliasixd')
                 .then( response => response.json() )
                 .then( json => {
                     localStorage.setItem('events', JSON.stringify(json));
