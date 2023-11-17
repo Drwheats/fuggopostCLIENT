@@ -10,9 +10,11 @@ body {
 }
 
 .homePageBody {
+    display: flex;
+    flex-direction: column;
     height: 100vh;
-    background:linear-gradient(33deg, lightblue, lightgreen 60%, white 60%, white);
-
+    background-color: #03e5b7;
+    background-image: linear-gradient(177deg, #ADD8E6 0%, #90EE90 74%);
 }
 
 .calendarContainer {

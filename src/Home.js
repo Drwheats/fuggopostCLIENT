@@ -1,5 +1,3 @@
-import boardPNG from "./board.png";
-import monsPNG from "./mons.png"
 export default function Home() {
     return (
         <body className="homePageBody">
@@ -8,11 +6,11 @@ export default function Home() {
         <div>
 
             <div className="homePageHeader">
-                <h1 className="homePageName">Ben</h1>
-                <h2 className="homePageTitle">Fullstack Web Developer</h2>
-                <p>Welcome to Ben's portfolio page.</p>
+                <h1 className="homePageName">Ben dot Place</h1>
+                <h2 className="homePageTitle">Welcome to Ben Dot Place</h2>
+                <p></p>
                 <br/>
-                <p>All of these projects are hosted on a Vercel instance, and my API server is run in a Google Cloud VM. </p>
+                <p>I host all of my completed apps on this website.  </p>
 
             </div>
             <h1 className="homePageProjects">Projects</h1>
@@ -22,7 +20,7 @@ export default function Home() {
 
                 <div className="project">
 
-                        <img className="projectImg" src={boardPNG}></img>
+                        <img className="projectImg" src="/board.png"></img>
                         <div className="projectContainer">
                             <h4><b>React Imageboard</b></h4>
                             <p>A modern imageboard written in React. Styled after the infamous 4chan, except 70% less toxic. Uses my fuggo.lol API as a backend to serve posts.</p>
@@ -32,7 +30,7 @@ export default function Home() {
 
                 <a href={"https://www.ben.place/mons"}>
                     <div className="project">
-                        <img className="projectImg" src={monsPNG}></img>
+                        <img className="projectImg" src="/mons.png"></img>
                         <div className="projectContainer">
                             <h4><b>Pokemon Draft League Helper</b></h4>
                             <p>A database of the Pokemon league that I play in. Contains a few tools to help Pokemon coaches such as a matchup tool. Uses my fuggo.lol API as a backend, with a Google Docs sheet as a database. Some of the tools use the very excellent pokeAPI. (https://pokeapi.co/)</p>
@@ -41,7 +39,7 @@ export default function Home() {
                     </a>
                 <a href={"https://www.ben.place/calendar"}>
                     <div className="project">
-                        <img className="projectImg" src={monsPNG}></img>
+                        <img className="projectImg" src="/questionmark.png"></img>
                         <div className="projectContainer">
                             <h4><b>Local Theatre Calendar</b></h4>
                             <p>A calendar that shows what's playing in a variety of local Toronto theatres. The data comes from a scraper that I made and host at fuggo.lol. </p>
@@ -51,6 +49,20 @@ export default function Home() {
 
             </div>
         </div>
+        <h1 className="homePageProjects">Links</h1>
+        <div className="projectHolder">
+            <a href={"https://github.com/drwheats/"}>
+                <div className="project">
+                    <img className="projectImg" src="/gitcat.png"></img>
+                    <div className="projectContainer">
+                        <h4><b>GitHub</b></h4>
+                        <p>This is my GitHub account. </p>
+                    </div>
+                </div>
+            </a>
+
+        </div>
         </body>
+
     )
 }
