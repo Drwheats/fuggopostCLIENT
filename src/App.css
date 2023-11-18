@@ -9,6 +9,24 @@ body {
     background-color: lightgray;
 }
 
+button {
+    border: none;
+    outline: none;
+    background-color: #6c5ce7;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    color: darkslategrey;
+    border-radius: 5px;
+    transition: all ease 0.1s;
+    box-shadow: 0px 5px 0px 0px #a29bfe;
+}
+
+button:active {
+    transform: translateY(5px);
+    box-shadow: 0px 0px 0px 0px #a29bfe;
+}
+
 .homePageBody {
     display: flex;
     flex-direction: column;
@@ -35,15 +53,17 @@ body {
     font-weight: 600;
 }
 
-button {
-    width: 75px;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    padding: 5px;
-    border-radius: 3px;
-    color: white;
-}
+/*button {*/
+/*    width: 75px;*/
+/*    cursor: pointer;*/
+/*    border: none;*/
+/*    outline: none;*/
+/*    padding: 5px;*/
+/*    border-radius: 3px;*/
+/*    color: white;*/
+/*}*/
+
+
 
 .header button {
     background-color: #ff5252;
@@ -1286,11 +1306,19 @@ pre {
         align-content: flex-start;
     }
 
+
+
     .monButton {
         padding: 0px;
         margin: 2px;
         height: 60px;
         width: 100px;
+        font-size: var(--_size);
+        align-items: center;
+        justify-content: center;
+        gap: .5em;
+        box-shadow: 0.5em .1em .9em hsl(var(--accent) / .3), 0 0 0 -.1em hsl(var(--bg)),
+        0 0 0 -.2em hsl(var(--accent));
     }
 
     .copyright {
@@ -1347,7 +1375,7 @@ pre {
 
     .smallColours {
         padding-left: 10px;
-        padding-right: 2.5px;
+        padding-right: 5px;
         float: left;
         width: 36px;
         -moz-border-radius: 20px;
@@ -1460,7 +1488,7 @@ flex-wrap: wrap;
     }
 
     .decorationHolders {
-        padding-left: 180px;
+        padding-left: 160px;
         display: flex;
         width: 20px;
 

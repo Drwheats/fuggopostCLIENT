@@ -1,6 +1,5 @@
 import {FiPlusSquare, FiMinusSquare, FiXSquare} from "react-icons/fi";
 import {useState} from "react";
-import NavBar from "./NavBar";
 let server = "https://api.fuggo.lol/"
 // let server = "http://localhost:4000/"
 export default function EnemyPost({enemyPostName, enemyPostBody, enemyPostNumber, motherPost, nestedReplies, timePosted}) {

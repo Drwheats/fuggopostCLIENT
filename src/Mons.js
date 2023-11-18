@@ -79,7 +79,11 @@ export default function Mons() {
 
     return (
         <div className="monPage">
-            <h1>Week {week}</h1>
+            <h1> OUBL - Week {week}</h1>
+            <div className="monPageHeader">
+                <p>Welcome to ben dot place slash mons!</p>
+                <p>Click on a coaches' name for further analysis. You can compare teams, view their speed tiers/weakness chart, and view all of their pokemons' moves.</p>
+            </div>
 
             <div className="coachHolder">
                 <CoachMap coaches={allCoaches}/>

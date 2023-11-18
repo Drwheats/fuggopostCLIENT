@@ -98,25 +98,25 @@ export default function Calendar() {
                                     const eventDiv = document.createElement("div");
                                     eventDiv.classList.add("event");
 
-                                    if (event2.Location == "Hot Docs") {
+                                    if (event2.Location === "Hot Docs") {
                                         // eventDiv.style.backgroundColor = "#aebb00";
                                         eventDiv.classList.add("event-HotDocs");
 
                                     }
-                                    if (event2.Location == 'The TIFF "formerly Bell" Lightbox') {
+                                    if (event2.Location === 'The TIFF "formerly Bell" Lightbox') {
                                         eventDiv.classList.add("event-TIFF"); }
 
-                                    if (event2.Location == "The Revue") {
+                                    if (event2.Location === "The Revue") {
                                         eventDiv.classList.add("event-Revue"); }
 
-                                    if (event2.Location == "Paradise Theatre") {
+                                    if (event2.Location === "Paradise Theatre") {
                                         eventDiv.classList.add("event-Paradise"); }
 
 
-                                    if (event2.Location == "Imagine Cinemas - Carlton Street") {
+                                    if (event2.Location === "Imagine Cinemas - Carlton Street") {
                                         eventDiv.classList.add("event-Carlton"); }
 
-                                    if (event2.Location == "Imagine Cinemas - Front Street") {
+                                    if (event2.Location === "Imagine Cinemas - Front Street") {
                                         eventDiv.classList.add("event-Front"); }
 
 
@@ -192,7 +192,7 @@ export default function Calendar() {
 
 
             function showModal( eventTitle, eventTime, eventLocation, eventURL) {
-                const eventOfTheDay = events.find((e) => e.Title == eventTitle && e.Time == eventTime && e.Location == eventLocation);
+                const eventOfTheDay = events.find((e) => e.Title === eventTitle && e.Time === eventTime && e.Location === eventLocation);
                 if (eventOfTheDay) {
                     const functionAddGoToButton = () => {
                         window.open(eventOfTheDay.URL);
@@ -227,9 +227,6 @@ export default function Calendar() {
 
         }
 
-        function two() {//this function takes 2 seconds
-
-        }
 
         async function asyncCall() {
             const result = await fetchMovies();

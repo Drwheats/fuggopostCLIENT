@@ -1587,10 +1587,10 @@ export default function Pokemon({ mon }) {
                 <span><TypeShow2 type={type1} /><TypeShow2 type={type2} /></span>
                 </ul>
         <div><br /></div>
-        <li className="goDownStats">
-
-                <ul className="stat">HP: {hp}</ul><ul className="stat">Atk: {atk}</ul><ul className="stat">Def: {def}</ul><ul className="stat">SpA: {spa}</ul><ul className="stat">SpD: {spdf}</ul><ul className="stat">Spe: {spe}</ul>
-            </li>
+        <br />
+        <ul className="goDownStats">
+                <li className="stat">HP: {hp}</li><li className="stat">Atk: {atk}</li><ul className="stat">Def: {def}</ul><ul className="stat">SpA: {spa}</ul><ul className="stat">SpD: {spdf}</ul><ul className="stat">Spe: {spe}</ul>
+            </ul>
         <div>
             <h5 className="showMonDoesRocks">{hasRocks}</h5>
             <h5 className="showMonDoesWebs">{hasWebs}</h5>
