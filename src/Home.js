@@ -1,9 +1,3 @@
-import GridLayout from "react-grid-layout";
-import '/node_modules/react-grid-layout/css/styles.css';
-import '/node_modules/react-resizable/css/styles.css';
-const layout = [
-    { i: "b", x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4 },
-];
 export default function Home() {
     return (
         <body className="homePageBody">
@@ -20,24 +14,9 @@ export default function Home() {
 
             </div>
             <h1 className="homePageProjects">Projects</h1>
-
-            <GridLayout
-                className="layout"
-                layout={layout}
-                cols={12}
-                rowHeight={30}
-                width={1200}
-            >
-                <div key="a">a</div>
-                <div key="b">b</div>
-                <div key="c">c</div>
-            </GridLayout>
-
             <div className="projectHolder">
                 <a href={"https://www.ben.place/b"}>
-
                 <div className="project">
-
                         <img className="projectImg" src="/board.png" alt="boardLogo"></img>
                         <div className="projectContainer">
                             <h4><b>React Imageboard</b></h4>
@@ -48,7 +27,7 @@ export default function Home() {
 
                 <a href={"https://www.ben.place/mons"}>
                     <div className="project">
-                        <img className="projectImg" src="/mons.png"></img>
+                        <img className="projectImg" alt="monslogo" src="/mons.png"></img>
                         <div className="projectContainer">
                             <h4><b>Pokemon Draft League Helper</b></h4>
                             <p>A database of the Pokemon league that I play in. Contains a few tools to help Pokemon coaches such as a matchup tool. Uses my fuggo.lol API as a backend, with a Google Docs sheet as a database. Some of the tools use the very excellent pokeAPI. (https://pokeapi.co/)</p>
@@ -57,7 +36,7 @@ export default function Home() {
                     </a>
                 <a href={"https://www.ben.place/calendar"}>
                     <div className="project">
-                        <img className="projectImg" src="/questionmark.png"></img>
+                        <img className="projectImg" alt="questionmarklogo" src="/questionmark.png"></img>
                         <div className="projectContainer">
                             <h4><b>Local Theatre Calendar</b></h4>
                             <p>A calendar that shows what's playing in a variety of local Toronto theatres. The data comes from a scraper that I made and host at fuggo.lol. </p>

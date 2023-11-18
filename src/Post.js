@@ -1,14 +1,7 @@
 import {FiMinusSquare, FiPlusSquare, FiXSquare} from "react-icons/fi";
 import {useState} from "react";
-import GridLayout from "react-grid-layout";
-import '/node_modules/react-grid-layout/css/styles.css;
-import '/node_modules/react-resizable/css/styles.css';
 let server = "https://api.fuggo.lol/"
-const layout = [
-    { i: "a", x: 0, y: 0, w: 1, h: 2, static: true },
-    { i: "b", x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4 },
-    { i: "c", x: 4, y: 0, w: 1, h: 2 }
-];
+
 // let server = "http://localhost:4000/";
 export default function Post({
                                  postName,
@@ -94,7 +87,6 @@ export default function Post({
 
     formatDate();
     return (
-        <GridLayout className ="grid1" layout={layout} >
 
     <div key={postNumber} className="theEntirePost" id={"entirePost"+postNumber}><div className="postHolder" id={"reply" + postNumber}>
             <h5 className="postHeader"> #{postNumber} {postName} <span className="trashHolder">{timePosted} </span>
@@ -131,6 +123,6 @@ export default function Post({
             }{r.replyName + ": " + r.replyBody + " "}</a>
         })
     }
-    </div>     </div></GridLayout>
+    </div>     </div>
     )
 }

@@ -1,8 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    /*box-sizing: border-box;*/
-
 }
 
 body {
@@ -27,14 +25,6 @@ button:active {
     box-shadow: 0px 0px 0px 0px #a29bfe;
 }
 
-.homePageBody {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background-color: #03e5b7;
-    background-image: linear-gradient(177deg, #ADD8E6 0%, #90EE90 74%);
-}
-
 .calendarContainer {
     margin: auto;
     width: 770px;
@@ -52,18 +42,6 @@ button:active {
     font-size: 30px;
     font-weight: 600;
 }
-
-/*button {*/
-/*    width: 75px;*/
-/*    cursor: pointer;*/
-/*    border: none;*/
-/*    outline: none;*/
-/*    padding: 5px;*/
-/*    border-radius: 3px;*/
-/*    color: white;*/
-/*}*/
-
-
 
 .header button {
     background-color: #ff5252;
@@ -1469,12 +1447,10 @@ flex-wrap: wrap;
     .typeChartCell {
         width: 50px;
     }
-
     .bigGuy {
         width: 500px;
         font-size: 500rem;
     }
-
     .typeChartMonHolder {
         display: flex;
 
@@ -1519,13 +1495,9 @@ flex-wrap: wrap;
         display: flex;
         flex-direction: column;
     }
-
     .stat {
         display: flex;
     }
-
-
-
 }
 
 .projectHolder {
@@ -1551,7 +1523,7 @@ flex-wrap: wrap;
 .projectHolder {
     width: 80%;
     float:left;
-    justify-content: space-between;
+    gap:5px;
     box-sizing:border-box;
     -moz-box-sizing:border-box; /* Firefox */
     -webkit-box-sizing:border-box; /* Safari */
@@ -1559,6 +1531,14 @@ flex-wrap: wrap;
 
 .projectImg {
     width: 120px;
+}
+
+.homePageBody {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #03e5b7;
+    background-image: linear-gradient(177deg, #ADD8E6 0%, #90EE90 74%);
 }
 
 .homePageProjects {

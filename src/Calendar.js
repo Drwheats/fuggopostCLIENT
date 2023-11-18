@@ -38,7 +38,7 @@ export default function Calendar() {
             function loadCalendar() {
                 const dt = new Date();
 
-                if (navigation != 0) {
+                if (navigation !== 0) {
                     dt.setMonth(new Date().getMonth() + navigation);
                 }
                 const day = dt.getDate();
@@ -71,7 +71,7 @@ export default function Calendar() {
                         //Event Day
                         const eventOfTheDay = [];
                         events.forEach(event1 => {
-                            if (event1.Date == dateText) {
+                            if (event1.Date === dateText) {
                                 eventOfTheDay.push(event1);
                             }
                         })
@@ -81,7 +81,7 @@ export default function Calendar() {
 
                         // const holidayOfTheDay = holidays.find((e) => e.hdate == dateText);
 
-                        if (i - emptyDays === day && navigation == 0) {
+                        if (i - emptyDays === day && navigation === 0) {
                             dayBox.id = "currentDay";
                         }
 
@@ -90,7 +90,7 @@ export default function Calendar() {
                             let notaRerun = true;
                             eventOfTheDay.forEach(event2 => {
                                 noRerunsList.forEach(element => {
-                                    if (element.Title == event2.Title && element.Time == event2.Time && element.Date == event2.Date && element.Location == event2.Location) {
+                                    if (element.Title === event2.Title && element.Time === event2.Time && element.Date === event2.Date && element.Location === event2.Location) {
                                         notaRerun = false;
                                     }
                                 });

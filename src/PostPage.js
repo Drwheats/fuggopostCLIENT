@@ -21,7 +21,7 @@ export default function PostPage() {
         hasImage: false
     });
 
-    const [isRendered, setIsRendered] = useState(false);
+    // const [isRendered, setIsRendered] = useState(false);
     // terrible hacks to make text in posts render.
     const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
     window.onload = function(){
