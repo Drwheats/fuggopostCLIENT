@@ -1506,7 +1506,8 @@ flex-wrap: wrap;
 }
 
 .project {
-    margin: 1%;
+    margin: 5px;
+    padding: 5px;
     height: 250px;
     background-image: linear-gradient(white, lightblue);    width: 350px;
     /* Add shadows to create the "card" effect */
@@ -1536,9 +1537,9 @@ flex-wrap: wrap;
 .homePageBody {
     display: flex;
     flex-direction: column;
-    height: 100vh;
     background-color: #03e5b7;
     background-image: linear-gradient(177deg, #ADD8E6 0%, #90EE90 74%);
+    height: fit-content;
 }
 
 .paragraphHolderPortfolio  {
@@ -1547,11 +1548,22 @@ flex-wrap: wrap;
 }
 
 .homePageProjects {
-    text-align: center;
-    font-size: 70px;
+    text-align: left;
+    font-size: 35px;
     font-weight: 600;
     background-image: linear-gradient(to left, #553c9a, #b393d3);
+
     color: transparent;
     background-clip: text;
     -webkit-background-clip: text;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 33.33333vw;
+}
+
+.portfolioPics1 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
