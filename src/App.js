@@ -12,6 +12,7 @@ import Mons from "./Mons";
 import CoachPage from "./CoachPage";
 import NavigationBar from "./NavBar";
 import Calendar from "./Calendar";
+import BenResumePage from "./BenResumePage";
 
 function App() {
     return (
@@ -36,6 +37,8 @@ function App() {
                         <Route path="/about" element={<Information/>}/>
 
                         <Route path="/calendar" element={<Calendar />} />
+                        <Route path="/eportfolio" element={<BenResumePage />} />
+
                     </Routes>
                 </BrowserRouter>
             </div>
