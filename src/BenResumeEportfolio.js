@@ -97,11 +97,7 @@ export default function BenResumeEportfolio() {
                 <a href="/eportfolio">
                     <img src="./nextArrow.png" height="450" width="450" alt="a big blue and green arrow saying next"></img>
                 </a>
-
-
             </div>
-
-            
         </div>
 
         <div>

@@ -22,15 +22,15 @@ export default function Home() {
                     </div>
                 </a>
 
-                <a href={"https://www.ben.place/bomgl"}>
-                    <div className="project">
-                        <img className="projectImg" src="/questionmark.png" alt="questionmarklogo"></img>
-                        <div className="projectContainer">
-                            <h4><b>bomgl</b></h4>
-                            <p>cool video chat to meet cool teens</p>
-                        </div>
-                    </div>
-                </a>
+                {/*<a href={"https://www.ben.place/bomgl"}>*/}
+                {/*    <div className="project">*/}
+                {/*        <img className="projectImg" src="/questionmark.png" alt="questionmarklogo"></img>*/}
+                {/*        <div className="projectContainer">*/}
+                {/*            <h4><b>bomgl</b></h4>*/}
+                {/*            <p>cool video chat to meet cool teens</p>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</a>*/}
 
                 <a href={"https://www.ben.place/mons"}>
                     <div className="project">
