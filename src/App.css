@@ -249,9 +249,9 @@ button:active {
 }
 
 .homePageHeader {
+    margin-left: 30px;
         /*height:100vh;*/
         width:50vw;
-
 }
 
 
@@ -270,23 +270,16 @@ button:active {
 }
 
 .nav {
-    height: 70px;
+    overflow: hidden;
+    height: 45px;
     background-color: #333333;
-    color: white;
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
     gap: 2rem;
     padding: 1rem;
 }
 
-.site-title {
-    font-size: 2rem;
-}
-
 .nav ul {
-    padding: 0;
-    margin: 0;
     list-style: none;
     display: flex;
     gap: 1rem;
@@ -308,7 +301,12 @@ button:active {
 }
 
 nav li.active {
-    background-color: #555;
+    background-color: white;
+    width: 200%;
+    border-radius: 55%;
+    box-shadow: 0 0 9px 4px white;
+    animation: glow 1.5s linear infinite;
+    /*width: 100%;*/
 }
 
 .nav li:hover {
@@ -1503,5 +1501,10 @@ flex-wrap: wrap;
 
 .portfolioPage {
     display: flex;
+}
+
+.hold2images {
+    display: flex;
+    flex-display: block;
 }
 

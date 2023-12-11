@@ -10,9 +10,8 @@ export default function NavigationBar() {
             <ul className="navIconHolder">
                 <CustomLink to="/b"><img className="navIcon" alt="homelogo" src="/homeicon.png" /> </CustomLink>
                 <CustomLink to="/Mons"><img className="navIcon" alt="moguslogo" src="/squamogus.png" /></CustomLink>
-
                 <CustomLink to="/about"><img className="navIcon" alt="questionlogo" src="/questionmark.png" /> </CustomLink>
-                <CustomLink to="/Login"><img className="navIcon" alt="userLogo" src="/manicon.png" /> </CustomLink>
+                <CustomLink to="/bomgl"><img className="navIcon" alt="userLogo" src="/manicon.png" /> </CustomLink>
                 <a href={"https://github.com/drwheats/" }><img className="navIcon" alt="githublogo" src="/gitcat.png" /> </a>
 
                 {/*<CustomLink to="/scores">HighScores</CustomLink>*/}

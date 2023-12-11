@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import Home from "./Home";
 import Information from "./Information";
-import Login from "./Login";
+import Bomgl from "./bomgl";
 import PostPage from "./PostPage";
 import HighScores from "./HighScores";
 import Mons from "./Mons";
@@ -13,6 +13,10 @@ import CoachPage from "./CoachPage";
 import NavigationBar from "./NavBar";
 import Calendar from "./Calendar";
 import BenResumePage from "./BenResumePage";
+import BenResumeReflections from "./BenResumeReflections"
+import BenResumeDevicePage from "./BenResumeDevicePage"
+import BenResumeFastFix from "./BenResumeFastFix"
+import BenResumeEportfolio from "./BenResumeEportfolio"
 
 function App() {
     return (
@@ -33,11 +37,14 @@ function App() {
 
                         <Route path="/post/:id" element={<PostPage/>}/>
                         <Route path="/post/0" element={<Information/>}/>
-                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/bomgl" element={<Bomgl/>}/>
                         <Route path="/about" element={<Information/>}/>
-
                         <Route path="/calendar" element={<Calendar />} />
                         <Route path="/eportfolio" element={<BenResumePage />} />
+                        <Route path="/eportfolio-reflections" element={<BenResumeReflections />} />
+                        <Route path="/eportfolio-devicepage" element={<BenResumeDevicePage />} />
+                        <Route path="/eportfolio-fastfix" element={<BenResumeFastFix />} />
+                        <Route path="/eportfolio-eportfolio" element={<BenResumeEportfolio />} />
 
                     </Routes>
                 </BrowserRouter>

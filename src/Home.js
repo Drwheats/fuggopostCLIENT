@@ -1,13 +1,10 @@
 export default function Home() {
     return (
-        <body className="homePageBody">
-
-
+        <div className="homePageBody">
         <div>
 
             <div className="homePageHeader">
-                <h1 className="homePageName">Ben dot Place</h1>
-                <h2 className="homePageTitle">Welcome to Ben Dot Place</h2>
+                <h1 className="homePageTitle">Welcome to Ben Dot Place</h1>
                 <p></p>
                 <br/>
                 <p>I host all of my completed apps on this website.  </p>
@@ -21,6 +18,16 @@ export default function Home() {
                         <div className="projectContainer">
                             <h4><b>React Imageboard</b></h4>
                             <p>A modern imageboard written in React. Styled after the infamous 4chan, except 70% less toxic. Uses my fuggo.lol API as a backend to serve posts.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href={"https://www.ben.place/bomgl"}>
+                    <div className="project">
+                        <img className="projectImg" src="/questionmark.png" alt="questionmarklogo"></img>
+                        <div className="projectContainer">
+                            <h4><b>bomgl</b></h4>
+                            <p>cool video chat to meet cool teens</p>
                         </div>
                     </div>
                 </a>
@@ -59,7 +66,7 @@ export default function Home() {
             </a>
 
         </div>
-        </body>
+        </div>
 
     )
 }
