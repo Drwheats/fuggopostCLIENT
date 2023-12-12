@@ -77,7 +77,7 @@ export default function BenResumeEportfolio() {
                 <br />
                 <p className="truncatedParagraph">I looked through some of the past ePortfolios provided by the professor, and tried to format my project based on those past successful portfolios, and I tried to discuss most of those skills if they were applicable to my portfolio and more.  </p>
                 <br/>
-                <img src="./eportfolioais.png" height="500" width="500"/>
+                <img src="./eportfolioais.png" alt="eportfolio-screenshot" height="500" width="500"/>
                 <br/>
                 <p className="truncatedParagraph">I used a copious amount of AI generated art for this project, as there aren't a lot of aesthetic pictures of electric scooters and medical devices on the internet, and I could easily make it fit my lime green and light blue theme.</p>
                 <br/>
