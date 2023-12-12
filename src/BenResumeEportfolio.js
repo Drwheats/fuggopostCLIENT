@@ -55,7 +55,7 @@ export default function BenResumeEportfolio() {
 
             <div className="homePageHeader">
 
-                <h1 className="homePageName">Device Page and SEO Project</h1>
+                <h1 className="homePageName">ePortfolio Project</h1>
                 <br/>
                 <img className="portfolioPics1" src={"./writ2201cartoon.jpg"} alt={"greenandbluemedicaldevice"} width="500" height="500"/>
 
@@ -66,9 +66,10 @@ export default function BenResumeEportfolio() {
             <div className="paragraphHolderPortfolio">
 
 
-                <p className="truncatedParagraph"> For the ePortfolio project, we had to compile all of the written work from the course in a user friendly and easy to read location. We described the process of writing most of our work, and also described the skills we learned while completing the projects.
+                <p className="truncatedParagraph"> For the ePortfolio project, we had to compile all of the written work from the course in a user friendly and easy to read location. We described the process of writing most of our work, and also described the skills we learned while completing the projects, and the challenges that we overcame.
                 </p>
                 <br/>
+                <img src="./ePortfolioScreenshot2.png" height="450" width="250" alt="screenShotEportfolio"/>
                 <p className="truncatedParagraph">I chose to do a Project based ePortfolio, as opposed to a skills based ePortfolio. Although this was a no-code project, I used a layout that I coded in HTML/JavaScript (a long time ago, for a personal website) as the template, because I'm very comfortable with these languages and because I am going to use HTML/JavaScript as the template for my portfolio site in the future.</p>
                 <br/>
                 <h1 className="homePageProjects">Conceptualization/Planning</h1>
@@ -97,7 +98,7 @@ export default function BenResumeEportfolio() {
 
                 <p className="truncatedParagraph">The ePortfolio project was helpful in bringing all of the research, writing and formatting skills that I learned in this course together. Giving feedback on my classmates portfolio pages gave me a lot of ideas on what I wanted my page to look like in the end, and receiving feedback helped me to make my ideas more legible. There was a lot of information to sift through while making this portfolio, and this would have been the main challenge. Luckily I had documented the process of making all of my other projects while I was doing them, as and I had also documented all of the skills required to do the projects.</p>
                 <br />
-                <p className="truncatedParagraph">It's important to learn how to compile and organize your ideas and achievements, as self-promotion and organization is a very necessary skill in today's corporate environment. I think that this is the best skill that I've taken away from the ePortfolio project, as well as refreshing my memory on all of the other projects I've completed this semester. I also enjoyed making all of my media fit one cohesive theme. </p>
+                <p className="truncatedParagraph">It's important to learn how to compile and organize your ideas and achievements, as self-promotion and organization is a very necessary skill in today's corporate environment. I think that this is the best skill that I've taken away from the ePortfolio project, as well as refreshing my memory on all of the other projects I've completed this semester. I also enjoyed making all of my media fit one cohesive theme - which is a skill that we have been learning throughout this course. </p>
                 <br />
             </div>
             
