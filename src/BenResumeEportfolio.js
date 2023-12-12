@@ -4,15 +4,11 @@ import ReceiptRoundedIcon from "@mui/icons-material/ReceiptRounded";
 import BarChartRoundedIcon from "@mui/icons-material/BarChartRounded";
 import TimelineRoundedIcon from "@mui/icons-material/TimelineRounded";
 import BubbleChartRoundedIcon from "@mui/icons-material/BubbleChartRounded";
-import WalletRoundedIcon from "@mui/icons-material/WalletRounded";
-import AccountBalanceRoundedIcon from "@mui/icons-material/AccountBalanceRounded";
 import SavingsRoundedIcon from "@mui/icons-material/SavingsRounded";
-import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
 import SettingsApplicationsRoundedIcon from "@mui/icons-material/SettingsApplicationsRounded";
-import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
-import ShieldRoundedIcon from "@mui/icons-material/ShieldRounded";
-import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import {Link} from "react-router-dom";
+import React from "react";
 
 export default function BenResumeEportfolio() {
     return (
@@ -23,30 +19,35 @@ export default function BenResumeEportfolio() {
 
             <Sidebar className="sideBar">
                 <Menu>
-                    <MenuItem className="menu1" icon={<MenuRoundedIcon />}>
+                    <MenuItem className="menu1" icon={<MenuRoundedIcon />} component={<Link to="/eportfolio" />}>
                         <h2> Ben G</h2>
                     </MenuItem>
-                    <MenuItem icon={<GridViewRoundedIcon />}> Home </MenuItem>
-                    <MenuItem icon={<ReceiptRoundedIcon />}> About </MenuItem>
+                    <MenuItem icon={<GridViewRoundedIcon />} component={<Link to="/eportfolio" />}> Home </MenuItem>
+                    <MenuItem icon={<ReceiptRoundedIcon />} component={<Link to="/eportfolio-reflections" />}>Reflections</MenuItem>
                     <SubMenu label="Projects" icon={<BarChartRoundedIcon />}>
-                        <MenuItem icon={<TimelineRoundedIcon />}> Writing Project </MenuItem>
-                        <MenuItem icon={<BubbleChartRoundedIcon />}>iFixit Project</MenuItem>
+                        <MenuItem icon={<TimelineRoundedIcon />} component={<Link to="/eportfolio-devicepage" />}> SEO Project </MenuItem>
+                        <MenuItem icon={<BubbleChartRoundedIcon />} component={<Link to="/eportfolio-fastfix" />}>Fast Fix Project</MenuItem>
+                        <MenuItem icon={<SavingsRoundedIcon />} component={<Link to="/eportfolio-eportfolio" />}>ePortfolio</MenuItem>
                     </SubMenu>
-                    <SubMenu label="Skills" icon={<WalletRoundedIcon />}>
-                        <MenuItem icon={<AccountBalanceRoundedIcon />}>
-                            More Skills
-                        </MenuItem>
-                        <MenuItem icon={<SavingsRoundedIcon />}>Skills</MenuItem>
+                    <SubMenu label="External Links" icon={<SettingsApplicationsRoundedIcon />}>
+                        <a href="https://www.ifixit.com/User/4387835/Ben+G">
+                            <MenuItem icon={<LogoutRoundedIcon />}> iFixit Profile Page </MenuItem>
+                        </a>
+                        <a href="https://www.ifixit.com/Guide/Unicool+Titan+T8+Battery+Removal-Replacement/167035">
+                            <MenuItem icon={<LogoutRoundedIcon />} > iFixit Fast Fix Project </MenuItem>
+
+                        </a>
+                        <a href="https://www.ifixit.com/Device/Siemens_Servo_Screen_390">
+                            <MenuItem icon={<LogoutRoundedIcon />}>
+                                iFixit SEO Project
+                            </MenuItem>
+                        </a>
+                        <a href="https://ben.place/eportfolio">
+                            <MenuItem icon={<LogoutRoundedIcon />}> ePortfolio </MenuItem>
+
+                        </a>
+
                     </SubMenu>
-                    <MenuItem icon={<MonetizationOnRoundedIcon />}>Bibliography</MenuItem>
-                    <SubMenu label="Sources" icon={<SettingsApplicationsRoundedIcon />}>
-                        <MenuItem icon={<AccountCircleRoundedIcon />}> Ben </MenuItem>
-                        <MenuItem icon={<ShieldRoundedIcon />}> Ben </MenuItem>
-                        <MenuItem icon={<NotificationsRoundedIcon />}>
-                            WRIT 2201
-                        </MenuItem>
-                    </SubMenu>
-                    <MenuItem icon={<LogoutRoundedIcon />}> Help </MenuItem>
                 </Menu>
             </Sidebar>
         </div>
@@ -76,6 +77,10 @@ export default function BenResumeEportfolio() {
                 <br />
                 <p className="truncatedParagraph">I looked through some of the past ePortfolios provided by the professor, and tried to format my project based on those past successful portfolios, and I tried to discuss most of those skills if they were applicable to my portfolio and more.  </p>
                 <br/>
+                <img src="./eportfolioais.png" height="500" width="500"/>
+                <br/>
+                <p className="truncatedParagraph">I used a copious amount of AI generated art for this project, as there aren't a lot of aesthetic pictures of electric scooters and medical devices on the internet, and I could easily make it fit my lime green and light blue theme.</p>
+                <br/>
 
                 <h1 className="homePageProjects">User Testing and Feedback</h1>
                 <br/>
@@ -90,14 +95,15 @@ export default function BenResumeEportfolio() {
                 <h1 className="homePageProjects">Reflection</h1>
                 <br />
 
-                <p className="truncatedParagraph">The Eportfolio project was helpful in bringing all of the research, writing and formatting skills that I learned in this course together. Giving feedback on my classmates portfolio pages gave me a lot of ideas on what I wanted my page to look like in the end, and receiving feedback helped me to make my ideas more legible. There was a lot of information to sift through while making this portfolio, and this would have been the main challenge. Luckily I had documented the process of making all of my other projects while I was doing them, as and I had also documented all of the skills required to do the projects.</p>
+                <p className="truncatedParagraph">The ePortfolio project was helpful in bringing all of the research, writing and formatting skills that I learned in this course together. Giving feedback on my classmates portfolio pages gave me a lot of ideas on what I wanted my page to look like in the end, and receiving feedback helped me to make my ideas more legible. There was a lot of information to sift through while making this portfolio, and this would have been the main challenge. Luckily I had documented the process of making all of my other projects while I was doing them, as and I had also documented all of the skills required to do the projects.</p>
                 <br />
                 <p className="truncatedParagraph">It's important to learn how to compile and organize your ideas and achievements, as self-promotion and organization is a very necessary skill in today's corporate environment. I think that this is the best skill that I've taken away from the ePortfolio project, as well as refreshing my memory on all of the other projects I've completed this semester. I also enjoyed making all of my media fit one cohesive theme. </p>
                 <br />
-                <a href="/eportfolio">
-                    <img src="./nextArrow.png" height="450" width="450" alt="a big blue and green arrow saying next"></img>
-                </a>
             </div>
+            
+            <Link to={"/eportfolio-reflections"}>
+                <img src="./nextArrow.png" alt="next arrow" height="250" width="250"/>
+            </Link>
         </div>
 
         <div>

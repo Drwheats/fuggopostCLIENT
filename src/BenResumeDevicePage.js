@@ -4,15 +4,11 @@ import ReceiptRoundedIcon from "@mui/icons-material/ReceiptRounded";
 import BarChartRoundedIcon from "@mui/icons-material/BarChartRounded";
 import TimelineRoundedIcon from "@mui/icons-material/TimelineRounded";
 import BubbleChartRoundedIcon from "@mui/icons-material/BubbleChartRounded";
-import WalletRoundedIcon from "@mui/icons-material/WalletRounded";
-import AccountBalanceRoundedIcon from "@mui/icons-material/AccountBalanceRounded";
 import SavingsRoundedIcon from "@mui/icons-material/SavingsRounded";
-import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
 import SettingsApplicationsRoundedIcon from "@mui/icons-material/SettingsApplicationsRounded";
-import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
-import ShieldRoundedIcon from "@mui/icons-material/ShieldRounded";
-import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import {Link} from "react-router-dom";
+import React from "react";
 
 export default function BenResumeDevicePage() {
     // const { collapseSidebar, toggleSidebar, collapsed, toggled, broken, rtl } =
@@ -25,30 +21,35 @@ export default function BenResumeDevicePage() {
 
             <Sidebar className="sideBar">
                 <Menu>
-                    <MenuItem className="menu1" icon={<MenuRoundedIcon />}>
+                    <MenuItem className="menu1" icon={<MenuRoundedIcon />} component={<Link to="/eportfolio" />}>
                         <h2> Ben G</h2>
                     </MenuItem>
-                    <MenuItem icon={<GridViewRoundedIcon />}> Home </MenuItem>
-                    <MenuItem icon={<ReceiptRoundedIcon />}> About </MenuItem>
+                    <MenuItem icon={<GridViewRoundedIcon />} component={<Link to="/eportfolio" />}> Home </MenuItem>
+                    <MenuItem icon={<ReceiptRoundedIcon />} component={<Link to="/eportfolio-reflections" />}>Reflections</MenuItem>
                     <SubMenu label="Projects" icon={<BarChartRoundedIcon />}>
-                        <MenuItem icon={<TimelineRoundedIcon />}> Writing Project </MenuItem>
-                        <MenuItem icon={<BubbleChartRoundedIcon />}>iFixit Project</MenuItem>
+                        <MenuItem icon={<TimelineRoundedIcon />} component={<Link to="/eportfolio-devicepage" />}> SEO Project </MenuItem>
+                        <MenuItem icon={<BubbleChartRoundedIcon />} component={<Link to="/eportfolio-fastfix" />}>Fast Fix Project</MenuItem>
+                        <MenuItem icon={<SavingsRoundedIcon />} component={<Link to="/eportfolio-eportfolio" />}>ePortfolio</MenuItem>
                     </SubMenu>
-                    <SubMenu label="Skills" icon={<WalletRoundedIcon />}>
-                        <MenuItem icon={<AccountBalanceRoundedIcon />}>
-                            More Skills
-                        </MenuItem>
-                        <MenuItem icon={<SavingsRoundedIcon />}>Skills</MenuItem>
+                    <SubMenu label="External Links" icon={<SettingsApplicationsRoundedIcon />}>
+                        <a href="https://www.ifixit.com/User/4387835/Ben+G">
+                            <MenuItem icon={<LogoutRoundedIcon />}> iFixit Profile Page </MenuItem>
+                        </a>
+                        <a href="https://www.ifixit.com/Guide/Unicool+Titan+T8+Battery+Removal-Replacement/167035">
+                            <MenuItem icon={<LogoutRoundedIcon />} > iFixit Fast Fix Project </MenuItem>
+
+                        </a>
+                        <a href="https://www.ifixit.com/Device/Siemens_Servo_Screen_390">
+                            <MenuItem icon={<LogoutRoundedIcon />}>
+                                iFixit SEO Project
+                            </MenuItem>
+                        </a>
+                        <a href="https://ben.place/eportfolio">
+                            <MenuItem icon={<LogoutRoundedIcon />}> ePortfolio </MenuItem>
+
+                        </a>
+
                     </SubMenu>
-                    <MenuItem icon={<MonetizationOnRoundedIcon />}>Bibliography</MenuItem>
-                    <SubMenu label="Sources" icon={<SettingsApplicationsRoundedIcon />}>
-                        <MenuItem icon={<AccountCircleRoundedIcon />}> Ben </MenuItem>
-                        <MenuItem icon={<ShieldRoundedIcon />}> Ben </MenuItem>
-                        <MenuItem icon={<NotificationsRoundedIcon />}>
-                            WRIT 2201
-                        </MenuItem>
-                    </SubMenu>
-                    <MenuItem icon={<LogoutRoundedIcon />}> Help </MenuItem>
                 </Menu>
             </Sidebar>
         </div>
@@ -67,7 +68,6 @@ export default function BenResumeDevicePage() {
             <div className="paragraphHolderPortfolio">
                 <a href="https://www.ifixit.com/Device/Siemens_Servo_Screen_390">
                     <img src={"./devicepage1.png"} alt={"screenshot-device-page"} width="1000" height="250"/>
-
                 </a>
 
                 <p className="truncatedParagraph">SEO (Search Engine Optimization) is the process of optimizing a web page so that when a user enters certain keywords into Google Search, your web page shows up early (or first) in the results. This means that a user who was searching for the information that our web page was showing would find our web page easily, improving the visibility and accessibility of our page, and bringing more traffic to iFixit as a whole.
@@ -93,7 +93,7 @@ export default function BenResumeDevicePage() {
 
                 <br/>
                 <h3 className="smallTitle">Reflections:</h3>
-                <p className="truncatedParagraph">This exercise was a good crash course in evaluating, collecting, compiling, and then formatting information based on a given list of parameters. I learned good Google techniques for seeking out highly specific information, and I learned how to evaluate information when it needs to be very precise and trustworthy by using Google's "EAT" parameters. I formatted all of this information in a way that would satisfying the requirements of both Google's search engine and iFixit's format - the result being very easily readable by humans, and also optimized for Google search. As proof, my article comes up as the first result when searching for "servo screen 390 repair". <a href="https://www.ifixit.com/Device/Siemens_Servo_Screen_390">Click here to go to my finished device page profie on iFixit.com.</a> </p>
+                <p className="truncatedParagraph">While I did not find this project particularly challenging or difficult, I found this exercise to be a good crash course in evaluating, collecting, compiling, and formatting information based on a given list of parameters. I learned good Google techniques for seeking out highly specific information, and I learned how to evaluate information when it needs to be very precise and trustworthy by using Google's "EAT" parameters. I formatted all of this information in a way that would satisfying the requirements of both Google's search engine and iFixit's format - the result being very easily readable by humans, and also optimized for Google search. As proof, my article comes up as the first result when searching for "servo screen 390 repair". <a href="https://www.ifixit.com/Device/Siemens_Servo_Screen_390">Click here to go to my finished device page profie on iFixit.com.</a> </p>
                 <br />
 
                 <a href="https://www.google.com/search?client=firefox-b-d&q=servo+screen+390+repair">
@@ -102,7 +102,9 @@ export default function BenResumeDevicePage() {
 
             </div>
 
-            
+            <Link to={"/eportfolio-fastfix"}>
+                <img src="./nextArrow.png" alt="next arrow" height="250" width="250"/>
+            </Link>
         </div>
         <div>
         </div>

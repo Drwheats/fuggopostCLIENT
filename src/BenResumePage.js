@@ -1,17 +1,11 @@
-import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar } from "react-pro-sidebar";import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
 import ReceiptRoundedIcon from "@mui/icons-material/ReceiptRounded";
 import BarChartRoundedIcon from "@mui/icons-material/BarChartRounded";
 import TimelineRoundedIcon from "@mui/icons-material/TimelineRounded";
 import BubbleChartRoundedIcon from "@mui/icons-material/BubbleChartRounded";
-import WalletRoundedIcon from "@mui/icons-material/WalletRounded";
-import AccountBalanceRoundedIcon from "@mui/icons-material/AccountBalanceRounded";
 import SavingsRoundedIcon from "@mui/icons-material/SavingsRounded";
-import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
 import SettingsApplicationsRoundedIcon from "@mui/icons-material/SettingsApplicationsRounded";
-import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
-import ShieldRoundedIcon from "@mui/icons-material/ShieldRounded";
-import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import React from "react";
 import { Link } from 'react-router-dom';
@@ -31,19 +25,17 @@ export default function BenResumePage() {
                         <h2> Ben G</h2>
                     </MenuItem>
                     <MenuItem icon={<GridViewRoundedIcon />} component={<Link to="/eportfolio" />}> Home </MenuItem>
-                    <MenuItem icon={<ReceiptRoundedIcon />}> About </MenuItem>
+                    <MenuItem icon={<ReceiptRoundedIcon />} component={<Link to="/eportfolio-reflections" />}>Reflections</MenuItem>
                     <SubMenu label="Projects" icon={<BarChartRoundedIcon />}>
                         <MenuItem icon={<TimelineRoundedIcon />} component={<Link to="/eportfolio-devicepage" />}> SEO Project </MenuItem>
                         <MenuItem icon={<BubbleChartRoundedIcon />} component={<Link to="/eportfolio-fastfix" />}>Fast Fix Project</MenuItem>
-                        <MenuItem icon={<AccountBalanceRoundedIcon />} component={<Link to="/eportfolio-reflections" />}>Reflections</MenuItem>
                         <MenuItem icon={<SavingsRoundedIcon />} component={<Link to="/eportfolio-eportfolio" />}>ePortfolio</MenuItem>
-
                     </SubMenu>
                     <SubMenu label="External Links" icon={<SettingsApplicationsRoundedIcon />}>
                         <a href="https://www.ifixit.com/User/4387835/Ben+G">
                             <MenuItem icon={<LogoutRoundedIcon />}> iFixit Profile Page </MenuItem>
                         </a>
-                        <a href="">
+                        <a href="https://www.ifixit.com/Guide/Unicool+Titan+T8+Battery+Removal-Replacement/167035">
                             <MenuItem icon={<LogoutRoundedIcon />} > iFixit Fast Fix Project </MenuItem>
 
                         </a>
@@ -52,7 +44,7 @@ export default function BenResumePage() {
                             iFixit SEO Project
                         </MenuItem>
                         </a>
-                        <a href="ben.place/eportfolio">
+                        <a href="https://ben.place/eportfolio">
                             <MenuItem icon={<LogoutRoundedIcon />}> ePortfolio </MenuItem>
 
                         </a>
@@ -85,13 +77,14 @@ export default function BenResumePage() {
                 <p>However, today we live in an evidence-based society - and me saying that I learned something from this course does not necessarily prove it. Therefore, I will give examples of how I improved at researching and writing, and I will highlight some research and writing projects that I have successfully completed.</p>
 
             </div>
+            <h1 className="homePageProjects">Projects</h1>
+
             <div className="paragraphHolderPortfolio">
-                <h1 className="homePageProjects">Projects</h1>
             </div>
             <div className="projectHolder">
                 <a href={"/eportfolio-fastfix"}>
                     <div className="project">
-                        <img className="projectImg" src="./T8electricscooter.jpg"></img>
+                        <img className="projectImg" alt="electricscooter" src="./T8electricscooter.jpg"></img>
                         <div className="projectContainer">
                             <h4><b>iFixit Fast Fix Project</b></h4>
                             <p>My iFixit fast fix project. An iFixit repair guide documenting how to replace the battery in a titan T8 electric scooter. </p>
@@ -100,7 +93,7 @@ export default function BenResumePage() {
                 </a>
                 <a href={"/eportfolio-devicepage"}>
                     <div className="project">
-                        <img className="projectImg" src="./phillips390image.jpg"></img>
+                        <img className="projectImg" src="./phillips390image.jpg" alt="siemensservoscreencartoon"></img>
                         <div className="projectContainer">
                             <h4><b>Device Page Project</b></h4>
                             <p>My iFixit device page profile. A page on iFixit documenting information on the Phillips Servo Screen 390. </p>
@@ -112,7 +105,7 @@ export default function BenResumePage() {
             <div className="projectHolder">
                 <a href={"/eportfolio-reflections"}>
                     <div className="project">
-                        <img className="projectImg" src="./Reflections2201.jpg"></img>
+                        <img className="projectImg" alt="ePortfolio" src="./Reflections2201.jpg"></img>
                         <div className="projectContainer">
                             <h4><b>Reflections</b></h4>
                             <p>Reflections on the WRIT2201 course - the skills that it's taught me, and what I've learned. </p>
@@ -121,7 +114,7 @@ export default function BenResumePage() {
                 </a>
                 <a href={"/eportfolio-eportfolio"}>
                     <div className="project">
-                        <img className="projectImg" src="./APITEC1.jpeg"></img>
+                        <img className="projectImg" alt="ePortfolio" src="./writ2201cartoon.jpg"></img>
                         <div className="projectContainer">
                             <h4><b>ePortfolio Page</b></h4>
                             <p>The ePortfolio page, showing off all of the projects and achievements from the WRIT 2201 course. </p>
@@ -130,7 +123,9 @@ export default function BenResumePage() {
                 </a>
 
             </div>
-
+            <Link to={"/eportfolio-devicepage#"}>
+                <img src="./nextArrow.png" alt="next arrow" height="250" width="250"/>
+            </Link>
         </div>
         <div>
         </div>
