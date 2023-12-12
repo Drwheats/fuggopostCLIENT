@@ -92,7 +92,7 @@ export default function BenResumeDevicePage() {
                 <p className="truncatedParagraph">At this stage of my project, I had a list of trusted sources and a list of required information that iFixit wanted in the device page. So I just needed to go through my manuals and vendor specifications, get the information that iFixit wanted on the page, and format it to iFixit's specifications. The manuals contained all of the information except for one thing, which luckily I was able to find on the vendor's website. I submitted my final draft to iFixit and waited for them to approve it, which they did.  </p>
 
                 <br/>
-                <h3 className="smallTitle">Reflections:</h3>
+                <h1 className="homePageProjects">Reflections:</h1>
                 <p className="truncatedParagraph">While I did not find this project particularly challenging or difficult, I found this exercise to be a good crash course in evaluating, collecting, compiling, and formatting information based on a given list of parameters. I learned good Google techniques for seeking out highly specific information, and I learned how to evaluate information when it needs to be very precise and trustworthy by using Google's "EAT" parameters. I formatted all of this information in a way that would satisfying the requirements of both Google's search engine and iFixit's format - the result being very easily readable by humans, and also optimized for Google search. As proof, my article comes up as the first result when searching for "servo screen 390 repair". <a href="https://www.ifixit.com/Device/Siemens_Servo_Screen_390">Click here to go to my finished device page profie on iFixit.com.</a> </p>
                 <br />
 

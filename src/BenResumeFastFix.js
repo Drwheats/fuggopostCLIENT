@@ -104,8 +104,8 @@ export default function BenResumeFastFix() {
                 <h3 className="smallTitle">User Testing and Feedback:</h3>
                 <p className="truncatedParagraph"> We used Kritik.io to get feedback from our peers. I found it very helpful to get feedback from people who have never seen the device that I was working on - some of my classmates found my pictures to be disorienting, and my guide to be missing information. I used my peers feedback to make the guide more user-friendly, and iFixit also provided feedback to help my guide be in line with their specifications and standards.</p>
                 <br />
-                <h3 className="smallTitle">Reflections:</h3>
-
+                <h1 className="homePageProjects">Reflections:</h1>
+                <br />
                 <p className="truncatedParagraph"> I found the iFixit Fast Fix project to be an excellent way to practice technical writing, writing for a certain audience, and using feedback to improve a written article. Although I am quite skilled in repairing electronics, I have never written out a repair guide, or documented a process to make it replicable to other people. I found the hardest part of the guide to be taking appropriate pictures that properly showed the steps of the guide, and I ended up needing to take many repeat pictures as they lacked context or were zoomed in too much.</p>
                 <br/>
                 <p className="truncatedParagraph">I would single out the user feedback portion of the project as being particularly helpful in developing my technical writing skills - I found it very illuminating to see if 5 random classmates could follow my guide, as they had likely never taken apart an electric scooter before. The changes I made based on my peers feedback and iFixit's guidelines made the guide much more readable, and is a solid foundation on learning how to document a process so that anyone can follow it, regardless of their skill level or current knowledge of the process.</p>
