@@ -12,7 +12,7 @@ export default function Home() {
             </div>
             <h1 className="homePageProjects">Projects</h1>
             <div className="projectHolder">
-                <a href={"https://www.ben.place/b"}>
+                <a href={"/b"}>
                 <div className="project">
                         <img className="projectImg" src="/board.png" alt="boardLogo"></img>
                         <div className="projectContainer">
@@ -32,7 +32,7 @@ export default function Home() {
                 {/*    </div>*/}
                 {/*</a>*/}
 
-                <a href={"https://www.ben.place/mons"}>
+                <a href={"/mons"}>
                     <div className="project">
                         <img className="projectImg" alt="monslogo" src="/mons.png"></img>
                         <div className="projectContainer">
@@ -41,7 +41,7 @@ export default function Home() {
                         </div>
                     </div>
                     </a>
-                <a href={"https://www.ben.place/calendar"}>
+                <a href={"/calendar"}>
                     <div className="project">
                         <img className="projectImg" alt="questionmarklogo" src="/questionmark.png"></img>
                         <div className="projectContainer">

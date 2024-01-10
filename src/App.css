@@ -117,7 +117,7 @@ button:active {
 .event-TIFF {
     font-size: 12px;
     padding: 3px;
-    background-color: #DDD618;
+    background-color: #1898dd;
     color: #000000;
     border-radius: 5px;
     max-height: 55px;
@@ -187,12 +187,21 @@ button:active {
 
 #addEvent,
 #viewEvent {
+    top: 200px;
+    left: auto;
     display: none;
     width: 350px;
     background-color: #fff;
     padding: 25px;
     position: absolute;
     z-index: 20;
+}
+
+.eventModalPopUp {
+
+    margin: auto;
+    background-color: black;
+    position: absolute;
 }
 
 #addEvent h2,

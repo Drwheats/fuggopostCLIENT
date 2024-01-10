@@ -10,14 +10,13 @@ import PostPage from "./PostPage";
 import HighScores from "./HighScores";
 import Mons from "./Mons";
 import CoachPage from "./CoachPage";
-// import NavigationBar from "./NavBar";
+import NavigationBar from "./NavBar";
 import Calendar from "./Calendar";
 import BenResumePage from "./BenResumePage";
 import BenResumeReflections from "./BenResumeReflections"
 import BenResumeDevicePage from "./BenResumeDevicePage"
 import BenResumeFastFix from "./BenResumeFastFix"
 import BenResumeEportfolio from "./BenResumeEportfolio"
-import RouterGoTop from "./RouterGoTop";
 
 function App() {
     return (
@@ -25,8 +24,7 @@ function App() {
 
             <div className="holder">
                 <BrowserRouter>
-                    <RouterGoTop />
-                    {/*<NavigationBar />*/}
+                    <NavigationBar />
                     <Routes>
 
                         <Route path="/home" element={<Home/>}/>

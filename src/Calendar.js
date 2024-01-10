@@ -1,6 +1,8 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 export default function Calendar() {
+
+    const [listings, setListings] = useState([]);
 
     useEffect(() => {
         const fetchMovies = () => {
@@ -8,15 +10,17 @@ export default function Calendar() {
                 .then( response => response.json() )
                 .then( json => {
                     localStorage.setItem('events', JSON.stringify(json));
-                })
+                }).then( console.log("done"))
+
             return new Promise(resolve => {
                 setTimeout(() => {
                     resolve('resolved');
+                    setListings(localStorage.getItem("events"));
+                    console.log(listings)
                 }, 1000);
             });
 
         }
-        let tempHolidays = localStorage.getItem("events");
         const calendar = document.querySelector("#calendar");
         const monthBanner = document.querySelector("#month");
         let navigation = 0;
@@ -35,7 +39,14 @@ export default function Calendar() {
                 const hour = +hourString % 24;
                 return (hour % 12 || 12) + ":" + minute + (hour < 12 ? "AM" : "PM");
             }
-            function loadCalendar() {
+            const btnBack = document.querySelector("#btnBack");
+            const btnNext = document.querySelector("#btnNext");
+            const btnDelete = document.querySelector("#btnDelete");
+            const btnSave = document.querySelector("#btnSave");
+            const closeButtons = document.querySelectorAll(".btnClose");
+            const txtTitle = document.querySelector("#txtTitle");
+            const loadCalendar = () => {
+
                 const dt = new Date();
 
                 if (navigation !== 0) {
@@ -70,11 +81,15 @@ export default function Calendar() {
                         dayBox.innerText = i - emptyDays;
                         //Event Day
                         const eventOfTheDay = [];
-                        events.forEach(event1 => {
-                            if (event1.Date === dateText) {
-                                eventOfTheDay.push(event1);
-                            }
-                        })
+                        console.log("Loading entire Calendar :")
+                        for (let i = 0; i < events.length; i++) {
+                            events[i].forEach(event1 => {
+                                if (event1.Date === dateText) {
+                                    eventOfTheDay.push(event1);
+                                }
+                            })
+                        }
+
                         eventOfTheDay.sort(function(a,b) {
                             return new Date ('1/1/1999 ' + a.Time) > new Date ('1/1/1999 ' + b.Time)
                         });
@@ -99,11 +114,9 @@ export default function Calendar() {
                                     eventDiv.classList.add("event");
 
                                     if (event2.Location === "Hot Docs") {
-                                        // eventDiv.style.backgroundColor = "#aebb00";
-                                        eventDiv.classList.add("event-HotDocs");
+                                        eventDiv.classList.add("event-HotDocs"); }
 
-                                    }
-                                    if (event2.Location === 'The TIFF "formerly Bell" Lightbox') {
+                                    if (event2.Location === "TIFF Lightbox") {
                                         eventDiv.classList.add("event-TIFF"); }
 
                                     if (event2.Location === "The Revue") {
@@ -112,15 +125,13 @@ export default function Calendar() {
                                     if (event2.Location === "Paradise Theatre") {
                                         eventDiv.classList.add("event-Paradise"); }
 
-
-                                    if (event2.Location === "Imagine Cinemas - Carlton Street") {
+                                    if (event2.Location === "Imagine Cinemas : Carlton") {
                                         eventDiv.classList.add("event-Carlton"); }
 
-                                    if (event2.Location === "Imagine Cinemas - Front Street") {
+                                    if (event2.Location === "Imagine Cinemas : Front") {
                                         eventDiv.classList.add("event-Front"); }
 
-
-
+                                    else (console.log("this event has no location : " + event2.Location));
                                     const realTime = formatTime(event2.Time);
                                     eventDiv.innerText = realTime + " - " + event2.Title;
                                     dayBox.appendChild(eventDiv);
@@ -133,15 +144,6 @@ export default function Calendar() {
                                 notaRerun = true;
                             });
                         }
-                        // if (holidayOfTheDay) {
-                        //   const eventDiv = document.createElement("div");
-                        //   eventDiv.classList.add("event");
-                        //   eventDiv.classList.add("holiday");
-                        //   eventDiv.innerText = holidayOfTheDay.holiday;
-                        //   dayBox.appendChild(eventDiv);
-                        // }
-
-
                     }
                     else {
                         dayBox.classList.add("plain");
@@ -149,12 +151,6 @@ export default function Calendar() {
                     calendar.append(dayBox);
                 }
             }
-            const btnBack = document.querySelector("#btnBack");
-            const btnNext = document.querySelector("#btnNext");
-            const btnDelete = document.querySelector("#btnDelete");
-            const btnSave = document.querySelector("#btnSave");
-            const closeButtons = document.querySelectorAll(".btnClose");
-            const txtTitle = document.querySelector("#txtTitle");
 
             btnBack.addEventListener("click", () => {
                 navigation--;
@@ -169,11 +165,6 @@ export default function Calendar() {
                 btn.addEventListener("click", closeModal);
 
             });
-            // btnDelete.addEventListener("click", function () {
-            //   events = events.filter((e) => e.Date !== clicked);
-            //   localStorage.setItem("events", JSON.stringify(events));
-            //   closeModal();
-            // });
 
             btnSave.addEventListener("click", function () {
                 if (txtTitle.value) {
@@ -221,9 +212,9 @@ export default function Calendar() {
                 // loadCalendar();
             }
 
-            loadCalendar();
 
 // Everything related to the sidebar goes here.
+            loadCalendar();
 
         }
 
@@ -231,6 +222,7 @@ export default function Calendar() {
         async function asyncCall() {
             const result = await fetchMovies();
             calendarApp();  // expected output: 'resolved'
+
         }
 
         function openNav() {
@@ -368,7 +360,7 @@ export default function Calendar() {
             <a href="#" id="paradiseSideBarLabel" class="sideBarItem">Paradise Theatre</a><a href="https://paradiseonbloor.com/calendar">&#8594;</a>
             <a href="#" id="carltonSideBarLabel" class="sideBarItem">Imagine (Carlton)</a><a href="https://imaginecinemas.com/cinema/carlton/">&#8594;</a>
             <a href="#" id="frontSideBarLabel" class="sideBarItem">Imagine (Front)</a><a href="https://imaginecinemas.com/cinema/market-square/">&#8594;</a>
-            <a href="#" id="tiffSideBarLabel" class="sideBarItem">Bell LightBox</a><a href="https://www.tiff.net/calendar">&#8594;</a>
+            <a href="#" id="tiffSideBarLabel" class="sideBarItem">TIFF LightBox</a><a href="https://www.tiff.net/calendar">&#8594;</a>
             <a href="#" id="hotdocsSideBarLabel" class="sideBarItem">Hot Docs</a><a href="https://hotdocs.ca/whats-on/watch-cinema">&#8594;</a>
         </div>
 
@@ -396,7 +388,7 @@ export default function Calendar() {
         <div id="calendar"></div>
     </div>
     <div id="modal"></div>
-    <div id="addEvent">
+    <div id="addEvent" className="eventModalPopUp">
         <h2>Add Event</h2>
         <input type="text" id="txtTitle" placeholder="Event Title" />
         <button id="btnSave">Save</button>
