@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 export default function Calendar() {
 
     const [listings, setListings] = useState([]);
+    const [events, setEvents] = useState(localStorage.getItem("events") ? JSON.parse(localStorage.getItem("events")) : []);
 
     useEffect(() => {
         const fetchMovies = () => {
@@ -10,12 +11,11 @@ export default function Calendar() {
                 .then( response => response.json() )
                 .then( json => {
                     localStorage.setItem('events', JSON.stringify(json));
-                }).then( console.log("done"))
+                }).then(setListings(localStorage.getItem("events")))
 
             return new Promise(resolve => {
                 setTimeout(() => {
                     resolve('resolved');
-                    setListings(localStorage.getItem("events"));
                     console.log(listings)
                 }, 1000);
             });
@@ -25,8 +25,7 @@ export default function Calendar() {
         const monthBanner = document.querySelector("#month");
         let navigation = 0;
         let clicked = null;
-        let events = localStorage.getItem("events") ? JSON.parse(localStorage.getItem("events")) : [];
-        const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Le Friday", "Saturday"];
+        const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         const modal = document.querySelector("#modal");
         const viewEventForm = document.querySelector("#viewEvent");
         const addEventForm = document.querySelector("#addEvent");
@@ -46,9 +45,7 @@ export default function Calendar() {
             const closeButtons = document.querySelectorAll(".btnClose");
             const txtTitle = document.querySelector("#txtTitle");
             const loadCalendar = () => {
-
                 const dt = new Date();
-
                 if (navigation !== 0) {
                     dt.setMonth(new Date().getMonth() + navigation);
                 }
@@ -58,7 +55,7 @@ export default function Calendar() {
                 monthBanner.innerText = `${dt.toLocaleDateString("en-us", {
                     month: "long",
                 })} ${year}`;
-                calendar.innerHTML = "";
+                // calendar.innerHTML = "";
                 const dayInMonth = new Date(year, month + 1, 0).getDate();
                 const firstDayofMonth = new Date(year, month, 1);
                 const dateText = firstDayofMonth.toLocaleDateString("en-us", {
@@ -79,9 +76,7 @@ export default function Calendar() {
                     const dateText = `${year}-${monthVal}-${dateVal}`;
                     if (i > emptyDays) {
                         dayBox.innerText = i - emptyDays;
-                        //Event Day
                         const eventOfTheDay = [];
-                        console.log("Loading entire Calendar :")
                         for (let i = 0; i < events.length; i++) {
                             events[i].forEach(event1 => {
                                 if (event1.Date === dateText) {
@@ -93,8 +88,6 @@ export default function Calendar() {
                         eventOfTheDay.sort(function(a,b) {
                             return new Date ('1/1/1999 ' + a.Time) > new Date ('1/1/1999 ' + b.Time)
                         });
-
-                        // const holidayOfTheDay = holidays.find((e) => e.hdate == dateText);
 
                         if (i - emptyDays === day && navigation === 0) {
                             dayBox.id = "currentDay";
@@ -116,7 +109,7 @@ export default function Calendar() {
                                     if (event2.Location === "Hot Docs") {
                                         eventDiv.classList.add("event-HotDocs"); }
 
-                                    if (event2.Location === "TIFF Lightbox") {
+                                    if (event2.Location === "TIFF LightBox") {
                                         eventDiv.classList.add("event-TIFF"); }
 
                                     if (event2.Location === "The Revue") {
@@ -131,14 +124,13 @@ export default function Calendar() {
                                     if (event2.Location === "Imagine Cinemas : Front") {
                                         eventDiv.classList.add("event-Front"); }
 
-                                    else (console.log("this event has no location : " + event2.Location));
-                                    const realTime = formatTime(event2.Time);
+                                    let realTime = formatTime(event2.Time);
+                                    realTime = realTime.replace("PMAM", "PM")
                                     eventDiv.innerText = realTime + " - " + event2.Title;
                                     dayBox.appendChild(eventDiv);
                                     eventDiv.addEventListener("click", () => {
                                         showModal(event2.Title, event2.Time, event2.Location, event2.URL);
                                     });
-
                                 }
                                 noRerunsList.push(event2);
                                 notaRerun = true;
@@ -163,7 +155,6 @@ export default function Calendar() {
             modal.addEventListener("click", closeModal);
             closeButtons.forEach((btn) => {
                 btn.addEventListener("click", closeModal);
-
             });
 
             btnSave.addEventListener("click", function () {
@@ -181,7 +172,6 @@ export default function Calendar() {
                 }
             });
 
-
             function showModal( eventTitle, eventTime, eventLocation, eventURL) {
                 const eventOfTheDay = events.find((e) => e.Title === eventTitle && e.Time === eventTime && e.Location === eventLocation);
                 if (eventOfTheDay) {
@@ -193,7 +183,6 @@ export default function Calendar() {
                     document.querySelector("#eventHeader").innerText = eventOfTheDay.Location;
                     document.querySelector("#eventText").innerText = eventOfTheDay.Time + " : " + eventOfTheDay.Title;
                     btnDelete.removeEventListener("click", functionAddGoToButton);
-
                     btnDelete.addEventListener("click", functionAddGoToButton);
                     viewEventForm.style.display = "block";
                 } else {
@@ -201,7 +190,6 @@ export default function Calendar() {
                 }
                 modal.style.display = "block";
             }
-
             //Close Modal
             function closeModal() {
                 btnDelete.replaceWith(btnDelete.cloneNode(true));
@@ -209,200 +197,162 @@ export default function Calendar() {
                 addEventForm.style.display = "none";
                 modal.style.display = "none";
                 clicked = null;
-                // loadCalendar();
             }
-
-
-// Everything related to the sidebar goes here.
             loadCalendar();
-
         }
-
 
         async function asyncCall() {
             const result = await fetchMovies();
-            calendarApp();  // expected output: 'resolved'
-
+            calendarApp();
         }
 
-        function openNav() {
-            document.getElementById("mySidebar").style.width = "345px";
-            document.getElementById("main").style.marginLeft = "250px";
-        }
 
-        function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
-        }
+        asyncCall().then(r => console.log(events));
+    }, [events]);
 
-        let hiddenFront = false;
-        document.getElementById('frontSideBarLabel').onclick = function hide() {
-            if (!hiddenFront) {
-                document.querySelectorAll('.event-Front').forEach(el => el.hidden = true);
-                document.getElementById('frontSideBarLabel').style.textDecoration = "line-through";
-                document.getElementById('frontSideBarLabel').style.color = "gray";
-                hiddenFront = true;
-            }
-            else {
-                document.querySelectorAll('.event-Front').forEach(el => el.hidden = false);
-                document.getElementById('frontSideBarLabel').style.textDecoration = "none";
-                document.getElementById('frontSideBarLabel').style.color = "white";
+    function hideOrShowHotDocs() {
+        console.log("starting fucntion:" + events)
+        for (let i = 0; i < events.length; i++) {
+            events[i].forEach((e) => {
+                if (e.Location === "Hot Docs") {
+                    console.log(e.Title)
+                }
 
-                hiddenFront = false;
-            }
-        }
-
-        let hiddenCarlton = false;
-        document.getElementById('carltonSideBarLabel').onclick = function hide() {
-            if (!hiddenCarlton) {
-                document.querySelectorAll('.event-Carlton').forEach(el => el.hidden = true);
-                document.getElementById('carltonSideBarLabel').style.textDecoration = "line-through";
-                document.getElementById('carltonSideBarLabel').style.color = "gray";
-
-                hiddenCarlton = true;
-            }
-            else {
-                document.querySelectorAll('.event-Carlton').forEach(el => el.hidden = false);
-                document.getElementById('carltonSideBarLabel').style.textDecoration = "none";
-                document.getElementById('carltonSideBarLabel').style.color = "white";
+            })        }
 
 
-                hiddenCarlton = false;
-            }
-        }
-
-        let hiddenRevue = false;
-        document.getElementById('revueSideBarLabel').onclick = function hide() {
-            if (!hiddenRevue) {
-                document.querySelectorAll('.event-Revue').forEach(el => el.hidden = true);
-                document.getElementById('revueSideBarLabel').style.textDecoration = "line-through";
-                document.getElementById('revueSideBarLabel').style.color = "gray";
-
-                hiddenRevue = true;
-            }
-            else {
-                document.querySelectorAll('.event-Revue').forEach(el => el.hidden = false);
-                document.getElementById('revueSideBarLabel').style.textDecoration = "none";
-                document.getElementById('revueSideBarLabel').style.color = "white";
-
-
-                hiddenRevue = false;
-            }
-        }
-
-        let hiddenParadise = false;
-        document.getElementById('paradiseSideBarLabel').onclick = function hide() {
-            if (!hiddenParadise) {
-                document.querySelectorAll('.event-Paradise').forEach(el => el.hidden = true);
-                document.getElementById('paradiseSideBarLabel').style.textDecoration = "line-through";
-                document.getElementById('paradiseSideBarLabel').style.color = "gray";
-
-                hiddenParadise = true;
-            }
-            else {
-                document.querySelectorAll('.event-Paradise').forEach(el => el.hidden = false);
-                document.getElementById('paradiseSideBarLabel').style.textDecoration = "none";
-                document.getElementById('paradiseSideBarLabel').style.color = "white";
-
-                hiddenParadise = false;
-            }
-        }
-
-        let hiddenTIFF = false;
-        document.getElementById('tiffSideBarLabel').onclick = function hide() {
-            if (!hiddenTIFF) {
-                document.querySelectorAll('.event-TIFF').forEach(el => el.hidden = true);
-                document.getElementById('tiffSideBarLabel').style.textDecoration = "line-through";
-                document.getElementById('tiffSideBarLabel').style.color = "gray";
-
-                hiddenTIFF = true;
-            }
-            else {
-                document.querySelectorAll('.event-TIFF').forEach(el => el.hidden = false);
-                document.getElementById('tiffSideBarLabel').style.textDecoration = "none";
-                document.getElementById('tiffSideBarLabel').style.color = "white";
-
-
-                hiddenTIFF = false;
-            }
-        }
-
-        let hiddenHotDocs = false;
-        document.getElementById('hotdocsSideBarLabel').onclick = function hide() {
-            if (!hiddenHotDocs) {
-                document.querySelectorAll('.event-HotDocs').forEach(el => el.hidden = true);
-                document.getElementById('hotdocsSideBarLabel').style.textDecoration = "line-through";
-                document.getElementById('hotdocsSideBarLabel').style.color = "gray";
-
-                hiddenHotDocs = true;
-            }
-            else {
-                document.querySelectorAll('.event-HotDocs').forEach(el => el.hidden = false);
-                document.getElementById('hotdocsSideBarLabel').style.textDecoration = "none";
-                document.getElementById('hotdocsSideBarLabel').style.color = "white";
-
-
-
-                hiddenHotDocs = false;
-            }
-        }
-        asyncCall();
-    }, []);
+    }
 
 
     return (
 
-         <div>
-    <div class="calendarContainer">
-        <div id="mySidebar" class="sidebar">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#" id="revueSideBarLabel" class="sideBarItem">The Revue</a><a href="https://prod3.agileticketing.net/websales/pages/list.aspx?epguid=9416d3bf-ad16-479c-9d40-f0abda7cb4e9&">&#8594;</a>
-            <a href="#" id="paradiseSideBarLabel" class="sideBarItem">Paradise Theatre</a><a href="https://paradiseonbloor.com/calendar">&#8594;</a>
-            <a href="#" id="carltonSideBarLabel" class="sideBarItem">Imagine (Carlton)</a><a href="https://imaginecinemas.com/cinema/carlton/">&#8594;</a>
-            <a href="#" id="frontSideBarLabel" class="sideBarItem">Imagine (Front)</a><a href="https://imaginecinemas.com/cinema/market-square/">&#8594;</a>
-            <a href="#" id="tiffSideBarLabel" class="sideBarItem">TIFF LightBox</a><a href="https://www.tiff.net/calendar">&#8594;</a>
-            <a href="#" id="hotdocsSideBarLabel" class="sideBarItem">Hot Docs</a><a href="https://hotdocs.ca/whats-on/watch-cinema">&#8594;</a>
-        </div>
+         <div className="theatreCalendarHolder">
+             <div className="calendarOptionsContainer">
+                 <h1 className="header">Legend:</h1>
+                 <h1 id="revueSideBarLabel" className="sideBarItem"><div className="checkbox-wrapper-44">
+                     <label className="toggleButton">
+                         <input type="checkbox" defaultChecked/>
+                         <div>
+                             <svg viewBox="0 0 44 44">
+                                 <path
+                                     d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
+                                     transform="translate(-2.000000, -2.000000)"></path>
+                             </svg>
+                         </div>
+                     </label>
+                 </div>
+                     The Revue
+                 </h1>
+                 <h1 id="paradiseSideBarLabel" className="sideBarItem"><div className="checkbox-wrapper-44">
+                     <label className="toggleButton">
+                         <input type="checkbox" defaultChecked/>
+                         <div>
+                             <svg viewBox="0 0 44 44">
+                                 <path
+                                     d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
+                                     transform="translate(-2.000000, -2.000000)"></path>
+                             </svg>
+                         </div>
+                     </label>
+                 </div>
+                     Paradise Theatre
 
-        <div id="main">
-            <button class="openbtn" onclick="openNav()">&#9776;</button>
-        </div>
+                 </h1>
+                 <h1 id="carltonSideBarLabel" className="sideBarItem"><div className="checkbox-wrapper-44">
+                     <label className="toggleButton">
+                         <input type="checkbox" defaultChecked/>
+                         <div>
+                             <svg viewBox="0 0 44 44">
+                                 <path
+                                     d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
+                                     transform="translate(-2.000000, -2.000000)"></path>
+                             </svg>
+                         </div>
+                     </label>
+                 </div>
+                     Imagine (Carlton)
 
-        <div class="header">
+                 </h1>
+                 <h1 id="frontSideBarLabel" className="sideBarItem"><div className="checkbox-wrapper-44">
+                     <label className="toggleButton">
+                         <input type="checkbox" defaultChecked/>
+                         <div>
+                             <svg viewBox="0 0 44 44">
+                                 <path
+                                     d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
+                                     transform="translate(-2.000000, -2.000000)"></path>
+                             </svg>
+                         </div>
+                     </label>
+                 </div>
+                     Imagine (Front)
 
-            <div id="month"></div>
-            <div>
-                <button id="btnBack"><i class="fa fa-angle-left"></i></button>
-                <button id="btnNext"><i class="fa fa-angle-right"></i></button>
-            </div>
-        </div>
-        <div class="weekdays">
-            <div>Sun</div>
-            <div>Mon</div>
-            <div>Tue</div>
-            <div>Wed</div>
-            <div>Thu</div>
-            <div>Fri</div>
-            <div>Sat</div>
-        </div>
-        <div id="calendar"></div>
-    </div>
-    <div id="modal"></div>
-    <div id="addEvent" className="eventModalPopUp">
-        <h2>Add Event</h2>
-        <input type="text" id="txtTitle" placeholder="Event Title" />
-        <button id="btnSave">Save</button>
-        <button class="btnClose">Close</button>
-    </div>
+                 </h1>
+                 <h1 id="tiffSideBarLabel" className="sideBarItem"><div className="checkbox-wrapper-44">
+                     <label className="toggleButton">
+                         <input type="checkbox" defaultChecked/>
+                         <div>
+                             <svg viewBox="0 0 44 44">
+                                 <path
+                                     d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
+                                     transform="translate(-2.000000, -2.000000)"></path>
+                             </svg>
+                         </div>
+                     </label>
+                 </div>
+                     TIFF LightBox
 
-    <div id="viewEvent">
-        <h2 id="eventHeader">Event</h2>
-        <p id="eventText">This is Sample Event</p>
-        <button href="" id="btnDelete">GO</button>
-        <button class="btnClose">Close</button>
+                 </h1>
+                 <h1 id="hotdocsSideBarLabel" className="sideBarItem"><div className="checkbox-wrapper-44">
+                     <label className="toggleButton">
+                         <input type="checkbox" defaultChecked onClick={hideOrShowHotDocs}/>
+                         <div>
+                             <svg viewBox="0 0 44 44">
+                                 <path
+                                     d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
+                                     transform="translate(-2.000000, -2.000000)"></path>
+                             </svg>
+                         </div>
+                     </label>
+                 </div>
+                     Hot Docs
+
+                 </h1>
+             </div>
+             <div className="calendarContainer">
+                 <div className="header">
+                     <div id="month"></div>
+                     <div>
+                         <button id="btnBack"><i className="fa fa-angle-left"></i>←</button>
+                         <button id="btnNext"><i className="fa fa-angle-right"></i>→</button>
+                     </div>
+                 </div>
+                 <div className="weekdays">
+                     <div>Sun</div>
+                     <div>Mon</div>
+                     <div>Tue</div>
+                     <div>Wed</div>
+                     <div>Thu</div>
+                     <div>Fri</div>
+                     <div>Sat</div>
+                 </div>
+                 <div id="calendar"></div>
+             </div>
+             <div id="modal"></div>
+
+             <div id="addEvent" className="eventModalPopUp">
+                 <h2>Add Event</h2>
+                 <input type="text" id="txtTitle" placeholder="Event Title"/>
+                 <button id="btnSave">Save</button>
+                 <button className="btnClose">Close</button>
+             </div>
+
+             <div id="viewEvent">
+                 <h2 id="eventHeader">Event</h2>
+                 <p id="eventText">This is Sample Event</p>
+                 <button id="btnDelete">GO</button>
+                 <button className="btnClose">Close</button>
+             </div>
     </div>
-    </div>
-    // <script src="js/calendarappscript.js"></script>
-    // </body>
     )
 }
