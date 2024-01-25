@@ -451,13 +451,13 @@ export default function Calendar() {
                      </div>
                  </div>
                  <div className="weekdays">
-                     <div>Sun</div>
-                     <div>Mon</div>
-                     <div>Tue</div>
-                     <div>Wed</div>
-                     <div>Thu</div>
-                     <div>Fri</div>
-                     <div>Sat</div>
+                     <div className="dayHeader">Sun</div>
+                     <div className="dayHeader">Mon</div>
+                     <div className="dayHeader">Tue</div>
+                     <div className="dayHeader">Wed</div>
+                     <div className="dayHeader">Thu</div>
+                     <div className="dayHeader">Fri</div>
+                     <div className="dayHeader">Sat</div>
                  </div>
                  <div id="calendar"></div>
              </div>

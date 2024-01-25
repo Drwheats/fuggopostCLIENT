@@ -1693,7 +1693,7 @@ flex-wrap: wrap;
     flex-direction: column;
     background-color: #03e5b7;
     background-image: linear-gradient(177deg, #ADD8E6 0%, #90EE90 74%);
-    height: fit-content;
+    height: 100vh;
 }
 
 .paragraphHolderPortfolio  {
