@@ -330,6 +330,7 @@ button:active {
     border-radius: 5px;
     max-height: 55px;
     overflow: hidden;
+    /*display: block;*/
 }
 
 .event-TIFF {

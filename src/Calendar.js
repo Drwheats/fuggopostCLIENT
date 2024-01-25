@@ -1,9 +1,18 @@
 import {useEffect, useState} from "react";
 
+// I started writing this in vanilla JS for a WP website, its pretty fucked and half of it is not done the react way at all.
+
 export default function Calendar() {
 
     const [listings, setListings] = useState([]);
     const [events, setEvents] = useState(localStorage.getItem("events") ? JSON.parse(localStorage.getItem("events")) : []);
+
+    const [isHotDocsHidden, setIsHotDocsHidden] = useState(false);
+    const [isFrontHidden, setIsFrontHidden] = useState(false);
+    const [isCarltonHidden, setIsCarltonHidden] = useState(false);
+    const [isTiffHidden, setIsTiffHidden] = useState(false);
+    const [isParadiseHidden, setIsParadiseHidden] = useState(false);
+    const [isRevueHidden, setIsRevueHidden] = useState(false);
 
     useEffect(() => {
         const fetchMovies = () => {
@@ -11,12 +20,11 @@ export default function Calendar() {
                 .then( response => response.json() )
                 .then( json => {
                     localStorage.setItem('events', JSON.stringify(json));
-                }).then(setListings(localStorage.getItem("events")))
+                }).then(setListings(localStorage.getItem("events"))).then(calendarApp)
 
             return new Promise(resolve => {
                 setTimeout(() => {
                     resolve('resolved');
-                    console.log(listings)
                 }, 1000);
             });
 
@@ -30,9 +38,8 @@ export default function Calendar() {
         const viewEventForm = document.querySelector("#viewEvent");
         const addEventForm = document.querySelector("#addEvent");
 
-
-
         const calendarApp = () => {
+            console.log("loading calendar:")
             function formatTime(timeString) {
                 const [hourString, minute] = timeString.split(":");
                 const hour = +hourString % 24;
@@ -113,10 +120,14 @@ export default function Calendar() {
                                         eventDiv.classList.add("event-TIFF"); }
 
                                     if (event2.Location === "The Revue") {
-                                        eventDiv.classList.add("event-Revue"); }
+                                        eventDiv.classList.add("event-Revue");
+                                        console.log("found le revue!")
+                                    }
 
                                     if (event2.Location === "Paradise Theatre") {
-                                        eventDiv.classList.add("event-Paradise"); }
+                                        eventDiv.classList.add("event-Paradise");
+                                        console.log("found le paradise!")
+                                    }
 
                                     if (event2.Location === "Imagine Cinemas : Carlton") {
                                         eventDiv.classList.add("event-Carlton"); }
@@ -129,8 +140,11 @@ export default function Calendar() {
                                     eventDiv.innerText = realTime + " - " + event2.Title;
                                     dayBox.appendChild(eventDiv);
                                     eventDiv.addEventListener("click", () => {
-                                        showModal(event2.Title, event2.Time, event2.Location, event2.URL);
+                                        showModal(event2.Title, event2.Time, event2.Location, event2.URL, event2.Date);
                                     });
+                                }
+                                if (event2.Location === "Paradise Theatre") {
+                                    console.log("Paradise theatre found : " + event2)
                                 }
                                 noRerunsList.push(event2);
                                 notaRerun = true;
@@ -172,23 +186,24 @@ export default function Calendar() {
                 }
             });
 
-            function showModal( eventTitle, eventTime, eventLocation, eventURL) {
-                const eventOfTheDay = events.find((e) => e.Title === eventTitle && e.Time === eventTime && e.Location === eventLocation);
-                if (eventOfTheDay) {
-                    const functionAddGoToButton = () => {
-                        window.open(eventOfTheDay.URL);
-                        btnDelete.removeEventListener("click", functionAddGoToButton);
-                        closeModal();
-                    }
-                    document.querySelector("#eventHeader").innerText = eventOfTheDay.Location;
-                    document.querySelector("#eventText").innerText = eventOfTheDay.Time + " : " + eventOfTheDay.Title;
-                    btnDelete.removeEventListener("click", functionAddGoToButton);
-                    btnDelete.addEventListener("click", functionAddGoToButton);
+            function showModal( eventTitle, eventTime, eventLocation, eventURL, eventDate) {
+                console.log("modal is here : " + eventTitle)
+                document.querySelector("#eventLocation").innerText = eventLocation;
+                document.querySelector("#eventTitle").innerText = eventTitle;
+                document.querySelector("#eventTime").innerText = eventTime;
+                document.querySelector("#eventDate").innerText = eventDate;
+
+                // const functionAddGoToButton = () => {
+                //     window.open(eventOfTheDay.URL);
+                //     btnDelete.removeEventListener("click", functionAddGoToButton);
+                    closeModal();
+                // }
+                    // document.querySelector("#eventHeader").innerText = eventLocation;
+                    // btnDelete.removeEventListener("click", functionAddGoToButton);
+                    // btnDelete.addEventListener("click", functionAddGoToButton);
                     viewEventForm.style.display = "block";
-                } else {
                     addEventForm.style.display = "block";
-                }
-                modal.style.display = "block";
+                    modal.style.display = "block";
             }
             //Close Modal
             function closeModal() {
@@ -201,123 +216,231 @@ export default function Calendar() {
             loadCalendar();
         }
 
-        async function asyncCall() {
-            const result = await fetchMovies();
-            calendarApp();
+        fetchMovies();
+        showOrHideTheatres();
+
+    }, [events, isHotDocsHidden, isTiffHidden, isFrontHidden, isCarltonHidden, isParadiseHidden, isRevueHidden]);
+
+    function showOrHideTheatres() {
+        if (isHotDocsHidden) {
+            let hotDocs = document.getElementsByClassName('event-HotDocs');
+            for(let i = 0; i < hotDocs.length; i++) {
+                hotDocs[i].style.display = "none";
+            }
         }
-
-
-        asyncCall().then(r => console.log(events));
-    }, [events]);
-
-    function hideOrShowHotDocs() {
-        console.log("starting fucntion:" + events)
-        for (let i = 0; i < events.length; i++) {
-            events[i].forEach((e) => {
-                if (e.Location === "Hot Docs") {
-                    console.log(e.Title)
-                }
-
-            })        }
-
-
+        if (!isHotDocsHidden) {
+            let hotDocs = document.getElementsByClassName('event-HotDocs');
+            for(let i = 0; i < hotDocs.length; i++) {
+                hotDocs[i].style.display = "block";
+            }
+        }
+        if (isTiffHidden) {
+            let tem = document.getElementsByClassName('event-TIFF');
+            for(let i = 0; i < tem.length; i++) {
+                tem[i].style.display = "none";
+            }
+        }
+        if (!isTiffHidden) {
+            let tem = document.getElementsByClassName('event-TIFF');
+            for(let i = 0; i < tem.length; i++) {
+                tem[i].style.display = "block";
+            }
+        }
+        if (isFrontHidden) {
+            let tem = document.getElementsByClassName('event-Front');
+            for(let i = 0; i < tem.length; i++) {
+                tem[i].style.display = "none";
+            }
+        }
+        if (!isFrontHidden) {
+            let tem = document.getElementsByClassName('event-Front');
+            for(let i = 0; i < tem.length; i++) {
+                tem[i].style.display = "block";
+            }
+        }
+        if (isCarltonHidden) {
+            let tem = document.getElementsByClassName('event-Carlton');
+            for(let i = 0; i < tem.length; i++) {
+                tem[i].style.display = "none";
+            }
+        }
+        if (!isCarltonHidden) {
+            let tem = document.getElementsByClassName('event-Carlton');
+            for(let i = 0; i < tem.length; i++) {
+                tem[i].style.display = "block";
+            }
+        }
+        if (isParadiseHidden) {
+            let tem = document.getElementsByClassName('event-Paradise');
+            for(let i = 0; i < tem.length; i++) {
+                tem[i].style.display = "none";
+            }
+        }
+        if (!isParadiseHidden) {
+            let tem = document.getElementsByClassName('event-Paradise');
+            for(let i = 0; i < tem.length; i++) {
+                tem[i].style.display = "block";
+            }
+        }
+        if (isRevueHidden) {
+            let tem = document.getElementsByClassName('event-Revue');
+            for(let i = 0; i < tem.length; i++) {
+                tem[i].style.display = "none";
+            }
+        }
+        if (!isRevueHidden) {
+            let tem = document.getElementsByClassName('event-Revue');
+            for(let i = 0; i < tem.length; i++) {
+                tem[i].style.display = "block";
+            }
+        }
+    }
+    function hideOrShowRevue() {
+        if (isRevueHidden) {
+            setIsRevueHidden(false);
+        }
+        else setIsRevueHidden(true);
+    }
+    function hideOrShowParadise() {
+        if (isParadiseHidden) {
+            setIsParadiseHidden(false);
+        }
+        else setIsParadiseHidden(true);
     }
 
+    function hideOrShowHotDocs() {
+        if (isHotDocsHidden) {
+            setIsHotDocsHidden(false);
+        }
+        else setIsHotDocsHidden(true);
+    }
+    function hideOrShowTiff() {
+        if (isTiffHidden) {
+            setIsTiffHidden(false);
+        }
+        else setIsTiffHidden(true);
+    }
+    function hideOrShowFrontSt() {
+        if (isFrontHidden) {
+            setIsFrontHidden(false);
+        }
+        else setIsFrontHidden(true);
+    }
+    function hideOrShowCarlton() {
+        if (isCarltonHidden) {
+            setIsCarltonHidden(false);
+        }
+        else setIsCarltonHidden(true);
+    }
 
     return (
 
          <div className="theatreCalendarHolder">
              <div className="calendarOptionsContainer">
                  <h1 className="header">Legend:</h1>
-                 <h1 id="revueSideBarLabel" className="sideBarItem"><div className="checkbox-wrapper-44">
-                     <label className="toggleButton">
-                         <input type="checkbox" defaultChecked/>
-                         <div>
-                             <svg viewBox="0 0 44 44">
-                                 <path
-                                     d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
-                                     transform="translate(-2.000000, -2.000000)"></path>
-                             </svg>
-                         </div>
-                     </label>
-                 </div>
+                 <h1 id="revueSideBarLabel" className="sideBarItem">
+                     <div className="checkbox-wrapper-44">
+                         <label className="toggleButton">
+                             <input type="checkbox" defaultChecked onClick={hideOrShowRevue}/>
+                             <div>
+                                 <svg viewBox="0 0 44 44">
+                                     <path
+                                         d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
+                                         transform="translate(-2.000000, -2.000000)"></path>
+                                 </svg>
+                             </div>
+                         </label>
+                     </div>
                      The Revue
                  </h1>
-                 <h1 id="paradiseSideBarLabel" className="sideBarItem"><div className="checkbox-wrapper-44">
-                     <label className="toggleButton">
-                         <input type="checkbox" defaultChecked/>
-                         <div>
-                             <svg viewBox="0 0 44 44">
-                                 <path
-                                     d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
-                                     transform="translate(-2.000000, -2.000000)"></path>
-                             </svg>
-                         </div>
-                     </label>
-                 </div>
+                 <h1 id="paradiseSideBarLabel" className="sideBarItem">
+                     <div className="checkbox-wrapper-44">
+                         <label className="toggleButton">
+                             <input type="checkbox" defaultChecked onClick={hideOrShowParadise}/>
+                             <div>
+                                 <svg viewBox="0 0 44 44">
+                                     <path
+                                         d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
+                                         transform="translate(-2.000000, -2.000000)"></path>
+                                 </svg>
+                             </div>
+                         </label>
+                     </div>
                      Paradise Theatre
 
                  </h1>
-                 <h1 id="carltonSideBarLabel" className="sideBarItem"><div className="checkbox-wrapper-44">
-                     <label className="toggleButton">
-                         <input type="checkbox" defaultChecked/>
-                         <div>
-                             <svg viewBox="0 0 44 44">
-                                 <path
-                                     d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
-                                     transform="translate(-2.000000, -2.000000)"></path>
-                             </svg>
-                         </div>
-                     </label>
-                 </div>
+                 <h1 id="carltonSideBarLabel" className="sideBarItem">
+                     <div className="checkbox-wrapper-44">
+                         <label className="toggleButton">
+                             <input type="checkbox" defaultChecked onClick={hideOrShowCarlton}/>
+                             <div>
+                                 <svg viewBox="0 0 44 44">
+                                     <path
+                                         d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
+                                         transform="translate(-2.000000, -2.000000)"></path>
+                                 </svg>
+                             </div>
+                         </label>
+                     </div>
                      Imagine (Carlton)
 
                  </h1>
-                 <h1 id="frontSideBarLabel" className="sideBarItem"><div className="checkbox-wrapper-44">
-                     <label className="toggleButton">
-                         <input type="checkbox" defaultChecked/>
-                         <div>
-                             <svg viewBox="0 0 44 44">
-                                 <path
-                                     d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
-                                     transform="translate(-2.000000, -2.000000)"></path>
-                             </svg>
-                         </div>
-                     </label>
-                 </div>
+                 <h1 id="frontSideBarLabel" className="sideBarItem">
+                     <div className="checkbox-wrapper-44">
+                         <label className="toggleButton">
+                             <input type="checkbox" defaultChecked onClick={hideOrShowFrontSt}/>
+                             <div>
+                                 <svg viewBox="0 0 44 44">
+                                     <path
+                                         d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
+                                         transform="translate(-2.000000, -2.000000)"></path>
+                                 </svg>
+                             </div>
+                         </label>
+                     </div>
                      Imagine (Front)
 
                  </h1>
-                 <h1 id="tiffSideBarLabel" className="sideBarItem"><div className="checkbox-wrapper-44">
-                     <label className="toggleButton">
-                         <input type="checkbox" defaultChecked/>
-                         <div>
-                             <svg viewBox="0 0 44 44">
-                                 <path
-                                     d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
-                                     transform="translate(-2.000000, -2.000000)"></path>
-                             </svg>
-                         </div>
-                     </label>
-                 </div>
+                 <h1 id="tiffSideBarLabel" className="sideBarItem">
+                     <div className="checkbox-wrapper-44">
+                         <label className="toggleButton">
+                             <input type="checkbox" defaultChecked onClick={hideOrShowTiff}/>
+                             <div>
+                                 <svg viewBox="0 0 44 44">
+                                     <path
+                                         d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
+                                         transform="translate(-2.000000, -2.000000)"></path>
+                                 </svg>
+                             </div>
+                         </label>
+                     </div>
                      TIFF LightBox
 
                  </h1>
-                 <h1 id="hotdocsSideBarLabel" className="sideBarItem"><div className="checkbox-wrapper-44">
-                     <label className="toggleButton">
-                         <input type="checkbox" defaultChecked onClick={hideOrShowHotDocs}/>
-                         <div>
-                             <svg viewBox="0 0 44 44">
-                                 <path
-                                     d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
-                                     transform="translate(-2.000000, -2.000000)"></path>
-                             </svg>
-                         </div>
-                     </label>
-                 </div>
+                 <h1 id="hotdocsSideBarLabel" className="sideBarItem">
+                     <div className="checkbox-wrapper-44">
+                         <label className="toggleButton">
+                             <input type="checkbox" defaultChecked onClick={hideOrShowHotDocs}/>
+                             <div>
+                                 <svg viewBox="0 0 44 44">
+                                     <path
+                                         d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
+                                         transform="translate(-2.000000, -2.000000)"></path>
+                                 </svg>
+                             </div>
+                         </label>
+                     </div>
                      Hot Docs
 
                  </h1>
+                 <h1>The Fox Theatre</h1>
+                 <h1>Innes College</h1>
+                 <h1>LIFT Theatre</h1>
+                 <h1>Charles Street Video</h1>
+                 <h1>InterAccess</h1>
+                 <h1>The Kingsway (maybe)</h1>
+
+
              </div>
              <div className="calendarContainer">
                  <div className="header">
@@ -341,18 +464,21 @@ export default function Calendar() {
              <div id="modal"></div>
 
              <div id="addEvent" className="eventModalPopUp">
-                 <h2>Add Event</h2>
+                 <h2 className="modalPopUpName">Add Event</h2>
                  <input type="text" id="txtTitle" placeholder="Event Title"/>
                  <button id="btnSave">Save</button>
                  <button className="btnClose">Close</button>
              </div>
 
              <div id="viewEvent">
-                 <h2 id="eventHeader">Event</h2>
-                 <p id="eventText">This is Sample Event</p>
-                 <button id="btnDelete">GO</button>
+                 <h2 id="eventLocation">Event</h2>
+                 <p id="eventTitle">This is Sample Event</p>
+                 Playing at <p id="eventTime">This is Sample Event</p> on <p id="eventDate"></p>
+
+
+                 <button id="btnDelete">Attend!</button>
                  <button className="btnClose">Close</button>
              </div>
-    </div>
+         </div>
     )
 }
