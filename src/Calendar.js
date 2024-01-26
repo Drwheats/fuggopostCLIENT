@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 export default function Calendar() {
 
     const [listings, setListings] = useState([]);
-    const [events, setEvents] = useState(localStorage.getItem("events") ? JSON.parse(localStorage.getItem("events")) : []);
+    const [events] = useState(localStorage.getItem("events") ? JSON.parse(localStorage.getItem("events")) : []);
 
     const [isHotDocsHidden, setIsHotDocsHidden] = useState(false);
     const [isFrontHidden, setIsFrontHidden] = useState(false);
@@ -14,21 +14,28 @@ export default function Calendar() {
     const [isParadiseHidden, setIsParadiseHidden] = useState(false);
     const [isRevueHidden, setIsRevueHidden] = useState(false);
 
+    // fetch movies from remote
     useEffect(() => {
-        const fetchMovies = () => {
-            fetch('https://api.fuggo.lol/hellofuggomayihaveyourtheatrespliasixd')
-                .then( response => response.json() )
-                .then( json => {
-                    localStorage.setItem('events', JSON.stringify(json));
-                }).then(setListings(localStorage.getItem("events"))).then(calendarApp)
+            const fetchMovies = () => {
+                fetch('https://api.fuggo.lol/hellofuggomayihaveyourtheatrespliasixd')
+                    .then(response => response.json())
+                    .then(json => {
+                        localStorage.setItem('events', JSON.stringify(json));
+                    }).then(setListings(localStorage.getItem("events")));
 
-            return new Promise(resolve => {
-                setTimeout(() => {
-                    resolve('resolved');
-                }, 1000);
-            });
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        resolve('resolved');
+                    }, 1000);
+                });
+            }
+            fetchMovies();
 
-        }
+        },
+        [events]);
+
+    // render calendar
+    useEffect( () => {
         const calendar = document.querySelector("#calendar");
         const monthBanner = document.querySelector("#month");
         let navigation = 0;
@@ -37,14 +44,12 @@ export default function Calendar() {
         const modal = document.querySelector("#modal");
         const viewEventForm = document.querySelector("#viewEvent");
         const addEventForm = document.querySelector("#addEvent");
-
-        const calendarApp = () => {
-            console.log("loading calendar:")
             function formatTime(timeString) {
                 const [hourString, minute] = timeString.split(":");
                 const hour = +hourString % 24;
                 return (hour % 12 || 12) + ":" + minute + (hour < 12 ? "AM" : "PM");
             }
+
             const btnBack = document.querySelector("#btnBack");
             const btnNext = document.querySelector("#btnNext");
             const btnDelete = document.querySelector("#btnDelete");
@@ -92,8 +97,8 @@ export default function Calendar() {
                             })
                         }
 
-                        eventOfTheDay.sort(function(a,b) {
-                            return new Date ('1/1/1999 ' + a.Time) > new Date ('1/1/1999 ' + b.Time)
+                        eventOfTheDay.sort(function (a, b) {
+                            return new Date('1/1/1999 ' + a.Time) > new Date('1/1/1999 ' + b.Time)
                         });
 
                         if (i - emptyDays === day && navigation === 0) {
@@ -114,26 +119,28 @@ export default function Calendar() {
                                     eventDiv.classList.add("event");
 
                                     if (event2.Location === "Hot Docs") {
-                                        eventDiv.classList.add("event-HotDocs"); }
+                                        eventDiv.classList.add("event-HotDocs");
+                                    }
 
                                     if (event2.Location === "TIFF LightBox") {
-                                        eventDiv.classList.add("event-TIFF"); }
+                                        eventDiv.classList.add("event-TIFF");
+                                    }
 
                                     if (event2.Location === "The Revue") {
                                         eventDiv.classList.add("event-Revue");
-                                        console.log("found le revue!")
                                     }
 
                                     if (event2.Location === "Paradise Theatre") {
                                         eventDiv.classList.add("event-Paradise");
-                                        console.log("found le paradise!")
                                     }
 
                                     if (event2.Location === "Imagine Cinemas : Carlton") {
-                                        eventDiv.classList.add("event-Carlton"); }
+                                        eventDiv.classList.add("event-Carlton");
+                                    }
 
                                     if (event2.Location === "Imagine Cinemas : Front") {
-                                        eventDiv.classList.add("event-Front"); }
+                                        eventDiv.classList.add("event-Front");
+                                    }
 
                                     let realTime = formatTime(event2.Time);
                                     realTime = realTime.replace("PMAM", "PM")
@@ -143,15 +150,11 @@ export default function Calendar() {
                                         showModal(event2.Title, event2.Time, event2.Location, event2.URL, event2.Date);
                                     });
                                 }
-                                if (event2.Location === "Paradise Theatre") {
-                                    console.log("Paradise theatre found : " + event2)
-                                }
                                 noRerunsList.push(event2);
                                 notaRerun = true;
                             });
                         }
-                    }
-                    else {
+                    } else {
                         dayBox.classList.add("plain");
                     }
                     calendar.append(dayBox);
@@ -186,7 +189,9 @@ export default function Calendar() {
                 }
             });
 
-            function showModal( eventTitle, eventTime, eventLocation, eventURL, eventDate) {
+            function showModal(eventTitle, eventTime, eventLocation, eventURL, eventDate) {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
                 console.log("modal is here : " + eventTitle)
                 document.querySelector("#eventLocation").innerText = eventLocation;
                 document.querySelector("#eventTitle").innerText = eventTitle;
@@ -196,15 +201,16 @@ export default function Calendar() {
                 // const functionAddGoToButton = () => {
                 //     window.open(eventOfTheDay.URL);
                 //     btnDelete.removeEventListener("click", functionAddGoToButton);
-                    closeModal();
+                closeModal();
                 // }
-                    // document.querySelector("#eventHeader").innerText = eventLocation;
-                    // btnDelete.removeEventListener("click", functionAddGoToButton);
-                    // btnDelete.addEventListener("click", functionAddGoToButton);
-                    viewEventForm.style.display = "block";
-                    addEventForm.style.display = "block";
-                    modal.style.display = "block";
+                // document.querySelector("#eventHeader").innerText = eventLocation;
+                // btnDelete.removeEventListener("click", functionAddGoToButton);
+                // btnDelete.addEventListener("click", functionAddGoToButton);
+                viewEventForm.style.display = "block";
+                addEventForm.style.display = "block";
+                modal.style.display = "block";
             }
+
             //Close Modal
             function closeModal() {
                 btnDelete.replaceWith(btnDelete.cloneNode(true));
@@ -213,15 +219,22 @@ export default function Calendar() {
                 modal.style.display = "none";
                 clicked = null;
             }
-            loadCalendar();
+        function clearOldCalendar() {
+            let olddivs = document.getElementsByClassName('day');
+
+            while(olddivs[0]) {
+                olddivs[0].parentNode.removeChild(olddivs[0]);
+            }
         }
 
-        fetchMovies();
-        showOrHideTheatres();
 
-    }, [events, isHotDocsHidden, isTiffHidden, isFrontHidden, isCarltonHidden, isParadiseHidden, isRevueHidden]);
+        clearOldCalendar();
+        loadCalendar();
 
-    function showOrHideTheatres() {
+    }, [events, isHotDocsHidden])
+
+    //filters
+    useEffect(() => {
         if (isHotDocsHidden) {
             let hotDocs = document.getElementsByClassName('event-HotDocs');
             for(let i = 0; i < hotDocs.length; i++) {
@@ -294,7 +307,7 @@ export default function Calendar() {
                 tem[i].style.display = "block";
             }
         }
-    }
+    }, [events, isHotDocsHidden, isFrontHidden, isCarltonHidden, isTiffHidden, isParadiseHidden, isRevueHidden] )
     function hideOrShowRevue() {
         if (isRevueHidden) {
             setIsRevueHidden(false);
@@ -307,7 +320,6 @@ export default function Calendar() {
         }
         else setIsParadiseHidden(true);
     }
-
     function hideOrShowHotDocs() {
         if (isHotDocsHidden) {
             setIsHotDocsHidden(false);
@@ -346,7 +358,7 @@ export default function Calendar() {
                                  <svg viewBox="0 0 44 44">
                                      <path
                                          d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"
-                                         transform="translate(-2.000000, -2.000000)"></path>
+                                         transform="translate(-2.000000, -2.000000)" fill="white"></path>
                                  </svg>
                              </div>
                          </label>
@@ -433,6 +445,7 @@ export default function Calendar() {
                      Hot Docs
 
                  </h1>
+                 <h1> - </h1>
                  <h1>The Fox Theatre</h1>
                  <h1>Innes College</h1>
                  <h1>LIFT Theatre</h1>

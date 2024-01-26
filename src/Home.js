@@ -57,7 +57,7 @@ export default function Home() {
         <div className="projectHolder">
             <a href={"https://github.com/drwheats/"}>
                 <div className="project">
-                    <img className="projectImg" src="/gitcat.png"></img>
+                    <img className="projectImg" alt="githubcatlogo" src="/gitcat.png"></img>
                     <div className="projectContainer">
                         <h4><b>GitHub</b></h4>
                         <p>This is my GitHub account. </p>
