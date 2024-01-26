@@ -285,6 +285,7 @@ button:active {
 }
 
 .calendarOptionsContainer {
+    max-width: fit-content;
     display: flex;
     flex-direction: column;
 }
@@ -292,7 +293,7 @@ button:active {
 .calendarContainer {
 
     margin-left: auto;
-    width: 1100px;
+    width: 200vh;
     background-color: #fff;
 }
 
@@ -312,7 +313,7 @@ button:active {
     background-color: #ff5252;
 }
 .weekdays {
-    width: 100%;
+    width: 200vh;
     display: flex;
     flex-direction: row;
     background-color: #2f3640;
@@ -322,7 +323,7 @@ button:active {
 }
 
 .weekdays div {
-    width: 145px;
+    width: 89vh;
     padding: 10px;
     text-align: center;
     text-transform: uppercase;
@@ -341,7 +342,7 @@ button:active {
 }
 
 .day {
-    width: 145px;
+    width: 24vh;
     min-height: 100px;
     height: fit-content;
     padding: 10px;
@@ -366,8 +367,9 @@ button:active {
 }
 
 .event {
-    font-size: 12px;
+    font-size: 16px;
     padding: 3px;
+
     background-color: #3d3d3d;
     color: #fff;
     border-radius: 5px;
@@ -376,7 +378,7 @@ button:active {
 }
 
 .event-HotDocs {
-    font-size: 12px;
+    font-size: 16px;
     padding: 3px;
     background-color: #aebb00;
     color: black;
@@ -386,7 +388,7 @@ button:active {
 }
 
 .event-TIFF {
-    font-size: 12px;
+    font-size: 16px;
     padding: 3px;
     background-color: #1898dd;
     color: white;
@@ -396,7 +398,7 @@ button:active {
 }
 
 .event-Revue {
-    font-size: 12px;
+    font-size: 16px;
     padding: 3px;
     background-color: #000000;
     color: #fff;
@@ -406,7 +408,7 @@ button:active {
 }
 
 .event-Paradise {
-    font-size: 12px;
+    font-size: 16px;
     padding: 3px;
     background-color: #0069aa;
     color: #fff;
@@ -416,7 +418,7 @@ button:active {
 }
 
 .event-Carlton {
-    font-size: 12px;
+    font-size: 16px;
     padding: 3px;
     background-color: #880808;
     color: #fff;
@@ -426,7 +428,7 @@ button:active {
 }
 
 .event-Front {
-    font-size: 12px;
+    font-size: 16px;
     padding: 3px;
     background-color: #FF69B4;
     color: #000000;
