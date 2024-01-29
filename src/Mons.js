@@ -89,14 +89,7 @@ export default function Mons() {
                 <CoachMap coaches={allCoaches}/>
                 <img alt="amogus imageboard mascott" src="/squamogus.png" /> <h5>Copyright ©2023 ben dot place </h5>
             </div>
-            {/*<div className="tierHolder">*/}
-            {/*    <img alt="tier list" src={"tierlist.png"}/>*/}
-            {/*    <h1>Coming soon to a smogon near you ...</h1>*/}
-            {/*    <h3>Moves : I removed any move that I thought was useless. So "reflect type" and "rock throw" will not show up in the list of moves. Click "Get moves" twice if it doesn't load the first time.</h3>*/}
-            {/*</div>*/}
-            {/*<div className="dexHolder">*/}
-            {/*    <img src={"bendex.png"}/>*/}
-            {/*</div>*/}
+
         </div>
 
     )

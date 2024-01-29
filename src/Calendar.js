@@ -1,5 +1,7 @@
 import {useEffect, useState} from "react";
-
+import {
+    QueryClient, QueryClientProvider, useMutation, useQuery
+} from "react";
 // I started writing this in vanilla JS for a WP website, its pretty fucked and half of it is not done the react way at all.
 
 export default function Calendar() {
@@ -12,6 +14,8 @@ export default function Calendar() {
     const [isTiffHidden, setIsTiffHidden] = useState(false);
     const [isParadiseHidden, setIsParadiseHidden] = useState(false);
     const [isRevueHidden, setIsRevueHidden] = useState(false);
+
+    const [dataNotReceived, setDataNotReceived] = useState(true);
 
     // fetch movies from remote
     async function fetchMovies() {
@@ -467,6 +471,7 @@ export default function Calendar() {
                          <button id="btnNext"><i className="fa fa-angle-right"></i>→</button>
                      </div>
                  </div>
+
                  <div className="weekdays">
                      <div className="dayHeader">Sun</div>
                      <div className="dayHeader">Mon</div>
@@ -477,7 +482,11 @@ export default function Calendar() {
                      <div className="dayHeader">Sat</div>
                  </div>
                  <div id="calendar"></div>
+                 <p>                 Refresh the page if there are no movies :0
+                 </p>
+
              </div>
+
              <div id="modal"></div>
 
              <div id="addEvent" className="eventModalPopUp">
@@ -496,6 +505,7 @@ export default function Calendar() {
                  <button id="btnDelete">Attend!</button>
                  <button className="btnClose">Close</button>
              </div>
+
          </div>
     )
 }

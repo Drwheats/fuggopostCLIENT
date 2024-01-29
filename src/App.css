@@ -1297,9 +1297,6 @@ pre {
 
     /* This begins the part of POKEMONS. NO IMAGEBOARD OR PLANNER OR ANYTHING GOES HERE JUST MONS. POKEMON START OF CSS*/
     .coachHolder {
-        height: 100%;
-        width: 100vw;
-        margin: 0;
 
         background: url("../public/pokebal.png");
         background-repeat: repeat;
@@ -1326,8 +1323,6 @@ pre {
     .coachCard {
         margin: 10px;
         width: fit-content;
-        /*color: #ffde00;*/
-        color: #333;
         background-color: #3B4CCA;
         border-style: solid;
     }
@@ -1349,7 +1344,7 @@ pre {
         margin: 1px;
         /*background-color: #ffde00;*/
         background-color: white;
-        width: 180px;
+        width: 15vw;
         height: fit-content;
         padding: 15px;
         float: left;
@@ -1411,6 +1406,7 @@ pre {
     }
 
     .monColumnHolder {
+
         display: flex;
         flex-direction: column;
     }
@@ -1471,18 +1467,20 @@ pre {
     .bpCol {
         float: left;
         min-width: 160px;
+        min-height: 61px;
+    }
+
+    .descriptionCol {
+        text-align: justify;
+        height: 38px;
     }
 
     .moveList {
-
+        display: inline-block;
         text-align: center;
         height: 35px;
         max-height: fit-content;
         width: fit-content;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column-reverse;
-        align-content: flex-start;
     }
 
 
@@ -1490,8 +1488,8 @@ pre {
     .monButton {
         padding: 0px;
         margin: 2px;
-        height: 60px;
-        width: 100px;
+        height: 9vh;
+        width: 8.5vw;
         font-size: var(--_size);
         align-items: center;
         justify-content: center;
@@ -1524,7 +1522,7 @@ pre {
         display: none;
         position: absolute;
         background-color: darkslategrey; /* Green */
-        min-width: 160px;
+        min-width: fit-content;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
     }
@@ -1553,21 +1551,22 @@ pre {
     }
 
     .smallColours {
-        padding-left: 10px;
-        padding-right: 5px;
-        float: left;
-        width: 36px;
+        text-align: center;
         -moz-border-radius: 20px;
         -webkit-border-radius: 20px;
         -khtml-border-radius: 20px;
         -icab-border-radius: 20px;
         -o-border-radius: 20px;
         border-style: solid;
+        width: 4.4vw;
+        height: 3vh;
+        font-weight: bold;
     }
     .typeColours {
 padding: 2px;
+        text-align: center;
         float: left;
-        min-width: 65px;
+        min-width: 5vw;
         border-radius: 20px;
         -moz-border-radius: 20px;
         -webkit-border-radius: 20px;
@@ -1606,14 +1605,14 @@ flex-wrap: wrap;
         justify-content: space-between;
     }
     .heroActiveZone {
-        padding: 20px;
+        padding: 10px;
         float: left;
         display: flex;
         flex-direction: column;
         width: fit-content;
     }
     .villainActiveZone {
-        padding: 20px;
+        padding: 5px;
         float: left;
         display: flex;
         flex-direction: column;
@@ -1642,20 +1641,22 @@ flex-wrap: wrap;
     .typeChartName {
         font-weight: bold;
         float: left;
-        width: 175px;
+        width: 15vw;
     }
 
     .typeChartCell {
-        width: 50px;
+        display: inline-block;
+        text-align: center;
+        border-style: solid;
+        width: 4.4vw;
+        height: 3vh;
+
     }
     .bigGuy {
         width: 500px;
         font-size: 500rem;
     }
-    .typeChartMonHolder {
-        display: flex;
 
-        }
 
     .typeChart {
         padding-top: 50px;
@@ -1665,9 +1666,8 @@ flex-wrap: wrap;
     }
 
     .decorationHolders {
-        padding-left: 160px;
+        padding-left: 15vw;
         display: flex;
-        width: 20px;
 
     }
     .typeChartHeaderOpp {
@@ -1693,6 +1693,7 @@ flex-wrap: wrap;
         display: none;
     }
     .typeChartHolder {
+        float: left;
         display: flex;
         flex-direction: column;
     }

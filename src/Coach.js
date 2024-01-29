@@ -29,7 +29,7 @@ export default function Coach({coachName, coachNum, teamName, winLoss, mons}) {
                 })}
 
             </div>
-            <button className="seeMoreMons" onClick={(event) => makeBigger()}>{ImArrowRight2()}</button>
+            {/*<button className="seeMoreMons" onClick={(event) => makeBigger()}>{ImArrowRight2()}</button>*/}
         </div>
     )
 }
