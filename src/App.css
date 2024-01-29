@@ -56,6 +56,8 @@ body {
     overflow: hidden;
 }
 .sideBarItem {
+    max-width: fit-content;
+    min-height: 11vh;
     display: flex;
     flex-direction: row-reverse;
 }
@@ -286,14 +288,10 @@ button:active {
 
 .calendarOptionsContainer {
     max-width: fit-content;
-    display: flex;
-    flex-direction: column;
+    max-height: fit-content;
 }
 
 .calendarContainer {
-
-    margin-left: auto;
-    width: 200vh;
     background-color: #fff;
 }
 
@@ -304,16 +302,13 @@ button:active {
 }
 
 .header #month {
-    color: #ff5252;
     font-size: 30px;
     font-weight: 600;
 }
 
-.header button {
-    background-color: #ff5252;
-}
+
 .weekdays {
-    width: 200vh;
+    width: 85vw;
     display: flex;
     flex-direction: row;
     background-color: #2f3640;
@@ -323,14 +318,15 @@ button:active {
 }
 
 .weekdays div {
-    width: 89vh;
+    width: 89vw;
     padding: 10px;
     text-align: center;
     text-transform: uppercase;
 }
 
 #calendar {
-    width: calc(100% + 50px);
+    min-width: fit-content;
+    width: 100%;
     /*width: 100%;*/
     margin: auto;
     display: flex;
@@ -342,12 +338,10 @@ button:active {
 }
 
 .day {
-    width: 24vh;
-    min-height: 100px;
-    height: fit-content;
+    width: 12vw;
+    min-height: fit-content;
     padding: 10px;
     cursor: pointer;
-    margin: 5px;
     box-sizing: border-box;
     box-shadow: 0px 0px 3px #cbd4c2;
     color: #7f8fa6;
@@ -1303,10 +1297,8 @@ pre {
 
     /* This begins the part of POKEMONS. NO IMAGEBOARD OR PLANNER OR ANYTHING GOES HERE JUST MONS. POKEMON START OF CSS*/
     .coachHolder {
-        padding: 10px;
-        float: left;
         height: 100%;
-        width: 100%;
+        width: 100vw;
         margin: 0;
 
         background: url("../public/pokebal.png");
@@ -1332,6 +1324,7 @@ pre {
     }
 
     .coachCard {
+        margin: 10px;
         width: fit-content;
         /*color: #ffde00;*/
         color: #333;
