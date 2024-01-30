@@ -1576,10 +1576,10 @@ export default function Pokemon({ mon }) {
     return (
     <div className="pokemon"> <span className="monIconHolders"></span>
         <div><h5>
-        <a href={"https://www.smogon.com/dex/sv/pokemon/" + tempname}>{name} ({mon.pts})</a>
+        {name} ({mon.pts})
         </h5></div>
 
-        <img alt="pokemon" src={src}/>
+        <img alt="pokemon" className="pokemonImage" src={src}/>
             <ul className="pokeTable">
                 <span><a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability1}>{mon.ability1}</a></span>
                 <span><a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability2}>{mon.ability2}</a></span>

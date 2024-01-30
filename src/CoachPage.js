@@ -344,13 +344,15 @@ export default function CoachPage() {
                     return <span className="monColumnHolderGlowing" key={le_Key}>
 
                <Pokemon key={mon.name} mon={mon}/>
-                   <span><button className="monButton" >more info</button><button className="monButton" onClick={() => setHeroActive(mon)}>Active</button></span>
+                   <span><button className="monButton" onClick={() => {
+                       window.open("https://www.smogon.com/dex/sv/pokemon/" + mon.name)}} >info</button><button className="monButton" onClick={() => setHeroActive(mon)}>Active</button></span>
 </span>
                 }
                else return <span className="monColumnHolder">
 
                <Pokemon key={mon.name} mon={mon}/>
-                   <span><button className="monButton" >more info</button><button className="monButton" onClick={() => setHeroActive(mon)}>Active</button></span>
+                   <span><button className="monButton" onClick={() => {
+                       window.open("https://www.smogon.com/dex/sv/pokemon/" + mon.name)}}>  info</button><button className="monButton" onClick={() => setHeroActive(mon)}>Active</button></span>
 </span>
             })}
                 </div>

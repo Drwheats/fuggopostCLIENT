@@ -1294,7 +1294,7 @@ pre {
         max-width: 100%;
     }
 
-
+}
     /* This begins the part of POKEMONS. NO IMAGEBOARD OR PLANNER OR ANYTHING GOES HERE JUST MONS. POKEMON START OF CSS*/
     .coachHolder {
 
@@ -1344,13 +1344,20 @@ pre {
         margin: 1px;
         /*background-color: #ffde00;*/
         background-color: white;
-        width: 15vw;
-        height: fit-content;
+        width: 160px;
+        height: 375px;
         padding: 15px;
         float: left;
         border-style: solid;
+        display: flex;
+        flex-direction: column;
     }
 
+    .pokemonImage {
+        align-content: center;
+        height: 96px;
+        width: 96px;
+    }
 
 
 
@@ -1406,13 +1413,15 @@ pre {
     }
 
     .monColumnHolder {
+        width: 200px;
 
         display: flex;
         flex-direction: column;
     }
 
     .monColumnHolderGlowing {
-        width: fit-content;
+        padding: 15px;
+        min-width: 200px;
         max-height: fit-content;
         box-shadow: 10px 0px 40px 20px blue;
         display: flex;
@@ -1488,7 +1497,7 @@ pre {
     .monButton {
         padding: 0px;
         margin: 2px;
-        height: 9vh;
+        height: 4vh;
         width: 8.5vw;
         font-size: var(--_size);
         align-items: center;
@@ -1551,6 +1560,7 @@ pre {
     }
 
     .smallColours {
+        align-content: center;
         text-align: center;
         -moz-border-radius: 20px;
         -webkit-border-radius: 20px;
@@ -1700,7 +1710,7 @@ flex-wrap: wrap;
     .stat {
         display: flex;
     }
-}
+
 
 .projectHolder {
     display: flex;
