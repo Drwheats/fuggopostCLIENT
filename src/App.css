@@ -1344,8 +1344,8 @@ pre {
         margin: 1px;
         /*background-color: #ffde00;*/
         background-color: white;
-        width: 160px;
-        height: 375px;
+        width: 130px;
+        height: 305px;
         padding: 15px;
         float: left;
         border-style: solid;
@@ -1396,9 +1396,13 @@ pre {
         display: block;
         justify-content: space-between;
         padding-left: 10px;
-        background-color: lightblue;
+        background-color: lightgreen;
         color: #333333;
         display: none;
+    }
+
+    .statHolderMonColumn {
+        display: flex;
     }
 
     .coachPageHeroName {
@@ -1413,15 +1417,15 @@ pre {
     }
 
     .monColumnHolder {
-        width: 200px;
+        width: 150px;
 
         display: flex;
         flex-direction: column;
     }
 
     .monColumnHolderGlowing {
-        padding: 15px;
-        min-width: 200px;
+
+        min-width: 150px;
         max-height: fit-content;
         box-shadow: 10px 0px 40px 20px blue;
         display: flex;
@@ -1441,15 +1445,9 @@ pre {
         flex-direction: column;
     }
 
-    .monButtonHolder {
-        display: flex;
-    }
-
     .oppMoves {
-        border-style: solid;
-        justify-content: space-between;
-        align-content: space-between;
-        min-width: 800px;
+        display: flex;
+        flex-direction: column;
     }
 
     .typeCol{
@@ -1482,9 +1480,11 @@ pre {
     .descriptionCol {
         text-align: justify;
         height: 38px;
+        max-width: 300px;
     }
 
     .moveList {
+
         display: inline-block;
         text-align: center;
         height: 35px;
@@ -1497,12 +1497,8 @@ pre {
     .monButton {
         padding: 0px;
         margin: 2px;
-        height: 4vh;
-        width: 8.5vw;
-        font-size: var(--_size);
-        align-items: center;
-        justify-content: center;
-        gap: .5em;
+        height: 30px;
+        width: 65px;
         box-shadow: 0.5em .1em .9em hsl(var(--accent) / .3), 0 0 0 -.1em hsl(var(--bg)),
         0 0 0 -.2em hsl(var(--accent));
     }
@@ -1573,10 +1569,10 @@ pre {
         font-weight: bold;
     }
     .typeColours {
-padding: 2px;
+padding: 1.2px;
         text-align: center;
         float: left;
-        min-width: 5vw;
+        min-width: 50px;
         border-radius: 20px;
         -moz-border-radius: 20px;
         -webkit-border-radius: 20px;
@@ -1599,6 +1595,12 @@ padding: 2px;
 flex-wrap: wrap;
     }
 
+    .heroMoves {
+        padding-top: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+
     .monAbility {
         display: flex;
         flex-direction: column;
@@ -1610,7 +1612,7 @@ flex-wrap: wrap;
     .actives {
         align-content: flex-start;
         float: left;
-        display: flex;
+        display: none;
         flex-direction: row;
         justify-content: space-between;
     }
@@ -1707,9 +1709,16 @@ flex-wrap: wrap;
         display: flex;
         flex-direction: column;
     }
-    .stat {
+    .statLeft {
+        float: left;
+        font-size: 15px;
         display: flex;
     }
+.statRight {
+    float: left;
+    font-size: 14px;
+    display: flex;
+}
 
 
 .projectHolder {

@@ -16,8 +16,8 @@ export default function Coach({coachName, coachNum, teamName, winLoss, mons}) {
 
     return (
         <div className="coachCard" key={coachNum}>
-            <h1 > <a className="coachCardHeader" href={"/mons/coach/" + coachNum}>#{coachNum +1} - {coachName} ({teamName})</a></h1>
-            <h5>{winLoss}</h5>
+            <h1 > <a className="coachCardHeader" href={"/mons/coach/" + coachNum}> {coachName} ({teamName})</a></h1>
+            <h5 className="coachCardHeader">{winLoss[0]} Wins | {winLoss[2]} Losses (Differential of {winLoss.split("(")[1]}</h5>
             <div className="coachCardMonList">
             {tempMons.map((mon) => {
                return <Pokemon mon={mon}/>

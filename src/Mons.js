@@ -6,10 +6,26 @@ import CoachMap from "./CoachMap";
 let server = "https://api.fuggo.lol/"
 // let server = "http://localhost:4000/";
 
+
 export default function Mons() {
     const [allCoaches, setAllCoaches] = useState([]);
     const [leData, setLeData] = useState(true);
     const [week, setWeek] = useState(7);
+
+    function sortCoaches(a, b) {
+        if (a.winLoss[0] > b.winLoss[0]) {
+            return 1;
+        }
+        if (a.winLoss[0] < b.winLoss[0]) {
+            return -1;
+        }
+        else if (a.winLoss[2] < b.winLoss[2]) {
+            return -1;
+        }
+        else if (a.winLoss[2] > b.winLoss[2]) {
+            return 1;
+        }
+    }
 
     // These 2 functions and helper IF are copied over from my coach page. I'm going to keep them in case someone tries to access the site through a coach page, but thsi is very bad.
     const getTypingAPI = async (type) => {
@@ -66,7 +82,44 @@ export default function Mons() {
                 .then(res => res.json())
                 .then(
                     (result) => {
-                        setAllCoaches(result);
+                        let tempCoaches = result;
+                        // sort goe here
+                        tempCoaches = tempCoaches.sort(
+                            (a, b) => {
+                               let aDiff = a.winLoss.split('(')[1];
+                                let bDiff = b.winLoss.split('(')[1];
+                                aDiff = aDiff.substring(0, aDiff.length - 1);
+                                bDiff = bDiff.substring(0, bDiff.length - 1);
+                                aDiff = aDiff.replace('+', '')
+                                bDiff= bDiff.replace('+', '')
+                                aDiff = +aDiff;
+                                bDiff = +bDiff;
+
+                                console.log(aDiff);
+                                console.log(bDiff)
+
+                                if (a.winLoss[0] < b.winLoss[0]) {
+                                    return 1;
+                                }
+                                if (a.winLoss[0] > b.winLoss[0]) {
+                                    return -1;
+                                }
+                                else if (a.winLoss[2] < b.winLoss[2]) {
+                                    return -1;
+                                }
+                                else if (a.winLoss[2] > b.winLoss[2]) {
+                                    return 1;
+                                }
+                                else if (aDiff > bDiff) {
+                                    return -1;
+                                }
+                                else if (bDiff > aDiff) {
+                                    return 1;
+                                }
+                                // long regex here for differential lol.
+                            }
+                        )
+                        setAllCoaches(tempCoaches);
                         setLeData(false);
                     }
                 )
@@ -81,13 +134,13 @@ export default function Mons() {
         <div className="monPage">
             <h1> OUBL - Week {week}</h1>
             <div className="monPageHeader">
-                <p>Welcome to ben dot place slash mons!</p>
-                <p>Click on a coaches' name for further analysis. You can compare teams, view their speed tiers/weakness chart, and view all of their pokemons' moves.</p>
+                <p>Welcome to the Official Page of the OUBL!</p>
+                <p></p>
             </div>
 
             <div className="coachHolder">
                 <CoachMap coaches={allCoaches}/>
-                <img alt="amogus imageboard mascott" src="/squamogus.png" /> <h5>Copyright ©2023 ben dot place </h5>
+                <img alt="amogus imageboard mascott" src="/squamogus.png" /> <h5>Copyright ©2024 ben dot place </h5>
             </div>
 
         </div>
