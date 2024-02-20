@@ -1564,16 +1564,25 @@ pre {
     .smallColours {
         align-content: center;
         text-align: center;
-        -moz-border-radius: 20px;
-        -webkit-border-radius: 20px;
-        -khtml-border-radius: 20px;
-        -icab-border-radius: 20px;
-        -o-border-radius: 20px;
+        margin: auto;
         border-style: solid;
-        width: 4.4vw;
-        height: 3vh;
+        border-width: 1px;
+        border-radius: 10px;
+        width: 4vw;
+        height: 20px;
         font-weight: bold;
     }
+
+.typeChartCell {
+    display: inline-block;
+    margin: auto;
+    text-align: center;
+    border-style: solid;
+    border-width: thin;
+    width: 4vw;
+    height: 30px;
+
+}
     .typeColours {
         padding: 1.2px;
         text-align: center;
@@ -1665,15 +1674,7 @@ pre {
         width: 15vw;
     }
 
-    .typeChartCell {
-        display: inline-block;
-        text-align: center;
-        border-style: solid;
-        border-width: thin;
-        width: 4.4vw;
-        height: 3vh;
 
-    }
     .bigGuy {
         width: 500px;
         font-size: 500rem;
@@ -1681,10 +1682,8 @@ pre {
 
 
     .typeChart {
+        width: 100%;
         padding-top: 50px;
-        display: flex;
-        flex-direction: column;
-
     }
 
     .decorationHolders {
@@ -1715,6 +1714,7 @@ pre {
         display: none;
     }
     .typeChartHolder {
+        width: 100%;
         float: left;
         display: flex;
         flex-direction: column;
