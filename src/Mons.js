@@ -135,7 +135,6 @@ export default function Mons() {
             <h1> OUBL - Week {week}</h1>
             <div className="monPageHeader">
                 <p>Welcome to the Official Page of the OUBL!</p>
-                <p></p>
             </div>
 
             <div className="coachHolder">

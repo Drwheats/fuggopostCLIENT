@@ -55,6 +55,8 @@ export default function Pokemon({ mon }) {
     tempname = tempname.replace("charizard y-mega", "charizard-megay")
     tempname = tempname.replace("lycanrocmidday", "lycanroc-midday")
     tempname = tempname.replace("(no shed tail", "")
+    tempname = tempname.replace(".", "")
+
     if (tempname.includes("mega")) {
         src = "https://play.pokemonshowdown.com/sprites/gen6/" + tempname + ".png";
         tempname = tempname.replace('mega', '');
@@ -63,6 +65,7 @@ export default function Pokemon({ mon }) {
     else {
         src = "https://play.pokemonshowdown.com/sprites/gen5/" + tempname + ".png";
     }
+    const parsedName = tempname;
     // this is where we add the little status effects / rocks / etc to the mon card.
     useEffect(() => {
 

@@ -1295,10 +1295,15 @@ pre {
 }
     /* This begins the part of POKEMONS. NO IMAGEBOARD OR PLANNER OR ANYTHING GOES HERE JUST MONS. POKEMON START OF CSS*/
     .coachHolder {
-
         background: url("../public/pokebal.png");
         background-repeat: repeat;
         background-color: #999999;
+        display: block;
+    }
+
+    .realCoachHolder {
+        display: flex;
+        flex-direction: column;
     }
 
     .coachLabel {
@@ -1323,6 +1328,7 @@ pre {
         width: fit-content;
         background-color: #3B4CCA;
         border-style: solid;
+
     }
 
     .coachCardMonList {
@@ -1334,6 +1340,7 @@ pre {
     }
 
     .coachCardHeader {
+
         color: white;
     }
 
@@ -1443,6 +1450,7 @@ pre {
     }
 
     .oppMoves {
+        padding-top: 15px;
         display: flex;
         flex-direction: column;
     }
@@ -1456,48 +1464,49 @@ pre {
 
     .nameCol {
         float: left;
-        border-style: groove;
-
         min-width: 150px;
-
     }
 
     .accCol {
         float: left;
-        min-width: 100px;
+        min-width: 50px;
 
     }
 
     .bpCol {
+        font-weight: bold;
         float: left;
-        min-width: 160px;
-        min-height: 61px;
+        min-width: 80px;
     }
 
     .descriptionCol {
-        text-align: justify;
-        height: 38px;
-        max-width: 300px;
+        float: left;
+        min-height: 38px;
+        max-width: 320px;
+        max-height: fit-content;
     }
 
     .moveList {
-
+        padding: 5px;
+        border-style: outset;
         display: inline-block;
         text-align: center;
-        height: 35px;
+        min-height: 45px;
         max-height: fit-content;
         width: fit-content;
     }
 
+    .moveHolder {
+        display: flex;
 
+    }
 
     .monButton {
         padding: 0;
         margin: 2px;
         height: 30px;
         width: 65px;
-        box-shadow: 0.5em .1em .9em hsl(var(--accent) / .3), 0 0 0 -.1em hsl(var(--bg)),
-        0 0 0 -.2em hsl(var(--accent));
+        box-shadow: 0 0 0 -.1em;
     }
 
     .copyright {
@@ -1585,12 +1594,16 @@ pre {
     }
 
     .heroMonHolder {
+        flex-wrap: wrap;
         display: flex;
     }
-    .heroMonHolder {
-        display: flex;
-flex-wrap: wrap;
-    }
+
+.villainMonHolder {
+    display: flex;
+    flex-direction: row;
+    float: right;
+    flex-wrap: wrap;
+}
 
     .heroMoves {
         padding-top: 15px;
@@ -1657,6 +1670,7 @@ flex-wrap: wrap;
         display: inline-block;
         text-align: center;
         border-style: solid;
+        border-width: thin;
         width: 4.4vw;
         height: 3vh;
 

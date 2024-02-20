@@ -10,6 +10,9 @@ let server = "https://api.fuggo.lol/"
 export default function CoachPage() {
     let pageLoc = window.location.pathname.split('/')[3];
 
+    const currentWeek = 4;
+    const [heroActiveName, setHeroActiveName] = useState(false);
+    const [villainActiveName, setVillainActiveName] = useState(false);
     const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
     const [allCoaches, setAllCoaches] = useState([]);
     const [leData, setLeData] = useState(true);
@@ -131,6 +134,7 @@ export default function CoachPage() {
     }
     useEffect(() => {
 
+
         if (window.localStorage !== undefined) {
             const data = window.localStorage.getItem('all pokemom moves :)');
             if (data !== null) {
@@ -150,7 +154,6 @@ export default function CoachPage() {
                 .then(res => res.json())
                 .then(
                     (result) => {
-                        console.log(result)
                         setAllCoaches(result);
                         setThisCoach(result[pageLoc])
                         setPokemons(result[pageLoc].mons)
@@ -159,6 +162,10 @@ export default function CoachPage() {
 
                     }
                 )
+        }
+        if (!leData) {
+            getOpp(matchups[currentWeek - 1].Opponent);
+
         }
 
     }, [leData, allCoaches, pageLoc])
@@ -175,6 +182,7 @@ export default function CoachPage() {
         mon.active = true;
         setActiveMons(mon)
         getMove(mon)
+        getMove(mon)
     }
     function setVillainActive(mon) {
         document.getElementById("actives").style.display = "block";
@@ -184,9 +192,8 @@ export default function CoachPage() {
         mon.active = true;
         setActiveMons(mon);
         getMove(mon)
-
-        console.log(" now setting " + mon.name + " as active.");
-    }
+        getMove(mon)
+        }
 
     function sortPoints() {
         let tempMons = pokemons.sort((a, b) => b.pts - a.pts);
@@ -247,12 +254,9 @@ export default function CoachPage() {
         for (let i = 0; i < allCoaches.length; i++) {
             if (allCoaches[i].teamName === value) {
                 setOppPokemons(allCoaches[i].mons);
-
                 setThatCoach(allCoaches[i])
                 document.getElementById("coachPageVillainHeader").style.display = "block";
-                console.log("showing")
                 document.getElementById("typeChartOpp").style.display = "block";
-
                 break;
             }
         }
@@ -273,9 +277,15 @@ export default function CoachPage() {
         tempname = tempname.replace('rotomwash', 'rotom-wash')
         tempname = tempname.replace('(No Shed Tail', '')
         tempname = tempname.replace('mega-', '')
+        tempname = tempname.replace('keldeo', 'keldeo-resolute')
+
         if (tempname.includes('galarian')) {
-            tempname.replace('galarian ', '')
+            tempname = tempname.replace('galarian-', '')
             tempname += '-galar'
+        }
+        if (tempname.includes('hisuian')) {
+            tempname = tempname.replace('hisuian-', '')
+            tempname += '-hisui'
         }
         console.log("getting moves for :" + tempname)
             axios.get('https://pokeapi.co/api/v2/pokemon/' + tempname, {})
@@ -289,14 +299,16 @@ export default function CoachPage() {
                     for (let i = 0; i < pokemons.length; i++) {
                         if (pokemons[i].name === pokemon.name) {
                             setHeroMoves(tempList);
-                            forceUpdate();
+                            setHeroActiveName(pokemon.name)
+                            // forceUpdate();
                             return;
                         }
                     }
                     for (let i = 0; i < oppPokemons.length; i++) {
                         if (oppPokemons[i].name === pokemon.name) {
                             setOppMoves(tempList);
-                            forceUpdate();
+                            setVillainActiveName(pokemon.name)
+                            // forceUpdate();
                             return;
                         }
                     }
@@ -312,9 +324,10 @@ export default function CoachPage() {
     return (
 
         <div className="coachPage" key={pageLoc}>
-            <span className="coachPageHeroHeader">
+            <span  className="coachPageHeroHeader">
 
-            <h1 className="coachPageHeroName">{thisCoach.coachName} ({thisCoach.teamName})</h1>
+            <h1 className="coachPageHeroName">{thisCoach.coachName} ({thisCoach.teamName})             <h6>Score: {thisCoach.winLoss}</h6>
+</h1>
                                 <div className="dropdown">
   <button className="dropbtn">SORT</button>
   <div className="dropdown-content">
@@ -332,164 +345,161 @@ export default function CoachPage() {
                 <button className="dropbtn" key={1}>matchups</button>
                 <div className="dropdown-content">MATCHUPS:
                     {matchups.map((matchup, index) => {
-                        return <button onClick={(e) => getOpp(e.currentTarget.id)} className="sortButton"
-                                       id={matchup.Opponent} key={index}>Week {index + 1} : {matchup.Opponent}</button>
+                        return <button onClick={(e) => getOpp(e.currentTarget.id)} className="sortButton" id={matchup.Opponent} key={index}>Week {index + 1} : {matchup.Opponent}</button>
 
                     })}
 
                 </div>
                                     </div>
-            <h3>Score: {thisCoach.winLoss}</h3>
 
             </span>
 
-            <div className="heroMonHolder">
-                {pokemons.map((mon, le_Key) => {
-                    if (mon.active === true) {
-                        return <span className="monColumnHolderGlowing" key={le_Key}>
+                <div className="heroMonHolder">
+            {pokemons.map((mon, le_Key) => {
+                if (mon.active === true) {
+                    return <span className="monColumnHolderGlowing" key={le_Key} >
 
                <Pokemon key={mon.name} mon={mon}/>
                    <span className="monButtonHolder"><button className="monButton" onClick={() => {
-                       window.open("https://www.smogon.com/dex/sv/pokemon/" + mon.name)
-                   }}>Info</button><button className="monButton"
-                                           onClick={() => setHeroActive(mon)}>Moves</button></span>
+                       window.open("https://www.smogon.com/dex/sv/pokemon/" + mon.name)}} >Info</button><button className="monButton" onClick={() => setHeroActive(mon)}>Moves</button></span>
 </span>
-                    } else return <span className="monColumnHolder">
+                }
+               else return <span className="monColumnHolder">
 
                <Pokemon key={mon.name} mon={mon}/>
                    <span className="monButtonHolder"><button className="monButton" onClick={() => {
-                       window.open("https://www.smogon.com/dex/sv/pokemon/" + mon.name)
-                   }}>  Info</button><button className="monButton"
-                                             onClick={() => setHeroActive(mon)}>Moves</button></span>
+                       window.open("https://www.smogon.com/dex/sv/pokemon/" + mon.name)}}>  Info</button><button className="monButton" onClick={() => setHeroActive(mon)}>Moves</button></span>
 </span>
-                })}
-            </div>
+            })}
+                </div>
 
 
-            <div>
-                <span className="coachPageVillainHeader" id="coachPageVillainHeader"><a
-                    href={"https://ben.place/mons/coach/" + thatCoach.coachNum}> <h1>VS: {thatCoach.coachName} ({thatCoach.teamName})</h1></a><h3>Score: {thatCoach.winLoss}</h3></span>
-            </div>
+<div>
+    <span className="coachPageVillainHeader" id="coachPageVillainHeader"><h1>VS:<a
+        href={"https://ben.place/mons/coach/" + thatCoach.coachNum}> {thatCoach.coachName}</a> <a
+        href={"https://ben.place/mons/coach/" + thatCoach.coachNum}> ({thatCoach.teamName})></a></h1><h3>Score: {thatCoach.winLoss}</h3></span>
+</div>
 
-            <div className="heroMonHolder">
+            <div className="villainMonHolder">
                 {oppPokemons.map((mon, le_key) => {
                     if (mon.active === true) {
                         return <span className="monColumnHolderGlowingV" key={le_key}>
                <Pokemon key={mon.name} mon={mon}/>
-                   <span><button className="monButton"></button><button className="monButton"
-                                                                        onClick={() => setVillainActive(mon)}>moves</button></span>
+                   <span><button className="monButton" onClick={() => {
+                       window.open("https://www.smogon.com/dex/sv/pokemon/" + mon.name)
+                   }}>  Info</button><button className="monButton" onClick={() => setVillainActive(mon)}>moves</button></span>
 </span>
                     } else return <span className="monColumnHolder">
                <Pokemon key={mon.name} mon={mon}/>
                    <span className="monButtonHolder"><button className="monButton" onClick={() => {
-                       window.open("https://www.smogon.com/dex/sv/pokemon/" + mon.name)
-                   }}>info</button><button className="monButton"
-                                           onClick={() => setVillainActive(mon)}>moves</button></span>
+                       window.open("https://www.smogon.com/dex/sv/pokemon/" + mon.name)}} >info</button><button className="monButton" onClick={() => setVillainActive(mon)}>moves</button></span>
 </span>
                 })}
             </div>
 
             <div className="actives" id="actives">
 
-                <div>{activeMons ? <h2>{activeMons.name}'s Moves</h2> : <h3>( ͡° ͜ʖ ͡°)</h3>}</div>
+                <div className="moveHolder">
 
-                <table className="heroMoves">
-                    {heroMoves.map((move, le_key) => {
-                        let tempNum = move.url.split('/')[6];
+                    <table className="heroMoves">
+                        <div>{heroActiveName ? <h2>{heroActiveName}'s Moves</h2> : <h3> </h3>}</div>
 
-                        if (!badMoves.includes(tempNum)) {
-                            let temp = callAPImove(tempNum);
-                            let tempData = JSON.parse(window.localStorage.getItem(tempNum));
-                            let tempDesc = "";
-                            let tempType = null;
-                            let tempAcc = 0;
-                            let tempPower = 0;
-                            let tempDamageType = "none";
-                            try {
-                                if (typeof tempData.type === "string") {
-                                    tempType = tempData.type;
-                                } else {
-                                    tempType = tempData.type.name;
+                        {heroMoves.map((move, le_key) => {
+                            let tempNum = move.url.split('/')[6];
+
+                            if (!badMoves.includes(tempNum)) {
+                                let temp = callAPImove(tempNum);
+                                let tempData = JSON.parse(window.localStorage.getItem(tempNum));
+                                let tempDesc = "";
+                                let tempType = null;
+                                let tempAcc = 0;
+                                let tempPower = 0;
+                                let tempDamageType = "none";
+                                try {
+                                    if (typeof tempData.type === "string") {
+                                        tempType = tempData.type;
+                                    } else {
+                                        tempType = tempData.type.name;
+                                    }
+                                    tempAcc = tempData.acc;
+                                    tempPower = tempData.power;
+                                    tempDamageType = tempData.damageType;
+                                    tempDesc = tempData.desc;
+                                } catch (e) {
+                                    console.log(e)
                                 }
-                                tempAcc = tempData.acc;
-                                tempPower = tempData.power;
-                                tempDamageType = tempData.damageType;
-                                tempDesc = tempData.desc;
-                            } catch (e) {
-                                console.log(e)
-                            }
-                            return <span> <li className="moveList" key={le_key}> <a
-                                href={"https://www.smogon.com/dex/sv/moves/" + move.name}> <span
-                                className="nameCol">{move.name} </span>  <span className="typeCol"><TypeShow2
-                                type={tempType}/></span>  <span className="accCol">{tempAcc} </span> <span
-                                className="bpCol">{tempPower} {tempDamageType}</span> <span
-                                className="descriptionCol">{tempDesc}</span></a> </li> </span>
-                        } else return null;
-                    })}
-                </table>
+                                return <span> <li className="moveList" key={le_key}> <a
+                                    href={"https://www.smogon.com/dex/sv/moves/" + move.name} target="_blank"
+                                    rel="noreferrer"> <span
+                                    className="nameCol">{move.name} </span>  <span className="typeCol"><TypeShow2
+                                    type={tempType}/></span>  <span className="accCol">Acc: {tempAcc} -</span> <span
+                                    className="bpCol">{tempPower} {tempDamageType}</span> <span
+                                    className="descriptionCol">{tempDesc}</span></a> </li> </span>
+                            } else return null;
+                        })}
+                    </table>
+                    <table className="oppMoves">
+                        <div>{villainActiveName ? <h2>{villainActiveName}'s Moves</h2> : <h3> </h3>}</div>
 
-                <div>{activeMons ? <h2>{activeMons.name}'s Moves</h2> : <h3>( ͡° ͜ʖ ͡°)</h3>}</div>
+                        {oppMoves.map((move, le_key) => {
+                            let tempNum = move.url.split('/')[6];
+                            if (!badMoves.includes(tempNum)) {
+                                let temp = callAPImove(tempNum);
+                                let tempData = JSON.parse(window.localStorage.getItem(tempNum));
+                                //type: tempType, acc: tempAcc, power: tempPower, desc: tempDesc, damageType: tempDamageType, effectChance: tempEffect
+                                let tempDesc = "";
+                                let tempType = null;
+                                let tempAcc = 0;
+                                let tempPower = 0;
+                                let tempDamageType = "none";
+                                try {
+                                    tempType = tempData.type;
+                                    tempAcc = tempData.acc;
+                                    tempPower = tempData.power;
+                                    tempDamageType = tempData.damageType;
+                                    tempDesc = tempData.desc;
+                                } catch (e) {
+                                    console.log(e)
+                                }
+                                return <span> <li className="moveList" key={le_key}> <a
+                                    href={"https://www.smogon.com/dex/sv/moves/" + move.name}> <span
+                                    className="nameCol">{move.name} </span> </a> <span className="typeCol"><TypeShow2
+                                    type={tempType}/></span>  <span className="accCol">{tempAcc} </span> <span
+                                    className="bpCol">{tempPower} {tempDamageType}</span> <span
+                                    className="descriptionCol">{tempDesc}</span> </li> </span>
+                            } else return null;
+                        })}
+                    </table>
 
+                </div>
 
-                <table className="oppMoves">
-                    {oppMoves.map((move, le_key) => {
-                        let tempNum = move.url.split('/')[6];
-                        if (!badMoves.includes(tempNum)) {
-                            let temp = callAPImove(tempNum);
-                            let tempData = JSON.parse(window.localStorage.getItem(tempNum));
-                            //type: tempType, acc: tempAcc, power: tempPower, desc: tempDesc, damageType: tempDamageType, effectChance: tempEffect
-                            let tempDesc = "";
-                            let tempType = null;
-                            let tempAcc = 0;
-                            let tempPower = 0;
-                            let tempDamageType = "none";
-                            try {
-                                tempType = tempData.type;
-                                tempAcc = tempData.acc;
-                                tempPower = tempData.power;
-                                tempDamageType = tempData.damageType;
-                                tempDesc = tempData.desc;
-                            } catch (e) {
-                                console.log(e)
-                            }
-                            return <span> <li className="moveList" key={le_key}> <a
-                                href={"https://www.smogon.com/dex/sv/moves/" + move.name}> <span
-                                className="nameCol">{move.name} </span> </a> <span className="typeCol"><TypeShow2
-                                type={tempType}/></span>  <span className="accCol">{tempAcc} </span> <span
-                                className="bpCol">{tempPower} {tempDamageType}</span> <span
-                                className="descriptionCol">{tempDesc}</span> </li> </span>
-                        } else return null;
-                    })}
-                </table>
-
-            </div>
-            <div className="typeChartHolder" id="typeChartHolder">
+                <div className="typeChartHolder" id="typeChartHolder">
                 <div className="typeChart"><h1 className="typeChartHeader">{thisCoach.coachName}'s Weaknesses</h1>
-                    <span className="decorationHolders"><TypeShow type="normal"/> <TypeShow
-                        type="fighting"/><TypeShow type="water"/><TypeShow type="fire"/><TypeShow
-                        type="grass"/><TypeShow type="electric"/><TypeShow type="dragon"/><TypeShow
-                        type="fairy"/><TypeShow type="steel"/><TypeShow type="rock"/><TypeShow type="ice"/><TypeShow
-                        type="ground"/><TypeShow type="bug"/><TypeShow type="poison"/><TypeShow
-                        type="psychic"/><TypeShow type="dark"/><TypeShow type="ghost"/><TypeShow
-                        type="flying"/></span>
-                    {pokemons.map((mon, le_key) => {
-                        return <WeaknessChart key={le_key} type1={mon.type1} type2={mon.type2} name={mon.name}/>
-                    })}</div>
+                        <span className="decorationHolders"><TypeShow type="normal"/> <TypeShow
+                            type="fighting"/><TypeShow type="water"/><TypeShow type="fire"/><TypeShow
+                            type="grass"/><TypeShow type="electric"/><TypeShow type="dragon"/><TypeShow
+                            type="fairy"/><TypeShow type="steel"/><TypeShow type="rock"/><TypeShow type="ice"/><TypeShow
+                            type="ground"/><TypeShow type="bug"/><TypeShow type="poison"/><TypeShow
+                            type="psychic"/><TypeShow type="dark"/><TypeShow type="ghost"/><TypeShow
+                            type="flying"/></span>
+                        {pokemons.map((mon, le_key) => {
+                            return <WeaknessChart key={le_key} type1={mon.type1} type2={mon.type2} name={mon.name}/>
+                        })}</div>
 
-                <div className="typeChartOpp" id="typeChartOpp"><h1
-                    className="typeChartHeaderOpp">{thatCoach.coachName}'s Weaknesses</h1>
-                    <span className="decorationHolders"><TypeShow type="normal"/> <TypeShow
-                        type="fighting"/><TypeShow type="water"/><TypeShow type="fire"/><TypeShow
-                        type="grass"/><TypeShow type="electric"/><TypeShow type="dragon"/><TypeShow
-                        type="fairy"/><TypeShow type="steel"/><TypeShow type="rock"/><TypeShow type="ice"/><TypeShow
-                        type="ground"/><TypeShow type="bug"/><TypeShow type="poison"/><TypeShow
-                        type="psychic"/><TypeShow type="dark"/><TypeShow type="ghost"/><TypeShow
-                        type="flying"/></span>
-                    {oppPokemons.map((mon, le_key) => {
-                        return <WeaknessChart key={le_key} type1={mon.type1} type2={mon.type2} name={mon.name}/>
-                    })}</div>
+                    <div className="typeChartOpp" id="typeChartOpp"><h1
+                        className="typeChartHeaderOpp">{thatCoach.coachName}'s Weaknesses</h1>
+                        <span className="decorationHolders"><TypeShow type="normal"/> <TypeShow
+                            type="fighting"/><TypeShow type="water"/><TypeShow type="fire"/><TypeShow
+                            type="grass"/><TypeShow type="electric"/><TypeShow type="dragon"/><TypeShow
+                            type="fairy"/><TypeShow type="steel"/><TypeShow type="rock"/><TypeShow type="ice"/><TypeShow
+                            type="ground"/><TypeShow type="bug"/><TypeShow type="poison"/><TypeShow
+                            type="psychic"/><TypeShow type="dark"/><TypeShow type="ghost"/><TypeShow
+                            type="flying"/></span>
+                        {oppPokemons.map((mon, le_key) => {
+                            return <WeaknessChart key={le_key} type1={mon.type1} type2={mon.type2} name={mon.name}/>
+                        })}</div>
+                </div>
             </div>
-
         </div>
     )
 }
