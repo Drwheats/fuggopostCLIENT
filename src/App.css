@@ -1622,7 +1622,6 @@ pre {
     .actives {
         align-content: flex-start;
         float: left;
-        display: none;
         flex-direction: row;
         justify-content: space-between;
     }
