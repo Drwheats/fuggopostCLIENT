@@ -1,7 +1,5 @@
 import {useEffect, useState} from "react";
 import CoachMap from "./CoachMap";
-//NOTE: I changed the POST to a GET, for the /coaches part of my API. So this may be where the fuck happens iif it do.
-
 
 let server = "https://api.fuggo.lol/"
 // let server = "http://localhost:4000/";
@@ -10,7 +8,6 @@ let server = "https://api.fuggo.lol/"
 export default function Mons() {
     const [allCoaches, setAllCoaches] = useState([]);
     const [leData, setLeData] = useState(true);
-    const [week, setWeek] = useState(7);
 
     function sortCoaches(a, b) {
         if (a.winLoss[0] > b.winLoss[0]) {
@@ -132,7 +129,7 @@ export default function Mons() {
 
     return (
         <div className="monPage">
-            <h1> OUBL - Week {week}</h1>
+            <h1> OUBL - Week 4</h1>
             <div className="monPageHeader">
                 <p>Welcome to the Official Page of the OUBL!</p>
             </div>

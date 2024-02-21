@@ -512,9 +512,7 @@ button:active {
     float: left;
     padding: 20px;
 
-    background: url("../public/bendotplace.png");
-    background-repeat:no-repeat;
-    background-position: center center;
+    background: url("../public/bendotplace.png") no-repeat center center;
     width: 100%;
     height: 100%;
 }
@@ -1103,14 +1101,12 @@ pre {
     float: left;
     padding: 5px;
     max-width: 80%;
-    margin: 2px;
-    margin-left: 25px;
+    margin: 2px 2px 2px 25px;
     background-color: lightgreen;
     max-height: 110px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-
 }
 
 pre {
@@ -1295,9 +1291,7 @@ pre {
 }
     /* This begins the part of POKEMONS. NO IMAGEBOARD OR PLANNER OR ANYTHING GOES HERE JUST MONS. POKEMON START OF CSS*/
     .coachHolder {
-        background: url("../public/pokebal.png");
-        background-repeat: repeat;
-        background-color: #999999;
+        background: #999999 url("../public/pokebal.png") repeat;
         display: block;
     }
 
@@ -1323,13 +1317,19 @@ pre {
         border-radius: 50%;
     }
 
-    .coachCard {
+    .coachCardBlue {
         margin: 10px;
         width: fit-content;
-        background-color: #3B4CCA;
+        background-color: lightblue;
         border-style: solid;
-
     }
+
+    .coachCardGreen {
+    margin: 10px;
+    width: fit-content;
+    background-color: lightgreen;
+    border-style: solid;
+}
 
     .coachCardMonList {
         display: flex;
@@ -1339,10 +1339,6 @@ pre {
         color: black;
     }
 
-    .coachCardHeader {
-
-        color: white;
-    }
 
     .pokemon {
         color: black;
@@ -1592,7 +1588,6 @@ pre {
         -moz-border-radius: 20px;
         -webkit-border-radius: 20px;
         -khtml-border-radius: 20px;
-        -icab-border-radius: 20px;
         -o-border-radius: 20px;
         border-style: solid;
 
@@ -1660,14 +1655,6 @@ pre {
         float: left;
     }
 
-    columnNormal {
-        padding-left: 10px;
-        padding-right: 10px;
-
-        display: flex;
-        flex-wrap: nowrap;
-        flex-direction: column;
-    }
     .typeChartName {
         font-weight: bold;
         float: left;
@@ -1713,6 +1700,8 @@ pre {
     .typeChartOpp {
         display: none;
     }
+
+
     .typeChartHolder {
         width: 100%;
         float: left;
@@ -1746,19 +1735,8 @@ pre {
     transition: 0.3s;
 }
 
-/* On mouse-over, add a deeper shadow */
 .project:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-/* Add some padding inside the card container */
-.projectHolder {
-    width: 80%;
-    float:left;
-    gap:5px;
-    box-sizing:border-box;
-    -moz-box-sizing:border-box; /* Firefox */
-    -webkit-box-sizing:border-box; /* Safari */
 }
 
 .projectImg {
@@ -1810,6 +1788,5 @@ pre {
 
 .hold2images {
     display: flex;
-    flex-display: block;
 }
 
