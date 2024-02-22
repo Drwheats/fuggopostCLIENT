@@ -1187,6 +1187,17 @@ pre {
     }
 }
 
+@keyframes slide-left-right {
+    from {
+        transform: translateX(0%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 1;
+    }
+}
+
 @keyframes slide-down-up {
     from {
         transform: translateY(100%);
@@ -1568,15 +1579,41 @@ pre {
     }
 
 .typeChartCell {
+    background-color: lightgrey;
     display: inline-block;
     margin: auto;
+    padding-top: 5px;
     text-align: center;
     border-style: solid;
     border-width: thin;
     width: 4vw;
-    height: 30px;
+    height: 25px;
 
 }
+.typeChartCellWeak {
+    background-color: indianred;
+    display: inline-block;
+    margin: auto;
+    padding-top: 5px;
+    text-align: center;
+    border-style: solid;
+    border-width: thin;
+    width: 4vw;
+    height: 25px;
+
+}.typeChartCellStrong {
+     background-color: lawngreen;
+
+     display: inline-block;
+     margin: auto;
+     padding-top: 5px;
+     text-align: center;
+     border-style: solid;
+     border-width: thin;
+     width: 4vw;
+     height: 25px;
+
+ }
     .typeColours {
         padding: 1.2px;
         text-align: center;
