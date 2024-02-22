@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import CoachMap from "./CoachMap";
-
+import {Transition} from "react-transition-group";
 let server = "https://api.fuggo.lol/"
 // let server = "http://localhost:4000/";
 
@@ -8,22 +8,8 @@ let server = "https://api.fuggo.lol/"
 export default function Mons() {
     const [allCoaches, setAllCoaches] = useState([]);
     const [leData, setLeData] = useState(true);
-
-    function sortCoaches(a, b) {
-        if (a.winLoss[0] > b.winLoss[0]) {
-            return 1;
-        }
-        if (a.winLoss[0] < b.winLoss[0]) {
-            return -1;
-        }
-        else if (a.winLoss[2] < b.winLoss[2]) {
-            return -1;
-        }
-        else if (a.winLoss[2] > b.winLoss[2]) {
-            return 1;
-        }
-    }
-
+    const [coachVisible, setCoachVisible] = useState(true);
+    const [coachVisibleButtonText, setCoachVisibleButtonText] = useState("-")
     // These 2 functions and helper IF are copied over from my coach page. I'm going to keep them in case someone tries to access the site through a coach page, but thsi is very bad.
     const getTypingAPI = async (type) => {
         if (type === null) return;
@@ -58,6 +44,26 @@ export default function Mons() {
         }
     };
 
+    function callFuggoLolCoachesAPI() {
+        const scoreJSON = {
+            method: 'GET',
+            headers: {
+                "access-control-allow-origin": "*",
+                'Content-Type': 'application/json'
+            },
+        }
+        fetch(server + "coaches", scoreJSON)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    let tempCoaches = result;
+                    // sort goe here
+                    setAllCoaches(tempCoaches);
+                    setLeData(false);
+                }
+            )
+    }
+
     if (window.localStorage.length === 0 ) {
         callAPI();
         let allTypes = ['normal', 'fighting', 'dark', 'psychic', 'ghost', 'fire', 'water', 'grass', 'electric', 'bug', 'flying', 'dragon', 'steel', 'fairy', 'rock', 'ground', 'ice', 'poison']
@@ -68,63 +74,10 @@ export default function Mons() {
     }
     useEffect(() => {
         if (leData) {
-            const scoreJSON = {
-                method: 'GET',
-                headers: {
-                    "access-control-allow-origin": "*",
-                    'Content-Type': 'application/json'
-                },
-            }
-            fetch(server + "coaches", scoreJSON)
-                .then(res => res.json())
-                .then(
-                    (result) => {
-                        let tempCoaches = result;
-                        // sort goe here
-                        tempCoaches = tempCoaches.sort(
-                            (a, b) => {
-                               let aDiff = a.winLoss.split('(')[1];
-                                let bDiff = b.winLoss.split('(')[1];
-                                aDiff = aDiff.substring(0, aDiff.length - 1);
-                                bDiff = bDiff.substring(0, bDiff.length - 1);
-                                aDiff = aDiff.replace('+', '')
-                                bDiff= bDiff.replace('+', '')
-                                aDiff = +aDiff;
-                                bDiff = +bDiff;
-
-                                console.log(aDiff);
-                                console.log(bDiff)
-
-                                if (a.winLoss[0] < b.winLoss[0]) {
-                                    return 1;
-                                }
-                                if (a.winLoss[0] > b.winLoss[0]) {
-                                    return -1;
-                                }
-                                else if (a.winLoss[2] < b.winLoss[2]) {
-                                    return -1;
-                                }
-                                else if (a.winLoss[2] > b.winLoss[2]) {
-                                    return 1;
-                                }
-                                else if (aDiff > bDiff) {
-                                    return -1;
-                                }
-                                else if (bDiff > aDiff) {
-                                    return 1;
-                                }
-                                // long regex here for differential lol.
-                            }
-                        )
-                        setAllCoaches(tempCoaches);
-                        setLeData(false);
-                    }
-                )
+            callFuggoLolCoachesAPI();
         }
 
     }, [leData, allCoaches])
-
-
 
 
     return (
@@ -133,10 +86,20 @@ export default function Mons() {
             <div className="monPageHeader">
                 <p>Welcome to the Official Page of the OUBL!</p>
             </div>
+            <button onClick={() => {
+                if (coachVisible) {
+                    setCoachVisibleButtonText("+");
+                    setCoachVisible(false);}
+                else {
+                    setCoachVisible(true);
+                    setCoachVisibleButtonText("-");
+                }
 
+            }}>{coachVisibleButtonText} </button>
             <div className="coachHolder">
-                <CoachMap coaches={allCoaches}/>
-                <img alt="amogus imageboard mascott" src="/squamogus.png" /> <h5>Copyright ©2024 ben dot place </h5>
+                <CoachMap visible={coachVisible} coaches={allCoaches} transitionState={true}/>
+                <img className="circularLogo" alt="amogus imageboard mascott" src="/amoguscircle.png"/> <h5>Copyright
+                ©2024 ben dot place </h5>
             </div>
 
         </div>

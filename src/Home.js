@@ -14,10 +14,10 @@ export default function Home() {
             <div className="projectHolder">
                 <a href={"/b"}>
                 <div className="project">
-                        <img className="projectImg" src="/board.png" alt="boardLogo"></img>
+                        <img className="projectImg" src="/homeicon.png" alt="boardLogo"></img>
                         <div className="projectContainer">
                             <h4><b>React Imageboard</b></h4>
-                            <p>A modern imageboard written in React. Styled after the infamous 4chan, except 70% less toxic. Uses my fuggo.lol API as a backend to serve posts.</p>
+                            <p>A modern imageboard written in React. Styled after the infamous 4chan, except 70% less toxic. Uses my API/API server to serve posts.</p>
                         </div>
                     </div>
                 </a>
@@ -34,19 +34,19 @@ export default function Home() {
 
                 <a href={"/mons"}>
                     <div className="project">
-                        <img className="projectImg" alt="monslogo" src="/mons.png"></img>
+                        <img className="projectImg" alt="monslogo" src="/amoguscircle.png"></img>
                         <div className="projectContainer">
                             <h4><b>Pokemon Draft League Helper</b></h4>
-                            <p>A database of the Pokemon league that I play in. Contains a few tools to help Pokemon coaches such as a matchup tool. Uses my fuggo.lol API as a backend, with a Google Docs sheet as a database. Some of the tools use the very excellent pokeAPI. (https://pokeapi.co/)</p>
+                            <p>A database of the Pokemon league that I play in. Contains a few tools to help Pokemon coaches such as a matchup tool. Uses a Google Docs sheet as a database. A lot of information comes from pokeAPI. (https://pokeapi.co/)</p>
                         </div>
                     </div>
                     </a>
                 <a href={"/calendar"}>
                     <div className="project">
-                        <img className="projectImg" alt="questionmarklogo" src="/questionmark.png"></img>
+                        <img className="projectImg" alt="cameraLogo" src="/cameraicon.png"></img>
                         <div className="projectContainer">
                             <h4><b>Local Theatre Calendar</b></h4>
-                            <p>A calendar that shows what's playing in a variety of local Toronto theatres. The data comes from a scraper that I made and host at fuggo.lol. </p>
+                            <p>A calendar that shows what's playing in a variety of local Toronto theatres. The data comes from a scraper that I made and on my API server. </p>
                         </div>
                     </div>
                 </a>

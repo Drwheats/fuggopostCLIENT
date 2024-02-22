@@ -1,13 +1,18 @@
 import Coach from "./Coach";
 
 
-export default function CoachMap({coaches}) {
+export default function CoachMap({coaches, visible}) {
+
+    console.log(visible)
     return (
         <div className="realCoachHolder" id="none">
-            {coaches.map(s => {
-                    return <Coach key={s.coachNum} coachNum={s.coachNum} coachName={s.coachName} winLoss={s.winLoss} teamName={s.teamName} mons={s.mons}
-                                 />
-            })}
+            {visible ?
+                coaches.map(s => {
+                    return <Coach key={s.coachNum} coachNum={s.coachNum} coachName={s.coachName} winLoss={s.winLoss}
+                                  teamName={s.teamName} mons={s.mons}
+                    />
+                })
+ : <div></div>}
         </div>
 
     )

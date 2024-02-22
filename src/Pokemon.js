@@ -2087,8 +2087,7 @@ const webmons = [
                 <span><a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability3}>{mon.ability3}</a></span>
                 <span><TypeShow2 type={type1} /><TypeShow2 type={type2} /></span>
                 </ul>
-        <div><br /></div>
-        <br />
+
         <div className="statHolderMonColumn">
             <ul className="goDownStatsLeft">
                 <li className="statLeft">Atk: {atk}</li>
@@ -2112,9 +2111,8 @@ const webmons = [
             <h5 className="showMonDoesScreens">{hasScreens}</h5>
             <h5 className="showMonDoesScreens">{hasSpikes}</h5>
             <h5 className="showMonDoesScreens">{hasExtremeSpeed}</h5>
-            <h5 className="showMonDoesScreens">{hasSucker}</h5>
             <h5 className="showMonDoesScreens">{hasTidyUp}</h5>
-            <h5 className="showMonDoesScreens">{hasBounce}</h5>
+            <h5 className="showMonDoesScreens">{hasSucker}</h5>
 
         </div>
 

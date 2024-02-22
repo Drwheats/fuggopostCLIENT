@@ -428,18 +428,18 @@ export default function CoachPage() {
                                 } catch (e) {
                                     console.log(e)
                                 }
-                                return <span> <li className="moveList" key={le_key}> <a
+                                return <span> <ul className="moveList" key={le_key}>  <span
+                                    className="nameCol"><a
                                     href={"https://www.smogon.com/dex/sv/moves/" + move.name} target="_blank"
-                                    rel="noreferrer"> <span
-                                    className="nameCol">{move.name} </span>  <span className="typeCol"><TypeShow2
-                                    type={tempType}/></span>  <span className="accCol">Acc: {tempAcc} -</span> <span
-                                    className="bpCol">{tempPower} {tempDamageType}</span> <span
-                                    className="descriptionCol">{tempDesc}</span></a> </li> </span>
+                                    rel="noreferrer">{move.name} </a></span>  <span className="typeCol"><TypeShow2
+                                    type={tempType}/></span>  <span className="accCol">{tempAcc}</span> <span
+                                    className="bpCol">{tempPower} {tempDamageType} :</span> <span
+                                    className="descriptionCol"> {tempDesc}</span></ul> </span>
                             } else return null;
                         })}
                     </table>
                     <table className="oppMoves">
-                        <div>{villainActiveName ? <h2>{villainActiveName}'s Moves</h2> : <h3> </h3>}</div>
+                        <div>{villainActiveName ? <h2>Enemy {villainActiveName}'s Moves</h2> : <h3> </h3>}</div>
 
                         {oppMoves.map((move, le_key) => {
                             let tempNum = move.url.split('/')[6];
