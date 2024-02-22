@@ -44,6 +44,7 @@ export default function Mons() {
         }
     };
 
+
     function callFuggoLolCoachesAPI() {
         const scoreJSON = {
             method: 'GET',
@@ -57,7 +58,6 @@ export default function Mons() {
             .then(
                 (result) => {
                     let tempCoaches = result;
-                    // sort goe here
                     setAllCoaches(tempCoaches);
                     setLeData(false);
                 }
@@ -86,20 +86,26 @@ export default function Mons() {
             <div className="monPageHeader">
                 <p>Welcome to the Official Page of the OUBL!</p>
             </div>
-            <button onClick={() => {
-                if (coachVisible) {
-                    setCoachVisibleButtonText("+");
-                    setCoachVisible(false);}
-                else {
-                    setCoachVisible(true);
-                    setCoachVisibleButtonText("-");
-                }
 
-            }}>{coachVisibleButtonText} </button>
             <div className="coachHolder">
-                <CoachMap visible={coachVisible} coaches={allCoaches} transitionState={true}/>
-                <img className="circularLogo" alt="amogus imageboard mascott" src="/amoguscircle.png"/> <h5>Copyright
-                ©2024 ben dot place </h5>
+                <div className="monPageCoachHeader">
+                    <button className="smallButton" onClick={() => {
+                        if (coachVisible) {
+                            setCoachVisibleButtonText("+");
+                            setCoachVisible(false);
+                        } else {
+                            setCoachVisible(true);
+                            setCoachVisibleButtonText("-");
+                        }
+
+                    }}>{coachVisibleButtonText} </button>
+                    <h2>Coaches</h2>
+                </div>
+                {!leData ? <CoachMap visible={coachVisible} coaches={allCoaches} transitionState={true}/> :
+                    <img className="circularLogo" alt="amogus imageboard mascott" src="/amoguscircle.png"/>
+                }
+                <h5>Copyright
+                    ©2024 ben dot place </h5>
             </div>
 
         </div>

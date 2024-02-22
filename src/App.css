@@ -558,19 +558,31 @@ button:active {
 }
 
 .circularLogo{
-    margin-top: 500px;
-    display: flex;
-    bottom: 0px;
     transition: all 2s;
     box-sizing: border-box;
     max-width: 100%;
+    animation-name: spinConstant;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
-
-.circularLogo:hover {
-    transform: scale(1.1) rotate(360deg);
+.monPageCoachHeader {
+    color: lightgreen;
+    display: flex;
 }
-
-
+.smallButton {
+    line-height: 0px;
+    height: 20px;
+    width: 10px;
+}
+@keyframes spinConstant {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
 .nav a {
     height: 100%;
     display: flex;
