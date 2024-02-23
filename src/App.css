@@ -287,6 +287,8 @@ button:active {
 }
 
 .calendarOptionsContainer {
+    animation: slide-right-left 1s linear;
+
     max-width: fit-content;
     max-height: fit-content;
 }
@@ -296,6 +298,7 @@ button:active {
 }
 
 .header {
+    animation: slide-right-left 1s linear;
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -308,6 +311,8 @@ button:active {
 
 
 .weekdays {
+    animation: slide-right-left 1s linear;
+
     width: 85vw;
     display: flex;
     flex-direction: row;
@@ -338,6 +343,11 @@ button:active {
 }
 
 .day {
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 1s;
+
     width: 12vw;
     min-height: fit-content;
     padding: 10px;
@@ -356,11 +366,14 @@ button:active {
 }
 
 #currentDay {
+    animation: slide-right-left 1s linear;
+
     background-color: #706fd3;
     color: #fff;
 }
 
 .event {
+
     font-size: 16px;
     padding: 3px;
 
@@ -1199,6 +1212,17 @@ pre {
     }
 }
 
+@keyframes slide-right-left {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
 @keyframes slide-left-right {
     from {
         transform: translateX(0%);
@@ -1228,6 +1252,15 @@ pre {
     }
     to {
         transform: scale(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
         opacity: 1;
     }
 }
@@ -1600,7 +1633,10 @@ pre {
     border-width: thin;
     width: 4vw;
     height: 25px;
-
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 3.5s;
 }
 .typeChartCellWeak {
     background-color: indianred;
@@ -1612,6 +1648,10 @@ pre {
     border-width: thin;
     width: 4vw;
     height: 25px;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 2s;
 
 }.typeChartCellStrong {
      background-color: lawngreen;
@@ -1624,6 +1664,10 @@ pre {
      border-width: thin;
      width: 4vw;
      height: 25px;
+     animation-name: fadeInOpacity;
+     animation-iteration-count: 1;
+     animation-timing-function: ease-in;
+     animation-duration: 1s;
 
  }
     .typeColours {

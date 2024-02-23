@@ -374,7 +374,7 @@ export default function CoachPage() {
                 {/*<div className="coachBlurb">*/}
                 {/*    Rank #{getLeagueRank() + 1}*/}
                 {/*</div>*/}
-                <div className="heroMonHolder">
+                  <div className="heroMonHolder">
             {pokemons.map((mon, le_Key) => {
                 if (mon.active === true) {
                     return <span className="monColumnHolderGlowing" key={le_Key} >

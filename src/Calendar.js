@@ -14,9 +14,8 @@ export default function Calendar() {
     const [isTiffHidden, setIsTiffHidden] = useState(false);
     const [isParadiseHidden, setIsParadiseHidden] = useState(false);
     const [isRevueHidden, setIsRevueHidden] = useState(false);
-
     const [dataNotReceived, setDataNotReceived] = useState(true);
-
+    const delay = ms => new Promise(res => setTimeout(res, ms));
     // fetch movies from remote
     async function fetchMovies() {
         if (window.localStorage.getItem("events") === null || window.localStorage.getItem("events") === undefined || events === [] ) {
@@ -25,7 +24,9 @@ export default function Calendar() {
             .then(json => {
                 localStorage.setItem('events', JSON.stringify(json));
             }).then(setEvents(localStorage.getItem("events"))).catch(e => console.log(e))
+
     }}
+
 
 
     // render calendar
@@ -237,6 +238,11 @@ export default function Calendar() {
                 loadCalendar();
 
             }
+        try {
+        }
+        catch (e) {
+                console.log(e)
+        }
         }
         ,
         [fetchMovies, events])
