@@ -1,6 +1,6 @@
 import Pokemon from "./Pokemon";
 import {useState} from "react";
-export default function Coach({coachName, coachNum, teamName, winLoss, mons}) {
+export default function Coach({coachName, coachNum, teamName, winLoss, mons, leagueRank}) {
     const [bigMons, setBigMons] = useState(false);
 
     let tempMons = mons.sort((a, b) => b.pts - a.pts);
@@ -10,7 +10,7 @@ export default function Coach({coachName, coachNum, teamName, winLoss, mons}) {
     return (
 
         <div className={(coachNum + 1) % 2 === 0 ? "coachCardBlue" : "coachCardGreen"} key={coachNum}>
-            <h1 > <a className="coachCardHeader" href={"/mons/coach/" + coachNum}> {coachName} ({teamName})</a></h1>
+            <h1 > <a className="coachCardHeader" href={"/mons/coach/" + coachNum}>{coachName} ({teamName} - #{leagueRank+1})</a></h1>
             <h5 className="coachCardHeader">{winLoss[0]} Wins | {winLoss[2]} Losses (Differential of {winLoss.split("(")[1]}</h5>
             <div className="coachCardMonList">
             {tempMons.map((mon) => {

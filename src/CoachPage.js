@@ -28,7 +28,6 @@ export default function CoachPage() {
         teamName: "",
         winLoss: 0,
         mons: [],
-
     })
     const [thatCoach, setThatCoach] = useState({
         coachName: "",
@@ -36,9 +35,31 @@ export default function CoachPage() {
         teamName: "",
         winLoss: 0,
         mons: [],
-
     })
     const [moveAPIdata, setMoveAPIdata] = useState([]);
+    const getLeagueRank = () => {
+        let coaches = allCoaches.sort((a, b) => {
+            if (a.winLoss[0] > b.winLoss[0]) return -1;
+            else if (a.winLoss[0] < b.winLoss[0]) return 1;
+            if (a.winLoss[2] > b.winLoss[2]) return -1;
+            else if (a.winLoss[2] < b.winLoss[2]) return 1;
+            let diffA = a.winLoss.split('(')[1];
+            diffA = diffA.slice(0, diffA.length - 1)
+            diffA = diffA.substring(1);
+            diffA = Number(diffA)
+            let diffB = b.winLoss.split('(')[1];
+            diffB = diffB[1].slice(0, diffB.length - 1)
+            diffB = Number(diffB)
+
+            if (diffA > diffB) {
+                return -1;
+            }
+            else return 1;
+        })
+        return coaches.indexOf(thisCoach);
+
+
+    }
     let badMoves = ['308', '505', '1', '3', '325', '472', '477', '810', '469', '501', '108', '172', '511', '88', '378', '21', '186', '584', '35', '40', '51', '61', '132', '599', '791', '17', '364', '385', '77', '171', '71', '351', '338', '345', '670', '6', '458', '154', '426', '222', '48', '90', '487', '30', '12', '63', '319', '16', '416', '272', '507', '23', '82', '380', '93', '110', '321', '31', '285', '514', '432', '373', '66', '101', '109', '118', '130', '138', '139','212', '513', '466','502', '673', '185', '313', '52', '64', '28', '297', '340', '811','289', '203', '122', '226', '555', '608', '343', '341', '39', '113', '115', '72', '204', '81', '20', '526', '5', '10', '15', '19', '22', '24', '25', '29', '33', '36', '37', '43', '44', '45', '55', '70', '75', '84', '91', '99', '102', '103', '104', '106', '111', '117', '129', '148', '156', '164', '168', '173', '175', '180', '182', '184', '189', '197', '205', '206', '207', '209', '210', '213', '214', '216', '218', '225', '230', '232', '237', '239', '249', '253', '259', '260', '263', '270', '275', '279', '332', '446', '286', '290', '291', '310', '314', '335', '342', '356', '363', '365', '372', '374', '388', '429', '431', '445', '496', '497', '498', '574', '590', '693'];
     // Function to add our give multiple cache data
     const getTypingAPI = async (type) => {
@@ -171,7 +192,7 @@ export default function CoachPage() {
     }, [leData, allCoaches, pageLoc])
 
 
-    function setHeroActive(mon) {
+   async function setHeroActive(mon) {
             if (mon === {}) {
                 document.getElementById("typeChartHolder").style.display = "flex"; }
         document.getElementById("actives").style.display = "block";
@@ -180,21 +201,25 @@ export default function CoachPage() {
             pokemons[i].active = false;
         }
         mon.active = true;
-        setActiveMons(mon)
-        getMove(mon)
-        getMove(mon)
+        setActiveMons(mon);
+        const tem = await getMove(mon);
+        forceUpdate();
+        getMove(mon);
     }
-    function setVillainActive(mon) {
+    async function setVillainActive(mon) {
         document.getElementById("actives").style.display = "block";
 
         for (let i = 0; i < oppPokemons.length; i++) {
-            oppPokemons[i].active = false; }
+            oppPokemons[i].active = false;
+        }
         mon.active = true;
         setActiveMons(mon);
-        getMove(mon)
-        getMove(mon)
-        }
+        const tem = await getMove(mon).then(getMove(mon));
+        forceUpdate();
+        getMove(mon);
 
+
+    }
     function sortPoints() {
         let tempMons = pokemons.sort((a, b) => b.pts - a.pts);
         setPokemons(tempMons);
@@ -207,7 +232,6 @@ export default function CoachPage() {
         setPokemons(tempMons);
         setPokemons(pokemons.sort((a, b) => b.spe - a.spe));
         setOppPokemons(oppPokemons.sort((a, b) => b.spe - a.spe));
-
         forceUpdate(); // i dont care that it sbad
     }
     function sortAttack() {
@@ -215,7 +239,6 @@ export default function CoachPage() {
         setPokemons(tempMons);
         setPokemons(pokemons.sort((a, b) => b.atk - a.atk));
         setOppPokemons(oppPokemons.sort((a, b) => b.atk - a.atk));
-
         forceUpdate(); // i dont care that it sbad
     }
     function sortDefense() {
@@ -223,7 +246,6 @@ export default function CoachPage() {
         setPokemons(tempMons);
         setPokemons(pokemons.sort((a, b) => b.def - a.def));
         setOppPokemons(oppPokemons.sort((a, b) => b.def - a.def));
-
         forceUpdate(); // i dont care that it sbad
     }
     function sortSpecialAttack() {
@@ -231,7 +253,6 @@ export default function CoachPage() {
         setPokemons(tempMons);
         setPokemons(pokemons.sort((a, b) => b.spa - a.spa));
         setOppPokemons(oppPokemons.sort((a, b) => b.spa - a.spa));
-
         forceUpdate(); // i dont care that it sbad
     }
     function sortSpecialDefense() {
@@ -239,7 +260,6 @@ export default function CoachPage() {
         setPokemons(tempMons);
         setPokemons(pokemons.sort((a, b) => b.spd - a.spd));
         setOppPokemons(oppPokemons.sort((a, b) => b.spd - a.spd));
-
         forceUpdate(); // i dont care that it sbad
     }
     function sortHP() {
@@ -247,7 +267,6 @@ export default function CoachPage() {
         setPokemons(tempMons);
         setPokemons(pokemons.sort((a, b) => b.hp - a.hp));
         setOppPokemons(oppPokemons.sort((a, b) => b.hp - a.hp));
-
         forceUpdate(); // i dont care that it sbad
     }
     const getOpp = (value) => {
@@ -261,8 +280,7 @@ export default function CoachPage() {
             }
         }
     };
-    const getMove = (pokemon) => {
-        document.getElementById("typeChartHolder").style.display = "none";
+    const getMove = async (pokemon) => {
         let tempname = pokemon.name.toLowerCase();
         tempname = tempname.replace('mega charizard x', 'charizard')
         tempname = tempname.replace('mega charizard y', 'charizard')
@@ -300,16 +318,16 @@ export default function CoachPage() {
                         if (pokemons[i].name === pokemon.name) {
                             setHeroMoves(tempList);
                             setHeroActiveName(pokemon.name)
-                            // forceUpdate();
-                            return;
+                            forceUpdate();
+                            return tempList;
                         }
                     }
                     for (let i = 0; i < oppPokemons.length; i++) {
                         if (oppPokemons[i].name === pokemon.name) {
                             setOppMoves(tempList);
                             setVillainActiveName(pokemon.name)
-                            // forceUpdate();
-                            return;
+                            forceUpdate();
+                            return tempList;
                         }
                     }
 
@@ -353,7 +371,9 @@ export default function CoachPage() {
                                     </div>
 
             </span>
-
+                {/*<div className="coachBlurb">*/}
+                {/*    Rank #{getLeagueRank() + 1}*/}
+                {/*</div>*/}
                 <div className="heroMonHolder">
             {pokemons.map((mon, le_Key) => {
                 if (mon.active === true) {

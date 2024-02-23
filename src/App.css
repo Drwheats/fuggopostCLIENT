@@ -1645,6 +1645,7 @@ pre {
     }
 
     .heroMonHolder {
+
         flex-wrap: wrap;
         display: flex;
     }
