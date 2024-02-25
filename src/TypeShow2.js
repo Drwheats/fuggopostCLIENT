@@ -34,7 +34,7 @@ export default function TypeShow(type) {
             return <span className={nameClass} style={{background: "#A33EA1"}}> {returnedType} </span>
         }
         else if (tempType === "fighting") {
-            return <span className={nameClass} style={{background: "#C22E28"}}> {returnedType} </span>
+            return <span className={nameClass} style={{background: "#C22E28", fontSize: 2}}> {returnedType} </span>
         }
         else if (tempType === "ghost") {
             return <span className={nameClass} style={{background: "#735797"}}> {returnedType} </span>

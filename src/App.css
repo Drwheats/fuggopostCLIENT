@@ -1396,7 +1396,7 @@ pre {
         color: black;
         /*background-color: #ffde00;*/
         background-color: white;
-        width: 120px;
+        width: 110px;
         height: 305px;
         padding: 5px;
         float: left;
@@ -1669,10 +1669,10 @@ pre {
 
  }
     .typeColours {
-        padding: 0px;
+        font-size: 13px;
         text-align: center;
         float: left;
-        width: 52px;
+        width: 48px;
         border-radius: 10px;
         -moz-border-radius: 10px;
         -webkit-border-radius: 10px;
