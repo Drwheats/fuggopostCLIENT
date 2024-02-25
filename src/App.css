@@ -1375,7 +1375,7 @@ pre {
 
     .coachCardBlue {
 
-        margin: 10px;
+        margin: 3px;
         width: fit-content;
         background-color: lightblue;
         border-style: solid;
@@ -1385,7 +1385,7 @@ pre {
 
     .coachCardGreen {
         animation: slide-right-left .4s linear;
-        margin: 10px;
+        margin: 3px;
     width: fit-content;
     background-color: lightgreen;
     border-style: solid;
