@@ -1396,7 +1396,7 @@ pre {
         color: black;
         /*background-color: #ffde00;*/
         background-color: white;
-        width: 110px;
+        width: 120px;
         height: 305px;
         padding: 5px;
         float: left;
@@ -1453,6 +1453,8 @@ pre {
     .statHolderMonColumn {
         padding-top: 5px;
         display: flex;
+        float: left;
+        text-align: center;
     }
 
     .coachPageHeroName {
@@ -1520,6 +1522,7 @@ pre {
     }
 
     .bpCol {
+        padding-right: 2px;
         font-weight: bold;
         float: left;
         min-width: 80px;
@@ -1800,12 +1803,12 @@ pre {
     }
     .statLeft {
         float: left;
-        font-size: 15px;
+        font-size: 13.5px;
         display: flex;
     }
 .statRight {
     float: left;
-    font-size: 14px;
+    font-size: 13.5px;
     display: flex;
 }
 

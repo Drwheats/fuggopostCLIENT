@@ -453,7 +453,7 @@ export default function CoachPage() {
                                     href={"https://www.smogon.com/dex/sv/moves/" + move.name} target="_blank"
                                     rel="noreferrer">{move.name} </a></span>  <span className="typeCol"><TypeShow2
                                     type={tempType}/></span>  <span className="accCol">{tempAcc}</span> <span
-                                    className="bpCol">{tempPower} {tempDamageType} :</span> <span
+                                    className="bpCol">{tempPower} {tempDamageType}:</span> <span
                                     className="descriptionCol"> {tempDesc}</span></ul> </span>
                             } else return null;
                         })}
@@ -485,7 +485,7 @@ export default function CoachPage() {
                                     href={"https://www.smogon.com/dex/sv/moves/" + move.name}> <span
                                     className="nameCol">{move.name} </span> </a> <span className="typeCol"><TypeShow2
                                     type={tempType}/></span>  <span className="accCol">{tempAcc} </span> <span
-                                    className="bpCol">{tempPower} {tempDamageType}</span> <span
+                                    className="bpCol">{tempPower} {tempDamageType}:</span> <span
                                     className="descriptionCol">{tempDesc}</span> </li> </span>
                             } else return null;
                         })}
