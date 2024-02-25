@@ -1394,12 +1394,11 @@ pre {
     .pokemon {
         animation: slide-down-up .4s linear;
         color: black;
-        margin: 1px;
         /*background-color: #ffde00;*/
         background-color: white;
-        width: 130px;
+        width: 120px;
         height: 305px;
-        padding: 15px;
+        padding: 5px;
         float: left;
         border-style: solid;
         display: flex;
@@ -1469,8 +1468,7 @@ pre {
     }
 
     .monColumnHolder {
-        width: 150px;
-
+        width: fit-content;
         display: flex;
         flex-direction: column;
     }
@@ -1671,15 +1669,15 @@ pre {
 
  }
     .typeColours {
-        padding: 1.2px;
+        padding: 0px;
         text-align: center;
         float: left;
-        min-width: 50px;
-        border-radius: 20px;
-        -moz-border-radius: 20px;
-        -webkit-border-radius: 20px;
-        -khtml-border-radius: 20px;
-        -o-border-radius: 20px;
+        width: 52px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -khtml-border-radius: 10px;
+        -o-border-radius: 10px;
         border-style: solid;
 
     }
