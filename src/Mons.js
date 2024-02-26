@@ -82,7 +82,7 @@ export default function Mons() {
 
     return (
         <div className="monPage">
-            <h1> OUBL - Week 4</h1>
+            <h1> OUBL - Week 5</h1>
             <div className="monPageHeader">
                 <p>Welcome to the Official Page of the OUBL!</p>
             </div>

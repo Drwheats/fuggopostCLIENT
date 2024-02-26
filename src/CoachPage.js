@@ -4,13 +4,12 @@ import axios from "axios";
 import TypeShow2 from "./TypeShow";
 import WeaknessChart from "./WeaknessChart";
 import TypeShow from "./TypeShow2";
-
 let server = "https://api.fuggo.lol/"
 // let server = "http://localhost:4000/";
 export default function CoachPage() {
     let pageLoc = window.location.pathname.split('/')[3];
 
-    const currentWeek = 4;
+    const currentWeek = 5;
     const [heroActiveName, setHeroActiveName] = useState(false);
     const [villainActiveName, setVillainActiveName] = useState(false);
     const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
@@ -397,7 +396,7 @@ export default function CoachPage() {
 <div>
     <span className="coachPageVillainHeader" id="coachPageVillainHeader"><h1>VS:<a
         href={"https://ben.place/mons/coach/" + thatCoach.coachNum}> {thatCoach.coachName}</a> <a
-        href={"https://ben.place/mons/coach/" + thatCoach.coachNum}> ({thatCoach.teamName})></a></h1><h3>Score: {thatCoach.winLoss}</h3></span>
+        href={"https://ben.place/mons/coach/" + thatCoach.coachNum}> ({thatCoach.teamName})</a></h1><h3>Score: {thatCoach.winLoss}</h3></span>
 </div>
 
             <div className="villainMonHolder">
@@ -492,11 +491,22 @@ export default function CoachPage() {
                     </table>
 
                 </div>
+                <div className="coachHistoryHolder">           {matchups.map((match, le_key) => {
+                    console.log(match.Replay)
+                    return match.WinLoss === "W" ?
+                        <span className="coachHistoryWin"
+                              key={le_key}>Week {le_key + 1} : {match.Opponent} | {match.Differential} <a
+                            href={match.Replay}>(Replay 👀)</a></span> : match.WinLoss === "L" ?
+                            <span className="coachHistoryLoss" key={le_key}>Week {le_key + 1} : {match.Opponent} | {match.Differential} <a href={match.Replay}>(Replay 👀)</a></span> :
+                            <span className="coachHistoryFuture" key={le_key}>Week {le_key + 1} : {match.Opponent} </span>
 
+                })}
+                </div>
                 <div className="typeChartHolder" id="typeChartHolder">
                 <div className="typeChart"><h1 className="typeChartHeader">{thisCoach.coachName}'s Weaknesses</h1>
-                        <span className="decorationHolders"><TypeShow type="normal"/> <TypeShow
-                            type="fighting"/><TypeShow type="water"/><TypeShow type="fire"/><TypeShow
+                        <span className="decorationHolders"><TypeShow type="normal"/>
+                            <TypeShow type="fighting"/>
+                            <TypeShow type="water"/><TypeShow type="fire"/><TypeShow
                             type="grass"/><TypeShow type="electric"/><TypeShow type="dragon"/><TypeShow
                             type="fairy"/><TypeShow type="steel"/><TypeShow type="rock"/><TypeShow type="ice"/><TypeShow
                             type="ground"/><TypeShow type="bug"/><TypeShow type="poison"/><TypeShow

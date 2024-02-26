@@ -1612,6 +1612,19 @@ pre {
 
     }
 
+    .coachHistoryHolder {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .coachHistoryWin {
+        color: green;
+    }
+
+    .coachHistoryLoss {
+        color: red;
+    }
+
     .smallColours {
         align-content: center;
         text-align: center;

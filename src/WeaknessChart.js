@@ -41,8 +41,6 @@ export default function WeaknessChart(type1) {
             tempWeak[tempName] = tempValue;
         }
         if (tempType2 === null || tempType2 === "") {
-            // setMonWeak(tempWeak);
-            // weaknesses = {normal: 1, fighting: 1, dark: 1, psychic: 1, ghost: 1, fire: 1, water: 1, grass: 1, electric: 1, bug: 1, flying: 1, dragon: 1, steel: 1, fairy: 1, rock: 1, ground: 1, ice: 1, poison: 1}
             return (
                 <div className="typeChartMonHolder">
                     <span className="typeChartName">{type1.name}</span>
@@ -74,7 +72,7 @@ export default function WeaknessChart(type1) {
         type1toCheck = JSON.parse(localStorage.getItem(tempType2.toLowerCase()));
     }
         catch (e) {
-            console.log("firstl oad always fials")
+            console.log("bemis")
         }
     type1toCheck = JSON.parse(localStorage.getItem(tempType2.toLowerCase()));
         type1toCheck = type1toCheck.damage_relations;
