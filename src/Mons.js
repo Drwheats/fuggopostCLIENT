@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import PokeRules from "./PokeRules";
 import CoachMap from "./CoachMap";
-import {Transition} from "react-transition-group";
 let server = "https://api.fuggo.lol/"
 // let server = "http://localhost:4000/";
 
@@ -11,7 +10,6 @@ export default function Mons() {
     const [allCoaches, setAllCoaches] = useState([]);
     const [leData, setLeData] = useState(true);
     const [coachVisible, setCoachVisible] = useState(true);
-    const [coachVisibleButtonText, setCoachVisibleButtonText] = useState("-")
     // These 2 functions and helper IF are copied over from my coach page. I'm going to keep them in case someone tries to access the site through a coach page, but thsi is very bad.
     const getTypingAPI = async (type) => {
         if (type === null) return;
@@ -95,6 +93,7 @@ export default function Mons() {
                         if (coachVisible) {
                             setMainElementShowing("Rules");
                             setCoachVisible(false);
+
                         } else {
                             setCoachVisible(true);
                             setMainElementShowing("Coaches");
@@ -108,7 +107,7 @@ export default function Mons() {
                 {
                 }
 
-                <h5>Copyright
+                <h5 className="copyrightMons">Copyright
                     ©2024 ben dot place </h5>
             </div>
 

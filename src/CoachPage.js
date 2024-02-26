@@ -188,7 +188,7 @@ export default function CoachPage() {
 
         }
 
-    }, [leData, allCoaches, pageLoc])
+    }, [leData, allCoaches, pageLoc, matchups])
 
 
    async function setHeroActive(mon) {
@@ -201,7 +201,7 @@ export default function CoachPage() {
         }
         mon.active = true;
         setActiveMons(mon);
-        const tem = await getMove(mon);
+        getMove(mon);
         forceUpdate();
         getMove(mon);
     }
@@ -213,7 +213,7 @@ export default function CoachPage() {
         }
         mon.active = true;
         setActiveMons(mon);
-        const tem = await getMove(mon).then(getMove(mon));
+        getMove(mon);
         forceUpdate();
         getMove(mon);
 
@@ -495,7 +495,7 @@ export default function CoachPage() {
                     console.log(match.Replay)
                     return match.WinLoss === "W" ?
                         <span className="coachHistoryWin"
-                              key={le_key}>Week {le_key + 1} : {match.Opponent} | {match.Differential} <a
+                              key={le_key}>Week {le_key + 1} : {match.Opponent} | +{match.Differential} <a
                             href={match.Replay}>(Replay 👀)</a></span> : match.WinLoss === "L" ?
                             <span className="coachHistoryLoss" key={le_key}>Week {le_key + 1} : {match.Opponent} | {match.Differential} <a href={match.Replay}>(Replay 👀)</a></span> :
                             <span className="coachHistoryFuture" key={le_key}>Week {le_key + 1} : {match.Opponent} </span>

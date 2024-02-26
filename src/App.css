@@ -1396,7 +1396,7 @@ pre {
         color: black;
         /*background-color: #ffde00;*/
         background-color: white;
-        width: 120px;
+        width: 125px;
         height: 305px;
         padding: 5px;
         float: left;
@@ -1689,6 +1689,7 @@ pre {
 
  }
     .typeColours {
+        align-items: center;
         font-size: 13px;
         text-align: center;
         float: left;
@@ -1703,6 +1704,7 @@ pre {
     }
 
     .typeColours2 {
+
         border-style: solid;
     }
 
@@ -1726,6 +1728,7 @@ pre {
     }
 
     .monAbility {
+        font-size: 15px;
         display: flex;
         flex-direction: column;
         font-weight: bold;
@@ -1890,6 +1893,7 @@ pre {
 /* accordion */
 
 .container {
+    padding: 10px;
     color: darkgreen;
   max-width: 650px;
   width: 100%;
@@ -1899,7 +1903,9 @@ pre {
   /*transform: translate(-50%, -50%);*/
 }
 
-.wrapper {
+.wrapper1 {
+
+    margin: auto;
     animation: fadeInOpacity 1s linear;
 
     background-color: lightblue;
@@ -1907,8 +1913,17 @@ pre {
     border-bottom: 1px solid black;
   overflow: hidden;
 }
+.wrapper0 {
+    margin: auto;
+    animation: fadeInOpacity 1s linear;
 
-.wrapper .rule-container {
+    background-color: lightgreen;
+
+    border-bottom: 1px solid black;
+    overflow: hidden;
+}
+
+.wrapper0 .rule-container {
   width: 100%;
   text-align: left;
   padding: 20px 10px;
@@ -1921,40 +1936,67 @@ pre {
   border: none;
   cursor: pointer;
 }
-
+.wrapper1 .rule-container {
+    width: 100%;
+    text-align: left;
+    padding: 20px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
 .rule-container.active {
   color: #1db954;
   background-image: linear-gradient(90deg,transparent,rgba(0,0,0,0.04),transparent);
 }
 
-.wrapper .rule-container:hover {
+.wrapper0 .rule-container:hover {
   background-image: linear-gradient(90deg,transparent,rgba(0,0,0,0.04),transparent);
 }
-
-.wrapper .arrow {
+.wrapper1 .rule-container:hover {
+    background-image: linear-gradient(90deg,transparent,rgba(0,0,0,0.04),transparent);
+}
+.wrapper1 .arrow {
   font-size: 2rem;
   transition: .5s ease-in-out;
 }
-
+.wrapper0 .arrow {
+    font-size: 2rem;
+    transition: .5s ease-in-out;
+}
 .arrow.active {
   rotate: 180deg;
   color: #1db954;
 }
 
-.wrapper .answer-container {
+.wrapper0 .answer-container {
   padding: 0 1rem;
   transition: height .7s ease-in-out;
 }
-
-.wrapper .answer-content {
-    background-color: lightgreen;
+.wrapper1 .answer-container {
+    padding: 0 1rem;
+    transition: height .7s ease-in-out;
+}
+.wrapper0 .answer-content {
     white-space: pre;
   padding: 1rem 0;
   font-size: 20px;
 }
-
+.wrapper1 .answer-content {
+    white-space: pre;
+    padding: 1rem 0;
+    font-size: 20px;
+}
 .monPageButton {
     width: 420px;
+}
+
+.copyrightMons {
+    color: lightgreen;
 }
 
 
