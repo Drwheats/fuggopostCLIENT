@@ -1399,7 +1399,7 @@ pre {
         color: black;
         /*background-color: #ffde00;*/
         background-color: white;
-        width: 120px;
+        width: 118px;
         height: 315px;
         padding: 5px;
         float: left;
@@ -1413,7 +1413,6 @@ pre {
         height: 96px;
         width: 96px;
     }
-
 
     .pokeTypeHeader {
         display: flex;    }
