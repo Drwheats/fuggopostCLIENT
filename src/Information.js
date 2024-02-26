@@ -5,13 +5,10 @@ export default function Information() {
             <div className="marginParagraphAbout">
 
             <h1>ABOUT</h1>
-            <p>ben dot place slash b is an imageboard written in react. It is meant to mimic 4chan.</p>
-            <p>All posts are the legal property of their respective poster, and I, Ben, take no ownership of them</p>
-            <p>All media, rap lyrics, and any combination of 0s and 1s are posted here under fair use</p>
-            <p>Assume that your IP is being collected and uploaded to every 3-letter agency before you post</p>
+            <p>ben dot place is a place to have fun with your friends.</p>
+            <p>All data on this website is the legal property of their respective owner, and I take no ownership of any information on this website.</p>
+            <p>All media, rap lyrics, and any combination of 0s and 1s are posted here under fair use.</p>
             <p>Have fun and be yourself!</p>
-            <p>@postnumber to reply to somebody, use the > key to greentext. newline exits greentext.</p>
-            <p>The character limit of posts is 3000.</p>
 
         </div>
         </div>

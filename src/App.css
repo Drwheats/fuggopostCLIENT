@@ -613,8 +613,8 @@ button:active {
 
 nav li.active {
     background-color: white;
-    width: 200%;
-    border-radius: 55%;
+    padding: 10px;
+    border-radius: 70%;
     box-shadow: 0 0 9px 4px white;
     animation: glow 1.5s linear infinite;
     /*width: 100%;*/
@@ -622,10 +622,11 @@ nav li.active {
 
 .nav li:hover {
     background-color: white;
-    width: 200%;
-    border-radius: 60%;
+    padding: 10px;
+
+    border-radius: 70%;
     box-shadow: 0 0 9px 4px white;
-    animation: glow 2s linear infinite;
+    animation: glow 1.5s linear infinite;
     /*width: 100%;*/
 }
 
@@ -1374,7 +1375,7 @@ pre {
     }
 
     .coachCardBlue {
-
+        min-width: 400px;
         margin: 3px;
         width: fit-content;
         background-color: lightblue;
@@ -1384,6 +1385,8 @@ pre {
     }
 
     .coachCardGreen {
+        min-width: 400px;
+
         animation: slide-right-left .4s linear;
         margin: 3px;
     width: fit-content;
@@ -1396,7 +1399,7 @@ pre {
         color: black;
         /*background-color: #ffde00;*/
         background-color: white;
-        width: 125px;
+        width: 115px;
         height: 305px;
         padding: 5px;
         float: left;
@@ -1982,11 +1985,14 @@ pre {
     transition: height .7s ease-in-out;
 }
 .wrapper0 .answer-content {
+    user-select: none;
     white-space: pre;
   padding: 1rem 0;
   font-size: 20px;
 }
 .wrapper1 .answer-content {
+    user-select: none;
+
     white-space: pre;
     padding: 1rem 0;
     font-size: 20px;

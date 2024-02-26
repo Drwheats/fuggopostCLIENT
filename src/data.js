@@ -22,7 +22,7 @@ const data = [
         answer: 'Eight Teams total -- top four from each division\t\n' +
             'BO1 each round\t\n' +
             'Regular season record determines which teams make it.\t\n' +
-            '-\tDifferential breaks a tie\n' +
+            'Differential breaks a tie\n' +
             'In the case of an exact tie of record and differential. \n' +
             'Teams will play a BO3 play in round. Same rules as playoffs. ' +
             '\nIn this case, playoffs are pushed back one week.'
