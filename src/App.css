@@ -1399,7 +1399,7 @@ pre {
         color: black;
         /*background-color: #ffde00;*/
         background-color: white;
-        width: 115px;
+        width: 130px;
         height: 305px;
         padding: 5px;
         float: left;
@@ -1691,6 +1691,7 @@ pre {
      animation-duration: 1s;
 
  }
+
     .typeColours {
         align-items: center;
         font-size: 13px;
@@ -1773,6 +1774,7 @@ pre {
 
     .typeChartName {
         font-weight: bold;
+        font-size: 2vw;
         float: left;
         width: 15vw;
     }
@@ -1998,7 +2000,7 @@ pre {
     font-size: 20px;
 }
 .monPageButton {
-    width: 420px;
+    width: 444px;
 }
 
 .copyrightMons {
