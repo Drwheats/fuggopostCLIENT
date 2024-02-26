@@ -1399,8 +1399,8 @@ pre {
         color: black;
         /*background-color: #ffde00;*/
         background-color: white;
-        width: 130px;
-        height: 305px;
+        width: 120px;
+        height: 315px;
         padding: 5px;
         float: left;
         border-style: solid;
@@ -1741,6 +1741,7 @@ pre {
 
     }
     .actives {
+
         align-content: flex-start;
         float: left;
         flex-direction: row;
@@ -1773,6 +1774,7 @@ pre {
     }
 
     .typeChartName {
+
         line-height: 15px;
         font-weight: bold;
         font-size: 1vw;

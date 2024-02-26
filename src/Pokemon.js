@@ -40,6 +40,8 @@ export default function Pokemon({ mon }) {
     let src = "";
     tempname = tempname.replace('(no arena trap)', '')
     tempname = tempname.replace('galarian', '')
+    tempname = tempname.replace('50%', '')
+
     tempname = tempname.replace(' ', '')
     tempname = tempname.replace('incarnate', '')
     tempname = tempname.replace('hisuian', '')
