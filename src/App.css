@@ -1773,8 +1773,9 @@ pre {
     }
 
     .typeChartName {
+        line-height: 15px;
         font-weight: bold;
-        font-size: 2vw;
+        font-size: 1vw;
         float: left;
         width: 15vw;
     }
