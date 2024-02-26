@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import PokeRules from "./PokeRules";
 import CoachMap from "./CoachMap";
 import {Transition} from "react-transition-group";
 let server = "https://api.fuggo.lol/"
@@ -6,6 +7,7 @@ let server = "https://api.fuggo.lol/"
 
 
 export default function Mons() {
+    const [mainElementShowing, setMainElementShowing] = useState("Coaches");
     const [allCoaches, setAllCoaches] = useState([]);
     const [leData, setLeData] = useState(true);
     const [coachVisible, setCoachVisible] = useState(true);
@@ -89,21 +91,23 @@ export default function Mons() {
 
             <div className="coachHolder">
                 <div className="monPageCoachHeader">
-                    <button className="smallButton" onClick={() => {
+                    <button className="monPageButton" onClick={() => {
                         if (coachVisible) {
-                            setCoachVisibleButtonText("+");
+                            setMainElementShowing("Rules");
                             setCoachVisible(false);
                         } else {
                             setCoachVisible(true);
-                            setCoachVisibleButtonText("-");
+                            setMainElementShowing("Coaches");
                         }
 
-                    }}>{coachVisibleButtonText} </button>
-                    <h2>Coaches</h2>
+                    }}>{mainElementShowing} </button>
                 </div>
-                {!leData ? <CoachMap visible={coachVisible} coaches={allCoaches} transitionState={true}/> :
-                    <img className="circularLogo" alt="amogus imageboard mascott" src="/amoguscircle.png"/>
+                {mainElementShowing === "Rules" ?  <PokeRules /> : !leData ? <CoachMap visible={coachVisible} coaches={allCoaches} transitionState={true}/> : leData ?
+                    <img className="circularLogo" alt="amogus imageboard mascott" src="/amoguscircle.png"/> : <div />
                 }
+                {
+                }
+
                 <h5>Copyright
                     ©2024 ben dot place </h5>
             </div>

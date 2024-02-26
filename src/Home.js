@@ -37,7 +37,7 @@ export default function Home() {
                         <img className="projectImg" alt="monslogo" src="/amoguscircle.png"></img>
                         <div className="projectContainer">
                             <h4><b>Pokemon Draft League Helper</b></h4>
-                            <p>A database of the Pokemon league that I play in. Contains a few tools to help Pokemon coaches such as a matchup tool. Uses a Google Docs sheet as a database. A lot of information comes from pokeAPI. (https://pokeapi.co/)</p>
+                            <p>A front end for the Pokemon league that I play in. Contains a few tools to help Pokemon coaches. Uses a Google Docs sheet as a database. A lot of information comes from pokeAPI. (https://pokeapi.co/)</p>
                         </div>
                     </div>
                     </a>
@@ -46,7 +46,7 @@ export default function Home() {
                         <img className="projectImg" alt="cameraLogo" src="/cameraicon.png"></img>
                         <div className="projectContainer">
                             <h4><b>Local Theatre Calendar</b></h4>
-                            <p>A calendar that shows what's playing in a variety of local Toronto theatres. The data comes from a scraper that I made and on my API server. </p>
+                            <p>A calendar that shows what's playing in a variety of local Toronto theatres. The data comes from a scraper that I made and is hosted on my API server. Non-monthly view coming soon.</p>
                         </div>
                     </div>
                 </a>
