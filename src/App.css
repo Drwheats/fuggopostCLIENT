@@ -1375,6 +1375,7 @@ pre {
     }
 
     .coachCardBlue {
+        overflow: scroll;
         min-width: 400px;
         margin: 3px;
         width: fit-content;
@@ -1385,13 +1386,13 @@ pre {
     }
 
     .coachCardGreen {
+        overflow: scroll;
         min-width: 400px;
-
         animation: slide-right-left .4s linear;
         margin: 3px;
-    width: fit-content;
-    background-color: lightgreen;
-    border-style: solid;
+        width: fit-content;
+        background-color: lightgreen;
+        border-style: solid;
 }
 
     .pokemon {
@@ -1399,7 +1400,7 @@ pre {
         color: black;
         /*background-color: #ffde00;*/
         background-color: white;
-        width: 118px;
+        width: 110px;
         height: 315px;
         padding: 5px;
         float: left;
