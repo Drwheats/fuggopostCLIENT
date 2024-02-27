@@ -1,12 +1,15 @@
 import {useEffect, useState} from "react";
 import PokeRules from "./PokeRules";
 import CoachMap from "./CoachMap";
+import PokeDex from "./PokeDex";
 let server = "https://api.fuggo.lol/"
 // let server = "http://localhost:4000/";
 
 
 export default function Mons() {
-    const [mainElementShowing, setMainElementShowing] = useState("Coaches");
+    const [expandedIcon, setExpandedIcon] = useState("+")
+    const [expanded, setExpanded] = useState(false);
+    const [mainElementShowing, setMainElementShowing] = useState("Pokedex");
     const [allCoaches, setAllCoaches] = useState([]);
     const [leData, setLeData] = useState(true);
     const [coachVisible, setCoachVisible] = useState(true);
@@ -44,6 +47,17 @@ export default function Mons() {
         }
     };
 
+
+    function expandEverything() {
+        if (!expanded) {
+            setExpanded(true);
+            setExpandedIcon("-")
+        }
+        else {
+            setExpanded(false);
+            setExpandedIcon("+")
+        }
+    }
 
     function callFuggoLolCoachesAPI() {
         const scoreJSON = {
@@ -99,9 +113,9 @@ export default function Mons() {
                             setMainElementShowing("Coaches");
                         }
 
-                    }}>{mainElementShowing} </button>
+                    }}>{mainElementShowing} </button> <button onClick={expandEverything}>{expandedIcon}</button>
                 </div>
-                {mainElementShowing === "Rules" ?  <PokeRules /> : !leData ? <CoachMap visible={coachVisible} coaches={allCoaches} transitionState={true}/> : leData ?
+                {mainElementShowing === "Pokedex" ?  <PokeDex expanded={expanded} /> : mainElementShowing === "Rules" ?  <PokeRules expanded={expanded} /> : !leData ? <CoachMap visible={coachVisible} coaches={allCoaches} transitionState={true} expanded={expanded}/> : leData ?
                     <img className="circularLogo" alt="amogus imageboard mascott" src="/amoguscircle.png"/> : <div />
                 }
                 {

@@ -1901,6 +1901,8 @@ pre {
 /* accordion */
 
 .container {
+    animation: fadeInOpacity 1s linear;
+
     padding: 10px;
     color: darkgreen;
   max-width: 650px;
@@ -1914,7 +1916,6 @@ pre {
 .wrapper1 {
 
     margin: auto;
-    animation: fadeInOpacity 1s linear;
 
     background-color: lightblue;
 
@@ -1923,7 +1924,6 @@ pre {
 }
 .wrapper0 {
     margin: auto;
-    animation: fadeInOpacity 1s linear;
 
     background-color: lightgreen;
 
@@ -1958,7 +1958,7 @@ pre {
     cursor: pointer;
 }
 .rule-container.active {
-  color: #1db954;
+  color: black;
   background-image: linear-gradient(90deg,transparent,rgba(0,0,0,0.04),transparent);
 }
 

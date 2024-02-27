@@ -1,10 +1,9 @@
 import {RiArrowDropDownLine} from "react-icons/ri";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import data from "./data";
-export default function PokeRules() {
+export default function PokeRules({expanded}) {
     const AccordionItem = ({ question, answer, isOpen, onClick, index }) => {
         const contentHeight = useRef();
-
         return(
             <div className={'wrapper' + (index + 1 ) % 2}>
                 <button className={`rule-container ${isOpen ? 'active' : ''}`} onClick={onClick} >
@@ -24,17 +23,29 @@ export default function PokeRules() {
     }
 
     const Accordion = () => {
-        const [activeIndex, setActiveIndex] = useState([""]);
+        const [activeIndex, setActiveIndex] = useState((expanded) => expanded ? [0,1,2,3,4,5,6,7,8,9,10] : []);
+
+        useEffect(() => {
+            if (expanded) {
+                let tempIndex1 = [0,1,2,3,4,5,6,7,8,9,10];
+                console.log("tempIndex is : " + tempIndex1)
+                setActiveIndex(tempIndex1)
+            }
+
+        })
 
         const handleItemClick = (index) => {
             let tempIndex = Array.from(activeIndex);
             let location = tempIndex.indexOf(index)
             if (tempIndex.includes(index)) {
+                if (tempIndex.length == 1) {
+                    tempIndex.pop();
+                }
                 console.log("we found " + index)
                 tempIndex.splice(location, location)
-                setActiveIndex(tempIndex);
-                console.log(activeIndex)
 
+                setActiveIndex(tempIndex);
+                console.log(tempIndex)
                 return;
 
             }
