@@ -104,15 +104,18 @@ export default function Mons() {
             <div className="coachHolder">
                 <div className="monPageCoachHeader">
                     <button className="monPageButton" onClick={() => {
-                        if (coachVisible) {
+                        if (mainElementShowing === "Coaches") {
                             setMainElementShowing("Rules");
                             setCoachVisible(false);
-
-                        } else {
-                            setCoachVisible(true);
-                            setMainElementShowing("Coaches");
                         }
-
+                        if (mainElementShowing === "Rules") {
+                            setCoachVisible(false);
+                            setMainElementShowing("Pokedex");
+                        }
+                        if (mainElementShowing === "Pokedex") {
+                            setCoachVisible(true);
+                            setMainElementShowing("Coaches")
+                        }
                     }}>{mainElementShowing} </button> <button onClick={expandEverything}>{expandedIcon}</button>
                 </div>
                 {mainElementShowing === "Pokedex" ?  <PokeDex expanded={expanded} /> : mainElementShowing === "Rules" ?  <PokeRules expanded={expanded} /> : !leData ? <CoachMap visible={coachVisible} coaches={allCoaches} transitionState={true} expanded={expanded}/> : leData ?
