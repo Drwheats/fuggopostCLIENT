@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import TypeShow2 from "./TypeShow";
 
-export default function Pokemon({ mon }) {
+export default function Pokemon({ mon, owned }) {
 //name, pts, type1, type2, atk, def, spdf, spa, spe, hp, ability1, ability2, ability3
     const [hasRocks, setHasRocks] = useState("");
     const [hasSpin, setHasSpin] = useState("");
@@ -2035,49 +2035,107 @@ const webmons = [
     }, [hasRocks, name])
 
     return (
-    <div className="pokemon"> <span className="monIconHolders"></span>
-        <div><h5>
-        {name} ({mon.pts})
-        </h5></div>
+        // unowned mon
+        owned ? <div className="pokemonOwner"><span className="monIconHolders"></span>
+                <div><h5>
+                    {name} ({mon.pts})
+                </h5></div>
 
-        <img alt={mon.name} className="pokemonImage" src={src}/>
-            <ul className="pokeTable">
-                <span> <a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability1}>
-                    <span class="tooltiptext">view {mon.ability1} at smogon.com</span>{mon.ability1}</a></span>
-                <span><a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability2}><span class="tooltiptext">view {mon.ability2} at smogon.com</span>{mon.ability2}</a></span>
-                <span><a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability3}><span class="tooltiptext">view {mon.ability3} at smogon.com</span>{mon.ability3}</a></span>
-                <span><TypeShow2 type={type1}/><TypeShow2 type={type2} /></span>
+                <img alt={mon.name} className="pokemonImage" src={src}/>
+                <ul className="pokeTable">
+                    <span> <a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability1}><span
+                        className="tooltiptext">view {mon.ability1} at smogon.com</span>{mon.ability1}</a></span>
+                    <span><a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability2}><span
+                        className="tooltiptext">view {mon.ability2} at smogon.com</span>{mon.ability2}</a></span>
+                    <span><a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability3}><span
+                        className="tooltiptext">view {mon.ability3} at smogon.com</span>{mon.ability3}</a></span>
+                    <span><TypeShow2 type={type1}/><TypeShow2 type={type2}/></span>
                 </ul>
 
-        <div className="statHolderMonColumn">
-            <ul className="goDownStatsLeft">
-                <li className="statLeft">Atk: {atk}</li>
-                <ul className="statLeft">SpA: {spa}</ul>
-                <ul className="statLeft">Spe: {spe}</ul>
-            </ul>
-            <ul className="goDownStatsRight">
-                <ul className="statRight">Def: {def}</ul>
-                <ul className="statRight">SpD: {spdf}</ul>
-                <li className="statRight">HP: {hp}</li>
-            </ul>
-        </div>
+                <div className="statHolderMonColumn">
+                    <ul className="goDownStatsLeft">
+                        <li className="statLeft">Atk: {atk}</li>
+                        <ul className="statLeft">SpA: {spa}</ul>
+                        <ul className="statLeft">Spe: {spe}</ul>
+                    </ul>
+                    <ul className="goDownStatsRight">
+                        <ul className="statRight">Def: {def}</ul>
+                        <ul className="statRight">SpD: {spdf}</ul>
+                        <li className="statRight">HP: {hp}</li>
+                    </ul>
+                </div>
 
-        <div>
-            <h5 className="showMonDoesRocks">{hasRocks}</h5>
-            <h5 className="showMonDoesWebs">{hasWebs}</h5>
-            <h5 className="showMonDoesSpins">{hasSpin}</h5>
-            <h5 className="showMonDoesFog">{hasFog}</h5>
-            <h5 className="showMonDoesWish">{hasWish}</h5>
-            <h5 className="showMonDoesCures">{hasCureStatus}</h5>
-            <h5 className="showMonDoesScreens">{hasScreens}</h5>
-            <h5 className="showMonDoesScreens">{hasSpikes}</h5>
-            <h5 className="showMonDoesScreens">{hasExtremeSpeed}</h5>
-            <h5 className="showMonDoesScreens">{hasTidyUp}</h5>
-            <h5 className="showMonDoesScreens">{hasSucker}</h5>
+                <div>
+                    <h5 className="showMonDoesRocks">{hasRocks}</h5>
+                    <h5 className="showMonDoesWebs">{hasWebs}</h5>
+                    <h5 className="showMonDoesSpins">{hasSpin}</h5>
+                    <h5 className="showMonDoesFog">{hasFog}</h5>
+                    <h5 className="showMonDoesWish">{hasWish}</h5>
+                    <h5 className="showMonDoesCures">{hasCureStatus}</h5>
+                    <h5 className="showMonDoesScreens">{hasScreens}</h5>
+                    <h5 className="showMonDoesScreens">{hasSpikes}</h5>
+                    <h5 className="showMonDoesScreens">{hasExtremeSpeed}</h5>
+                    <h5 className="showMonDoesScreens">{hasTidyUp}</h5>
+                    <h5 className="showMonDoesScreens">{hasSucker}</h5>
+                </div>
+            <br />
+            <p className="monStatsHeader">{mon.ownerTeam}</p>
+                <ul className="monStats">
+                    <li>Kills : {mon.kills} | Deaths : {mon.deaths}</li>
+                    <li>Wins : {mon.deaths} | Losses : {mon.deaths}</li>
 
-        </div>
+                </ul>
 
-    </div>
+            </div> :
+            // owned mon
+            <div className="pokemon"><span className="monIconHolders"></span>
+                <div><h5>
+                    {name} ({mon.pts})
+                </h5></div>
+
+                <img alt={mon.name} className="pokemonImage" src={src}/>
+                <ul className="pokeTable">
+                    <span> <a className="monAbility"
+                              href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability1}><span
+                        className="tooltiptext">view {mon.ability1} at smogon.com</span>{mon.ability1}</a></span>
+                    <span><a className="monAbility"
+                             href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability2}><span
+                        className="tooltiptext">view {mon.ability2} at smogon.com</span>{mon.ability2}</a></span>
+                    <span><a className="monAbility"
+                             href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability3}><span
+                        className="tooltiptext">view {mon.ability3} at smogon.com</span>{mon.ability3}</a></span>
+                    <span><TypeShow2 type={type1}/><TypeShow2 type={type2}/></span>
+                </ul>
+
+                <div className="statHolderMonColumn">
+                    <ul className="goDownStatsLeft">
+                        <li className="statLeft">Atk: {atk}</li>
+                        <ul className="statLeft">SpA: {spa}</ul>
+                        <ul className="statLeft">Spe: {spe}</ul>
+                    </ul>
+                    <ul className="goDownStatsRight">
+                        <ul className="statRight">Def: {def}</ul>
+                        <ul className="statRight">SpD: {spdf}</ul>
+                        <li className="statRight">HP: {hp}</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 className="showMonDoesRocks">{hasRocks}</h5>
+                    <h5 className="showMonDoesWebs">{hasWebs}</h5>
+                    <h5 className="showMonDoesSpins">{hasSpin}</h5>
+                    <h5 className="showMonDoesFog">{hasFog}</h5>
+                    <h5 className="showMonDoesWish">{hasWish}</h5>
+                    <h5 className="showMonDoesCures">{hasCureStatus}</h5>
+                    <h5 className="showMonDoesScreens">{hasScreens}</h5>
+                    <h5 className="showMonDoesScreens">{hasSpikes}</h5>
+                    <h5 className="showMonDoesScreens">{hasExtremeSpeed}</h5>
+                    <h5 className="showMonDoesScreens">{hasTidyUp}</h5>
+                    <h5 className="showMonDoesScreens">{hasSucker}</h5>
+
+                </div>
+
+            </div>
 
     )
 }

@@ -11,10 +11,11 @@ export default function PokeDex() {
     const [type1, setType1] = useState("Type 1:")
     const [type2, setType2] = useState("Type 2:")
     const [minSpeed, setMinSpeed] = useState(0);
-
     const [minPoints, setMinPoints] = useState(0);
     const [maxPoints, setMaxPoints] = useState(25);
     const [monNamePartial, setMonNamePartial] = useState("")
+    const [megaChecked, setMegaChecked] = useState(false);
+    const [ownedChecked, setOwnedChecked] = useState(false);
 
     useEffect(() => {
         callAPI();
@@ -33,7 +34,12 @@ export default function PokeDex() {
             console.log(err);
         }
     };
-
+    const checkHandleMega = () => {
+        setMegaChecked(!megaChecked)
+    }
+    const checkHandleOwned = () => {
+        setOwnedChecked(!ownedChecked)
+    }
     function clearButton() {
         setMinSpeed(0);
         setMaxPoints(100);
@@ -53,6 +59,12 @@ export default function PokeDex() {
                 if (dex[i].type1 == type1 || dex[i].type2 == type1) {
                     if (dex[i].type1 == type2 || dex[i].type2 == type2) {
                         if (Number(dex[i].pts) >= tempMinPoints && dex[i].pts <= tempMaxPoints && dex[i].spe >= tempSpeedValue && dex[i].smogonName.includes(tempMonNamePartial)) {
+                            if (dex[i].smogonName.includes("mega") && megaChecked) {
+                                continue;
+                            }
+                            if (dex[i].owner !== "" && ownedChecked) {
+                                continue;
+                            }
                             console.log(dex[i].pts)
                             tempHolder.push(dex[i])
 
@@ -65,7 +77,12 @@ export default function PokeDex() {
             for (let i = 0; i < dex.length; i++) {
                 if (dex[i].type1 == type1 || dex[i].type2 == type1) {
                     if (Number(dex[i].pts) >= tempMinPoints && dex[i].pts <= tempMaxPoints && dex[i].spe >= tempSpeedValue && dex[i].smogonName.includes(tempMonNamePartial)) {
-
+                        if (dex[i].smogonName.includes("mega") && megaChecked) {
+                            continue;
+                        }
+                        if (dex[i].owner !== "" && ownedChecked) {
+                            continue;
+                        }
                         tempHolder.push(dex[i])}
                 }
             }
@@ -73,7 +90,14 @@ export default function PokeDex() {
         else if (type1 === "Type 1:" && type2 === "Type 2:") {
             for (let i = 0; i < dex.length; i++) {
                 if (Number(dex[i].pts) >= tempMinPoints && dex[i].pts <= tempMaxPoints && dex[i].spe >= tempSpeedValue && dex[i].smogonName.includes(tempMonNamePartial)) {
-                            console.log(dex[i].smogonName + " worth : " + dex[i].pts)
+                        if (dex[i].smogonName.includes("mega") && megaChecked) {
+                            continue;
+                        }
+                        if (dex[i].owner !== "" && ownedChecked) {
+                            continue;
+                        }
+
+                        console.log(dex[i].smogonName + " worth : " + dex[i].pts)
                             tempHolder.push(dex[i])
 
                         }
@@ -282,6 +306,21 @@ export default function PokeDex() {
                     </label>
                 </div>
             </div>
+
+            <div className="pokeDexChromeHolder">
+                <label className="toggleLabel">Hide Megas</label>
+                <label className="switch">
+                    <input type="checkbox" checked={megaChecked} onChange={checkHandleMega}></input>
+                    <span className="slider round"></span>
+                </label>
+                <label className="toggleLabel">Hide if owned</label>
+
+                <label className="switch">
+                    <input type="checkbox" checked={ownedChecked} onChange={checkHandleOwned}></input>
+                    <span className="slider round"></span>
+                </label>
+            </div>
+
             <div className="pokeDexButtonHolder">
                 <button className="monDexSearchButton" onClick={sendSearchButton}>Search!</button>
                 <button className="monDexClearButton" onClick={clearButton}>Clear</button>
@@ -290,7 +329,7 @@ export default function PokeDex() {
             {loaded ?
 
                 showing.slice(0, 75).map(s => {
-                    return <Pokemon key={s.smogonName} mon={s}/>
+                    return <Pokemon key={s.smogonName} owned={s.owner !== ""} mon={s}/>
 
                 })
                 : <img className="circularLogo" alt="amogus imageboard mascott" src="/amoguscircle.png"/>
