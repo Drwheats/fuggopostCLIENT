@@ -1401,7 +1401,7 @@ pre {
         /*background-color: #ffde00;*/
         background-color: white;
         width: 110px;
-        height: 315px;
+        height: 375px;
         padding: 5px;
         float: left;
         border-style: solid;
@@ -1409,13 +1409,14 @@ pre {
         flex-direction: column;
         align-items: center;
     }
+
 .pokemonOwner {
     animation: slide-right-left .4s linear;
     color: black;
     /*background-color: #ffde00;*/
     background-color: lightblue;
     width: 170px;
-    height: 315px;
+    height: 375px;
     padding: 5px;
     float: left;
     border-style: solid;

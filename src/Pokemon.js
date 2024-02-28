@@ -2082,7 +2082,7 @@ const webmons = [
             <p className="monStatsHeader">{mon.ownerTeam}</p>
                 <ul className="monStats">
                     <li>Kills : {mon.kills} | Deaths : {mon.deaths}</li>
-                    <li>Wins : {mon.deaths} | Losses : {mon.deaths}</li>
+                    <li>Played : {mon.gamesPlayed} | Wins : {mon.gamesWon}</li>
 
                 </ul>
 
