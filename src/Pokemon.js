@@ -26,48 +26,8 @@ export default function Pokemon({ mon }) {
     const spdf = mon.spd;
     const hp = mon.hp;
     const spe = mon.spe;
-    let tempname = "";
-
-    if (name){
-        tempname = name.toLowerCase();
-        tempname = tempname.replace('-', '')
-
-        if (tempname.includes("mega")) {
-            tempname = tempname.replace('mega', '');
-            tempname = tempname + "-mega";
-        }
-    }
-    let src = "";
-    tempname = tempname.replace('(no arena trap)', '')
-    tempname = tempname.replace('galarian', '')
-    tempname = tempname.replace('50%', '')
-
-    tempname = tempname.replace(' ', '')
-    tempname = tempname.replace('incarnate', '')
-    tempname = tempname.replace('hisuian', '')
-    tempname = tempname.replace('alolan', '')
-    tempname = tempname.replace('rapid-strike','')
-    tempname = tempname.replace('(all forms)', '')
-    tempname = tempname.replace('therian', '')
-    tempname = tempname.replace('10%', '')
-    tempname = tempname.replace('rotomheat', 'rotom-heat')
-    tempname = tempname.replace('rotomwash', 'rotom-wash')
-    tempname = tempname.replace('bloodmoon', '')
-    tempname = tempname.replace("charizard x-mega", "charizard-megax")
-    tempname = tempname.replace("charizard y-mega", "charizard-megay")
-    tempname = tempname.replace("lycanrocmidday", "lycanroc-midday")
-    tempname = tempname.replace("(no shed tail", "")
-    tempname = tempname.replace(".", "")
-
-    if (tempname.includes("mega")) {
-        src = "https://play.pokemonshowdown.com/sprites/gen6/" + tempname + ".png";
-        tempname = tempname.replace('mega', '');
-        tempname = tempname + "-mega";
-    }
-    else {
-        src = "https://play.pokemonshowdown.com/sprites/gen5/" + tempname + ".png";
-    }
-    const parsedName = tempname;
+    const src = "https://play.pokemonshowdown.com/sprites/gen5/" + mon.smogonName + ".png";
+    const smogonName = mon.smogonName;
     // this is where we add the little status effects / rocks / etc to the mon card.
     useEffect(() => {
 
@@ -1996,12 +1956,10 @@ const webmons = [
         ];
 
         let test = "";
-        if (name) {
-            test = name.toLowerCase();
+        if (smogonName) {
+            test = smogonName;
         }
-        test = test.replace(' ', '-');
-        test = test.replace('alolan-', '')
-        test = test.replace('hisuian-', '')
+
         for (let i = 0; i < rockmons.length; i++) {
             if (rockmons[i] === test) {
                 setHasRocks("Stealth Rocks")
@@ -2082,12 +2040,13 @@ const webmons = [
         {name} ({mon.pts})
         </h5></div>
 
-        <img alt="pokemon" className="pokemonImage" src={src}/>
+        <img alt={mon.name} className="pokemonImage" src={src}/>
             <ul className="pokeTable">
-                <span><a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability1}>{mon.ability1}</a></span>
-                <span><a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability2}>{mon.ability2}</a></span>
-                <span><a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability3}>{mon.ability3}</a></span>
-                <span><TypeShow2 type={type1} /><TypeShow2 type={type2} /></span>
+                <span> <a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability1}>
+                    <span class="tooltiptext">view {mon.ability1} at smogon.com</span>{mon.ability1}</a></span>
+                <span><a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability2}><span class="tooltiptext">view {mon.ability2} at smogon.com</span>{mon.ability2}</a></span>
+                <span><a className="monAbility" href={"https://www.smogon.com/dex/sv/abilities/" + mon.ability3}><span class="tooltiptext">view {mon.ability3} at smogon.com</span>{mon.ability3}</a></span>
+                <span><TypeShow2 type={type1}/><TypeShow2 type={type2} /></span>
                 </ul>
 
         <div className="statHolderMonColumn">

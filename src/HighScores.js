@@ -325,21 +325,24 @@ export default function HighScores({contentPage}) {
             </div>
             <CSSTransition nodeRef={nodeRef} timeout={1500} classNames="animatePosts">
 
-            <div ref={nodeRef} className="leaderboard" id="leaderboard">
-                {<div className='posts' id='posts'><PostMap posters={allPosts.slice(postPage * 10, postPage * 10 + 9)}
-                                                            className="postMap"/>
+                <div ref={nodeRef} className="leaderboard" id="leaderboard">
+                    {<div className='posts' id='posts'><PostMap
+                        posters={allPosts.slice(postPage * 10, postPage * 10 + 9)}
+                        className="postMap"/>
                     </div>}
-            </div>
+                </div>
             </CSSTransition>
 
-            <div className="footer" id="footer"><h5 className="copyright">Copyright ©2023 ben dot place </h5><span className="backwardButton"> <ImArrowLeft size={30}
-                                                                                               onClick={pageBack}
-                                                                                               className="backwardButton"/> </span>Now
+            <div className="footer" id="footer"><span
+                className="backwardButton"> <ImArrowLeft size={30}
+                                                         onClick={pageBack}
+                                                         className="backwardButton"/> </span>Now
                 Browsing Page : {postPage + 1} <span className="backwardButton"> <ImArrowRight size={30}
                                                                                                onClick={pageForward}
                                                                                                className="forwardButton"/> </span>
 
             </div>
-
+            <h5 className="copyrightMons">Copyright
+                ©2024 ben dot place </h5>
         </div>)
 }

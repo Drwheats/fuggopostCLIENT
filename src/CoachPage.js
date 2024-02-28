@@ -380,14 +380,14 @@ export default function CoachPage() {
 
                <Pokemon key={mon.name} mon={mon}/>
                    <span className="monButtonHolder"><button className="monButton" onClick={() => {
-                       window.open("https://www.smogon.com/dex/sv/pokemon/" + mon.name)}} >Info</button><button className="monButton" onClick={() => setHeroActive(mon)}>Moves</button></span>
+                       window.open("https://www.smogon.com/dex/sv/pokemon/" + mon.smogonName)}} >Info</button><button className="monButton" onClick={() => setHeroActive(mon)}>Moves</button></span>
 </span>
                 }
                else return <span className="monColumnHolder">
 
                <Pokemon key={mon.name} mon={mon}/>
                    <span className="monButtonHolder"><button className="monButton" onClick={() => {
-                       window.open("https://www.smogon.com/dex/sv/pokemon/" + mon.name)}}>  Info</button><button className="monButton" onClick={() => setHeroActive(mon)}>Moves</button></span>
+                       window.open("https://www.smogon.com/dex/sv/pokemon/" + mon.smogonName)}}>  Info</button><button className="monButton" onClick={() => setHeroActive(mon)}>Moves</button></span>
 </span>
             })}
                 </div>
@@ -405,13 +405,13 @@ export default function CoachPage() {
                         return <span className="monColumnHolderGlowingV" key={le_key}>
                <Pokemon key={mon.name} mon={mon}/>
                    <span><button className="monButton" onClick={() => {
-                       window.open("https://www.smogon.com/dex/sv/pokemon/" + mon.name)
+                       window.open("https://www.smogon.com/dex/sv/pokemon/" + mon.smogonName)
                    }}>  Info</button><button className="monButton" onClick={() => setVillainActive(mon)}>moves</button></span>
 </span>
                     } else return <span className="monColumnHolder">
                <Pokemon key={mon.name} mon={mon}/>
                    <span className="monButtonHolder"><button className="monButton" onClick={() => {
-                       window.open("https://www.smogon.com/dex/sv/pokemon/" + mon.name)}} >info</button><button className="monButton" onClick={() => setVillainActive(mon)}>moves</button></span>
+                       window.open("https://www.smogon.com/dex/sv/pokemon/" + mon.smogonName)}} >info</button><button className="monButton" onClick={() => setVillainActive(mon)}>moves</button></span>
 </span>
                 })}
             </div>

@@ -317,17 +317,17 @@ export default function PostPage() {
                     let lol = "hey"
                     try {
                         lol = document.getElementById("reply" + r).innerText
-                    } catch (e) {}
+                    } catch (e) {
+                    }
                     return <a className="inlineReply3" href={"/post/" + data.postNumber + "#reply" + r} textfloat={lol}
                               key={r}>>>{r}  </a>
                 })} </ul>
 
 
-
                 <div className="originalPosterHeader" id="originalPosterHeader">
                     <h3><a className="originalPosterNumber"
-                                                                                   onClick={clickReply}
-                                                                                   href="#mainTextSubmit">#{data.postNumber}</a></h3>
+                           onClick={clickReply}
+                           href="#mainTextSubmit">#{data.postNumber}</a></h3>
                     <h3 className="originalPosterName">name: {data.postName}</h3>
 
                     <h3 className="timeStampOP">
@@ -342,7 +342,7 @@ export default function PostPage() {
                          id={"originalPostImage" + pageLoc}
                          src={server + "fuggosimageworld/" + data.postNumber + ".png"}/>
                     <pre className="originalPosterText">
-                        {data.postBody.split("\n").map((t,key) => {
+                        {data.postBody.split("\n").map((t, key) => {
                             return <p key={key}>{t}</p>;
                         })}</pre>
                 </div>
@@ -380,5 +380,6 @@ export default function PostPage() {
             <div className="footerPostPage"><a href="/b"> <ImArrowLeft/> </a></div>
 
         </div>
-        )
+
+    )
 }

@@ -9,7 +9,7 @@ let server = "https://api.fuggo.lol/"
 export default function Mons() {
     const [expandedIcon, setExpandedIcon] = useState("+")
     const [expanded, setExpanded] = useState(false);
-    const [mainElementShowing, setMainElementShowing] = useState("Pokedex");
+    const [mainElementShowing, setMainElementShowing] = useState("Coaches");
     const [allCoaches, setAllCoaches] = useState([]);
     const [leData, setLeData] = useState(true);
     const [coachVisible, setCoachVisible] = useState(true);
@@ -116,18 +116,23 @@ export default function Mons() {
                             setCoachVisible(true);
                             setMainElementShowing("Coaches")
                         }
-                    }}>{mainElementShowing} </button> <button onClick={expandEverything}>{expandedIcon}</button>
+                    }}>{mainElementShowing} </button>
+                    <button onClick={expandEverything}>{expandedIcon}</button>
                 </div>
-                {mainElementShowing === "Pokedex" ?  <PokeDex expanded={expanded} /> : mainElementShowing === "Rules" ?  <PokeRules expanded={expanded} /> : !leData ? <CoachMap visible={coachVisible} coaches={allCoaches} transitionState={true} expanded={expanded}/> : leData ?
-                    <img className="circularLogo" alt="amogus imageboard mascott" src="/amoguscircle.png"/> : <div />
+                {mainElementShowing === "Pokedex" ? <PokeDex expanded={expanded}/> : mainElementShowing === "Rules" ?
+                    <PokeRules expanded={expanded}/> : !leData ?
+                        <CoachMap visible={coachVisible} coaches={allCoaches} transitionState={true}
+                                  expanded={expanded}/> : leData ?
+                            <img className="circularLogo" alt="amogus imageboard mascott" src="/amoguscircle.png"/> :
+                            <div/>
                 }
                 {
                 }
 
-                <h5 className="copyrightMons">Copyright
-                    ©2024 ben dot place </h5>
             </div>
 
+            <h5 className="copyrightMons">Copyright
+                ©2024 ben dot place </h5>
         </div>
 
     )
