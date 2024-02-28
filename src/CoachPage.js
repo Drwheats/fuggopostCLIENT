@@ -280,30 +280,24 @@ export default function CoachPage() {
         }
     };
     const getMove = async (pokemon) => {
-        let tempname = pokemon.name.toLowerCase();
-        tempname = tempname.replace('mega charizard x', 'charizard')
-        tempname = tempname.replace('mega charizard y', 'charizard')
+        let tempname = pokemon.smogonName.toLowerCase();
+        if (tempname == "mimikyu") {tempname += "-busted"}
+        if (tempname == "zygarde") {tempname += "-50"}
+        if (tempname == "tornadus") {tempname += "-incarnate"}
+        if (tempname == "lycanroc") {tempname = "lycanroc-midday"}
 
-        tempname = tempname.replace(' ', '-')
-        tempname = tempname.replace('-(no arena trap)', '')
-        tempname = tempname.replace('rapid-strike', '')
-        tempname = tempname.replace('(all forms)', '')
-        tempname = tempname.replace('therian', '')
-        tempname = tempname.replace('10%', '')
-        tempname = tempname.replace('rotomheat', 'rotom-heat')
-        tempname = tempname.replace('rotomwash', 'rotom-wash')
-        tempname = tempname.replace('(No Shed Tail', '')
-        tempname = tempname.replace('mega-', '')
-        tempname = tempname.replace('keldeo', 'keldeo-resolute')
+        tempname = tempname.replace("tapu", "tapu-")
+        tempname = tempname.replace("iron", "iron-")
+        tempname = tempname.replace("sandy", "sandy-")
+        tempname = tempname.replace("slither", "slither-")
+        tempname = tempname.replace("raging", "raging-")
+        tempname = tempname.replace("chien", "chien-")
+        tempname = tempname.replace("tinglu", "ting-lu")
+        tempname = tempname.replace("roaringmoon", "roaring-moon")
+        tempname = tempname.replace("screamtail", "scream-tail")
+        tempname = tempname.replace("gougingfire", "gouging-fire")
+        tempname = tempname.replace("mrrime", "mr-rime")
 
-        if (tempname.includes('galarian')) {
-            tempname = tempname.replace('galarian-', '')
-            tempname += '-galar'
-        }
-        if (tempname.includes('hisuian')) {
-            tempname = tempname.replace('hisuian-', '')
-            tempname += '-hisui'
-        }
         console.log("getting moves for :" + tempname)
             axios.get('https://pokeapi.co/api/v2/pokemon/' + tempname, {})
                 .then(response => {
