@@ -7,6 +7,10 @@ body {
     background-color: lightgray;
 }
 
+.hidden {
+    display: none;
+}
+
 #paradiseSideBarLabel {
     padding: 3px;
     background-color: #0069aa;
@@ -273,13 +277,12 @@ button {
     font-weight: 700;
     color: darkslategrey;
     border-radius: 5px;
-    transition: all ease 0.1s;
-    box-shadow: 0 5px 0 0 #a29bfe;
+    transition: all ease 0.2s;
 }
 
 button:active {
     transform: translateY(5px);
-    box-shadow: 0 0 0 0 #a29bfe;
+    box-shadow: 0 0 5px 50px #a29bfe;
 }
 
 .theatreCalendarHolder {
@@ -2030,6 +2033,37 @@ pre {
     padding: 1rem 0;
     font-size: 20px;
 }
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+
+
+
+
+
 .monPageButton {
     width: 444px;
 }
@@ -2038,25 +2072,22 @@ pre {
     float: left;
 }
 
+.pokeDexContainer {
+    width: 375px;
+    background-color: #03e5b7;
+    background-image: linear-gradient(177deg, #ADD8E6 10%, #90EE90 90%);
+    display: flex;
+    flex-direction: column;
+    animation: slide-right-left 0.75s linear;
+
+}
+
 .pokeDexChromeHolder {
     display: flex;
     padding: 5px;
 }
 
-.monDexSearchBar {
-    border: none;
-    outline: none;
-    background-color: #6c5ce7;
-    padding: 10px 20px;
-    font-size: 12px;
-    font-weight: 700;
-    color: darkslategrey;
-    border-radius: 5px;
-    transition: all ease 0.1s;
-    box-shadow: 0 5px 0 0 #a29bfe;
-    width: 100px;
-    height: 20px;
-}
+
 
 .monDexSearchButton {
 
@@ -2071,16 +2102,11 @@ pre {
 
 .monDexClearButton:hover {
     background-color: firebrick;
-
 }
 
 .monDexDropdown {
     font-size: 15px;
     height: 40px;
-}
-
-.pokeDexButtonHolder {
-    padding-top: 10px;
 }
 
 /* this floating searchbar placeholder thing thing */
@@ -2099,7 +2125,7 @@ pre {
 }
 
 .floating__input {
-    width: 120px;
+    width: 90px;
     height: 10px;
     padding: 1.8rem 1rem 0.6rem;
     font-size: 1rem;
@@ -2235,6 +2261,102 @@ input:checked + .slider:before {
 .toggleLabel {
     margin: 5px;
     font-size: 20px;
-    color: white;
-    background-color: darkslategrey;
+    color: darkslategrey;
+}
+
+input[type="radio"],input[type="checkbox"]{
+    display:none;
+    cursor: pointer;
+}
+label{
+    cursor: pointer;
+}
+
+/* /////for three state switch/////////////////////// */
+
+.switch3-container h5{
+    max-widthwidth: 500px;
+    margin-bottom: .7rem;
+}
+.switch3
+{
+
+    position: relative;
+    height:50px;
+    display:flex;
+    justify-content:space-around;
+}
+.switch3 label{
+    padding: 1rem;
+    z-index:1;
+}
+.switch3::before{
+    content: '';
+    position: absolute;
+    left:0;
+    width: 34%;
+    height: 100%;
+    background: #14142a;
+    border: 1px solid #fff;
+    border-radius: 12px;
+    opacity: .5;
+    transition: .5s left ease;
+}
+
+.switch3:has(#switch3-radio1:checked)::before{
+    left: 0%;
+}
+.switch3:has(#switch3-radio2:checked)::before{
+    left: 33%;
+}
+.switch3:has(#switch3-radio3:checked)::before{
+    left: 66%;
+}
+
+/* /////////////for three states without :has selector/// */
+
+
+.switch4-container h5{
+    margin-bottom: .7rem;
+}
+.switch4
+{
+
+    position: relative;
+    height:50px;
+    display:flex;
+    justify-content:space-around;
+    margin-bottom:1rem;
+}
+.switch4 label{
+    padding: 1rem;
+    z-index:1;
+}
+#active-label{
+    position: absolute;
+    left:0;
+    width: 34%;
+    height: 100%;
+    background: #14142a;
+    border: 1px solid #fff;
+    border-radius: 12px;
+    opacity: .5;
+    transition: .5s left ease;
+}
+#switch4-radio1:checked ~ #active-label{
+    left:0;
+}
+#switch4-radio2:checked ~ #active-label{
+    left:33%;
+}
+#switch4-radio3:checked ~ #active-label {
+    left:66%;
+}
+
+.expandButton {
+    padding-left: 20px;
+    margin-left: 10px;
+    height: 50px;
+    width: 30px;
+    ;
 }

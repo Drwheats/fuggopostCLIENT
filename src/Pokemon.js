@@ -2032,7 +2032,7 @@ const webmons = [
                 }
             }
         }
-    }, [hasRocks, name])
+    }, [hasRocks, name, smogonName])
 
     return (
         // unowned mon

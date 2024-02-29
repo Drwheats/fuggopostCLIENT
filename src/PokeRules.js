@@ -72,5 +72,7 @@ export default function PokeRules({expanded}) {
 
     return (
         <Accordion />
-    )
+        )
+
+
 }

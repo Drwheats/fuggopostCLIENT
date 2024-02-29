@@ -2,7 +2,7 @@ import Coach from "./Coach";
 import {useEffect, useState} from "react";
 import Pokemon from "./Pokemon";
 
-export default function PokeDex() {
+export default function PokeDex(expanded) {
     const [loaded, setLoaded] = useState(false);
     const [dex, setDex] = useState([])
     const [showing, setShowing] = useState([])
@@ -13,14 +13,17 @@ export default function PokeDex() {
     const [minSpeed, setMinSpeed] = useState(0);
     const [minPoints, setMinPoints] = useState(0);
     const [maxPoints, setMaxPoints] = useState(25);
+    const [monsToShow, setMonsToShow] = useState(75);
+
     const [monNamePartial, setMonNamePartial] = useState("")
     const [megaChecked, setMegaChecked] = useState(false);
     const [ownedChecked, setOwnedChecked] = useState(false);
-
+    const [isExpanded, setIsExpanded] = useState(expanded)
     useEffect(() => {
         callAPI();
     }, [loaded]);
 
+    console.log(expanded)
     const callAPI = async () => {
         if (!loaded) try {
             const response = await fetch(
@@ -42,11 +45,13 @@ export default function PokeDex() {
     }
     function clearButton() {
         setMinSpeed(0);
-        setMaxPoints(100);
+        setMaxPoints(25);
         setMinPoints(0);
         setType2("Type 2:")
         setType1("Type 1:")
         setShowing([])
+        setOwnedChecked(false)
+        setMegaChecked(false)
     }
     function sendSearchButton() {
         let tempHolder = []
@@ -115,15 +120,22 @@ export default function PokeDex() {
     }    function handleTextareaChangeMaxPoints(e) {
         setMaxPoints(e.target.value);
     }
+    function handleTextareaChangeMinSpeed(e) {
+        setMinSpeed(e.target.value);
+    }
 
+    function handleTextareaChangeMonsToShow(e) {
+        setMonsToShow(e.target.value);
+    }
     return (
+        <div>
         <div className="pokeDexContainer">
             <div className="pokeDexChromeHolder">
                 <div className="floating">
                     <input id="inputId" className="floating__input" name="input name"
                            onChange={handleTextareaChangeMonName}
                            value={monNamePartial} placeholder="Placeholder"/>
-                    <label htmlFor="inputId" className="floating__label" data-content="Pokemon Name">
+                    <label htmlFor="inputId" className="floating__label" data-content="Name">
                     </label>
                 </div>
                 <div className="dropdown">
@@ -290,6 +302,9 @@ export default function PokeDex() {
                     </div>
                 </div>
 
+
+            </div>
+            <div className="pokeDexChromeHolder">
                 <div className="floating">
                     <input id="inputId" className="floating__input" name="input name"
                            onChange={handleTextareaChangeMinPoints}
@@ -305,35 +320,50 @@ export default function PokeDex() {
                     <label htmlFor="inputId" className="floating__label" data-content="Maximum Points">
                     </label>
                 </div>
+                <div className="floating">
+                    <input id="inputId" className="floating__input" name="input name"
+                           onChange={handleTextareaChangeMinSpeed}
+                           value={minSpeed} placeholder="Placeholder"/>
+                    <label htmlFor="inputId" className="floating__label" data-content="Minimum Speed">
+                    </label>
+                </div>
             </div>
-
-            <div className="pokeDexChromeHolder">
-                <label className="toggleLabel">Hide Megas</label>
+            <div className={"pokeDexChromeHolder"}>
+                <label className="toggleLabel">hide megas</label>
                 <label className="switch">
                     <input type="checkbox" checked={megaChecked} onChange={checkHandleMega}></input>
                     <span className="slider round"></span>
                 </label>
-                <label className="toggleLabel">Hide if owned</label>
+                <label className="toggleLabel">free agents</label>
 
                 <label className="switch">
                     <input type="checkbox" checked={ownedChecked} onChange={checkHandleOwned}></input>
                     <span className="slider round"></span>
                 </label>
             </div>
-
-            <div className="pokeDexButtonHolder">
+            <div className={"pokeDexChromeHolder"}>
+                <div className="floating">
+                    <input id="inputId" className="floating__input" name="input name"
+                           onChange={handleTextareaChangeMonsToShow}
+                           value={monsToShow} placeholder="Placeholder"/>
+                    <label htmlFor="inputId" className="floating__label" data-content="results per page">
+                    </label>
+                </div>
+            </div>
+            <div className="pokeDexChromeHolder">
                 <button className="monDexSearchButton" onClick={sendSearchButton}>Search!</button>
                 <button className="monDexClearButton" onClick={clearButton}>Clear</button>
 
             </div>
+
+        </div>
             {loaded ?
 
-                showing.slice(0, 75).map(s => {
+                showing.slice(0, monsToShow).map(s => {
                     return <Pokemon key={s.smogonName} owned={s.owner !== ""} mon={s}/>
 
-                })
-                : <img className="circularLogo" alt="amogus imageboard mascott" src="/amoguscircle.png"/>
-            }
-        </div>
+            })
+            : <img className="circularLogo" alt="amogus imageboard mascott" src="/amoguscircle.png"/>
+        }</div>
     )
 }

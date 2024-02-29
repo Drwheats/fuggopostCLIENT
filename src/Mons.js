@@ -103,22 +103,50 @@ export default function Mons() {
 
             <div className="coachHolder">
                 <div className="monPageCoachHeader">
-                    <button className="monPageButton" onClick={() => {
-                        if (mainElementShowing === "Coaches") {
-                            setMainElementShowing("Rules");
-                            setCoachVisible(false);
-                        }
-                        if (mainElementShowing === "Rules") {
-                            setCoachVisible(false);
-                            setMainElementShowing("Pokedex");
-                        }
-                        if (mainElementShowing === "Pokedex") {
-                            setCoachVisible(true);
-                            setMainElementShowing("Coaches")
-                        }
-                    }}>{mainElementShowing} </button>
-                    <button onClick={expandEverything}>{expandedIcon}</button>
+                    <div className="switch3-container">
+                        <div className="switch3">
+                            <input type="radio" id="switch3-radio1" name="radio"/>
+                            <label htmlFor="switch3-radio1"
+                            onClick={()=>{
+                                if (mainElementShowing !== "Coaches")
+                                    {       setMainElementShowing("Coaches");}
+                                    {      setCoachVisible(true);}
+                            }}
+                            >Coaches</label>
+
+                            <input type="radio" id="switch3-radio2" name="radio" onClick={()=>{
+                                if (mainElementShowing !== "Rules")
+                                    {       setMainElementShowing("Rules");}
+                                    {      setCoachVisible(false);}
+                                }}/>
+                            <label htmlFor="switch3-radio2">Rules</label>
+
+                            <input type="radio" id="switch3-radio3" name="radio" onClick={()=>{
+                                if (mainElementShowing !== "Pokedex")
+                                    {       setMainElementShowing("Pokedex");}
+                                    {      setCoachVisible(false);}
+                                }}/>
+                            <label htmlFor="switch3-radio3">Pokedex</label>
+
+                        </div>
+                    </div>
+                    {/*<button className="monPageButton" onClick={() => {*/}
+                    {/*    if (mainElementShowing === "Coaches") {*/}
+                    {/*        setMainElementShowing("Rules");*/}
+                    {/*        setCoachVisible(false);*/}
+                    {/*    }*/}
+                    {/*    if (mainElementShowing === "Rules") {*/}
+                    {/*        setCoachVisible(false);*/}
+                    {/*        setMainElementShowing("Pokedex");*/}
+                    {/*    }*/}
+                    {/*    if (mainElementShowing === "Pokedex") {*/}
+                    {/*        setCoachVisible(true);*/}
+                    {/*        setMainElementShowing("Coaches")*/}
+                    {/*    }*/}
+                    {/*}}>{mainElementShowing} </button>*/}
+                    <button className="expandButton" onClick={expandEverything}>{expandedIcon}</button>
                 </div>
+
                 {mainElementShowing === "Pokedex" ? <PokeDex expanded={expanded}/> : mainElementShowing === "Rules" ?
                     <PokeRules expanded={expanded}/> : !leData ?
                         <CoachMap visible={coachVisible} coaches={allCoaches} transitionState={true}
