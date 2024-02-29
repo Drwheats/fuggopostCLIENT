@@ -309,7 +309,7 @@ export default function PokeDex(expanded) {
                     <input id="inputId" className="floating__input" name="input name"
                            onChange={handleTextareaChangeMinPoints}
                            value={minPoints} placeholder="Placeholder"/>
-                    <label htmlFor="inputId" className="floating__label" data-content="Minimum Points">
+                    <label htmlFor="inputId" className="floating__label" data-content="Min Points">
                     </label>
                 </div>
 
@@ -317,14 +317,14 @@ export default function PokeDex(expanded) {
                     <input id="inputId" className="floating__input" name="input name"
                            onChange={handleTextareaChangeMaxPoints}
                            value={maxPoints} placeholder="Placeholder"/>
-                    <label htmlFor="inputId" className="floating__label" data-content="Maximum Points">
+                    <label htmlFor="inputId" className="floating__label" data-content="Max Points">
                     </label>
                 </div>
                 <div className="floating">
                     <input id="inputId" className="floating__input" name="input name"
                            onChange={handleTextareaChangeMinSpeed}
                            value={minSpeed} placeholder="Placeholder"/>
-                    <label htmlFor="inputId" className="floating__label" data-content="Minimum Speed">
+                    <label htmlFor="inputId" className="floating__label" data-content="Min Speed">
                     </label>
                 </div>
             </div>

@@ -2037,9 +2037,12 @@ const webmons = [
     return (
         // unowned mon
         owned ? <div className="pokemonOwner"><span className="monIconHolders"></span>
-                <div><h5>
+                <div><h5 className="monName" onClick={() => {
+                    window.open("https://www.smogon.com/dex/sv/pokemon/" + smogonName)
+                }}>
                     {name} ({mon.pts})
-                </h5></div>
+                    <span
+                        className="tooltiptext">view {smogonName} at smogon.com</span></h5></div>
 
                 <img alt={mon.name} className="pokemonImage" src={src}/>
                 <ul className="pokeTable">
@@ -2089,9 +2092,12 @@ const webmons = [
             </div> :
             // owned mon
             <div className="pokemon"><span className="monIconHolders"></span>
-                <div><h5>
+                <div><h5 className="monName" onClick={() => {
+                    window.open("https://www.smogon.com/dex/sv/pokemon/" + smogonName)
+                }}>
                     {name} ({mon.pts})
-                </h5></div>
+                    <span
+                        className="tooltiptext">view {smogonName} at smogon.com</span></h5></div>
 
                 <img alt={mon.name} className="pokemonImage" src={src}/>
                 <ul className="pokeTable">

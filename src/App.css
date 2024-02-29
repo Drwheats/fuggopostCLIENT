@@ -1754,23 +1754,33 @@ pre {
 
     }
 
-    .monAbility .tooltiptext {
-        visibility: hidden;
-        background-color: lightblue;
-        color: darkslategray ;
-        text-align: center;
-        border-radius: 60px;
-        padding: 5px 0;
-        padding-left: 30px;
 
-        /* Position the tooltip */
-        position: absolute;
-        z-index: 1;
-    }
+.monName:hover .tooltiptext{
+    visibility: visible;
+    transition-delay: 0.3s;
+}
+.monName:hover {
+    cursor: pointer;
+}
+
     .monAbility:hover .tooltiptext{
         visibility: visible;
         transition-delay: 0.3s;
     }
+
+.tooltiptext {
+    visibility: hidden;
+    background-color: lightgreen;
+    color: black ;
+    text-align: center;
+    border-radius: 60px;
+    padding: 5px 0;
+    padding-left: 30px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
     .actives {
 
         align-content: flex-start;
@@ -2106,7 +2116,7 @@ pre {
 
 .monDexDropdown {
     font-size: 15px;
-    height: 40px;
+    height: 50px;
 }
 
 /* this floating searchbar placeholder thing thing */
@@ -2125,7 +2135,7 @@ pre {
 }
 
 .floating__input {
-    width: 90px;
+    width: 85px;
     height: 10px;
     padding: 1.8rem 1rem 0.6rem;
     font-size: 1rem;
