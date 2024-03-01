@@ -46,9 +46,11 @@ const data = [
         'Games are to be played on Sundays of each week as much as possible\t\n' +
         'Matches are to be coordinated between you and your opponent every week during the free agency window.\t\n' +
         'For late/missed game rules, keep scrolling\t\n' +
-        'Faulted matches (rule violation) are considered forfeits and will constitute an X-0 loss for the violator (X=Able-Pokemon on the opponent’s field at the time when the violation occurred)\t\n' +
-        'Disconnected matches are to be remade if the match has started. In the event of a disconnect of BOTH players, a remake will be done cooperatively and as accurately as possible, with Mo to mediate if available.\t\n' +
-        'Once a game window opens, it cannot be recreated for any reason other than a true disconnect (honour system is the only way to enforce this here). Don’t “forget” an item, or accidentally bring the wrong team etc., the window that opens is the one that will be played unless it is disconnected by both parties accidentally.\t'},
+        'Faulted matches (rule violation) are considered forfeits and will constitute an X-0 loss for the violator \n' +
+        'Disconnected matches are to be remade if the match has started. \t\n' +
+        'In the event of a disconnect of BOTH players, a remake will be done cooperatively and as accurately as possible\n' +
+        'Once a game window opens, it cannot be recreated for any reason other than a true disconnect. \n' +
+        'The window that opens is the one that will be played unless it is disconnected by both parties accidentally.\t'},
     {
         question: 'Banned moves, items, natures and abilities',
         answer: 'Accuracy reduction moves\t\n' +
@@ -84,7 +86,6 @@ const data = [
             'Baton Pass users can not pass a positive stat change on purpose. \n' +
             'Meaning, you cannot click Agility and then Baton Pass. \n' +
             'Users can pass stat changes caused by the other trainer.\n ' +
-            'If you are hit by Coaching used by the other coach, and you have clicked Baton Pass, this is a legal interaction.\n ' +
             'Pro tip: Do not boost your opponent’s stats.\t'
     },
     {question: 'Weekly schedule (PLEASE READ)\t\t' ,
@@ -96,15 +97,15 @@ const data = [
     {
         question: 'Replays/stats\t\t',
         answer: 'Replays must be saved after each game. They are archived on our Doc.\t\n' +
-            'Stats must be submitted after every match, preferably on the same day. This allows me to have the site up to date.\t\n' +
+            'Stats must be submitted after every match, preferably on the same day. \t\n' +
             'With stats submission, the winner does stats.'
     },
     {
         question: 'Weekly schedule (PLEASE READ)\t\t',
-        answer: 'Each coach can postpone their weekly match until the end of the free agent window twice. Commissioner will keep track of this.\t\n' +
-            'Example: If John is battling Harry and John needs to extend the week by two days, he will message Mo directly. This can be done twice per person.\t\n' +
-            'Missed matches result in a loss. For both teams, unless one team can provide Mo with proof that they were ready with a team set and the other team was not.\t\n' +
-            'Obviously, for extreme circumstances, exceptions can be made (death, fluke life event, etc.)\t\n' +
+        answer: 'Each coach can postpone their weekly match until the end of the free agent window twice.\n' +
+            'Missed matches result in a loss for both teams.*\t\n' +
+            '*Unless one team can provide Mo with proof that they were ready with a team set and the other team was not.\t\n' +
+            'Obviously, for extreme circumstances exceptions can be made (death, fluke life event, etc.)\t\n' +
             'PLAY YOUR GAMES\t'
     }
 ];
