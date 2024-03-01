@@ -141,7 +141,9 @@ export default function PokeDex(expanded) {
                 <div className="dropdown">
                     <button className="monDexDropdown">{type1}</button>
                     <div className="dropdown-content">
-                        <button onClick={() => {
+                        <button style={{
+                            backgroundColor: 'red'
+                        }} onClick={()  => {
                             setType1("Type 1:")
                         }} className="sortButton">None
                         </button>

@@ -755,7 +755,6 @@ a:link {
     box-shadow: 10px 5px 5px darkslategrey;
 }
 
-/* Add some padding inside the card container */
 .postTopic {
 
     display: flex;
@@ -1310,11 +1309,6 @@ pre {
     margin: 5px;
 }
 
-@media only screen and (min-width: 768px) {
-    .cards {
-        max-width: 100%;
-    }
-
     .theEntirePost {
         margin-bottom: 10px;
         max-width: 80%;
@@ -1357,28 +1351,21 @@ pre {
         max-width: 70%;
     }
 
-    .postContent {
-        max-width: 100%;
-    }
 
-}
+
     /* This begins the part of POKEMONS. NO IMAGEBOARD OR PLANNER OR ANYTHING GOES HERE JUST MONS. POKEMON START OF CSS*/
 
 .coachHolder {
     background: #999999 url("../public/pokebal.png") repeat;
         display: block;
-    height: fit-content;
-    min-height: 100vh;
 }
 
     .realCoachHolder {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Play with min-value */    }
 
     .coachCardBlue {
-        overflow: scroll;
         min-width: 400px;
         margin: 3px;
         width: fit-content;
@@ -1389,7 +1376,6 @@ pre {
     }
 
     .coachCardGreen {
-        overflow: scroll;
         min-width: 400px;
         animation: slide-right-left .4s linear;
         margin: 3px;
@@ -2078,9 +2064,6 @@ pre {
     width: 444px;
 }
 
-.copyrightMons {
-    float: left;
-}
 
 .pokeDexContainer {
     width: 375px;

@@ -116,8 +116,8 @@ export default function Mons() {
 
                             <input type="radio" id="switch3-radio2" name="radio" onClick={()=>{
                                 if (mainElementShowing !== "Rules")
-                                    {       setMainElementShowing("Rules");}
-                                    {      setCoachVisible(false);}
+                                           setMainElementShowing("Rules");
+                                          setCoachVisible(false);
                                 }}/>
                             <label htmlFor="switch3-radio2">Rules</label>
 
@@ -130,20 +130,6 @@ export default function Mons() {
 
                         </div>
                     </div>
-                    {/*<button className="monPageButton" onClick={() => {*/}
-                    {/*    if (mainElementShowing === "Coaches") {*/}
-                    {/*        setMainElementShowing("Rules");*/}
-                    {/*        setCoachVisible(false);*/}
-                    {/*    }*/}
-                    {/*    if (mainElementShowing === "Rules") {*/}
-                    {/*        setCoachVisible(false);*/}
-                    {/*        setMainElementShowing("Pokedex");*/}
-                    {/*    }*/}
-                    {/*    if (mainElementShowing === "Pokedex") {*/}
-                    {/*        setCoachVisible(true);*/}
-                    {/*        setMainElementShowing("Coaches")*/}
-                    {/*    }*/}
-                    {/*}}>{mainElementShowing} </button>*/}
                     <button className="expandButton" onClick={expandEverything}>{expandedIcon}</button>
                 </div>
 
@@ -159,8 +145,7 @@ export default function Mons() {
 
             </div>
 
-            <h5 className="copyrightMons">Copyright
-                ©2024 ben dot place </h5>
+
         </div>
 
     )
