@@ -7,8 +7,8 @@ export default function CoachMap({coaches, visible, expanded}) {
     coaches = coaches.sort((a, b) => {
        if (a.winLoss[0] > b.winLoss[0]) return -1;
         else if (a.winLoss[0] < b.winLoss[0]) return 1;
-       if (a.winLoss[2] > b.winLoss[2]) return -1;
-        else if (a.winLoss[2] < b.winLoss[2]) return 1;
+       if (a.winLoss[2] < b.winLoss[2]) return -1;
+        else if (a.winLoss[2] > b.winLoss[2]) return 1;
        let diffA = a.winLoss.split('(')[1];
         diffA = diffA.slice(0, diffA.length - 1)
         diffA = diffA.substring(1);
