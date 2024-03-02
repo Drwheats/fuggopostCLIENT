@@ -1367,6 +1367,7 @@ pre {
         grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Play with min-value */    }
 
     .coachCardBlue {
+
         min-width: 400px;
         margin: 3px;
         width: fit-content;
@@ -1385,6 +1386,9 @@ pre {
         border-style: solid;
 }
 
+    .coachCardMonList {
+        padding-left: 10px;
+    }
     .pokemon {
         animation: slide-down-up .4s linear;
         color: black;
