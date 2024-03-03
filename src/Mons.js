@@ -14,6 +14,8 @@ export default function Mons() {
     const [mainElementShowing, setMainElementShowing] = useState("Home");
     const [allCoaches, setAllCoaches] = useState([]);
     const [leData, setLeData] = useState(true);
+    const [leDex, setLeDex] = useState(true);
+
     // These 2 functions and helper IF are copied over from my coach page. I'm going to keep them in case someone tries to access the site through a coach page, but thsi is very bad.
     const getTypingAPI = async (type) => {
         if (type === null) return;
@@ -43,6 +45,7 @@ export default function Mons() {
 
             const data = await response.json();
             setDex(data);
+            setLeDex(false);
         } catch (err) {
             console.log(err);
         }
@@ -149,14 +152,12 @@ export default function Mons() {
                 <button className="expandButton" onClick={expandEverything}>{expandedIcon}</button>
             </div>
 
-            {!leData && mainElementShowing === "Home" ? <PokeHome week={week} coaches={allCoaches} dex={dex} expanded={expanded} /> :
-                !leData && mainElementShowing === "Pokedex"  ? <PokeDex expanded={expanded} pokedex={dex}/> :
+            {!leData && !leDex && mainElementShowing === "Home" ? <PokeHome week={week} coaches={allCoaches} dex={dex} expanded={expanded} /> :
+                !leData && !leDex && mainElementShowing === "Pokedex"  ? <PokeDex expanded={expanded} pokedex={dex}/> :
                     mainElementShowing === "Rules" ? <PokeRules expanded={expanded} /> : !leData ?
-                    <CoachMap coaches={allCoaches} transitionState={true} expanded={expanded}/> :
-                            <div/>
-                }
-                {
-                }
+                        <CoachMap coaches={allCoaches} transitionState={true} expanded={expanded}/> :
+                        <img alt="loading spinner" className="circularLogo" src={"./amoguscircle.png"}/> }
+                <div/>
 
             </div>
 
