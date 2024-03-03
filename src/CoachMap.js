@@ -2,7 +2,7 @@ import Coach from "./Coach";
 import {elGR} from "@mui/material/locale";
 
 
-export default function CoachMap({coaches, visible, expanded}) {
+export default function CoachMap({coaches, expanded}) {
 
     coaches = coaches.sort((a, b) => {
        if (a.winLoss[0] > b.winLoss[0]) return -1;
@@ -24,14 +24,14 @@ export default function CoachMap({coaches, visible, expanded}) {
     })
 
     return (
-        <div className="realCoachHolder" id="none">
-            {visible ?
+        <div className={expanded ? "realCoachHolderBig" : "realCoachHolder"} id="none">
+            {
                 coaches.map(s => {
                     return <Coach key={s.coachNum} coachNum={s.coachNum} coachName={s.coachName} winLoss={s.winLoss}
                                   teamName={s.teamName} expanded={expanded} mons={s.mons} leagueRank={coaches.indexOf(s)}
                     />
                 })
- : <div></div>}
+}
         </div>
 
     )

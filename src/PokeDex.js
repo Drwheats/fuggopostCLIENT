@@ -2,11 +2,8 @@ import Coach from "./Coach";
 import {useEffect, useState} from "react";
 import Pokemon from "./Pokemon";
 
-export default function PokeDex(expanded) {
-    const [loaded, setLoaded] = useState(false);
-    const [dex, setDex] = useState([])
+export default function PokeDex({expanded, dex}) {
     const [showing, setShowing] = useState([])
-
     // These are ALL for the form:
     const [type1, setType1] = useState("Type 1:")
     const [type2, setType2] = useState("Type 2:")
@@ -18,25 +15,7 @@ export default function PokeDex(expanded) {
     const [monNamePartial, setMonNamePartial] = useState("")
     const [megaChecked, setMegaChecked] = useState(false);
     const [ownedChecked, setOwnedChecked] = useState(false);
-    const [isExpanded, setIsExpanded] = useState(expanded)
-    useEffect(() => {
-        callAPI();
-    }, [loaded]);
 
-    console.log(expanded)
-    const callAPI = async () => {
-        if (!loaded) try {
-            const response = await fetch(
-                'https://api.fuggo.lol/pokedex'
-            );
-
-            const data = await response.json();
-            setDex(data);
-            setLoaded(true);
-        } catch (err) {
-            console.log(err);
-        }
-    };
     const checkHandleMega = () => {
         setMegaChecked(!megaChecked)
     }
@@ -70,7 +49,6 @@ export default function PokeDex(expanded) {
                             if (dex[i].owner !== "" && ownedChecked) {
                                 continue;
                             }
-                            console.log(dex[i].pts)
                             tempHolder.push(dex[i])
 
                         }
@@ -101,9 +79,7 @@ export default function PokeDex(expanded) {
                         if (dex[i].owner !== "" && ownedChecked) {
                             continue;
                         }
-
-                        console.log(dex[i].smogonName + " worth : " + dex[i].pts)
-                            tempHolder.push(dex[i])
+                         tempHolder.push(dex[i])
 
                         }
 
@@ -117,7 +93,8 @@ export default function PokeDex(expanded) {
     }
     function handleTextareaChangeMinPoints(e) {
         setMinPoints(e.target.value);
-    }    function handleTextareaChangeMaxPoints(e) {
+    }
+    function handleTextareaChangeMaxPoints(e) {
         setMaxPoints(e.target.value);
     }
     function handleTextareaChangeMinSpeed(e) {
@@ -127,6 +104,8 @@ export default function PokeDex(expanded) {
     function handleTextareaChangeMonsToShow(e) {
         setMonsToShow(e.target.value);
     }
+
+    console.log("pokedex object dex : " + dex[1])
     return (
         <div>
         <div className="pokeDexContainer">
@@ -359,13 +338,12 @@ export default function PokeDex(expanded) {
             </div>
 
         </div>
-            {loaded ?
+            {
 
                 showing.slice(0, monsToShow).map(s => {
                     return <Pokemon key={s.smogonName} owned={s.owner !== ""} mon={s}/>
 
             })
-            : <img className="circularLogo" alt="amogus imageboard mascott" src="/amoguscircle.png"/>
         }</div>
     )
 }

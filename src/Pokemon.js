@@ -2141,6 +2141,14 @@ const webmons = [
 
                 </div>
 
+                <p className="monStatsHeader">{mon.ownerTeam}</p>
+                <ul className="monStats">
+                    <li>Kills : {mon.kills} </li>
+                    <li>Deaths : {mon.deaths}</li>
+                    <li>Played : {mon.gamesPlayed}</li>
+                    <li>Wins : {mon.gamesWon}</li>
+
+                </ul>
             </div>
 
     )

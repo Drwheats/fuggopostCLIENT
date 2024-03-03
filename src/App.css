@@ -600,6 +600,10 @@ button:active {
         transform:rotate(360deg);
     }
 }
+
+.monStats {
+    padding-top: 10px;
+}
 .nav a {
     height: 100%;
     display: flex;
@@ -1355,18 +1359,38 @@ pre {
 
 
     /* This begins the part of POKEMONS. NO IMAGEBOARD OR PLANNER OR ANYTHING GOES HERE JUST MONS. POKEMON START OF CSS*/
-
-.coachHolder {
-    background: #999999 url("../public/pokebal.png") repeat;
-        display: block;
-}
+    .monPage {
+        background: #999999 url("../public/pokebal.png") repeat;
+        min-height: 100vh;
+    }
 
     .realCoachHolder {
         display: grid;
         gap: 10px;
         grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Play with min-value */    }
 
+
+.coachCardBlue .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background-color: lightgreen;
+    color: black;
+}
+.coachCardGreen .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background-color: lightblue;
+    color: black;
+}
     .coachCardBlue {
+        position: relative;
+        display: inline-block;
 
         min-width: 400px;
         margin: 3px;
@@ -1378,6 +1402,9 @@ pre {
     }
 
     .coachCardGreen {
+        position: relative;
+        display: inline-block;
+
         min-width: 400px;
         animation: slide-right-left .4s linear;
         margin: 3px;
@@ -1744,7 +1771,10 @@ pre {
         text-align: center;
 
     }
-
+.monHomePage {
+    display: flex;
+    flex-direction: column;
+}
 
 .monName:hover .tooltiptext{
     visibility: visible;
@@ -2064,8 +2094,9 @@ pre {
     transition: max-height 0.2s ease-out;
 }
 
-
-
+.monPageHeader {
+    color: white;
+}
 
 
 
@@ -2277,18 +2308,18 @@ label{
 /* /////for three state switch/////////////////////// */
 
 .switch3-container h5{
-    max-widthwidth: 500px;
     margin-bottom: .7rem;
 }
 .switch3
 {
-
     position: relative;
     height:50px;
     display:flex;
     justify-content:space-around;
 }
 .switch3 label{
+    text-align: center;
+    font-size: 25px;
     padding: 1rem;
     z-index:1;
 }
@@ -2296,7 +2327,7 @@ label{
     content: '';
     position: absolute;
     left:0;
-    width: 34%;
+    width: 25%;
     height: 100%;
     background: #14142a;
     border: 1px solid #fff;
@@ -2306,53 +2337,16 @@ label{
 }
 
 .switch3:has(#switch3-radio1:checked)::before{
-    left: 0%;
+    left: 25%;
 }
 .switch3:has(#switch3-radio2:checked)::before{
-    left: 33%;
+    left: 50%;
 }
 .switch3:has(#switch3-radio3:checked)::before{
-    left: 66%;
+    left: 75%;
 }
-
-/* /////////////for three states without :has selector/// */
-
-
-.switch4-container h5{
-    margin-bottom: .7rem;
-}
-.switch4
-{
-
-    position: relative;
-    height:50px;
-    display:flex;
-    justify-content:space-around;
-    margin-bottom:1rem;
-}
-.switch4 label{
-    padding: 1rem;
-    z-index:1;
-}
-#active-label{
-    position: absolute;
-    left:0;
-    width: 34%;
-    height: 100%;
-    background: #14142a;
-    border: 1px solid #fff;
-    border-radius: 12px;
-    opacity: .5;
-    transition: .5s left ease;
-}
-#switch4-radio1:checked ~ #active-label{
-    left:0;
-}
-#switch4-radio2:checked ~ #active-label{
-    left:33%;
-}
-#switch4-radio3:checked ~ #active-label {
-    left:66%;
+.switch4:has(#switch4-radio4:checked)::before{
+    left: 0;
 }
 
 .expandButton {
