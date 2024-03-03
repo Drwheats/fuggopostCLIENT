@@ -514,7 +514,7 @@ export default function CoachPage() {
                                     <td><a
                                         href={match.Replay}>(Replay 👀)</a></td>
                                 </tr> :
-                                <tr
+                                <tr className="coachHistoryNeutral"
                                     key={le_key}>
                                     <td>{le_key + 1}</td>
                                     <td>{match.Opponent}</td>

@@ -2364,3 +2364,10 @@ label{
 .coachHistoryLoss {
     background-color: indianred !important;
 }
+.coachHistoryWin {
+    background-color: lightgreen !important;
+}
+
+.coachHistoryNeutral {
+    background-color: lightblue;
+}
