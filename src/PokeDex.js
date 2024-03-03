@@ -282,8 +282,6 @@ export default function PokeDex({expanded, dex}) {
                         </button>
                     </div>
                 </div>
-
-
             </div>
             <div className="pokeDexChromeHolder">
                 <div className="floating">
@@ -309,7 +307,7 @@ export default function PokeDex({expanded, dex}) {
                     </label>
                 </div>
             </div>
-            <div className={"pokeDexChromeHolder"}>
+            <div className="pokeDexChromeHolder">
                 <label className="toggleLabel">hide megas</label>
                 <label className="switch">
                     <input type="checkbox" checked={megaChecked} onChange={checkHandleMega}></input>
@@ -322,7 +320,7 @@ export default function PokeDex({expanded, dex}) {
                     <span className="slider round"></span>
                 </label>
             </div>
-            <div className={"pokeDexChromeHolder"}>
+            <div className="pokeDexChromeHolder">
                 <div className="floating">
                     <input id="inputId" className="floating__input" name="input name"
                            onChange={handleTextareaChangeMonsToShow}

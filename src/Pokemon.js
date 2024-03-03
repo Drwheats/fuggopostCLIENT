@@ -2083,11 +2083,11 @@ const webmons = [
                 </div>
             <br />
             <p className="monStatsHeader">{mon.ownerTeam}</p>
-                <ul className="monStats">
+                {mon.gamesPlayed != "0" ? <ul className="monStats">
                     <li>Kills : {mon.kills} | Deaths : {mon.deaths}</li>
                     <li>Played : {mon.gamesPlayed} | Wins : {mon.gamesWon}</li>
 
-                </ul>
+                </ul> : <ul className="monStats">Unplayed</ul>}
 
             </div> :
             // owned mon
@@ -2142,13 +2142,13 @@ const webmons = [
                 </div>
 
                 <p className="monStatsHeader">{mon.ownerTeam}</p>
-                <ul className="monStats">
-                    <li>Kills : {mon.kills} </li>
-                    <li>Deaths : {mon.deaths}</li>
-                    <li>Played : {mon.gamesPlayed}</li>
-                    <li>Wins : {mon.gamesWon}</li>
+                {mon.gamesPlayed != "0" ? <ul className="monStats">
+                        <li>Kills : {mon.kills} </li>
+                      <li>  Deaths : {mon.deaths}</li>
+                    <li>Played : {mon.gamesPlayed} </li>
+                        <li>Wins : {mon.gamesWon}</li>
 
-                </ul>
+                </ul> : null}
             </div>
 
     )

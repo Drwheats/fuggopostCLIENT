@@ -132,7 +132,7 @@ export default function Mons() {
                                 if (mainElementShowing !== "Rules")
                                     setMainElementShowing("Rules");
                             }}/>
-                            <label htmlFor="switch3-radio1">Rules</label>
+                            <label htmlFor="switch3-radio1">Information</label>
 
                             <input type="radio" id="switch3-radio2" name="radio" onClick={() => {
                                 if (mainElementShowing !== "Pokedex")

@@ -485,19 +485,48 @@ export default function CoachPage() {
                     </table>
 
                 </div>
-                <div className="coachHistoryHolder">           {matchups.map((match, le_key) => {
-                    console.log(match.Replay)
-                    return match.WinLoss === "W" ?
-                        <span className="coachHistoryWin"
-                              key={le_key}>Week {le_key + 1} : {match.Opponent} | +{match.Differential} <a
-                            href={match.Replay}>(Replay 👀)</a></span> : match.WinLoss === "L" ?
-                            <span className="coachHistoryLoss" key={le_key}>Week {le_key + 1} : {match.Opponent} | {match.Differential} <a href={match.Replay}>(Replay 👀)</a></span> :
-                            <span className="coachHistoryFuture" key={le_key}>Week {le_key + 1} : {match.Opponent} </span>
+                <table id="monMatchupTable">
+                    <tr>
+                        <th>Week</th>
+                        <th>Opponent</th>
+                        <th>Result</th>
+                        <th>Replay</th>
 
-                })}
-                </div>
+                    </tr>
+                    {matchups.map((match, le_key) => {
+                        console.log(match.Replay)
+                        return match.WinLoss === "W" ?
+                            <tr className="coachHistoryWin"
+                                key={le_key}>
+                                <td>{le_key + 1}</td>
+                                <td>{match.Opponent}</td>
+                                <td>+{match.Differential}</td>
+                                <td><a
+                                    href={match.Replay}>(Replay 👀)</a></td>
+
+                            </tr>
+                            : match.WinLoss === "L" ?
+                                <tr className="coachHistoryLoss"
+                                    key={le_key}>
+                                    <td>{le_key + 1}</td>
+                                    <td>{match.Opponent}</td>
+                                    <td>{match.Differential}</td>
+                                    <td><a
+                                        href={match.Replay}>(Replay 👀)</a></td>
+                                </tr> :
+                                <tr
+                                    key={le_key}>
+                                    <td>{le_key + 1}</td>
+                                    <td>{match.Opponent}</td>
+                                    <td></td>
+                                    <td></td>
+
+                                </tr>
+
+                    })}
+                </table>
                 <div className="typeChartHolder" id="typeChartHolder">
-                <div className="typeChart"><h1 className="typeChartHeader">{thisCoach.coachName}'s Weaknesses</h1>
+                    <div className="typeChart"><h1 className="typeChartHeader">{thisCoach.coachName}'s Weaknesses</h1>
                         <span className="decorationHolders"><TypeShow type="normal"/>
                             <TypeShow type="fighting"/>
                             <TypeShow type="water"/><TypeShow type="fire"/><TypeShow

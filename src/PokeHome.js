@@ -1,7 +1,9 @@
 import Coach from "./Coach";
 import Pokemon from "./Pokemon";
+import {useState} from "react";
 
 export default function PokeHome({coaches, expanded, dex, week}) {
+    const [homeDex, setHomeDex] = useState([]);
     week -=1;
     let noRepeats = [];
     coaches = coaches.sort((a, b) => {
@@ -61,16 +63,32 @@ export default function PokeHome({coaches, expanded, dex, week}) {
             </div>
             <h1 className="monPageHeader"> Week {week} Matchups :</h1>
             <div>
-                {
-                    coaches.map(s => {
-                        noRepeats.push(s.matchups[week].Opponent)
-                        console.log(noRepeats)
-                        return !noRepeats.includes(s.teamName) ? <div> <a href={"/mons/coach/" + s.coachNum}> <h3 className="monPageHeader">{s["teamName"]} VS {s.matchups[week].Opponent}</h3></a> </div>
-                            : <div></div>
+                <table id="monMatchupTable">
+                    <tr>
+                        <th>Player 1</th>
+                        <th>Player 2</th>
+                        <th>Result</th>
+                        <th>Replay</th>
 
-                    })
+                    </tr>
 
-                }
+                    {
+                        coaches.map(s => {
+                            noRepeats.push(s.matchups[week].Opponent)
+                            console.log(noRepeats)
+                            return !noRepeats.includes(s.teamName) ? <tr>
+                                    <td className="monPageHeader"><a href={"/mons/coach/" + s.coachNum}>{s["teamName"]}</a>
+                                    </td>
+                                    <td className="monPageHeader">{s.matchups[week].Opponent}</td>
+                                    <td>{s.matchups[week].WinLoss}</td>
+                                    <td><a href={s.matchups[week].Replay}> {s.matchups[week].Replay}</a></td>
+                                </tr>
+                                : <div></div>
+
+                        })
+
+                    }
+                </table>
             </div>
         </div>
     )
