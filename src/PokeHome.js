@@ -34,21 +34,18 @@ export default function PokeHome({coaches, expanded, dex, week}) {
         }
         else return 1;
     })
+    dex = dex.sort((a,b) => {
+        if (a.kills > b.kills) {return -1;}
+        else if (a.kills < b.kills) {return 1;}
+        if (a.gamesWon > b.gamesWon) {return -1;}
+        else if (a.gamesWon < b.gamesWon) {return 1;}
+        if (a.deaths > b.deaths) {return 1;}
+        else if (a.deaths < b.deaths) {return -1;}
+
+    })
+
     let noRepeats = [];
 
-    useEffect(() => {
-
-        setHomeDex(dex);
-        setHomeDex(homeDex.sort((a,b) => {
-            if (a.kills > b.kills) {return -1;}
-            else if (a.kills < b.kills) {return 1;}
-            if (a.gamesWon > b.gamesWon) {return -1;}
-            else if (a.gamesWon < b.gamesWon) {return 1;}
-            if (a.deaths > b.deaths) {return 1;}
-            else if (a.deaths < b.deaths) {return -1;}
-
-        }))
-    }, [homeDex, coaches]);
 
     return (
         <div className="monHomePage">
