@@ -2348,8 +2348,8 @@ label{
     padding: 8px;
 }
 
-#monMatchupTable tr:nth-child(even){background-color: lightblue;}
-#monMatchupTable tr:nth-child(odd){background-color: lightgreen;}
+.johtoHeader{background-color: lightblue;}
+.kantoHeader{background-color: lightgreen;}
 
 #monMatchupTable tr:hover {background-color: #ddd;}
 

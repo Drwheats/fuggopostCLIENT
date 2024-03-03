@@ -23,28 +23,28 @@ export default function PokeHome({coaches, expanded, dex, week}) {
         'North Bay Golbattalion',
         'Sabeleye Gems'
     ]
+    coaches = coaches.sort((a, b) => {
+        if (a.winLoss[0] > b.winLoss[0]) return -1;
+        else if (a.winLoss[0] < b.winLoss[0]) return 1;
+        if (a.winLoss[2] < b.winLoss[2]) return -1;
+        else if (a.winLoss[2] > b.winLoss[2]) return 1;
+        let diffA = a.winLoss.split('(')[1];
+        diffA = diffA.slice(0, diffA.length - 1)
+        diffA = diffA.substring(1);
+        diffA = Number(diffA)
+        let diffB = b.winLoss.split('(')[1];
+        diffB = diffB[1].slice(0, diffB.length - 1)
+        diffB = Number(diffB)
 
+        if (diffA > diffB) {
+            return -1;
+        }
+        else return 1;
+    })
     let noRepeats = [];
 
     useEffect(() => {
-        coaches = coaches.sort((a, b) => {
-            if (a.winLoss[0] > b.winLoss[0]) return -1;
-            else if (a.winLoss[0] < b.winLoss[0]) return 1;
-            if (a.winLoss[2] < b.winLoss[2]) return -1;
-            else if (a.winLoss[2] > b.winLoss[2]) return 1;
-            let diffA = a.winLoss.split('(')[1];
-            diffA = diffA.slice(0, diffA.length - 1)
-            diffA = diffA.substring(1);
-            diffA = Number(diffA)
-            let diffB = b.winLoss.split('(')[1];
-            diffB = diffB[1].slice(0, diffB.length - 1)
-            diffB = Number(diffB)
 
-            if (diffA > diffB) {
-                return -1;
-            }
-            else return 1;
-        })
         setHomeDex(dex);
         setHomeDex(homeDex.sort((a,b) => {
             if (a.kills > b.kills) {return -1;}
@@ -56,9 +56,8 @@ export default function PokeHome({coaches, expanded, dex, week}) {
 
 
         }))
-    }, [homeDex, coaches]);
+    }, [homeDex, coaches, dex]);
 
-    console.log(coaches[1].matchups[week].Opponent)
     return (
         <div className="monHomePage">
             <h1 className="monPageHeader">Coach Leaderboard:</h1>
@@ -89,7 +88,6 @@ export default function PokeHome({coaches, expanded, dex, week}) {
                     <tr>
                         <th>Player 1</th>
                         <th>Player 2</th>
-                        <th>Result</th>
                         <th>Replay</th>
 
                     </tr>
@@ -97,12 +95,10 @@ export default function PokeHome({coaches, expanded, dex, week}) {
                     {
                         coaches.map(s => {
                             noRepeats.push(s.matchups[week].Opponent)
-                            console.log(noRepeats)
-                            return !noRepeats.includes(s.teamName) ? <tr>
-                                    <td className="monPageHeader"><a href={"/mons/coach/" + s.coachNum}>{s["teamName"]}</a>
+                            return !noRepeats.includes(s.teamName) ? <tr className={johto.includes(s.teamName) ? "kantoHeader" : "johtoHeader"}>
+                                    <td><a href={"/mons/coach/" + s.coachNum}>{s["teamName"]}</a>
                                     </td>
-                                    <td className="monPageHeader">{s.matchups[week].Opponent}</td>
-                                    <td>{s.matchups[week].WinLoss}</td>
+                                    <td>{s.matchups[week].Opponent}</td>
                                     <td><a href={s.matchups[week].Replay}> {s.matchups[week].Replay}</a></td>
                                 </tr>
                                 : <div></div>
