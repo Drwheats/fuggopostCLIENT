@@ -107,8 +107,6 @@ export default function Mons() {
 
     }, [leData, allCoaches, callMonsAPI])
 
-    console.log(dex)
-
     return (
         <div className="monPage">
             <div className="monPageHeader">
@@ -152,7 +150,7 @@ export default function Mons() {
             </div>
 
             {!leData && mainElementShowing === "Home" ? <PokeHome week={week} coaches={allCoaches} dex={dex} expanded={expanded} /> :
-                !leData && mainElementShowing === "Pokedex"  ? <PokeDex expanded={expanded} dex={dex}/> :
+                !leData && mainElementShowing === "Pokedex"  ? <PokeDex expanded={expanded} pokedex={dex}/> :
                     mainElementShowing === "Rules" ? <PokeRules expanded={expanded} /> : !leData ?
                     <CoachMap coaches={allCoaches} transitionState={true} expanded={expanded}/> :
                             <div/>

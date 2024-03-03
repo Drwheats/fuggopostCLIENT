@@ -5,14 +5,7 @@ import {useEffect, useState} from "react";
 export default function PokeHome({coaches, expanded, dex, week}) {
     const [homeDex, setHomeDex] = useState(dex);
     week -=1;
-    let kanto = ['Happy Farm Pokemon',
-        'Wannabe Canadians',
-        'Motown Crankers',
-        'Abomasnow Avalanche',
-        'Ottawa Battle Stantlers',
-        'Halifax Hurricanes',
-        'St. Lawrence Salamences',
-        'Cleveland Escavaliers']
+
     let johto = [
         '        Charlotte Beedrills',
         'Karma Charmeleon',
@@ -54,9 +47,8 @@ export default function PokeHome({coaches, expanded, dex, week}) {
             if (a.deaths > b.deaths) {return 1;}
             else if (a.deaths < b.deaths) {return -1;}
 
-
         }))
-    }, [homeDex, coaches, dex]);
+    }, [homeDex, coaches]);
 
     return (
         <div className="monHomePage">

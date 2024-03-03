@@ -2,7 +2,8 @@ import Coach from "./Coach";
 import {useEffect, useReducer, useState} from "react";
 import Pokemon from "./Pokemon";
 
-export default function PokeDex({expanded, dex}) {
+export default function PokeDex({expanded, pokedex}) {
+    const [dex, setDex] = useState();
     const [showing, setShowing] = useState([])
     const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
 
@@ -18,6 +19,10 @@ export default function PokeDex({expanded, dex}) {
     const [megaChecked, setMegaChecked] = useState(false);
     const [ownedChecked, setOwnedChecked] = useState(false);
 
+    useEffect(() => {
+        setDex(pokedex);
+
+    }, []);
     const checkHandleMega = () => {
         setMegaChecked(!megaChecked)
     }
@@ -60,7 +65,7 @@ export default function PokeDex({expanded, dex}) {
         }
         else if (type1 !== "Type 1:") {
             for (let i = 0; i < dex.length; i++) {
-                if (dex[i].type1 == type1 || dex[i].type2 == type1) {
+                if (dex[i].type1 == type1 || dex[i].type2 === type1) {
                     if (Number(dex[i].pts) >= tempMinPoints && dex[i].pts <= tempMaxPoints && dex[i].spe >= tempSpeedValue && dex[i].smogonName.includes(tempMonNamePartial)) {
                         if (dex[i].smogonName.includes("mega") && megaChecked) {
                             continue;
@@ -143,7 +148,7 @@ export default function PokeDex({expanded, dex}) {
         setShowing(tempShow);
         forceUpdate();
     }
-    console.log("pokedex object dex : " + dex[1])
+
     return (
         <div>
             <div className="pokeDexContainer">
