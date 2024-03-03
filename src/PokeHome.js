@@ -1,40 +1,62 @@
 import Coach from "./Coach";
 import Pokemon from "./Pokemon";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function PokeHome({coaches, expanded, dex, week}) {
-    const [homeDex, setHomeDex] = useState([]);
+    const [homeDex, setHomeDex] = useState(dex);
     week -=1;
+    let kanto = ['Happy Farm Pokemon',
+        'Wannabe Canadians',
+        'Motown Crankers',
+        'Abomasnow Avalanche',
+        'Ottawa Battle Stantlers',
+        'Halifax Hurricanes',
+        'St. Lawrence Salamences',
+        'Cleveland Escavaliers']
+    let johto = [
+        '        Charlotte Beedrills',
+        'Karma Charmeleon',
+        'Georgia Gatrs',
+        'Windsor Wartortles',
+        'Seattle Krabby',
+        'Toking Hard Charizard',
+        'North Bay Golbattalion',
+        'Sabeleye Gems'
+    ]
+
     let noRepeats = [];
-    coaches = coaches.sort((a, b) => {
-        if (a.winLoss[0] > b.winLoss[0]) return -1;
-        else if (a.winLoss[0] < b.winLoss[0]) return 1;
-        if (a.winLoss[2] < b.winLoss[2]) return -1;
-        else if (a.winLoss[2] > b.winLoss[2]) return 1;
-        let diffA = a.winLoss.split('(')[1];
-        diffA = diffA.slice(0, diffA.length - 1)
-        diffA = diffA.substring(1);
-        diffA = Number(diffA)
-        let diffB = b.winLoss.split('(')[1];
-        diffB = diffB[1].slice(0, diffB.length - 1)
-        diffB = Number(diffB)
 
-        if (diffA > diffB) {
-            return -1;
-        }
-        else return 1;
-    })
+    useEffect(() => {
+        coaches = coaches.sort((a, b) => {
+            if (a.winLoss[0] > b.winLoss[0]) return -1;
+            else if (a.winLoss[0] < b.winLoss[0]) return 1;
+            if (a.winLoss[2] < b.winLoss[2]) return -1;
+            else if (a.winLoss[2] > b.winLoss[2]) return 1;
+            let diffA = a.winLoss.split('(')[1];
+            diffA = diffA.slice(0, diffA.length - 1)
+            diffA = diffA.substring(1);
+            diffA = Number(diffA)
+            let diffB = b.winLoss.split('(')[1];
+            diffB = diffB[1].slice(0, diffB.length - 1)
+            diffB = Number(diffB)
 
-    dex = dex.sort((a,b) => {
-        if (a.kills > b.kills) {return -1;}
-        else if (a.kills < b.kills) {return 1;}
-        if (a.gamesWon > b.gamesWon) {return -1;}
-        else if (a.gamesWon < b.gamesWon) {return 1;}
-        if (a.deaths > b.deaths) {return 1;}
-        else if (a.deaths < b.deaths) {return -1;}
+            if (diffA > diffB) {
+                return -1;
+            }
+            else return 1;
+        })
+        setHomeDex(dex);
+        setHomeDex(homeDex.sort((a,b) => {
+            if (a.kills > b.kills) {return -1;}
+            else if (a.kills < b.kills) {return 1;}
+            if (a.gamesWon > b.gamesWon) {return -1;}
+            else if (a.gamesWon < b.gamesWon) {return 1;}
+            if (a.deaths > b.deaths) {return 1;}
+            else if (a.deaths < b.deaths) {return -1;}
 
 
-    })
+        }))
+    }, [homeDex, coaches]);
 
     console.log(coaches[1].matchups[week].Opponent)
     return (
@@ -54,7 +76,7 @@ export default function PokeHome({coaches, expanded, dex, week}) {
             <div>
             {
 
-                dex.slice(0,10).map(s => {
+                homeDex.slice(0,10).map(s => {
                      return s.owner !== "" ? <Pokemon key={s.smogonName} owned={s.owner !== ""} mon={s}/> :
                     <p></p>
 
