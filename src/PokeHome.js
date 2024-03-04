@@ -1,9 +1,8 @@
 import Coach from "./Coach";
 import Pokemon from "./Pokemon";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
 export default function PokeHome({coaches, expanded, dex, week}) {
-    const [homeDex, setHomeDex] = useState(dex);
     week -=1;
 
 
@@ -73,7 +72,7 @@ export default function PokeHome({coaches, expanded, dex, week}) {
                 })
             }
             </div>
-            <h1 className="monPageHeader"> Week {week} Matchups :</h1>
+            <h1 className="monPageHeader"> Week {week + 1} Matchups :</h1>
             <div>
                 <table id="monMatchupTable">
                     <tr>
