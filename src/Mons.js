@@ -3,11 +3,12 @@ import PokeRules from "./PokeRules";
 import CoachMap from "./CoachMap";
 import PokeDex from "./PokeDex";
 import PokeHome from "./PokeHome";
+import LoginPageMons from "./LoginPageMons";
 let server = "https://api.fuggo.lol/"
 // let server = "http://localhost:4000/";
 
 export default function Mons() {
-    const [week, setWeek] = useState(5)
+    const [week, setWeek] = useState(6)
     const [dex, setDex] = useState([])
     const [expandedIcon, setExpandedIcon] = useState("+")
     const [expanded, setExpanded] = useState(false);
@@ -120,42 +121,53 @@ export default function Mons() {
 
             <div className="monPageCoachHeader">
                     <div className="switch3-container">
+
+
                         <div className="switch3">
-                            <input type="radio" id="switch3-radio4" name="radio" onClick={() => {
+
+                            <input type="radio" id="switch3-radio1" name="radio" onClick={() => {
                                 if (mainElementShowing !== "Home")
                                     setMainElementShowing("Home");
                             }}/>
-                            <label htmlFor="switch3-radio4"
+                            <label htmlFor="switch3-radio1"
 
                             >Home</label>
 
-                            <input type="radio" id="switch3-radio1" name="radio" onClick={() => {
+                            <input type="radio" id="switch3-radio2" name="radio" onClick={() => {
                                 if (mainElementShowing !== "Rules")
                                     setMainElementShowing("Rules");
                             }}/>
-                            <label htmlFor="switch3-radio1">Information</label>
+                            <label htmlFor="switch3-radio2">Info</label>
 
-                            <input type="radio" id="switch3-radio2" name="radio" onClick={() => {
+                            <input type="radio" id="switch3-radio3" name="radio" onClick={() => {
                                 if (mainElementShowing !== "Pokedex")
                                     setMainElementShowing("Pokedex");
                             }}/>
-                            <label htmlFor="switch3-radio2">Pokedex</label>
+                            <label htmlFor="switch3-radio3">Pokedex</label>
 
-                            <input type="radio" id="switch3-radio3" name="radio"                                    onClick={() => {
+                            <input type="radio" id="switch3-radio4" name="radio" onClick={() => {
                                 if (mainElementShowing !== "Coaches")
                                     setMainElementShowing("Coaches");
                             }}
                             />
-                            <label htmlFor="switch3-radio3">Coaches</label>
+                            <label htmlFor="switch3-radio4">Coaches</label>
+                            <input type="radio" id="switch3-radio5" name="radio" onClick={() => {
+                                if (mainElementShowing !== "Login")
+                                    setMainElementShowing("Login");
+                            }}
+                            />
+                            <label htmlFor="switch3-radio5">Login</label>
+
                         </div>
                     </div>
                 <button className="expandButton" onClick={expandEverything}>{expandedIcon}</button>
             </div>
 
-            {!leData && !leDex && mainElementShowing === "Home" ? <PokeHome week={week} coaches={allCoaches} dex={dex} expanded={expanded} /> :
-                !leData && !leDex && mainElementShowing === "Pokedex"  ? <PokeDex expanded={expanded} pokedex={dex}/> :
-                    mainElementShowing === "Rules" ? <PokeRules expanded={expanded} /> : !leData ?
-                        <CoachMap coaches={allCoaches} transitionState={true} expanded={expanded}/> :
+            {!leData && !leDex && mainElementShowing === "Home" ? <PokeHome week={week} coaches={allCoaches} dex={dex} expanded={expanded}/> :
+                !leData && !leDex && mainElementShowing === "Pokedex" ? <PokeDex expanded={expanded} pokedex={dex}/> :
+                    mainElementShowing === "Rules" ? <PokeRules expanded={expanded} /> :
+                        !leData && mainElementShowing === "Coaches" ? <CoachMap coaches={allCoaches} transitionState={true} expanded={expanded}/> :
+                        mainElementShowing === "Login" && !leData ? <LoginPageMons /> :
                         <img alt="loading spinner" className="circularLogo" src={"./amoguscircle.png"}/> }
                 <div/>
 

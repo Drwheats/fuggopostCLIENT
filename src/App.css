@@ -588,6 +588,7 @@ button:active {
     display: flex;
 }
 .smallButton {
+    padding-left: 50px;
     line-height: 0px;
     height: 20px;
     width: 10px;
@@ -2318,21 +2319,25 @@ label{
 }
 
 .switch3:has(#switch3-radio1:checked)::before{
-    left: 25%;
+    left: 0%;
 }
 .switch3:has(#switch3-radio2:checked)::before{
-    left: 50%;
+    left: 20%;
 }
 .switch3:has(#switch3-radio3:checked)::before{
-    left: 75%;
+    left: 40%;
 }
-.switch4:has(#switch4-radio4:checked)::before{
-    left: 0;
+.switch3:has(#switch3-radio4:checked)::before{
+    left: 60%;
+}
+
+.switch3:has(#switch3-radio5:checked)::before{
+    left: 80%;
 }
 
 .expandButton {
     padding-left: 20px;
-    margin-left: 10px;
+    margin-left: 50px;
     height: 50px;
     width: 30px;
     ;

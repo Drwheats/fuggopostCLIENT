@@ -6,6 +6,8 @@ export default function PokeHome({coaches, expanded, dex, week}) {
     const [homeDex, setHomeDex] = useState(dex);
     week -=1;
 
+
+
     let johto = [
         '        Charlotte Beedrills',
         'Karma Charmeleon',
@@ -35,12 +37,12 @@ export default function PokeHome({coaches, expanded, dex, week}) {
         else return 1;
     })
     dex = dex.sort((a,b) => {
-        if (a.kills > b.kills) {return -1;}
-        else if (a.kills < b.kills) {return 1;}
-        if (a.gamesWon > b.gamesWon) {return -1;}
-        else if (a.gamesWon < b.gamesWon) {return 1;}
-        if (a.deaths > b.deaths) {return 1;}
-        else if (a.deaths < b.deaths) {return -1;}
+        if (Number(a.kills) > Number(b.kills)) {return -1;}
+        else if (Number(a.kills) < Number(b.kills)) {return 1;}
+        if (Number(a.gamesWon) > Number(b.gamesWon)) {return -1;}
+        else if (Number(a.gamesWon) < Number(b.gamesWon)) {return 1;}
+        if (Number(a.deaths) > Number(b.deaths)) {return -1;}
+        else if (Number(a.deaths) < Number(b.deaths)) {return 1;}
 
     })
 
@@ -64,7 +66,7 @@ export default function PokeHome({coaches, expanded, dex, week}) {
             <div>
             {
 
-                homeDex.slice(0,10).map(s => {
+                dex.slice(0,15).map(s => {
                      return s.owner !== "" ? <Pokemon key={s.smogonName} owned={s.owner !== ""} mon={s}/> :
                     <p></p>
 
