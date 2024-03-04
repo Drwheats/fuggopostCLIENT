@@ -684,7 +684,6 @@ a:link {
 }
 
 .theEntirePost {
-
     float: left;
     display: flex;
     overflow: hidden;
@@ -718,6 +717,7 @@ a:link {
     flex-direction: row;
 }
 .postBody {
+
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -735,6 +735,7 @@ a:link {
 }
 
 .postFooter {
+
     width: 100%;
     display: flex;
     margin: auto;
@@ -776,6 +777,7 @@ a:link {
     max-width: 80%;
     overflow: hidden;
     padding: 5px;
+
     text-align: left;
     float: left;
 }
@@ -1142,7 +1144,6 @@ pre {
 }
 
 .floatingReply {
-    display: inherit;
     border-width: 1px;
     border-style: solid;
     float: left;
@@ -1154,11 +1155,6 @@ pre {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-}
-
-pre {
-    white-space: normal;
-    margin: auto;
 }
 
 .postButton {
@@ -1315,13 +1311,14 @@ pre {
     margin: 5px;
 }
 
-    .theEntirePost {
-        margin-bottom: 10px;
-        max-width: 80%;
-
-    }
+.theEntirePost {
+    padding-bottom: 10px;
+    max-width: 80%;
+    min-height: fit-content;
+}
 
     .postHolder {
+
         margin-left: 20px;
         max-width: 80%;
     }
