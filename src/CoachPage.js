@@ -9,7 +9,7 @@ let server = "https://api.fuggo.lol/"
 export default function CoachPage() {
     let pageLoc = window.location.pathname.split('/')[3];
 
-    const currentWeek = 5;
+    const currentWeek = 6;
     const [heroActiveName, setHeroActiveName] = useState(false);
     const [villainActiveName, setVillainActiveName] = useState(false);
     const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
