@@ -84,7 +84,7 @@ export default function PokeHome({coaches, expanded, dex, week}) {
 
                     {
                         coaches.map(s => {
-                            noRepeats.push(s.matchups[week].Opponent)
+                            noRepeats.push(s.matchups[week  ].Opponent)
                             return !noRepeats.includes(s.teamName) ? <tr className={johto.includes(s.teamName) ? "kantoHeader" : "johtoHeader"}>
                                     <td><a href={"/mons/coach/" + s.coachNum}>{s["teamName"]}</a>
                                     </td>
