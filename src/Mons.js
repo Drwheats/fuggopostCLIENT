@@ -8,7 +8,7 @@ let server = "https://api.fuggo.lol/"
 // let server = "http://localhost:4000/";
 
 export default function Mons() {
-    const [week, setWeek] = useState(6)
+    const [week, setWeek] = useState(7)
     const [dex, setDex] = useState([])
     const [expandedIcon, setExpandedIcon] = useState("+")
     const [expanded, setExpanded] = useState(false);
