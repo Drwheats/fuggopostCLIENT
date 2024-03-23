@@ -1,7 +1,7 @@
 import Post from "./Post";
 
 
-export default function PostMap({posters}) {
+export default function PostMap({posters, displayType}) {
     if (posters.postName === '') {
         posters.postName = "anonymous";
     }
@@ -12,7 +12,7 @@ export default function PostMap({posters}) {
 
 
     return (
-        <div className="cards" id="cards">
+        <div className={displayType ? "cards" : "floatingCards"} id="cards">
 
             {posters.map(s => {
                 if (s.timePosted === "2004") {

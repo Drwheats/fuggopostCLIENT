@@ -15,6 +15,8 @@ let server = "https://api.fuggo.lol/"
 
 export default function HighScores({contentPage}) {
     // const [inData, setInData] = useState(true);
+    const [searchShowing, setSearchShowing] = useState(false);
+    const [showPostForm, setShowPostForm] = useState(false);
     const nodeRef = useRef(null);
     const [data, setData] = useState(true);
     const [permanentData, setPermanentData] = useState([]);
@@ -31,6 +33,7 @@ export default function HighScores({contentPage}) {
     const [status, setStatus] = useState('')
     const [displayCards, setDisplayCards] = useState(true);
     // Here, we get the list of posts from the server based on what page the user is on.
+
 
     useEffect(() => {
         if (data) {
@@ -193,55 +196,30 @@ export default function HighScores({contentPage}) {
 
     }
 
-    function showSearch() {
-        document.getElementById("searchBar").style.display = "inline-block"
-        document.getElementById("searchButtonHolder").style.display = "none"
-    }
+
     function changeCardView() {
         if (displayCards === true) {
-            document.getElementById("cards").style.display = "flex";
-            document.getElementById("cards").classList.add("slideUp");
-
-
-            // document.getElementById("cards").style.flexWrap = "wrap";
             setDisplayCards(false);
-            document.getElementById("paragraphCentre").style.display = "none";
-            document.getElementById("paragraphRight").style.display = "block";
-
         }
         else {
-            document.getElementById("cards").style.display = "block";
             setDisplayCards(true);
-            document.getElementById("cards").classList.add("slideLeft");
-
-            document.getElementById("paragraphCentre").style.display = "block";
-            document.getElementById("paragraphRight").style.display = "none";
-
-
         }
 
     }
 
+    function showSearch() {
+        setSearchShowing(true);
+    }
     function hideSearch() {
-        document.getElementById("searchBar").style.display = "none"
-        document.getElementById("searchButtonHolder").style.display = "inline-block"
-
+        setSearchShowing(false);
     }
 
     function showPost() {
-        document.getElementById("submissionForm").style.display = 'inline-block';
-
-
-        document.getElementById("postButtonHolder").style.display = "none"
-
+        setShowPostForm(true);
     }
 
     function hidePost() {
-        document.getElementById("submissionForm").style.display = 'none';
-
-
-        document.getElementById("postButtonHolder").style.display = "inline-block"
-
+        setShowPostForm(false);
     }
 
     // everything image related here:
@@ -269,65 +247,73 @@ export default function HighScores({contentPage}) {
         <div className="mainPostPage">
 
             <div className="toolContainer">
-                <div className="searchButtonHolder" id="searchButtonHolder"
-                ><ImSearch className="searchIcon" onClick={showSearch}></ImSearch></div>
+                {searchShowing ? <div className="searchBar" id="searchBar">
+                        <h3>Find Posts</h3>
+                        <div>
+                            <label>Name: </label><input type="text" className="searchBarPoster" id="searchBarPoster"
+                                                        onChange={changeSearchPoster}/>
+                        </div>
+                        <div>
+                            <label>Topic: </label><input type="text" className="searchBarTopic" id="searchBarTopic"
+                                                         onChange={changeSearchTopic}/>
+                        </div>
+                        <div>
+                            <label>Content: </label><input type="text" className="searchBarContent" id="searchBarContent"
+                                                           onChange={changeSearchContent}/>
+                        </div>
+                        <button className="clearButton" onClick={clearFilters}>CLEAR ALL FILTERS</button>
+                        <ImZoomOut className="hideSearch" size={20} onClick={hideSearch}>HIDE</ImZoomOut>
+                    </div> :
+                    <div className="searchButtonHolder" id="searchButtonHolder"><ImSearch className="searchIcon"
+                                                                                          onClick={showSearch}></ImSearch>
+                    </div>
+                }
                 <span className="stackIcon" onClick={changeCardView}>
-                    <span className="paragraphRight" id="paragraphRight">
-                      <ImParagraphLeft size={20}/>
-                    </span>
-                    <span className="paragraphCentre" id="paragraphCentre">
+
+                    {displayCards ? <span className="paragraphCentre" id="paragraphCentre">
+                        <ImParagraphLeft size={20}/>
+                    </span> :
+                        <span className="paragraphCentre" id="paragraphCentre">
                         <ImParagraphJustify size={20}/>
-                    </span>
+                    </span>}
+
                 </span>
-                <div className="searchBar" id="searchBar">
-                    <h3>Find Posts</h3>
-                    <div>
-                        <label>Name: </label><input type="text" className="searchBarPoster" id="searchBarPoster"
-                                                    onChange={changeSearchPoster}/>
-                    </div>
-                    <div>
-                        <label>Topic: </label><input type="text" className="searchBarTopic" id="searchBarTopic"
-                                                     onChange={changeSearchTopic}/>
-                    </div>
-                    <div>
-                        <label>Content: </label><input type="text" className="searchBarContent" id="searchBarContent"
-                                                       onChange={changeSearchContent}/>
-                    </div>
-                    <button className="clearButton" onClick={clearFilters}>CLEAR ALL FILTERS</button>
-                    <ImZoomOut className="hideSearch" size={20} onClick={hideSearch}>HIDE</ImZoomOut>
-                </div>
 
-                <div className="postButtonHolder" id="postButtonHolder"
-                >
-                    <button onClick={showPost}>POST</button>
-                </div>
 
-                <div className="submissionForm" id="submissionForm">
-                    <label>Name</label><input onChange={changeInputNameValue} placeholder="Anonymous" type="text"
-                                              className="nameTextSubmit"/>
-                    <label>Topic</label><input placeholder="Topic" type="text" onChange={changeInputTopicValue}
-                                               className="topicTextSubmit"/>
-                    <button onClick={hidePost}>Hide</button>
-                    <br/>
-                    <textarea placeholder="Post (max characters: 3000)" onChange={changeInputPostBody}
-                              className="mainTextSubmit"/>
+                <div className="postButtonHolder" id="postButtonHolder">
+                    {
+                        showPostForm ? <div className="submissionForm" id="submissionForm">
+                            <label>Name</label><input onChange={changeInputNameValue} placeholder="Anonymous"
+                                                      type="text"
+                                                      className="nameTextSubmit"/>
+                            <label>Topic</label><input placeholder="Topic" type="text" onChange={changeInputTopicValue}
+                                                       className="topicTextSubmit"/>
+                            <button onClick={hidePost}>Hide</button>
+                            <br/>
+                            <textarea placeholder="Post (max characters: 3000)" onChange={changeInputPostBody}
+                                      className="mainTextSubmit"/>
 
-                    <span className="fileUploadHolder">
+                            <span className="fileUploadHolder">
                 {image.preview && <img alt="" src={image.preview} width='100' height='100'/>}
-                        <hr></hr>
+                                <hr></hr>
       <form onSubmit={handleSubmit}>
         <input type='file' alt="" name='file' onChange={handleFileChange}></input>
       </form>
                     </span>
-                    <br/>
-                    <button className="postButton" onClick={submitScore}>Post</button>
+                            <br/>
+                            <button className="postButton" onClick={submitScore}>POST</button>
+                        </div> : <button className="showPostButton" onClick={showPost}>POST</button>
+
+                    }
                 </div>
+
+
             </div>
             <CSSTransition nodeRef={nodeRef} timeout={1500} classNames="animatePosts">
 
                 <div ref={nodeRef} className="leaderboard" id="leaderboard">
                     {<div className='posts' id='posts'><PostMap
-                        posters={allPosts.slice(postPage * 10, postPage * 10 + 9)}
+                        posters={allPosts.slice(postPage * 10, postPage * 10 + 9)} displayType={displayCards}
                         className="postMap"/>
                     </div>}
                 </div>
